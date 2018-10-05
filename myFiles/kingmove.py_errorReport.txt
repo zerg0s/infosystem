@@ -1,0 +1,6 @@
+************* Module KingMove
+myFiles\KingMove.py:13:0: C0304: Final newline missing (missing-final-newline)
+
+---------------------------------------------------------------------
+Your code has been rated at 8.57/10 (previous run: -11.00/10, +19.57)
+

@@ -1,0 +1,22 @@
+************* Module hodKing
+myFiles\hodKing.py:13:44: C0303: Trailing whitespace (trailing-whitespace)
+myFiles\hodKing.py:15:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\hodKing.py:16:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\hodKing.py:17:0: C0303: Trailing whitespace (trailing-whitespace)
+myFiles\hodKing.py:18:0: C0301: Line too long (111/100) (line-too-long)
+myFiles\hodKing.py:19:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\hodKing.py:20:0: C0304: Final newline missing (missing-final-newline)
+myFiles\hodKing.py:20:12: C0326: No space allowed before bracket
+else: print ("NO")
+            ^ (bad-whitespace)
+myFiles\hodKing.py:1:0: C0103: Module name "hodKing" doesn't conform to snake_case naming style (invalid-name)
+myFiles\hodKing.py:1:0: C0111: Missing module docstring (missing-docstring)
+myFiles\hodKing.py:6:0: C0103: Constant name "kingVer" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\hodKing.py:7:0: C0103: Constant name "kingHor" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\hodKing.py:10:0: C0103: Constant name "newVer" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\hodKing.py:11:0: C0103: Constant name "newHor" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\hodKing.py:18:3: R1716: Simplify chained comparison between the operands (chained-comparison)
+
+------------------------------------
+Your code has been rated at -2.50/10
+

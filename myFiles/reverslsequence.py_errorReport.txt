@@ -1,0 +1,15 @@
+************* Module reverslsequence
+myFiles\reverslsequence.py:24:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+myFiles\reverslsequence.py:25:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+myFiles\reverslsequence.py:26:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+myFiles\reverslsequence.py:27:0: W0311: Bad indentation. Found 16 spaces, expected 12 (bad-indentation)
+myFiles\reverslsequence.py:43:0: C0304: Final newline missing (missing-final-newline)
+myFiles\reverslsequence.py:7:4: C0103: Variable name "in_data" doesn't conform to camelCase naming style (invalid-name)
+myFiles\reverslsequence.py:8:4: R1705: Unnecessary "else" after "return" (no-else-return)
+myFiles\reverslsequence.py:22:4: W0621: Redefining name 'a' from outer scope (line 38) (redefined-outer-name)
+myFiles\reverslsequence.py:17:4: W0603: Using the global statement (global-statement)
+myFiles\reverslsequence.py:22:4: C0103: Variable name "a" doesn't conform to camelCase naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 7.06/10
+

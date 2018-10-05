@@ -1,0 +1,7 @@
+************* Module SlozhnoeUr2
+myFiles\SlozhnoeUr2.py:16:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\SlozhnoeUr2.py:19:0: C0304: Final newline missing (missing-final-newline)
+
+-----------------------------------
+Your code has been rated at 8.33/10
+

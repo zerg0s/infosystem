@@ -1,0 +1,7 @@
+************* Module complex_equation_2
+myFiles\complex_equation_2.py:18:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\complex_equation_2.py:1:0: C0111: Missing module docstring (missing-docstring)
+
+-----------------------------------
+Your code has been rated at 8.46/10
+

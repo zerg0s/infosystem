@@ -1,0 +1,18 @@
+Starting audit...
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:3: Using the '.*' form of import should be avoided - java.io.*. [AvoidStarImport]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:6: Missing a Javadoc comment. [JavadocType]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:6:1: Utility classes should not have a public or default constructor. [HideUtilityClassConstructor]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:6:14: Name 'zadanie7' must match pattern '^[A-Z][a-zA-Z0-9]*$'. [TypeName]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:7:29: Parameter args should be final. [FinalParameters]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:13:23: '{' is not preceded with whitespace. [WhitespaceAround]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:14:19: '%' is not preceded with whitespace. [WhitespaceAround]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:14:20: '%' is not followed by whitespace. [WhitespaceAround]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:14:33: '/' is not preceded with whitespace. [WhitespaceAround]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:14:34: '/' is not followed by whitespace. [WhitespaceAround]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:14:41: '{' is not preceded with whitespace. [WhitespaceAround]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:17:14: 'else' is not preceded with whitespace. [WhitespaceAround]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:17:14: '}' is not followed by whitespace. [WhitespaceAround]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:17:18: 'else' is not followed by whitespace. [WhitespaceAfter]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie7.java:17:18: '{' is not preceded with whitespace. [WhitespaceAround]
+Audit done.
+Checkstyle ends with 15 errors.

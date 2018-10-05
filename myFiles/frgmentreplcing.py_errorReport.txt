@@ -1,0 +1,6 @@
+************* Module frgmentreplcing
+myFiles\frgmentreplcing.py:6:45: C0303: Trailing whitespace (trailing-whitespace)
+
+-----------------------------------
+Your code has been rated at 8.00/10
+

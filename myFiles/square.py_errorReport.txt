@@ -1,0 +1,15 @@
+************* Module square
+myFiles\square.py:12:15: C0326: Exactly one space required after comma
+PointInSquare(x,y)
+               ^ (bad-whitespace)
+myFiles\square.py:13:0: C0305: Trailing newlines (trailing-newlines)
+myFiles\square.py:4:0: C0103: Function name "PointInSquare" doesn't conform to camelCase naming style (invalid-name)
+myFiles\square.py:4:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+myFiles\square.py:4:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
+myFiles\square.py:4:18: W0621: Redefining name 'x' from outer scope (line 6) (redefined-outer-name)
+myFiles\square.py:4:21: W0621: Redefining name 'y' from outer scope (line 7) (redefined-outer-name)
+myFiles\square.py:8:0: W0125: Using a conditional statement with a constant value (using-constant-test)
+
+------------------------------------------------------------------
+Your code has been rated at 0.00/10 (previous run: 1.43/10, -1.43)
+

@@ -1,0 +1,11 @@
+************* Module TaskStorage
+myFiles\TaskStorage.py:6:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskStorage.py:16:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskStorage.py:26:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskStorage.py:36:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskStorage.py:46:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskStorage.py:56:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+
+-----------------------------------
+Your code has been rated at 8.82/10
+

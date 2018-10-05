@@ -1,0 +1,6 @@
+************* Module deletesimbol
+myFiles\deletesimbol.py:5:28: C0303: Trailing whitespace (trailing-whitespace)
+
+------------------------------------------------------------------
+Your code has been rated at 6.67/10 (previous run: 6.67/10, +0.00)
+

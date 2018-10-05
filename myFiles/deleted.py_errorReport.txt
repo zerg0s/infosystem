@@ -1,0 +1,6 @@
+************* Module deleted
+myFiles\deleted.py:8:0: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
+
+-----------------------------------
+Your code has been rated at 8.33/10
+

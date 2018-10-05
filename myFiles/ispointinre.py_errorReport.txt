@@ -1,0 +1,12 @@
+************* Module ispointinre
+myFiles\ispointinre.py:6:0: C0103: Function name "is_point_in_area" doesn't conform to camelCase naming style (invalid-name)
+myFiles\ispointinre.py:6:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+myFiles\ispointinre.py:6:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
+myFiles\ispointinre.py:7:4: C0103: Variable name "circle_core" doesn't conform to camelCase naming style (invalid-name)
+myFiles\ispointinre.py:8:4: C0103: Variable name "over_lines" doesn't conform to camelCase naming style (invalid-name)
+myFiles\ispointinre.py:9:4: C0103: Variable name "under_lines" doesn't conform to camelCase naming style (invalid-name)
+myFiles\ispointinre.py:10:4: C0103: Variable name "circle_border" doesn't conform to camelCase naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 3.64/10
+

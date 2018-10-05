@@ -1,0 +1,23 @@
+************* Module localMaximums
+myFiles\localMaximums.py:31:0: C0304: Final newline missing (missing-final-newline)
+myFiles\localMaximums.py:1:0: C0103: Module name "localMaximums" doesn't conform to snake_case naming style (invalid-name)
+myFiles\localMaximums.py:1:0: C0111: Missing module docstring (missing-docstring)
+myFiles\localMaximums.py:7:0: C0103: Constant name "prevNum" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:8:0: C0103: Constant name "dist" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:9:0: C0103: Constant name "currDist" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:10:0: C0103: Constant name "minDist" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:13:4: C0103: Constant name "currNum" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:15:8: C0103: Constant name "nextNum" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:16:8: C0103: Constant name "pos" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:20:20: C0103: Constant name "currDist" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:22:24: C0103: Constant name "minDist" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:24:24: C0103: Constant name "minDist" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:25:16: C0103: Constant name "dist" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:26:12: C0103: Constant name "pos" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:27:12: C0103: Constant name "prevNum" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:28:12: C0103: Constant name "currNum" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\localMaximums.py:29:12: C0103: Constant name "nextNum" doesn't conform to UPPER_CASE naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 2.17/10
+

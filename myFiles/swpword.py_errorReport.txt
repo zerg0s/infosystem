@@ -1,0 +1,8 @@
+************* Module swpword
+myFiles\swpword.py:7:6: C0326: No space allowed before bracket
+print (secondWord + ' ' + firstWord)
+      ^ (bad-whitespace)
+
+-----------------------------------
+Your code has been rated at 7.50/10
+

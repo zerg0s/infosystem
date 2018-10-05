@@ -1,0 +1,6 @@
+************* Module storage_of_laptops_2
+myFiles\storage_of_laptops_2.py:1:0: C0111: Missing module docstring (missing-docstring)
+
+-----------------------------------
+Your code has been rated at 9.09/10
+

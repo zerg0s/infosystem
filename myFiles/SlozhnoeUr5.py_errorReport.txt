@@ -1,0 +1,7 @@
+************* Module SlozhnoeUr5
+myFiles\SlozhnoeUr5.py:19:0: C0304: Final newline missing (missing-final-newline)
+myFiles\SlozhnoeUr5.py:10:3: R0916: Too many boolean expressions in if statement (7/5) (too-many-boolean-expressions)
+
+-----------------------------------
+Your code has been rated at 8.33/10
+

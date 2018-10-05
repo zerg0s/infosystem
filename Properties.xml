@@ -1,0 +1,11 @@
+<properties>
+<checkErros>1</checkErros>
+<errorsLimit>10</errorsLimit>
+<checkRating>1</checkRating>
+<ratingLimit>2.25</ratingLimit>
+<closeTasks>0</closeTasks>
+<statusApproved>1</statusApproved>
+<statusClosed>0</statusClosed>
+<toStudent>0</toStudent>
+<toProfessor>1</toProfessor>
+</properties>

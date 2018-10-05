@@ -1,0 +1,53 @@
+************* Module course_of_the_king
+myFiles\course_of_the_king.py:12:9: C0326: Exactly one space required around comparison
+    if(a1<1 or a1>8 or a2<1 or a2>8 or b1<1 or b1>8 or b2<1 or b2>8):
+         ^ (bad-whitespace)
+myFiles\course_of_the_king.py:12:17: C0326: Exactly one space required around comparison
+    if(a1<1 or a1>8 or a2<1 or a2>8 or b1<1 or b1>8 or b2<1 or b2>8):
+                 ^ (bad-whitespace)
+myFiles\course_of_the_king.py:12:25: C0326: Exactly one space required around comparison
+    if(a1<1 or a1>8 or a2<1 or a2>8 or b1<1 or b1>8 or b2<1 or b2>8):
+                         ^ (bad-whitespace)
+myFiles\course_of_the_king.py:12:33: C0326: Exactly one space required around comparison
+    if(a1<1 or a1>8 or a2<1 or a2>8 or b1<1 or b1>8 or b2<1 or b2>8):
+                                 ^ (bad-whitespace)
+myFiles\course_of_the_king.py:12:41: C0326: Exactly one space required around comparison
+    if(a1<1 or a1>8 or a2<1 or a2>8 or b1<1 or b1>8 or b2<1 or b2>8):
+                                         ^ (bad-whitespace)
+myFiles\course_of_the_king.py:12:49: C0326: Exactly one space required around comparison
+    if(a1<1 or a1>8 or a2<1 or a2>8 or b1<1 or b1>8 or b2<1 or b2>8):
+                                                 ^ (bad-whitespace)
+myFiles\course_of_the_king.py:12:57: C0326: Exactly one space required around comparison
+    if(a1<1 or a1>8 or a2<1 or a2>8 or b1<1 or b1>8 or b2<1 or b2>8):
+                                                         ^ (bad-whitespace)
+myFiles\course_of_the_king.py:12:65: C0326: Exactly one space required around comparison
+    if(a1<1 or a1>8 or a2<1 or a2>8 or b1<1 or b1>8 or b2<1 or b2>8):
+                                                                 ^ (bad-whitespace)
+myFiles\course_of_the_king.py:14:11: C0326: Exactly one space required around comparison
+    elif(a1==b1 and a2==b2):
+           ^^ (bad-whitespace)
+myFiles\course_of_the_king.py:14:22: C0326: Exactly one space required around comparison
+    elif(a1==b1 and a2==b2):
+                      ^^ (bad-whitespace)
+myFiles\course_of_the_king.py:16:16: C0326: Exactly one space required around comparison
+    elif((a1-b1)==1 or (a1-b1)==-1 and (a2-b2)==1 or (a2-b2)==-1):
+                ^^ (bad-whitespace)
+myFiles\course_of_the_king.py:16:30: C0326: Exactly one space required around comparison
+    elif((a1-b1)==1 or (a1-b1)==-1 and (a2-b2)==1 or (a2-b2)==-1):
+                              ^^ (bad-whitespace)
+myFiles\course_of_the_king.py:16:46: C0326: Exactly one space required around comparison
+    elif((a1-b1)==1 or (a1-b1)==-1 and (a2-b2)==1 or (a2-b2)==-1):
+                                              ^^ (bad-whitespace)
+myFiles\course_of_the_king.py:16:60: C0326: Exactly one space required around comparison
+    elif((a1-b1)==1 or (a1-b1)==-1 and (a2-b2)==1 or (a2-b2)==-1):
+                                                            ^^ (bad-whitespace)
+myFiles\course_of_the_king.py:1:0: C0111: Missing module docstring (missing-docstring)
+myFiles\course_of_the_king.py:7:4: C0103: Constant name "a1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\course_of_the_king.py:8:4: C0103: Constant name "a2" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\course_of_the_king.py:10:4: C0103: Constant name "b1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\course_of_the_king.py:11:4: C0103: Constant name "b2" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\course_of_the_king.py:12:7: R0916: Too many boolean expressions in if statement (8/5) (too-many-boolean-expressions)
+
+--------------------------------------------------------------------
+Your code has been rated at -2.50/10 (previous run: -2.50/10, +0.00)
+

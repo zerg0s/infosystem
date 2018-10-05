@@ -1,0 +1,6 @@
+************* Module Replace_h
+myFiles\Replace_h.py:2:23: C0303: Trailing whitespace (trailing-whitespace)
+
+-----------------------------------
+Your code has been rated at 8.33/10
+

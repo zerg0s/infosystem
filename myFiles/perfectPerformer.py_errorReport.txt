@@ -1,0 +1,12 @@
+************* Module perfectPerformer
+myFiles\perfectPerformer.py:14:0: C0304: Final newline missing (missing-final-newline)
+myFiles\perfectPerformer.py:1:0: C0103: Module name "perfectPerformer" doesn't conform to snake_case naming style (invalid-name)
+myFiles\perfectPerformer.py:1:0: C0111: Missing module docstring (missing-docstring)
+myFiles\perfectPerformer.py:5:0: C0103: Constant name "a" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\perfectPerformer.py:6:0: C0103: Constant name "b" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\perfectPerformer.py:11:8: C0103: Constant name "a" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\perfectPerformer.py:14:8: C0103: Constant name "a" doesn't conform to UPPER_CASE naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 1.25/10
+

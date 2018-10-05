@@ -1,0 +1,9 @@
+************* Module evclid
+myFiles\evclid.py:13:0: C0303: Trailing whitespace (trailing-whitespace)
+myFiles\evclid.py:4:8: W0621: Redefining name 'num1' from outer scope (line 1) (redefined-outer-name)
+myFiles\evclid.py:4:14: W0621: Redefining name 'num2' from outer scope (line 2) (redefined-outer-name)
+myFiles\evclid.py:9:4: R1705: Unnecessary "else" after "return" (no-else-return)
+
+------------------------------------------------------------------
+Your code has been rated at 6.36/10 (previous run: 4.55/10, +1.82)
+

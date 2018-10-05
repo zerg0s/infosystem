@@ -1,0 +1,8 @@
+************* Module SlozhnoeUr3
+myFiles\SlozhnoeUr3.py:16:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\SlozhnoeUr3.py:19:0: C0304: Final newline missing (missing-final-newline)
+myFiles\SlozhnoeUr3.py:10:3: R0916: Too many boolean expressions in if statement (7/5) (too-many-boolean-expressions)
+
+-----------------------------------
+Your code has been rated at 7.50/10
+

@@ -1,0 +1,6 @@
+************* Module belongingpoint
+myFiles\belongingpoint.py:20:3: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
+
+-----------------------------------
+Your code has been rated at 9.23/10
+

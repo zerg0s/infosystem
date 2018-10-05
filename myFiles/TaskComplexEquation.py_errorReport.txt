@@ -1,0 +1,10 @@
+************* Module TaskComplexEquation
+myFiles\TaskComplexEquation.py:5:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskComplexEquation.py:12:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskComplexEquation.py:19:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskComplexEquation.py:26:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskComplexEquation.py:38:0: C0325: Unnecessary parens after 'elif' keyword (superfluous-parens)
+
+-----------------------------------
+Your code has been rated at 8.48/10
+

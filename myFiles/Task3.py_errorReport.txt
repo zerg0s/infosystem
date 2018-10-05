@@ -1,0 +1,7 @@
+************* Module task3
+myFiles\task3.py:11:0: C0103: Function name "check_input" doesn't conform to camelCase naming style (invalid-name)
+myFiles\task3.py:12:4: C0103: Variable name "in_data" doesn't conform to camelCase naming style (invalid-name)
+
+------------------------------------------------------------------
+Your code has been rated at 8.95/10 (previous run: 3.72/10, +5.23)
+

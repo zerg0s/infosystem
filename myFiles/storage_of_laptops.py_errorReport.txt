@@ -1,0 +1,14 @@
+************* Module storage_of_laptops
+myFiles\storage_of_laptops.py:1:0: C0111: Missing module docstring (missing-docstring)
+myFiles\storage_of_laptops.py:6:0: C0103: Constant name "a1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\storage_of_laptops.py:7:0: C0103: Constant name "b1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\storage_of_laptops.py:8:0: C0103: Constant name "c1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\storage_of_laptops.py:10:0: C0103: Constant name "a2" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\storage_of_laptops.py:11:0: C0103: Constant name "b2" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\storage_of_laptops.py:12:0: C0103: Constant name "c2" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\storage_of_laptops.py:13:0: C0103: Constant name "v1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\storage_of_laptops.py:14:0: C0103: Constant name "v2" doesn't conform to UPPER_CASE naming style (invalid-name)
+
+------------------------------------------------------------------
+Your code has been rated at 1.82/10 (previous run: 1.82/10, +0.00)
+

@@ -1,0 +1,8 @@
+************* Module Slojnoeuravnenie
+myFiles\Slojnoeuravnenie.py:22:0: C0305: Trailing newlines (trailing-newlines)
+myFiles\Slojnoeuravnenie.py:1:0: C0103: Module name "Slojnoeuravnenie" doesn't conform to snake_case naming style (invalid-name)
+myFiles\Slojnoeuravnenie.py:1:0: C0111: Missing module docstring (missing-docstring)
+
+-----------------------------------
+Your code has been rated at 8.00/10
+

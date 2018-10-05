@@ -1,0 +1,33 @@
+************* Module equatation
+myFiles\equatation.py:11:10: C0326: No space allowed before bracket
+    print ("NO")
+          ^ (bad-whitespace)
+myFiles\equatation.py:12:18: C0326: Exactly one space required after comparison
+elif a == 0 and b ==0:
+                  ^^ (bad-whitespace)
+myFiles\equatation.py:13:10: C0326: No space allowed before bracket
+    print ("INF")
+          ^ (bad-whitespace)
+myFiles\equatation.py:14:6: C0326: Exactly one space required around comparison
+elif a==0:
+      ^^ (bad-whitespace)
+myFiles\equatation.py:15:10: C0326: No space allowed before bracket
+    print ("NO")
+          ^ (bad-whitespace)
+myFiles\equatation.py:16:6: C0326: Exactly one space required around comparison
+elif c==0:
+      ^^ (bad-whitespace)
+myFiles\equatation.py:17:10: C0326: No space allowed before bracket
+    print (-b/a)
+          ^ (bad-whitespace)
+myFiles\equatation.py:19:10: C0326: No space allowed before bracket
+    print ("NO")
+          ^ (bad-whitespace)
+myFiles\equatation.py:21:10: C0326: No space allowed before bracket
+    print (-b/a)
+          ^ (bad-whitespace)
+myFiles\equatation.py:1:0: C0111: Missing module docstring (missing-docstring)
+
+------------------------------------------------------------------
+Your code has been rated at 3.33/10 (previous run: 3.33/10, +0.00)
+

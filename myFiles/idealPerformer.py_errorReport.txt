@@ -1,0 +1,8 @@
+************* Module idealPerformer
+myFiles\idealPerformer.py:1:0: C0103: Module name "idealPerformer" doesn't conform to snake_case naming style (invalid-name)
+myFiles\idealPerformer.py:1:0: C0111: Missing module docstring (missing-docstring)
+myFiles\idealPerformer.py:10:5: R1716: Simplify chained comparison between the operands (chained-comparison)
+
+-----------------------------------
+Your code has been rated at 7.50/10
+

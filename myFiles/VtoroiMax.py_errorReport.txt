@@ -1,0 +1,19 @@
+************* Module VtoroiMax
+myFiles\VtoroiMax.py:1:0: C0103: Module name "VtoroiMax" doesn't conform to snake_case naming style (invalid-name)
+myFiles\VtoroiMax.py:1:0: C0111: Missing module docstring (missing-docstring)
+myFiles\VtoroiMax.py:1:0: C0103: Constant name "b" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\VtoroiMax.py:2:0: C0103: Constant name "max1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\VtoroiMax.py:3:0: C0103: Constant name "a" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\VtoroiMax.py:4:0: C0103: Constant name "max2" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\VtoroiMax.py:6:4: R1712: Consider using tuple unpacking for swapping variables (consider-swap-variables)
+myFiles\VtoroiMax.py:6:4: C0103: Constant name "d" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\VtoroiMax.py:7:4: C0103: Constant name "max1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\VtoroiMax.py:8:4: C0103: Constant name "max2" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\VtoroiMax.py:10:4: C0103: Constant name "a" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\VtoroiMax.py:12:8: C0103: Constant name "max2" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\VtoroiMax.py:13:8: C0103: Constant name "max1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\VtoroiMax.py:15:8: C0103: Constant name "max2" doesn't conform to UPPER_CASE naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 1.25/10
+

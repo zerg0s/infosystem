@@ -1,0 +1,13 @@
+************* Module squre
+myFiles\squre.py:2:0: W0311: Bad indentation. Found 1 spaces, expected 4 (bad-indentation)
+myFiles\squre.py:10:0: W0311: Bad indentation. Found 1 spaces, expected 4 (bad-indentation)
+myFiles\squre.py:12:0: W0311: Bad indentation. Found 1 spaces, expected 4 (bad-indentation)
+myFiles\squre.py:1:0: C0103: Argument name "CoordinateX" doesn't conform to camelCase naming style (invalid-name)
+myFiles\squre.py:1:0: C0103: Argument name "CoordinateY" doesn't conform to camelCase naming style (invalid-name)
+myFiles\squre.py:1:16: W0621: Redefining name 'CoordinateX' from outer scope (line 6) (redefined-outer-name)
+myFiles\squre.py:1:29: W0621: Redefining name 'CoordinateY' from outer scope (line 7) (redefined-outer-name)
+myFiles\squre.py:9:3: C0121: Comparison to True should be just 'expr' or 'expr is True' (singleton-comparison)
+
+------------------------------------
+Your code has been rated at -1.43/10
+

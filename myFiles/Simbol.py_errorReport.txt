@@ -1,0 +1,8 @@
+************* Module simbol
+myFiles\simbol.py:1:1: C0326: Exactly one space required around assignment
+a=input()
+ ^ (bad-whitespace)
+
+------------------------------------------------------------------
+Your code has been rated at 5.00/10 (previous run: 5.00/10, +0.00)
+

@@ -1,0 +1,13 @@
+************* Module slojeniebeslojeniy
+myFiles\slojeniebeslojeniy.py:3:0: C0301: Line too long (111/100) (line-too-long)
+myFiles\slojeniebeslojeniy.py:18:0: C0305: Trailing newlines (trailing-newlines)
+myFiles\slojeniebeslojeniy.py:5:0: W0622: Redefining built-in 'sum' (redefined-builtin)
+myFiles\slojeniebeslojeniy.py:5:0: C0103: Argument name "a" doesn't conform to camelCase naming style (invalid-name)
+myFiles\slojeniebeslojeniy.py:5:0: C0103: Argument name "b" doesn't conform to camelCase naming style (invalid-name)
+myFiles\slojeniebeslojeniy.py:6:4: C0103: Variable name "s" doesn't conform to camelCase naming style (invalid-name)
+myFiles\slojeniebeslojeniy.py:9:8: C0103: Variable name "s" doesn't conform to camelCase naming style (invalid-name)
+myFiles\slojeniebeslojeniy.py:12:8: C0103: Variable name "s" doesn't conform to camelCase naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 3.33/10
+

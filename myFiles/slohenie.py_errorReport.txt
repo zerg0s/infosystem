@@ -1,0 +1,12 @@
+************* Module slohenie
+myFiles\slohenie.py:6:0: W0311: Bad indentation. Found 5 spaces, expected 8 (bad-indentation)
+myFiles\slohenie.py:7:0: W0311: Bad indentation. Found 5 spaces, expected 8 (bad-indentation)
+myFiles\slohenie.py:8:0: C0305: Trailing newlines (trailing-newlines)
+myFiles\slohenie.py:4:0: C0103: Argument name "an" doesn't conform to camelCase naming style (invalid-name)
+myFiles\slohenie.py:4:0: C0103: Argument name "bn" doesn't conform to camelCase naming style (invalid-name)
+myFiles\slohenie.py:7:5: W0101: Unreachable code (unreachable)
+myFiles\slohenie.py:4:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+
+------------------------------------
+Your code has been rated at -7.50/10
+

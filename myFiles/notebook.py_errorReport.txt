@@ -1,0 +1,47 @@
+************* Module notebook
+myFiles\notebook.py:18:4: C0326: Exactly one space required around comparison
+if x>=a and y>=b and z>=c and x>0 and y>0 and z>0 and a>0 and b>0 and c>0:
+    ^^ (bad-whitespace)
+myFiles\notebook.py:18:13: C0326: Exactly one space required around comparison
+if x>=a and y>=b and z>=c and x>0 and y>0 and z>0 and a>0 and b>0 and c>0:
+             ^^ (bad-whitespace)
+myFiles\notebook.py:18:22: C0326: Exactly one space required around comparison
+if x>=a and y>=b and z>=c and x>0 and y>0 and z>0 and a>0 and b>0 and c>0:
+                      ^^ (bad-whitespace)
+myFiles\notebook.py:18:31: C0326: Exactly one space required around comparison
+if x>=a and y>=b and z>=c and x>0 and y>0 and z>0 and a>0 and b>0 and c>0:
+                               ^ (bad-whitespace)
+myFiles\notebook.py:18:39: C0326: Exactly one space required around comparison
+if x>=a and y>=b and z>=c and x>0 and y>0 and z>0 and a>0 and b>0 and c>0:
+                                       ^ (bad-whitespace)
+myFiles\notebook.py:18:47: C0326: Exactly one space required around comparison
+if x>=a and y>=b and z>=c and x>0 and y>0 and z>0 and a>0 and b>0 and c>0:
+                                               ^ (bad-whitespace)
+myFiles\notebook.py:18:55: C0326: Exactly one space required around comparison
+if x>=a and y>=b and z>=c and x>0 and y>0 and z>0 and a>0 and b>0 and c>0:
+                                                       ^ (bad-whitespace)
+myFiles\notebook.py:18:63: C0326: Exactly one space required around comparison
+if x>=a and y>=b and z>=c and x>0 and y>0 and z>0 and a>0 and b>0 and c>0:
+                                                               ^ (bad-whitespace)
+myFiles\notebook.py:18:71: C0326: Exactly one space required around comparison
+if x>=a and y>=b and z>=c and x>0 and y>0 and z>0 and a>0 and b>0 and c>0:
+                                                                       ^ (bad-whitespace)
+myFiles\notebook.py:19:0: C0301: Line too long (134/100) (line-too-long)
+myFiles\notebook.py:21:0: C0304: Final newline missing (missing-final-newline)
+myFiles\notebook.py:1:0: C0111: Missing module docstring (missing-docstring)
+myFiles\notebook.py:7:0: C0103: Constant name "x" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\notebook.py:8:0: C0103: Constant name "y" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\notebook.py:9:0: C0103: Constant name "z" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\notebook.py:10:0: C0103: Constant name "a" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\notebook.py:11:0: C0103: Constant name "b" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\notebook.py:12:0: C0103: Constant name "c" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\notebook.py:14:0: C0103: Constant name "nX" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\notebook.py:15:0: C0103: Constant name "nZ" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\notebook.py:16:0: C0103: Constant name "nY" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\notebook.py:18:3: R0916: Too many boolean expressions in if statement (9/5) (too-many-boolean-expressions)
+myFiles\notebook.py:18:3: R1716: Simplify chained comparison between the operands (chained-comparison)
+myFiles\notebook.py:5:0: W0611: Unused import os (unused-import)
+
+------------------------------------
+Your code has been rated at -8.46/10
+

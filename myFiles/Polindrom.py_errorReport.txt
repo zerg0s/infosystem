@@ -1,0 +1,6 @@
+************* Module Polindrom
+myFiles\Polindrom.py:9:3: R1716: Simplify chained comparison between the operands (chained-comparison)
+
+------------------------------------------------------------------
+Your code has been rated at 9.38/10 (previous run: 5.00/10, +4.38)
+

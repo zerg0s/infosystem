@@ -1,0 +1,9 @@
+************* Module slozhenie
+myFiles\slozhenie.py:6:0: W0301: Unnecessary semicolon (unnecessary-semicolon)
+myFiles\slozhenie.py:8:0: C0305: Trailing newlines (trailing-newlines)
+myFiles\slozhenie.py:4:0: C0103: Argument name "a" doesn't conform to camelCase naming style (invalid-name)
+myFiles\slozhenie.py:4:0: C0103: Argument name "b" doesn't conform to camelCase naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 0.00/10
+

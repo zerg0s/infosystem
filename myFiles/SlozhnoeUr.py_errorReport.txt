@@ -1,0 +1,14 @@
+************* Module SlozhnoeUr
+myFiles\SlozhnoeUr.py:16:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\SlozhnoeUr.py:19:0: C0304: Final newline missing (missing-final-newline)
+myFiles\SlozhnoeUr.py:1:0: C0103: Module name "SlozhnoeUr" doesn't conform to snake_case naming style (invalid-name)
+myFiles\SlozhnoeUr.py:1:0: C0111: Missing module docstring (missing-docstring)
+myFiles\SlozhnoeUr.py:5:0: C0103: Constant name "a" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\SlozhnoeUr.py:6:0: C0103: Constant name "b" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\SlozhnoeUr.py:7:0: C0103: Constant name "c" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\SlozhnoeUr.py:8:0: C0103: Constant name "d" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\SlozhnoeUr.py:15:4: C0103: Constant name "res" doesn't conform to UPPER_CASE naming style (invalid-name)
+
+------------------------------------------------------------------
+Your code has been rated at 2.50/10 (previous run: 2.50/10, +0.00)
+

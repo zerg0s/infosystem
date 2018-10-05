@@ -1,0 +1,7 @@
+************* Module pointArea
+myFiles\pointArea.py:8:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+myFiles\pointArea.py:8:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 7.78/10
+

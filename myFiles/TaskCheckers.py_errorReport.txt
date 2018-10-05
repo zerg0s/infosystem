@@ -1,0 +1,14 @@
+************* Module TaskCheckers
+myFiles\TaskCheckers.py:5:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskCheckers.py:15:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskCheckers.py:25:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskCheckers.py:35:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
+myFiles\TaskCheckers.py:7:28: C0122: Comparison should be xFirstCell > 8 (misplaced-comparison-constant)
+myFiles\TaskCheckers.py:17:28: C0122: Comparison should be yFirstCell > 8 (misplaced-comparison-constant)
+myFiles\TaskCheckers.py:27:29: C0122: Comparison should be xSecondCell > 8 (misplaced-comparison-constant)
+myFiles\TaskCheckers.py:37:29: C0122: Comparison should be ySecondCell > 8 (misplaced-comparison-constant)
+myFiles\TaskCheckers.py:51:3: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
+
+-----------------------------------
+Your code has been rated at 7.75/10
+

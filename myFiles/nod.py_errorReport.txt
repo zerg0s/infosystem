@@ -1,0 +1,16 @@
+************* Module nod
+myFiles\nod.py:17:8: C0326: Exactly one space required around comparison
+    if a!=0 and b!=0:
+        ^^ (bad-whitespace)
+myFiles\nod.py:17:17: C0326: Exactly one space required around comparison
+    if a!=0 and b!=0:
+                 ^^ (bad-whitespace)
+myFiles\nod.py:30:0: C0304: Final newline missing (missing-final-newline)
+myFiles\nod.py:16:0: C0103: Argument name "a" doesn't conform to camelCase naming style (invalid-name)
+myFiles\nod.py:16:0: C0103: Argument name "b" doesn't conform to camelCase naming style (invalid-name)
+myFiles\nod.py:20:12: E0602: Undefined variable 'nod' (undefined-variable)
+myFiles\nod.py:23:12: E0602: Undefined variable 'nod' (undefined-variable)
+
+-------------------------------------------------------------------
+Your code has been rated at 2.11/10 (previous run: -2.86/10, +4.96)
+

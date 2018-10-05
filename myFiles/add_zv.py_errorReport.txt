@@ -1,0 +1,26 @@
+************* Module add_zv
+myFiles\add_zv.py:2:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\add_zv.py:3:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\add_zv.py:4:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\add_zv.py:5:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\add_zv.py:5:8: C0326: Exactly one space required around comparison
+	while(i<len(s1)):
+        ^ (bad-whitespace)
+myFiles\add_zv.py:6:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\add_zv.py:7:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\add_zv.py:8:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\add_zv.py:8:3: C0326: Exactly one space required around assignment
+		i+=1
+   ^^ (bad-whitespace)
+myFiles\add_zv.py:9:17: C0303: Trailing whitespace (trailing-whitespace)
+myFiles\add_zv.py:9:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\add_zv.py:10:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\add_zv.py:11:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\add_zv.py:1:0: C0103: Function name "add_zv" doesn't conform to camelCase naming style (invalid-name)
+myFiles\add_zv.py:2:1: C0103: Variable name "s1" doesn't conform to camelCase naming style (invalid-name)
+myFiles\add_zv.py:4:1: C0103: Variable name "t" doesn't conform to camelCase naming style (invalid-name)
+myFiles\add_zv.py:10:1: C0103: Variable name "zv" doesn't conform to camelCase naming style (invalid-name)
+
+------------------------------------
+Your code has been rated at -5.45/10
+

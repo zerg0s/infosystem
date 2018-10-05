@@ -1,0 +1,11 @@
+Starting audit...
+[ERROR] C:\InformationSystem\.\myFiles\zadanie6.java:3: Using the '.*' form of import should be avoided - java.io.*. [AvoidStarImport]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie6.java:6: Missing a Javadoc comment. [JavadocType]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie6.java:6:1: Utility classes should not have a public or default constructor. [HideUtilityClassConstructor]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie6.java:6:14: Name 'zadanie6' must match pattern '^[A-Z][a-zA-Z0-9]*$'. [TypeName]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie6.java:7:29: Parameter args should be final. [FinalParameters]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie6.java:11:18: ',' is not followed by whitespace. [WhitespaceAfter]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie6.java:15:22: '{' is not preceded with whitespace. [WhitespaceAround]
+[ERROR] C:\InformationSystem\.\myFiles\zadanie6.java:16:18: '1.1' is a magic number. [MagicNumber]
+Audit done.
+Checkstyle ends with 8 errors.

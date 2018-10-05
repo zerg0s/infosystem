@@ -1,0 +1,22 @@
+************* Module delete_@
+myFiles\delete_@.py:2:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\delete_@.py:3:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\delete_@.py:4:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\delete_@.py:4:8: C0326: Exactly one space required around comparison
+	while(i<len(s1)):
+        ^ (bad-whitespace)
+myFiles\delete_@.py:5:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\delete_@.py:6:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\delete_@.py:7:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\delete_@.py:7:3: C0326: Exactly one space required around assignment
+		i+=1
+   ^^ (bad-whitespace)
+myFiles\delete_@.py:8:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\delete_@.py:9:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\delete_@.py:1:0: C0103: Function name "dl_dd" doesn't conform to camelCase naming style (invalid-name)
+myFiles\delete_@.py:2:1: C0103: Variable name "s1" doesn't conform to camelCase naming style (invalid-name)
+myFiles\delete_@.py:8:1: C0103: Variable name "dl" doesn't conform to camelCase naming style (invalid-name)
+
+------------------------------------
+Your code has been rated at -4.44/10
+

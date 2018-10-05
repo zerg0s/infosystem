@@ -1,0 +1,2 @@
+************* Module PrinadlejitLiTochkaOblasti
+myFiles\PrinadlejitLiTochkaOblasti.py:8:0: E0001: invalid syntax (<unknown>, line 8) (syntax-error)

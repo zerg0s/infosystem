@@ -1,0 +1,6 @@
+************* Module Checkers_test
+myFiles\Checkers_test.py:22:0: C0301: Line too long (105/100) (line-too-long)
+
+------------------------------------------------------------------
+Your code has been rated at 9.33/10 (previous run: 9.33/10, +0.00)
+

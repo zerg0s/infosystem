@@ -1,0 +1,6 @@
+************* Module Hod_korolya
+myFiles\Hod_korolya.py:11:0: C0304: Final newline missing (missing-final-newline)
+
+------------------------------------------------------------------
+Your code has been rated at 8.57/10 (previous run: 8.57/10, +0.00)
+

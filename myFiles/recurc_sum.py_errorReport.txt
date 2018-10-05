@@ -1,0 +1,21 @@
+************* Module recurc_sum
+myFiles\recurc_sum.py:1:10: C0326: Exactly one space required after comma
+def ssum(a,b):
+          ^ (bad-whitespace)
+myFiles\recurc_sum.py:2:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\recurc_sum.py:3:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\recurc_sum.py:4:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\recurc_sum.py:5:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\recurc_sum.py:5:15: C0326: Exactly one space required after comma
+		return ssum(a,b)
+               ^ (bad-whitespace)
+myFiles\recurc_sum.py:6:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\recurc_sum.py:7:0: C0304: Final newline missing (missing-final-newline)
+myFiles\recurc_sum.py:7:0: W0312: Found indentation with tabs instead of spaces (mixed-indentation)
+myFiles\recurc_sum.py:1:0: C0103: Argument name "a" doesn't conform to camelCase naming style (invalid-name)
+myFiles\recurc_sum.py:1:0: C0103: Argument name "b" doesn't conform to camelCase naming style (invalid-name)
+myFiles\recurc_sum.py:4:1: R1705: Unnecessary "else" after "return" (no-else-return)
+
+-------------------------------------
+Your code has been rated at -10.00/10
+

@@ -1,0 +1,25 @@
+************* Module matches2
+myFiles\matches2.py:24:0: C0301: Line too long (103/100) (line-too-long)
+myFiles\matches2.py:26:0: C0301: Line too long (101/100) (line-too-long)
+myFiles\matches2.py:29:0: C0304: Final newline missing (missing-final-newline)
+myFiles\matches2.py:1:0: C0111: Missing module docstring (missing-docstring)
+myFiles\matches2.py:5:0: C0103: Constant name "l1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:6:0: C0103: Constant name "r1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:7:0: C0103: Constant name "l2" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:8:0: C0103: Constant name "r2" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:9:0: C0103: Constant name "l3" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:10:0: C0103: Constant name "r3" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:12:0: C0103: Constant name "x" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:13:0: C0103: Constant name "y" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:14:0: C0103: Constant name "z" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:16:3: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
+myFiles\matches2.py:19:4: C0103: Constant name "length1" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:20:4: C0103: Constant name "length2" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:21:4: C0103: Constant name "length3" doesn't conform to UPPER_CASE naming style (invalid-name)
+myFiles\matches2.py:22:7: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
+myFiles\matches2.py:24:9: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
+myFiles\matches2.py:26:9: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
+
+------------------------------------------------------------------
+Your code has been rated at 0.48/10 (previous run: 0.48/10, +0.00)
+

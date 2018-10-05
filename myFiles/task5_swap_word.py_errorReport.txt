@@ -1,0 +1,8 @@
+************* Module task5_swap_word
+myFiles\task5_swap_word.py:16:0: C0304: Final newline missing (missing-final-newline)
+myFiles\task5_swap_word.py:7:4: C0103: Variable name "a" doesn't conform to camelCase naming style (invalid-name)
+myFiles\task5_swap_word.py:8:8: W0612: Unused variable 'i' (unused-variable)
+
+-----------------------------------
+Your code has been rated at 6.67/10
+

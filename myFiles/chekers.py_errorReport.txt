@@ -1,0 +1,11 @@
+************* Module chekers
+myFiles\chekers.py:3:0: C0301: Line too long (120/100) (line-too-long)
+myFiles\chekers.py:15:0: C0330: Wrong continued indentation before block (add 3 spaces).
+):
+^  | (bad-continuation)
+myFiles\chekers.py:1:0: C0111: Missing module docstring (missing-docstring)
+myFiles\chekers.py:10:4: R0916: Too many boolean expressions in if statement (8/5) (too-many-boolean-expressions)
+
+------------------------------------------------------------------
+Your code has been rated at 4.29/10 (previous run: 4.29/10, +0.00)
+

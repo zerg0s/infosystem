@@ -1,0 +1,11 @@
+************* Module euclidenlgorithm
+myFiles\euclidenlgorithm.py:4:0: C0103: Argument name "a" doesn't conform to camelCase naming style (invalid-name)
+myFiles\euclidenlgorithm.py:4:0: C0103: Argument name "b" doesn't conform to camelCase naming style (invalid-name)
+myFiles\euclidenlgorithm.py:4:8: W0621: Redefining name 'a' from outer scope (line 13) (redefined-outer-name)
+myFiles\euclidenlgorithm.py:4:11: W0621: Redefining name 'b' from outer scope (line 14) (redefined-outer-name)
+myFiles\euclidenlgorithm.py:5:4: R1705: Unnecessary "else" after "return" (no-else-return)
+myFiles\euclidenlgorithm.py:8:8: R1705: Unnecessary "else" after "return" (no-else-return)
+
+------------------------------------------------------------------
+Your code has been rated at 3.33/10 (previous run: 6.00/10, -2.67)
+
