@@ -1,0 +1,9 @@
+************* Module tsksort
+myFiles\tsksort.py:22:16: C0326: No space allowed around keyword argument assignment
+myList.sort(key = lambda valEnd: valEnd == 0)
+                ^ (bad-whitespace)
+myFiles\tsksort.py:12:4: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
+
+-----------------------------------
+Your code has been rated at 8.57/10
+

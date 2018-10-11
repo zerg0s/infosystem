@@ -1,0 +1,11 @@
+************* Module evklid
+myFiles\evklid.py:7:0: C0103: Argument name "a" doesn't conform to camelCase naming style (invalid-name)
+myFiles\evklid.py:7:0: C0103: Argument name "b" doesn't conform to camelCase naming style (invalid-name)
+myFiles\evklid.py:7:8: W0621: Redefining name 'a' from outer scope (line 5) (redefined-outer-name)
+myFiles\evklid.py:7:11: W0621: Redefining name 'b' from outer scope (line 6) (redefined-outer-name)
+myFiles\evklid.py:8:4: R1705: Unnecessary "else" after "return" (no-else-return)
+myFiles\evklid.py:11:8: R1705: Unnecessary "else" after "return" (no-else-return)
+
+-----------------------------------
+Your code has been rated at 3.33/10
+

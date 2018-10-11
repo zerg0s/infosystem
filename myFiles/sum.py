@@ -1,19 +1,16 @@
-def sum(FirstNumber, SecondNumber):
-	Result = 0
-	if (FirstNumber < 0) or (SecondNumber < 0):
-		print('Incorrect input number(s)')
-		return None
-	if (FirstNumber > 0) and (SecondNumber > 0):
-		Result += 2
-		Result += sum(FirstNumber - 1, SecondNumber - 1)
-	elif (FirstNumber == 0):
-		if (SecondNumber == 0):
-			return Result
-		Result += 1
-		Result += sum(0, SecondNumber - 1)
-	elif (SecondNumber == 0):
-		if (FirstNumber == 0):
-			return Result
-		Result += 1
-		Result += sum(FirstNumber - 1, 0)
-	return Result
+#Created by Petr Gusev
+#Sum without sum
+#09.10.2018
+
+def sum(a, b):
+    a += 1
+    b -= 1
+    if b > 0:
+        return sum(a,b)
+    else:
+        return a
+
+a = int(input("Введите первое число:"))
+b = int(input("Введите второе число:"))
+
+print(sum(a, b))

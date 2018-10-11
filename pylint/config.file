@@ -17,4 +17,5 @@
 # R0913 Too many arguments
 # R0904 Too many public methods
 # R1716 Simplify chained comparison
-disable=C0111,C0325,R1716
+# C0200 Consider using enumerate
+disable=C0111,C0325,R1716,C0200

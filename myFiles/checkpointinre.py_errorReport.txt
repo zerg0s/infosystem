@@ -1,0 +1,10 @@
+************* Module checkpointinre
+myFiles\checkpointinre.py:4:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+myFiles\checkpointinre.py:4:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
+myFiles\checkpointinre.py:4:18: W0621: Redefining name 'x' from outer scope (line 13) (redefined-outer-name)
+myFiles\checkpointinre.py:4:21: W0621: Redefining name 'y' from outer scope (line 14) (redefined-outer-name)
+myFiles\checkpointinre.py:16:3: C0121: Comparison to True should be just 'expr' or 'expr is True' (singleton-comparison)
+
+-----------------------------------
+Your code has been rated at 5.45/10
+

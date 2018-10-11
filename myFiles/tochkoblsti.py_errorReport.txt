@@ -1,0 +1,12 @@
+************* Module tochkoblsti
+myFiles\tochkoblsti.py:4:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+myFiles\tochkoblsti.py:4:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
+myFiles\tochkoblsti.py:4:18: W0621: Redefining name 'x' from outer scope (line 11) (redefined-outer-name)
+myFiles\tochkoblsti.py:4:21: W0621: Redefining name 'y' from outer scope (line 12) (redefined-outer-name)
+myFiles\tochkoblsti.py:5:4: C0103: Variable name "FirstLine" doesn't conform to camelCase naming style (invalid-name)
+myFiles\tochkoblsti.py:6:4: C0103: Variable name "SecondLine" doesn't conform to camelCase naming style (invalid-name)
+myFiles\tochkoblsti.py:7:4: C0103: Variable name "Circle" doesn't conform to camelCase naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 3.00/10
+

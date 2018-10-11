@@ -1,0 +1,11 @@
+************* Module tochkkvdrt
+myFiles\tochkkvdrt.py:4:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+myFiles\tochkkvdrt.py:4:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
+myFiles\tochkkvdrt.py:4:20: W0621: Redefining name 'x' from outer scope (line 9) (redefined-outer-name)
+myFiles\tochkkvdrt.py:4:23: W0621: Redefining name 'y' from outer scope (line 10) (redefined-outer-name)
+myFiles\tochkkvdrt.py:5:4: C0103: Variable name "First" doesn't conform to camelCase naming style (invalid-name)
+myFiles\tochkkvdrt.py:6:4: C0103: Variable name "Second" doesn't conform to camelCase naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 3.33/10
+

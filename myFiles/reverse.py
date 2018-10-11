@@ -1,7 +1,11 @@
+#Created by Petr Gusev
+#Reverse
+#09.10.2018
+
 def reverse():
-    print('Введите число:')
-    InputNumber = int(input())
-    if InputNumber != 0:
+    a = int(input("Введите число:"))
+    if a != 0:
         reverse()
-    print(InputNumber)
+    print (a)
+
 reverse()

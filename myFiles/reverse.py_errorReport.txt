@@ -1,6 +1,9 @@
 ************* Module reverse
-myFiles\reverse.py:3:4: C0103: Variable name "InputNumber" doesn't conform to camelCase naming style (invalid-name)
+myFiles\reverse.py:9:10: C0326: No space allowed before bracket
+    print (a)
+          ^ (bad-whitespace)
+myFiles\reverse.py:6:4: C0103: Variable name "a" doesn't conform to camelCase naming style (invalid-name)
 
 ------------------------------------------------------------------
-Your code has been rated at 8.57/10 (previous run: 7.14/10, +1.43)
+Your code has been rated at 6.67/10 (previous run: 8.57/10, -1.90)
 

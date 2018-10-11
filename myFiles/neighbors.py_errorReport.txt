@@ -1,0 +1,6 @@
+************* Module neighbors
+myFiles\neighbors.py:11:0: C0305: Trailing newlines (trailing-newlines)
+
+-----------------------------------
+Your code has been rated at 8.33/10
+

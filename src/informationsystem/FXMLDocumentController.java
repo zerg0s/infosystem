@@ -329,6 +329,13 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
+    private void startTests() {
+        
+        PyTaskChecker pyChecker = new PyTaskChecker("Принадлежит ли точка области?", "pointInArea.py");
+        pyChecker.startPyCheck();
+    }
+
+    @FXML
     private void toChooseLocalFile() {
 
     }

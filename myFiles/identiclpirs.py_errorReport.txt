@@ -1,0 +1,7 @@
+************* Module identiclpirs
+myFiles\identiclpirs.py:14:0: C0305: Trailing newlines (trailing-newlines)
+myFiles\identiclpirs.py:7:0: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
+
+-----------------------------------
+Your code has been rated at 7.14/10
+

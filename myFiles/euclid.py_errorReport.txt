@@ -1,0 +1,11 @@
+************* Module euclid
+myFiles\euclid.py:4:0: C0103: Argument name "a" doesn't conform to camelCase naming style (invalid-name)
+myFiles\euclid.py:4:0: C0103: Argument name "b" doesn't conform to camelCase naming style (invalid-name)
+myFiles\euclid.py:4:8: W0621: Redefining name 'a' from outer scope (line 12) (redefined-outer-name)
+myFiles\euclid.py:4:11: W0621: Redefining name 'b' from outer scope (line 13) (redefined-outer-name)
+myFiles\euclid.py:5:4: R1705: Unnecessary "elif" after "return" (no-else-return)
+myFiles\euclid.py:4:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+
+-----------------------------------
+Your code has been rated at 4.00/10
+
