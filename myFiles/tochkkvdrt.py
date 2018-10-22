@@ -1,15 +1,15 @@
 #Исхаков Дамир
 #Принадлежит ли точка квадрату?
 #02.10.2018
-def isPointInSquare(x, y):
-    First = (y <= (x + 1)) and (y >= (x - 1))
-    Second = (y <= (-x + 1)) and (y >= (-x - 1))
-    return First and Second
+def isPointInSquare(x_1, y_1):
+    first = (y_1 <= (x_1 + 1)) and (y_1 >= (x_1 - 1))
+    second = (y_1 <= (-x_1 + 1)) and (y_1 >= (-x_1 - 1))
+    return first and second
 
-x = float(input("Введите \"x\" значение = "))
-y = float(input("Введите \"y\" значение = "))
+x_1 = float(input("Введите \"x_1\" значение = "))
+y_1 = float(input("Введите \"y_1\" значение = "))
 
-if isPointInSquare(x, y):
+if isPointInSquare(x_1, y_1):
     print("YES")
 else:
     print("NO")

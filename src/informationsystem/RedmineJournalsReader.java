@@ -81,8 +81,11 @@ public class RedmineJournalsReader {
 
     public String getStudentsName(int issueId, String manager) {
         ArrayList<String> allNames = this.getJournals(String.valueOf(issueId));
+        if (manager.equals("")){
+            manager = "Sergey Politsyn";
+        }
         String retVal = manager;
-
+        
         for (int i = 0; i < allNames.size(); i++) {
             if (!allNames.get(i).equals(manager)) {
                 retVal = allNames.get(i);

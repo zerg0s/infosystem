@@ -1,11 +1,14 @@
-#Created by Petr Gusev
-#Reverse
-#09.10.2018
+# Ильдар Галиуллин.
+# Разворот последовательности.
+# 26.09.2018.
+
 
 def reverse():
-    a = int(input("Введите число:"))
-    if a != 0:
+    sequence = int(input("Введите числа: "))
+    if sequence != 0:
         reverse()
-    print (a)
+    print(sequence)
+    return 0
+
 
 reverse()

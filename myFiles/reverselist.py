@@ -1,12 +1,12 @@
-#Мария Евсеева
-#Разворот последовательности
+# Мария Евсеева
+# Разворот последовательности
 
-def InputNumber():
+def inputNumber():
     number = int(input())
     if number == 0:
         print(number)
     else:
-        InputNumber()
+        inputNumber()
         print(number)
 
-InputNumber()
+inputNumber()

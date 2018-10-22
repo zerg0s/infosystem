@@ -10,7 +10,7 @@ def isPointInSquare(xCord, yCord):
         print("NO")
 
 
-firstCord = int(input("Enter first number: "))
-secondCord = int(input("Enter second number: "))
+firstCord = float(input("Enter first number: "))
+secondCord = float(input("Enter second number: "))
 
 isPointInSquare(firstCord, secondCord)

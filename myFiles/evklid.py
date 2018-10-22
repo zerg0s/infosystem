@@ -1,15 +1,15 @@
-# Created  by Maltsev Alexey
-# 09.10.18
+# Аверина Мария
 # Алгоритм Евклида
+# 12.10.2018
 
-a = int(input("Введите a: "))
-b = int(input("Введите b: "))
-def gcd(a, b):
-    if a == 0 or b == 0:
-        return max(a, b)
-    else:
-        if a > b:
-            return gcd(a % b, b)
-        else:
-            return gcd(a, b % a)
-print(gcd(a, b))
+
+def gcd(num1, num2):
+    if num2 == 0:
+        return num1
+    return gcd(num2, num1 % num2)
+
+
+a = int(input("Введите первое число: "))
+b = int(input("Введите второе число: "))
+
+print("Наибольший общий делитель: ", gcd(a, b))

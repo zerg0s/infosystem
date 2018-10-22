@@ -1,0 +1,9 @@
+************* Module tochkkv
+myFiles\tochkkv.py:5:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+myFiles\tochkkv.py:5:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
+myFiles\tochkkv.py:5:20: W0621: Redefining name 'x' from outer scope (line 7) (redefined-outer-name)
+myFiles\tochkkv.py:5:23: W0621: Redefining name 'y' from outer scope (line 8) (redefined-outer-name)
+
+------------------------------------------------------------------
+Your code has been rated at 4.29/10 (previous run: 4.29/10, +0.00)
+

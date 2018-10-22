@@ -1,6 +1,4 @@
-************* Module reverselist
-myFiles\reverselist.py:4:0: C0103: Function name "InputNumber" doesn't conform to camelCase naming style (invalid-name)
 
------------------------------------
-Your code has been rated at 8.57/10
-
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+

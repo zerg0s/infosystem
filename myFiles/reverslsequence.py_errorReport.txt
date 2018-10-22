@@ -10,6 +10,6 @@ myFiles\reverslsequence.py:22:4: W0621: Redefining name 'a' from outer scope (li
 myFiles\reverslsequence.py:17:4: W0603: Using the global statement (global-statement)
 myFiles\reverslsequence.py:22:4: C0103: Variable name "a" doesn't conform to camelCase naming style (invalid-name)
 
------------------------------------
-Your code has been rated at 7.06/10
-
+------------------------------------------------------------------
+Your code has been rated at 7.06/10 (previous run: 7.06/10, +0.00)
+

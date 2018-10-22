@@ -1,6 +1,4 @@
-************* Module tsklistreverse
-myFiles\tsklistreverse.py:4:0: C0103: Function name "InputNum" doesn't conform to camelCase naming style (invalid-name)
 
------------------------------------
-Your code has been rated at 8.33/10
-
+-------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 8.33/10, +1.67)
+

@@ -1,0 +1,14 @@
+Using config file C:\InformationSystem\pylint\config.file
+************* Module rspisnie
+C:  9, 0: Line too long (101/100) (line-too-long)
+C: 10, 0: Exactly one space required after comma
+(dh, dm) = divmod(end,60)
+                     ^ (bad-whitespace)
+C: 11, 0: No space allowed before bracket
+print (startH + dh, startM + dm)
+      ^ (bad-whitespace)
+C: 12, 0: Trailing newlines (trailing-newlines)
+
+-------------------------------------------------------------------
+Your code has been rated at 5.00/10 (previous run: 10.00/10, -5.00)
+

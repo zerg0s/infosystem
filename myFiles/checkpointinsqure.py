@@ -1,15 +1,15 @@
-#Мария Евсеева
-#Принадлежит ли точка квадрату?
+# Мария Евсеева
+# Принадлежит ли точка квадрату?
 
-def isPointInSquare(x, y):
-    pointInFirstPlane = (y <= (x + 1)) and (y >= (x - 1))
-    pointInSecondPlane = (y <= (-x + 1)) and (y >= (-x - 1))
+def isPointInSquare(xVal, yVal):
+    pointInFirstPlane = (yVal <= (xVal + 1)) and (yVal >= (xVal - 1))
+    pointInSecondPlane = (yVal <= (-xVal + 1)) and (yVal >= (-xVal - 1))
     return pointInFirstPlane and pointInSecondPlane
 
-x = float(input("Введите x: "))
-y = float(input("Введите y: "))
+xInputVal = float(input("Введите x: "))
+yInputVal = float(input("Введите y: "))
 
-if isPointInSquare(x, y) == True:
+if isPointInSquare(xInputVal, yInputVal):
     print("YES")
 else:
     print("NO")

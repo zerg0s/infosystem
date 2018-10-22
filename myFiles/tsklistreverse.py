@@ -1,10 +1,10 @@
 # Created by Mikhail Fadeev
 # Task Description: Разворот последовательности
 
-def InputNum():
+def inputNum():
     num = int(input())
     if num != 0:
-        InputNum()
+        inputNum()
     print(num)
 
-InputNum()
+inputNum()

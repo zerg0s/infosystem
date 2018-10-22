@@ -7,6 +7,6 @@ myFiles\ispointinre.py:8:4: C0103: Variable name "over_lines" doesn't conform to
 myFiles\ispointinre.py:9:4: C0103: Variable name "under_lines" doesn't conform to camelCase naming style (invalid-name)
 myFiles\ispointinre.py:10:4: C0103: Variable name "circle_border" doesn't conform to camelCase naming style (invalid-name)
 
------------------------------------
-Your code has been rated at 3.64/10
-
+------------------------------------------------------------------
+Your code has been rated at 3.64/10 (previous run: 3.64/10, +0.00)
+

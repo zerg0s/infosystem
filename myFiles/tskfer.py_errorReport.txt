@@ -1,0 +1,7 @@
+************* Module tskfer
+myFiles\tskfer.py:33:0: C0301: Line too long (105/100) (line-too-long)
+myFiles\tskfer.py:11:4: C0103: Variable name "in_data" doesn't conform to camelCase naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 9.17/10
+

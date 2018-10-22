@@ -1,16 +1,16 @@
 #Исхаков Дамир
 #Сложение без сложения
 #27.09.2018
-def inSum(x, y):
-    if y != 0:
-        return inSum(x + 1, y - 1)
+def inSum(xone, yone):
+    if yone != 0:
+        return inSum(xone + 1, yone - 1)
     else:
-        return x
+        return xone
 
-x = int(input("Введите \"x\" значение = "))
-y = int(input("Введите \"y\" значение = "))
+xone = int(input("Введите \"xone\" значение = "))
+yone = int(input("Введите \"yone\" значение = "))
 
-if x < 0 or y < 0:
+if xone < 0 or yone < 0:
     print("Неккоректный ввод значения!")
 else:
-    print("x + y =", inSum(x, y))
+    print("xone + yone =", inSum(xone, yone))

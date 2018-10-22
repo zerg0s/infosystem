@@ -1,15 +1,16 @@
-#Мария Евсеева
-#Сложение без сложения
+# Created by Anita Kuzmina
+# sum_without_sum
+# 30.09.2018
 
-def Sum(a, b):
-    if b == 0:
-        return a
+
+def count_sum_without_sum(first_num, second_num):
+    if first_num == 0:
+        return second_num
     else:
-        incA = a + 1
-        decB = b - 1
-        return Sum(incA, decB)
+        return count_sum_without_sum(first_num - 1, second_num + 1)
 
-a = int(input("Введите число a: "))
-b = int(input("Введите число b: "))
 
-print("Сумма:", Sum(a, b))
+firstNum = int(input("Enter first number: "))
+secondNum = int(input("Enter second number: "))
+
+print("Sum: ", count_sum_without_sum(firstNum, secondNum))

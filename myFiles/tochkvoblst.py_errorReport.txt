@@ -1,55 +1,56 @@
+Using config file C:\InformationSystem\pylint\config.file
 ************* Module tochkvoblst
-myFiles\tochkvoblst.py:6:41: C0326: No space allowed after bracket
-    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C:  6, 0: No space allowed after bracket
+    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                          ^ (bad-whitespace)
-myFiles\tochkvoblst.py:6:49: C0326: No space allowed before bracket
-    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C:  6, 0: No space allowed before bracket
+    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                                  ^ (bad-whitespace)
-myFiles\tochkvoblst.py:6:55: C0326: No space allowed after bracket
-    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C:  6, 0: No space allowed after bracket
+    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                                        ^ (bad-whitespace)
-myFiles\tochkvoblst.py:6:63: C0326: No space allowed before bracket
-    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C:  6, 0: No space allowed before bracket
+    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                                                ^ (bad-whitespace)
-myFiles\tochkvoblst.py:6:70: C0326: No space allowed after bracket
-    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C:  6, 0: No space allowed after bracket
+    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                                                       ^ (bad-whitespace)
-myFiles\tochkvoblst.py:6:78: C0326: No space allowed before bracket
-    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C:  6, 0: No space allowed before bracket
+    in_circle = 2 * 2 >= abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                                                               ^ (bad-whitespace)
-myFiles\tochkvoblst.py:10:20: C0326: Exactly one space required after comparison
-    below_line2 = y <=- x
+C: 10, 0: Exactly one space required after comparison
+    below_line2 = y <=- x
                     ^^ (bad-whitespace)
-myFiles\tochkvoblst.py:11:41: C0326: No space allowed after bracket
-    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C: 11, 0: No space allowed after bracket
+    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                          ^ (bad-whitespace)
-myFiles\tochkvoblst.py:11:49: C0326: No space allowed before bracket
-    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C: 11, 0: No space allowed before bracket
+    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                                  ^ (bad-whitespace)
-myFiles\tochkvoblst.py:11:55: C0326: No space allowed after bracket
-    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C: 11, 0: No space allowed after bracket
+    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                                        ^ (bad-whitespace)
-myFiles\tochkvoblst.py:11:63: C0326: No space allowed before bracket
-    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C: 11, 0: No space allowed before bracket
+    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                                                ^ (bad-whitespace)
-myFiles\tochkvoblst.py:11:70: C0326: No space allowed after bracket
-    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C: 11, 0: No space allowed after bracket
+    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                                                       ^ (bad-whitespace)
-myFiles\tochkvoblst.py:11:78: C0326: No space allowed before bracket
-    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
+C: 11, 0: No space allowed before bracket
+    on_circle = 2 * 2 == abs(x + 1) * abs( x + 1 ) +abs( y - 1 ) * abs( y - 1 )
                                                                               ^ (bad-whitespace)
-myFiles\tochkvoblst.py:12:0: C0301: Line too long (116/100) (line-too-long)
-myFiles\tochkvoblst.py:20:0: C0304: Final newline missing (missing-final-newline)
-myFiles\tochkvoblst.py:5:0: C0103: Function name "IsPointInArea" doesn't conform to camelCase naming style (invalid-name)
-myFiles\tochkvoblst.py:5:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
-myFiles\tochkvoblst.py:5:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
-myFiles\tochkvoblst.py:6:4: C0103: Variable name "in_circle" doesn't conform to camelCase naming style (invalid-name)
-myFiles\tochkvoblst.py:7:4: C0103: Variable name "above_line1" doesn't conform to camelCase naming style (invalid-name)
-myFiles\tochkvoblst.py:8:4: C0103: Variable name "above_line2" doesn't conform to camelCase naming style (invalid-name)
-myFiles\tochkvoblst.py:9:4: C0103: Variable name "below_line1" doesn't conform to camelCase naming style (invalid-name)
-myFiles\tochkvoblst.py:10:4: C0103: Variable name "below_line2" doesn't conform to camelCase naming style (invalid-name)
-myFiles\tochkvoblst.py:11:4: C0103: Variable name "on_circle" doesn't conform to camelCase naming style (invalid-name)
+C: 12, 0: Line too long (116/100) (line-too-long)
+C: 20, 0: Final newline missing (missing-final-newline)
+C:  5, 0: Function name "IsPointInArea" doesn't conform to camelCase naming style (invalid-name)
+C:  5, 0: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+C:  5, 0: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
+C:  6, 4: Variable name "in_circle" doesn't conform to camelCase naming style (invalid-name)
+C:  7, 4: Variable name "above_line1" doesn't conform to camelCase naming style (invalid-name)
+C:  8, 4: Variable name "above_line2" doesn't conform to camelCase naming style (invalid-name)
+C:  9, 4: Variable name "below_line1" doesn't conform to camelCase naming style (invalid-name)
+C: 10, 4: Variable name "below_line2" doesn't conform to camelCase naming style (invalid-name)
+C: 11, 4: Variable name "on_circle" doesn't conform to camelCase naming style (invalid-name)
 
-----------------------------------------------------------------------
-Your code has been rated at -8.46/10 (previous run: -21.43/10, +12.97)
-
+------------------------------------
+Your code has been rated at -8.46/10
+

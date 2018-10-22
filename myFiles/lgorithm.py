@@ -1,15 +1,15 @@
 #Исхаков Дамир
 #Алгоритм Евклида
 #02.10.2018
-a = int(input())
-b = int(input())
-def gcd(a, b):
-    if a == 0:
-        return b
-    elif b == 0:
-        return a
-    elif a > b:
-        return gcd(a % b, b)
+aone = int(input())
+btwo = int(input())
+def gcd(aone, btwo):
+    if aone == 0:
+        return btwo
+    elif btwo == 0:
+        return aone
+    elif aone > btwo:
+        return gcd(aone % btwo, btwo)
     else:
-        return gcd(a, b % a)
-print(gcd(a, b))
+        return gcd(aone, btwo % aone)
+print(gcd(aone, btwo))

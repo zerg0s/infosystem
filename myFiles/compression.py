@@ -9,4 +9,5 @@ for i in range(len(numbers)):
     if numbers[j] == 0:
         numbers.append(numbers.pop(j))
         count += 1
-print(numbers)
+for j in numbers:
+    print(j, end=' ')

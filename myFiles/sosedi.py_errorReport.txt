@@ -1,0 +1,6 @@
+************* Module sosedi
+myFiles\sosedi.py:4:19: C0303: Trailing whitespace (trailing-whitespace)
+
+------------------------------------------------------------------
+Your code has been rated at 8.33/10 (previous run: 8.33/10, +0.00)
+

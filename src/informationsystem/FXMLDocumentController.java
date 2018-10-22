@@ -48,8 +48,8 @@ import javafx.stage.FileChooser;
  */
 public class FXMLDocumentController implements Initializable {
 
-    private XMLReader reader = new XMLReader();
-    private ArrayList<Project> projects = new ArrayList<Project>();
+    private final XmlReader reader = new XmlReader();
+    private ArrayList<Project> projects = new ArrayList<>();
 
     @FXML
     private Button buttonDown;
@@ -65,6 +65,9 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TextField textFieldURL;
+
+    @FXML
+    private TextField IssueToTestNumber;
 
     @FXML
     private TextField textFieldJavaErrorAmount;
@@ -199,7 +202,9 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, null, "======Started========\n");
+        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, "======Started========\n");
+        connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
+
         if (!comboxUserName.getValue().toString().isEmpty()
                 && !comboxProject.getValue().toString().isEmpty()
                 && !comboxVersion.getValue().toString().isEmpty()) {
@@ -207,30 +212,40 @@ public class FXMLDocumentController implements Initializable {
             List<Issue> issues = null;
             ArrayList<String> journals = null;
             try {
-                issues = connectionToRedmine.getIssues(comboxVersion.getValue().toString());
-
-                /* test code               
-                Issue issue = connectionToRedmine.getIssueByID(730968);
-                connectionToRedmine.setIssueAssigneeName(issue, "Irina Danilova");
-                System.out.println("=>>>AssignedTo: " + issue.getAssigneeName());
-                issue.setStatusId(5);
-                connectionToRedmine.updateIssue(issue);
-                 */
+                issues = connectionToRedmine.getMyIssues(comboxVersion.getValue().toString());
             } catch (RedmineException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             for (Issue issue : issues) {
-                if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
-                    System.out.println(issue.toString());
-                    connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
-                    journals = journalReader.getJournals(issue.getId().toString());
-                    connectionToRedmine.setStudentName(getStudentName(journals, comboxUserName.getValue().toString()));
-                }
+                processIssue(issue);
             }
-            connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
+
         }
-        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, null, "======Finished========\n");
+        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, "======Finished========\n");
+    }
+
+    private void processIssue(Issue issue) {
+        processIssue(issue, false);
+    }
+
+    private void processIssue(Issue issue, boolean needLog) {
+        ArrayList<String> journals;
+        if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
+            System.out.println(issue.toString());
+            
+            try {
+                //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
+                connectionToRedmine.checkAttachments(issue);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            journals = journalReader.getJournals(issue.getId().toString());
+            connectionToRedmine.setStudentName(getStudentName(journals, comboxUserName.getValue().toString()));
+        } else if (needLog) {
+            System.out.println("Already Closed:" + issue.toString());
+        }
     }
 
     String getStudentName(ArrayList<String> journals, String professorName) {
@@ -285,7 +300,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleJavaErrorScanCheck() {
         if (checkBoxJavaErrScan.isSelected()) {
-            connectionToRedmine.setProverka(textFieldJavaErrorAmount.getText().toString());
+            connectionToRedmine.setProverka(textFieldJavaErrorAmount.getText());
         }
         //connectionToRedmine.setJavaErrorsAmount(Integer.parseInt(textFieldJavaErrorAmount.getText()));
 
@@ -330,13 +345,29 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void startTests() {
-        
-        PyTaskChecker pyChecker = new PyTaskChecker("Принадлежит ли точка области?", "pointInArea.py");
-        pyChecker.startPyCheck();
+        PyTaskChecker pyChecker = new PyTaskChecker("Принадлежит ли точка области?");
+        pyChecker.getTestName3("Принадлежит ли точка области?");
     }
 
     @FXML
     private void toChooseLocalFile() {
+
+    }
+
+    @FXML
+    private void handleButtonSignleIssueCheckAction(ActionEvent event) {
+        //Logger.getAnonymousLogger().log(Level.INFO, IssueToTestNumber.getText());
+        String issueNum = IssueToTestNumber.getText();
+        Integer issueNumLong = 0;
+        connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
+
+        try {
+            issueNumLong = Integer.parseInt(issueNum);
+            connectionToRedmine.checkSingleIssue(issueNumLong);
+            this.processIssue(connectionToRedmine.getIssueByID(issueNumLong), true);
+        } catch (Exception ex) {
+            Logger.getAnonymousLogger().log(Level.INFO, ex.toString());
+        }
 
     }
 

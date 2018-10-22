@@ -1,15 +1,15 @@
 # Автор: Ира Данилова
 # Задача: Алгоритм Евклида
 
-def gcd(a, b):
-    if a == b:
-        return a
-    elif a > b:
-        return gcd(a - b, b)
-    elif a < b:
-        return gcd(a, b - a)
+def gcd(valueOne, valueTwo):
+    if valueOne == valueTwo:
+        return valueOne
+    elif valueOne > valueTwo:
+        return gcd(valueOne - valueTwo, valueTwo)
+    elif valueOne < valueTwo:
+        return gcd(valueOne, valueTwo - valueOne)
 
-a = int(input())
-b = int(input())
+firstNumber = int(input())
+secondNumber = int(input())
 
-print(gcd(a, b))
+print(gcd(firstNumber, secondNumber))

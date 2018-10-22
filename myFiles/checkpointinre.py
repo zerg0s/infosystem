@@ -1,19 +1,19 @@
-#Мария Евсеева
-#Принадлежит ли точка области?
+# Мария Евсеева
+# Принадлежит ли точка области?
 
-def isPointInArea(x, y):
-    pointIsLowerFirstLine = y < ((2 * x) + 2)
-    pointIsLowerSecondLine = y < -x
-    pointIsOutCircle = ((x + 1)**2 + (y - 1)**2) >= 4
-    pointIsInCircle = ((x + 1)**2 + (y - 1)**2) <= 4
+def isPointInArea(xVal, yVal):
+    pointIsLowerFirstLine = yVal < ((2 * xVal) + 2)
+    pointIsLowerSecondLine = yVal < -xVal
+    pointIsOutCircle = ((xVal + 1)**2 + (yVal - 1)**2) >= 4
+    pointIsInCircle = ((xVal + 1)**2 + (yVal - 1)**2) <= 4
     return (pointIsLowerFirstLine and pointIsLowerSecondLine\
             and pointIsOutCircle) or ((not pointIsLowerFirstLine)\
             and (not pointIsLowerSecondLine) and pointIsInCircle)
 
-x = float(input("Введите x: "))
-y = float(input("Введите y: "))
+xInputVal = float(input("Введите x: "))
+yInputVal = float(input("Введите y: "))
 
-if isPointInArea(x, y) == True:
+if isPointInArea(xInputVal, yInputVal):
     print("YES")
 else:
     print("NO")

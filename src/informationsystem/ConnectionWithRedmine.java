@@ -43,9 +43,17 @@ import okhttp3.Response;
 import org.apache.commons.codec.Charsets;
 import org.apache.http.entity.ContentType;
 import com.taskadapter.redmineapi.bean.User;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+//Status_id HELP 
+// 0 - new
+// 1 - assigned
+// 2 - in progress
+// 3 - resolved 
+// 4 - approved
+// 5 - closed
 
 /**
  *
@@ -161,75 +169,44 @@ public class ConnectionWithRedmine {
         return professorName;
     }
 
-    public void saveAttachment(Issue issue) throws IOException {
+    public void checkAttachments(Issue issue) throws IOException {
         Collection<Attachment> issueAttachment = issue.getAttachments();
         ArrayList<Attachment> issueAttachments = new ArrayList<>(issueAttachment);
         File dir = new File(".\\myFiles\\");
         dir.mkdirs();
 
         for (Attachment attach : issueAttachments) {
-
             if (attach.getFileName().endsWith(".py") || attach.getFileName().endsWith(".java") || attach.getFileName().endsWith(".cpp")) {
-
                 if (checkAttachmentID(attach.getId()) == 0) {
+                    //if (!(new PyTaskChecker(issue.getSubject())).getNameForKnownTest(issue.getSubject()).equals("")) {
 
                     String fileToManage = ".\\myFiles\\" + makeUsableFileName(attach.getFileName());
-                    downloadAttachments(attach.getContentURL(),
-                            apiAccessKey,
-                            fileToManage);
-                    
-                    if (attach.getFileName().endsWith(".py")) {
-                        new MyPylint().startPylint(makeUsableFileName(attach.getFileName()));
-                        String attachName = ".\\myFiles\\" + makeUsableFileName(attach.getFileName()) + "_errorReport.txt";
-                        String lastLineInReport = readLastLineInFile(attachName);
-                        float studentPythonRating = this.pythonRatingCheck(lastLineInReport);
+                    downloadAttachments(attach.getContentURL(), apiAccessKey, fileToManage);
 
-                        if (perevod == true && neededPythonRating <= studentPythonRating) {
-                            System.out.println(neededPythonRating + " menshe " + studentPythonRating);
-                            issue.setStatusId(issueStatus);
-                            this.setIssueAssigneeName(issue, assigneeName);
-                            this.uploadAttachment(issue, attachName);
+                    if (attach.getFileName().endsWith(".py")) {
+                        int checkRes = -1;
+                        if (doPyLint(attach, issue, fileToManage) == true) {
+                            if (!(new PyTaskChecker(issue.getSubject())).getNameForKnownTest(issue.getSubject()).equals("")) {
+                                checkRes = doPyTaskCheck(issue, fileToManage);
+                            }
                         }
-                        if (neededPythonRating > studentPythonRating) {
+                        if (checkRes != -1) {
                             String studentsName = getStudentsName(issue.getId(), this.professorName);
-                            System.out.println("(assigning back to Student) - " + studentsName + " " + lastLineInReport);
+                            System.out.println(checkRes + "(after tests - back to Student) - " + studentsName);
                             this.setIssueAssigneeName(issue, studentsName);
-                            lastLineInReport += "\n Some corrections are required! Keep trying!";
-                            this.uploadAttachment(issue, attachName);
-                        } else {
-                            lastLineInReport += "\n " + generateSuccessMsg();
-                            PyTaskChecker pyChecker = new PyTaskChecker(issue.getSubject(), fileToManage);
-                            
+                            if (checkRes == 1) {
+                                issue.setStatusId(5);
+                            }
+                            this.updateIssue(issue);
                         }
-                        issue.setNotes(lastLineInReport);
-                        this.updateIssue(issue);
                     }
 
                     if (attach.getFileName().endsWith(".java")) {
-                        new MyCheckStyle().startCheckStyle(attach.getFileName());
-                        // this.uploadAttachment(issue, ".\\myFiles\\" + attach.getFileName() + "_errorReport.txt");
-                        String lastLine = readLastLineInFile(".\\myFiles\\" + attach.getFileName() + "_errorReport.txt");
-                        int studentJavaErrorAmount = this.javaErrorAmountDetectionInFile(lastLine);
-                        System.out.println("we have:" + lastLine);
-                        System.out.println("we have:" + studentJavaErrorAmount);
-                        /*if (perevod == true) {
-                            System.out.println("we need " + neededJavaErrorAmount + " but there are " + studentJavaErrorAmount);
-                            issue.setStatusId(issueStatus);
-                            issue.setAssigneeName(assigneeName);
-                        }*/
-                        //issue.setNotes(lastLine);
-                        //this.updateIssue(issue);
+                        doJavaLint(attach);
                     }
 
                     if (attach.getFileName().endsWith(".cpp")) {
-                        new MyCppLint().startCpplint(attach.getFileName());
-                        this.uploadAttachment(issue, ".\\myFiles\\" + attach.getFileName() + "_errorReport.txt");
-                        String lastLine = readLastLineInFile(".\\myFiles\\" + attach.getFileName() + "_errorReport.txt");
-                        int studentCppErrorAmount = this.cppErrorAmountDetectionInFile(lastLine);
-                        System.out.println("we have " + studentCppErrorAmount);
-                        System.out.println("we have line " + lastLine);
-                        issue.setNotes(lastLine);
-                        this.updateIssue(issue);
+                        doCppLint(attach, issue);
                     }
 
                     // cleanDirectory(new File(".\\myFiles\\"));
@@ -239,6 +216,66 @@ public class ConnectionWithRedmine {
             }
 
         }
+    }
+
+    private void doCppLint(Attachment attach, Issue issue) {
+        new MyCppLint().startCpplint(attach.getFileName());
+        this.uploadAttachment(issue, ".\\myFiles\\" + attach.getFileName() + "_errorReport.txt");
+        String lastLine = readLastLineInFile(".\\myFiles\\" + attach.getFileName() + "_errorReport.txt");
+        int studentCppErrorAmount = this.cppErrorAmountDetectionInFile(lastLine);
+        System.out.println("we have " + studentCppErrorAmount);
+        System.out.println("we have line " + lastLine);
+        issue.setNotes(lastLine);
+        this.updateIssue(issue);
+    }
+
+    private void doJavaLint(Attachment attach) {
+        new MyCheckStyle().startCheckStyle(attach.getFileName());
+        // this.uploadAttachment(issue, ".\\myFiles\\" + attach.getFileName() + "_errorReport.txt");
+        String lastLine = readLastLineInFile(".\\myFiles\\" + attach.getFileName() + "_errorReport.txt");
+        int studentJavaErrorAmount = this.javaErrorAmountDetectionInFile(lastLine);
+        System.out.println("we have:" + lastLine);
+        System.out.println("we have:" + studentJavaErrorAmount);
+        /*if (perevod == true) {
+        System.out.println("we need " + neededJavaErrorAmount + " but there are " + studentJavaErrorAmount);
+        issue.setStatusId(issueStatus);
+        issue.setAssigneeName(assigneeName);
+        }*/
+        //issue.setNotes(lastLine);
+        //this.updateIssue(issue);
+    }
+
+    private boolean doPyLint(Attachment attach, Issue issue, String fileToManage) {
+        new MyPylint().startPylint(makeUsableFileName(attach.getFileName()));
+        String attachName = ".\\myFiles\\" + makeUsableFileName(attach.getFileName()) + "_errorReport.txt";
+        String lastLineInReport = readLastLineInFile(attachName);
+        float studentPythonRating = 0;
+        try {
+            studentPythonRating = this.pythonRatingCheck(lastLineInReport);
+        } catch (Exception ex) {
+            studentPythonRating = -20f;
+        }
+
+        boolean succsessfulPyLint = false;
+        if (perevod == true && neededPythonRating <= studentPythonRating) {
+            System.out.println(neededPythonRating + " menshe " + studentPythonRating);
+            issue.setStatusId(issueStatus);
+            this.setIssueAssigneeName(issue, assigneeName);
+            this.uploadAttachment(issue, attachName);
+        }
+        if (neededPythonRating > studentPythonRating) {
+            String studentsName = getStudentsName(issue.getId(), this.professorName);
+            System.out.println("(assigning back to Student) - " + studentsName + " " + lastLineInReport);
+            this.setIssueAssigneeName(issue, studentsName);
+            lastLineInReport += "\n Some corrections are required! Keep trying!";
+            this.uploadAttachment(issue, attachName);
+        } else {
+            lastLineInReport += "\n " + generateSuccessMsg();
+            succsessfulPyLint = true;
+        }
+        issue.setNotes(lastLineInReport);
+        this.updateIssue(issue);
+        return succsessfulPyLint;
     }
 
     private void downloadAttachments(String url, String apikey, String fileName) throws MalformedURLException, IOException {
@@ -278,6 +315,20 @@ public class ConnectionWithRedmine {
         return issues;
     }
 
+    public List<Issue> getMyIssues(String iterationName) throws RedmineException {
+
+        String iterationid = getIterationIdByName(iterationName);
+
+        final Map<String, String> params = new HashMap<>();
+        params.put("project_id", projectKey);
+        params.put("fixed_version_id", iterationid);
+        params.put("limit", "100");
+        params.put("assigned_to_id", "me");
+        params.put("include", "attachments, journals");
+        issues = issueManager.getIssues(params).getResults();
+        return issues;
+    }
+
     private String getIterationIdByName(String iterationName) {
         String retVal = "";
         int projectKeyInt = 0;
@@ -305,15 +356,11 @@ public class ConnectionWithRedmine {
         return versions;
     }
 
-    public Issue getIssueByID(int issueID) throws RedmineException {
-        Issue issue = issueManager.getIssueById(issueID, Include.journals);
+    public Issue getIssueByID(Integer issueID) throws RedmineException {
+        Issue issue = issueManager.getIssueById(issueID, Include.journals, Include.attachments);
         return issue;
     }
 
-    /*public User getUser() throws RedmineException {
-        User user = userManager.getCurrentUser();
-        return user;
-    }*/
     public void uploadAttachment(Issue issue, String path) {
 
         try {
@@ -473,7 +520,7 @@ public class ConnectionWithRedmine {
 
         if (inputTargetVersion.equals("All")) {
             try {
-                this.saveAttachment(issue);
+                this.checkAttachments(issue);
             } catch (IOException ex) {
                 Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -481,7 +528,7 @@ public class ConnectionWithRedmine {
             System.out.println("Issue without target version");
         } else if (version.getName().equals(inputTargetVersion)) {
             try {
-                this.saveAttachment(issue);
+                this.checkAttachments(issue);
             } catch (IOException ex) {
                 Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -567,13 +614,37 @@ public class ConnectionWithRedmine {
         String retStr = "";
         retStr = retStr.trim().toLowerCase().replaceAll(" ", "");
         for (int i = 0; i < fileName.length(); i++) {
-            if (fileName.charAt(i) > 'a' && fileName.charAt(i) < 'z' || fileName.charAt(i)=='.') {
-                retStr+=fileName.charAt(i);
+            if (fileName.charAt(i) > 'a' && fileName.charAt(i) < 'z' || fileName.charAt(i) == '.') {
+                retStr += fileName.charAt(i);
             }
         }
-        if (retStr.equalsIgnoreCase(".py")){
+        if (retStr.equalsIgnoreCase(".py")) {
             retStr = "task.py";
         }
         return retStr;
+    }
+
+    private int doPyTaskCheck(Issue issue, String fileToManage) {
+        PyTaskChecker checker = new PyTaskChecker(issue.getSubject(), fileToManage);
+        String result = null;
+        try {
+            result = checker.startPyCheck();
+        } catch (UnsupportedOperationException ex) {
+            return -1;
+        }
+        int success = 0;
+        String[] splittedResult = result.split("\n");
+        if (splittedResult[splittedResult.length - 1].toLowerCase().equals("passed")) {
+            issue.setNotes("All tests passed");
+            success = 1;
+        } else {
+            issue.setNotes(result);
+        }
+        //this.updateIssue(issue);
+        return success;
+    }
+
+    void checkSingleIssue(long issueNum) {
+
     }
 }

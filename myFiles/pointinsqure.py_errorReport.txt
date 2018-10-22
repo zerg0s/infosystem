@@ -4,6 +4,6 @@ myFiles\pointinsqure.py:4:0: C0103: Argument name "y" doesn't conform to camelCa
 myFiles\pointinsqure.py:4:20: W0621: Redefining name 'x' from outer scope (line 9) (redefined-outer-name)
 myFiles\pointinsqure.py:4:23: W0621: Redefining name 'y' from outer scope (line 10) (redefined-outer-name)
 
------------------------------------
-Your code has been rated at 5.56/10
-
+-------------------------------------------------------------------
+Your code has been rated at 5.56/10 (previous run: 10.00/10, -4.44)
+

@@ -1,0 +1,24 @@
+﻿<AllITestDescription>
+	<homework id="4" name="Функции">
+		<test id="41" subject="Принадлежит ли точка области?" testSetFolder="isPointInArea"/>
+		<test id="42" subject="Принадлежит ли точка квадрату?" testSetFolder="isPointInSquare"/>
+		<test id="43" subject="Разворот последовательности?" testSetFolder="reverseInput"/>
+		<test id="44" subject="Алгоритм Евклида" testSetFolder="gcdEvklid"/>
+		<test id="45" subject="Сложение без сложения" testSetFolder="sumNoAdd"/>
+	</homework>
+	<homework id="5" name="Функции">
+		<test id="51" subject="Ферзи" testSetFolder="eightQueens"/>
+		<test id="52" subject="&quot;Сжатие&quot; списка" testSetFolder="listCompression"/>
+		<test id="53" subject="Четные индексы" testSetFolder="evenElementsByIndex"/>
+		<test id="54" subject="Больше соседей" testSetFolder="greaterThanNeighbors"/>
+		<test id="55" subject="Количество совпадающих пар" testSetFolder="numberOfEqualPairs"/>
+	</homework>
+	<homework id="101" name="Контрольная работа номер 1">
+		<test id="1011" subject="Обращение фрагмента" testSetFolder="fragmentReverse"/>
+		<test id="1012" subject="Сумма десятичных цифр" testSetFolder="sumOfDecNumbers"/>
+		<test id="1013" subject="Расписание звонков" testSetFolder="alarmsTimeTable"/>
+		<test id="1014" subject="Парты" testSetFolder="buyingNewDesks"/>
+		<test id="1015" subject="Коньки" testSetFolder="puttingOnSkates"/>
+		<test id="1016" subject="Симметричная последовательность" testSetFolder="simmetricSequence"/>
+	</homework>
+</AllITestDescription>

@@ -1,7 +1,10 @@
-# Created by Olesya Bandurina
-# Date 9.10.2018
-# Task Description: Выведите все элементы списка с четными индексами
+# Created by Fedyuk Yuliya
+# evenIndices
+# 18.10.2018
 
-a = input().split()
-for i in range(0, len(a), 2):
-    print(a[i], end=" ")
+print("Введите числа: ")
+numbers = [int(f) for f in input().split()]
+for i in range(len(numbers)):
+    if i % 2 == 0:
+        print('%d' % numbers[i], end=' ')
+

@@ -1,0 +1,9 @@
+************* Module respoint
+myFiles\respoint.py:17:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+myFiles\respoint.py:17:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
+myFiles\respoint.py:17:18: W0621: Redefining name 'x' from outer scope (line 23) (redefined-outer-name)
+myFiles\respoint.py:17:21: W0621: Redefining name 'y' from outer scope (line 25) (redefined-outer-name)
+
+------------------------------------------------------------------
+Your code has been rated at 7.33/10 (previous run: 5.33/10, +2.00)
+

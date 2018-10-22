@@ -1,15 +1,17 @@
 ************* Module slojenie
 myFiles\slojenie.py:3:19: C0326: No space allowed before bracket
-        return sum (a+1, b-1);
+        return sum (a+1, b-1)
                    ^ (bad-whitespace)
-myFiles\slojenie.py:3:0: W0301: Unnecessary semicolon (unnecessary-semicolon)
+myFiles\slojenie.py:12:0: W0311: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+myFiles\slojenie.py:14:0: C0304: Final newline missing (missing-final-newline)
+myFiles\slojenie.py:14:0: W0311: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
 myFiles\slojenie.py:1:0: W0622: Redefining built-in 'sum' (redefined-builtin)
 myFiles\slojenie.py:1:0: C0103: Argument name "a" doesn't conform to camelCase naming style (invalid-name)
 myFiles\slojenie.py:1:0: C0103: Argument name "b" doesn't conform to camelCase naming style (invalid-name)
-myFiles\slojenie.py:1:8: W0621: Redefining name 'a' from outer scope (line 7) (redefined-outer-name)
-myFiles\slojenie.py:1:11: W0621: Redefining name 'b' from outer scope (line 8) (redefined-outer-name)
+myFiles\slojenie.py:1:8: W0621: Redefining name 'a' from outer scope (line 8) (redefined-outer-name)
+myFiles\slojenie.py:1:11: W0621: Redefining name 'b' from outer scope (line 9) (redefined-outer-name)
 myFiles\slojenie.py:2:4: R1705: Unnecessary "else" after "return" (no-else-return)
 
-------------------------------------------------------------------
-Your code has been rated at 1.11/10 (previous run: 0.00/10, +1.11)
-
+-------------------------------------------------------------------
+Your code has been rated at -1.11/10 (previous run: 1.11/10, -2.22)
+

@@ -1,6 +1,4 @@
-************* Module evenind
-myFiles\evenind.py:6:0: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
 
------------------------------------
-Your code has been rated at 7.50/10
-
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+

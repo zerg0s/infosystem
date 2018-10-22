@@ -1,7 +1,7 @@
-************* Module pointSq
-myFiles\pointSq.py:6:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
-myFiles\pointSq.py:6:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
+************* Module pointsq
+myFiles\pointsq.py:6:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+myFiles\pointsq.py:6:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
 
------------------------------------
-Your code has been rated at 7.50/10
-
+------------------------------------------------------------------
+Your code has been rated at 7.50/10 (previous run: 7.50/10, +0.00)
+

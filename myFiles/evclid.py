@@ -1,14 +1,14 @@
-num1 = int(input())
-num2 = int(input())
+a = int(input())
+b = int(input())
 
-def gcd(num1, num2):
-    if num1 == 0:
-        return num2
-    if num2 == 0:
-        return num1
-    if num1 > num2:
-        return gcd(num1 % num2, num2)
+def gcd(a, b):
+    if a == 0:
+        return b
+    elif b == 0:
+        return a
+    elif a > b:
+        return gcd(a % b, b)
     else:
-        return gcd(num1, num2 % num1)
+        return gcd(a, b % a)
   
-print(gcd(num1, num2))
+print(gcd(a, b))

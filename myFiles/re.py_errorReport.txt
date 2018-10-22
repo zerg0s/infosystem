@@ -1,0 +1,6 @@
+************* Module re
+myFiles\re.py:2:0: W0611: Unused import sre_compile (unused-import)
+
+------------------------------------------------------------------
+Your code has been rated at 8.75/10 (previous run: 8.57/10, +0.18)
+

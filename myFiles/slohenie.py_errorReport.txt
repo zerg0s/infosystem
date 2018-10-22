@@ -1,10 +1,9 @@
+Using config file C:\InformationSystem\pylint\config.file
 ************* Module slohenie
-myFiles\slohenie.py:4:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
-myFiles\slohenie.py:4:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
-myFiles\slohenie.py:4:10: W0621: Redefining name 'x' from outer scope (line 10) (redefined-outer-name)
-myFiles\slohenie.py:4:13: W0621: Redefining name 'y' from outer scope (line 11) (redefined-outer-name)
-myFiles\slohenie.py:5:4: R1705: Unnecessary "else" after "return" (no-else-return)
+W:  4,10: Redefining name 'xone' from outer scope (line 10) (redefined-outer-name)
+W:  4,16: Redefining name 'yone' from outer scope (line 11) (redefined-outer-name)
+R:  5, 4: Unnecessary "else" after "return" (no-else-return)
 
---------------------------------------------------------------------
-Your code has been rated at 4.44/10 (previous run: -7.50/10, +11.94)
-
+------------------------------------------------------------------
+Your code has been rated at 6.67/10 (previous run: 4.44/10, +2.22)
+

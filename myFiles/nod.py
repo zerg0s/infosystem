@@ -1,30 +1,18 @@
-# Created by Samohin Artem
-# Date 2018-09-28
-# Task Description: http://www.hostedredmine.com/issues/775916
-
-# check float
-def checkInput():
-    inData = input()
-    try:
-        data = float(inData)
-    except ValueError:
-        print("Неверный ввод! Координата должна быть действительным числом!")
-        exit(0)
-    return data
+# Ильдар Галиуллин.
+# Алгоритм Евклида.
+# 26.09.2018.
 
 
-def nodCreate(a, b):
-    if a!=0 and b!=0:
-        if a > b:
-            a = a % b
-            nod(a, b)
-        else:
-            b = b % a
-            nod(a, b)
+def gcd(num1, num2):
+    if num1 == 0 or num2 == 0:
+        return num1 + num2
     else:
-        print(str(a+b))
+        if num1 > num2:
+            return gcd(num1 % num2, num2)
+        else:
+            return gcd(num1, num2 % num1)
 
-X = checkInput()
-Y = checkInput()
 
-nodCreate(X, Y)
+number1 = abs(int(input("Введите первое число: ")))
+number2 = abs(int(input("Введите второе число: ")))
+print(gcd(number1, number2))

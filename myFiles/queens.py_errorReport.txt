@@ -1,6 +1,6 @@
 ************* Module queens
 myFiles\queens.py:10:8: W0621: Redefining name 'i' from outer scope (line 23) (redefined-outer-name)
 
-------------------------------------------------------------------
-Your code has been rated at 9.47/10 (previous run: 8.95/10, +0.53)
-
+------------------------------------------------------------------
+Your code has been rated at 9.47/10 (previous run: 9.29/10, +0.19)
+

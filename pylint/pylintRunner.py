@@ -6,8 +6,7 @@ import subprocess
 myStyleConvension = "--module-naming-style=any --const-naming-style=any --class-naming-style=PascalCase --function-naming-style=camelCase --method-naming-style=camelCase --attr-naming-style=camelCase --argument-naming-style=camelCase --variable-naming-style=camelCase --class-attribute-naming-style=camelCase --inlinevar-naming-style=camelCase"
 rcPath = ""
 i = 0
-print("Started:")
-print("\n".join(sys.argv))
+print("Plint started:"," ".join(sys.argv))
 
 while not os.path.isfile(os.path.dirname(sys.path[i]) + r"\python.exe"):
     # print("--- " + os.path.dirname(sys.path[i]) + r"\python.exe")

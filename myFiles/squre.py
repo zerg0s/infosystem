@@ -1,12 +1,13 @@
-def isPointArea(CoordinateX, CoordinateY):
- return (abs(CoordinateX) + abs(CoordinateY) <= 1)
-
-
-
-CoordinateX = float(input('Input x\n'))
-CoordinateY = float(input('Input y\n'))
-
-if isPointArea(CoordinateX, CoordinateY) == True:
- print('YES')
+#Исхаков Дамир
+#Принадлежит ли точка квадрату
+#26.09.2018
+def PointInSquare(x, y):
+    return abs(x) <= 1 and abs(y) <= 1
+x = float(input())
+y = float(input())
+if PointInSquare:
+    print('NO')
 else:
- print('NO')
+    print('YES')
+PointInSquare(x,y)
+

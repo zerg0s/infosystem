@@ -1,16 +1,15 @@
-#Мария Евсеева
-#Алгоритм Евклида
+#Created by Grebneva Kseniya
+#euclidean_algorithm
+#12.10.2018
 
 def gcd(a, b):
-    if a == b:
-        return a
-    else:
+    while a != 0 and b != 0:
         if a > b:
-            return gcd(a - b, b)
+            a = a % b
         else:
-            return gcd(a, b - a)
+            b = b % a
+    print(a + b)
 
-a = int(input("Введите первое число: "))
-b = int(input("Введите второе число: "))
-
-print("НОД введённых чисел: " + str(gcd(a, b)))
+a = int(input('a = '))
+b = int(input('b = '))
+gcd(a, b)
