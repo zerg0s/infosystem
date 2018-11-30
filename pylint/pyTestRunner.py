@@ -1,7 +1,10 @@
-import sys
-import unittest
-import subprocess
 import os
+import subprocess
+import sys
+import importlib
+
+from shutil import copy2
+from pep9 import funcCheck
 
 
 # read the correct answer for test## from .a file
@@ -22,49 +25,75 @@ def readConfing(pathTocfg):
     # В словарь записан полный конфиг. В поле func функция проверки
     if "func" in dictOfConfigs:
         if dictOfConfigs["func"] == "contains":
-            return lambda x, y: x.lower() in y.lower()
-
-    return lambda x, y: (x.strip() == y.strip())
+            dictOfConfigs["func"] = lambda x, y: x.lower() in y.lower()
+        else:
+            dictOfConfigs["func"] = lambda x, y: (x.strip() == y.strip())
+    return dictOfConfigs
 
 
 def checkCrashExists(userAnswer):
     return "traceback (most recent call last):" in userAnswer.lower()
 
 
+def processAndTrimAnswer(answer):
+    return  answer.strip().replace(" \n", "\n")
+
+
+
 ################
-# config
+# Manual Config Section
 
 easyMode = True  # в этом режиме показываются входные данные для упавших тестов.
-debug = 0  #ONLY for local checks
+debug = 1  # ONLY for local test
+maxExecutionTimeDelay = 1  # max timeout for a task
 
 ################
+
 
 if __name__ == "__main__":
 
-    # print("\n".join(sys.argv))
-    maxExecutionTimeDelay = 1  # max timeout for a task
-    fileTocheck = "file.py"
-    dirTocheck = "isPointInSquare"
+    fileToCheck = "file.py"
+    dirToCheck = "classHierarchy"
     retArrray = list()
+
     extraDataForEasyMode = ""
 
     if len(sys.argv) > 2 or debug == 1:
         if not debug:
-            fileTocheck = sys.argv[1]
-            dirTocheck = sys.argv[2]
-        myDir = ".\\tests\\" + dirTocheck + "\\"
-        for file in os.listdir(myDir):
+            fileToCheck = sys.argv[1]
+            dirToCheck = sys.argv[2]
+        myDir = ".\\tests\\" + dirToCheck + "\\"
+        testConfiguration = readConfing(myDir + "config.conf")
+
+        # для функционального программирования еще ограничение: одна инструкция языка.
+        if "functional" in testConfiguration:
+            if not funcCheck(open(fileToCheck, "r", encoding="utf-8").read()):
+                print("Source code is not in functional style. Please retry. Only one operator is allowed")
+                print("failed")
+                exit()
+
+        for file in filter(lambda x: x.endswith(".t"), os.listdir(myDir)):
+
             # для всех файлов .t с входными данными
             if os.path.isfile(myDir + file) and file.endswith(".t"):
-                proc = subprocess.Popen(["python", "-u", fileTocheck],
-                                        stdout=subprocess.PIPE,
+
+                # tmp = "<" + myDir + file
+                # os.system("python -u " + fileToCheck + " " + tmp + " >output")
+                copy2(myDir + file, "input.txt")
+                proc = subprocess.Popen(["python", "-u", fileToCheck],
+                                        stdout=open("output", "w+", encoding="utf-8"),
                                         stderr=subprocess.STDOUT,
-                                        stdin=subprocess.PIPE,
+                                        stdin=open(myDir + file, encoding="utf-8"),
                                         )
                 # вычитываем исходный .t файл и помещаем всё содержимое во входящий поток к тестируемой программе
-                inputDataForUsersProgram = open(myDir + file, "rb").read()
-                proc.stdin.write(inputDataForUsersProgram)
-                # ждем отклика в течение таймаута
+                # if "input" in testConfiguration:
+                #     copy2(myDir + file, str(testConfiguration["input"]))
+                #     inputDataForUsersProgram = open(str(testConfiguration["input"]), "rb").read()
+                # else:
+                #     inputDataForUsersProgram = open(myDir + file, "rb").read()
+                #     proc.stdin.write(inputDataForUsersProgram)
+
+                # ждем отклика в течение таймаута, в outs - результат работы программы
                 try:
                     outs, errs = proc.communicate(timeout=maxExecutionTimeDelay)
                 except subprocess.TimeoutExpired:
@@ -72,17 +101,29 @@ if __name__ == "__main__":
                     outs, errs = proc.communicate()
                     retArrray.append("Timeout")
                     break
+                finally:
+                    if "input" in testConfiguration and os.path.exists(str(testConfiguration["input"])):
+                        os.remove(str(testConfiguration["input"]))
+
                 # надо проверить .a файлы с ответом
                 correctAnswer = readAnswerFile(myDir + file[:file.rfind(".")] + ".a")
-                funcToCheckAnswer = readConfing(myDir + "config.conf")
-                # print(outs)
-                userAnswer = outs.decode(sys.stdout.encoding).replace("\r\n", "\n")
+                # вдруг будут тесты с 2 правильными ответами
+                # correctAnswer2 = readAnswerFile(myDir + file[:file.rfind(".")] + ".a1")
+                # функция проверки правильного ответа - пока единственный обязательный параметр конфига
+                funcToCheckAnswer = testConfiguration["func"]
+
+                userAnswer = open("output", "r", encoding="utf-8").read().replace("\r\n", "\n")
                 # print(userAnswer)
                 if not checkCrashExists(userAnswer):
+                    userAnswer = processAndTrimAnswer(userAnswer)
+                    correctAnswer = processAndTrimAnswer(correctAnswer)
+
                     isAnswerCorrect = funcToCheckAnswer(correctAnswer, userAnswer)
                     retArrray.append(isAnswerCorrect)
                     if not isAnswerCorrect:
-                        extraDataForEasyMode = inputDataForUsersProgram
+                        extraDataForEasyMode = open(myDir + file, encoding="utf-8").read()
+                        # print(correctAnswer)
+                        # print(userAnswer)
                         break  # программа пользователя выдала неверный результат, дальше не надо.
                 else:
                     retArrray.append(userAnswer)
@@ -94,9 +135,9 @@ if __name__ == "__main__":
             map(lambda x: ["test" + str(x[0]), "Passed" if str(x[1]) is "True" else "Failed" if not x[1] else x[1]],
                 enumerate(retArrray, 1))), sep="\n")
     # print(retArrray)
-    if len(set(retArrray)) == 1 and retArrray[0]:
+    if len(set(retArrray)) == 1 and str(retArrray[0]) == "True":
         print("passed")
     else:
-        if easyMode:
-            print("Wrong answer was received for input:\n%s" % extraDataForEasyMode.decode(sys.stdout.encoding))
+        if easyMode and extraDataForEasyMode:
+            print("Wrong answer was received for input:\n%s" % extraDataForEasyMode)
         print("failed")
