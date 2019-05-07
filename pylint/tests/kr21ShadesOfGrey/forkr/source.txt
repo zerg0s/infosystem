@@ -1,0 +1,50 @@
+	#000		True	
+	#aaa		True	
+	#eEe		True	
+	#111111		True	
+	#6F6F6F		True	
+	#efEfEF		True	
+	rgb(0, 0, 0)		True	
+	rgb(15,15,15)		True	
+	rgb(2.5, 2.5,2.5)		True	
+	rgb(1, 01, 000001)		True	
+	rgb(20%, 20%,20%)		True	
+	rgba(4,4,4,0.8)		True	
+	rgba(4,4,  4,1 )		True	
+	rgba(3,3,3,0.12536)		True	
+	rgba(10%,10%,10%,5%)		True	
+	hsl(20,0%,  50%)		True	
+	hsl(0, 10%, 100%)		True	
+	hsl(0.5, 10.5%, 0%)		True	
+	hsl(5, 5%, 0%)		True	
+	hsla(20, 0%, 50%, 0.88)		True	
+	hsla(0, 0%, 0%, 0.25)		True	
+	#ef4		False	
+	#eEf		False	
+	#11111e		False	
+	#123456		False	
+	rgb(2, 4, 7)		False	
+	rgb(10, 10,100)		False	
+	rgb(1.5%, 1.5%, 1.6%)		False	
+	rgba(1, 01, 0010, 0.5)		False	
+	hsl(20, 20%, 20%)		False	
+	hsl(0, 1%, 01%)		False	
+	hsla(0, 10%, 50%, 0.5)		False	
+	#11111		False	
+	#000000000		False	
+	rgb (1, 1, 1)		False	
+	rgb(10, 10, 10, 10)		False	
+	rgb(257, 257, 257)		False	
+	rgb(10%, 10, 10)		False	
+	hsl (20,0%,  50%)		False	
+	argb(1,1,1)		False	
+	rgb(2, 2,03)		False	
+	rgb(2, 2,02)		True	
+	#EfEfEF		True	
+	#efEf0		False	
+	efEfEF		False		
+	#101010		True	
+	#010101		True	
+	#121212		True	
+	#131313		True	
+	#141515		True	

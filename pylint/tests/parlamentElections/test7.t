@@ -1,0 +1,10 @@
+Party 1 155417
+Party 2 863061
+Party 3 652505
+Party 4 934281
+Party 5 327911
+Party 6 692828
+Party 7 179160
+Party 8 281796
+Party 9 182074
+Party 10 740747
