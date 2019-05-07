@@ -1,6 +1,6 @@
 ************* Module lst
 myFiles\lst.py:5:0: C0304: Final newline missing (missing-final-newline)
 
------------------------------------
-Your code has been rated at 8.00/10
-
+-----------------------------------
+Your code has been rated at 8.00/10
+

@@ -5,6 +5,6 @@ print (d)
       ^ (bad-whitespace)
 C:  8, 0: Trailing newlines (trailing-newlines)
 
-------------------------------------------------------------------
-Your code has been rated at 6.67/10 (previous run: 7.50/10, -0.83)
-
+------------------------------------------------------------------
+Your code has been rated at 6.67/10 (previous run: 7.50/10, -0.83)
+

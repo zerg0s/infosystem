@@ -1,11 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers in Project RedmineConnectionProperties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package informationsystem;
 
-import com.taskadapter.redmineapi.IssueManager;
 import com.taskadapter.redmineapi.RedmineException;
 import com.taskadapter.redmineapi.bean.Issue;
 import com.taskadapter.redmineapi.bean.Version;
@@ -19,8 +18,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,18 +27,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import org.apache.commons.codec.Charsets;
-import org.xml.sax.SAXException;
-import com.taskadapter.redmineapi.bean.User;
-import java.io.File;
-import java.util.Arrays;
 import javafx.scene.control.ListView;
-import javafx.stage.FileChooser;
+import redmineManagement.ConnectionWithRedmine;
 
 /**
  *
@@ -145,12 +137,11 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleUserChoice() {
-
         if (!comboxUserName.getValue().toString().isEmpty()) {
             for (ProjectOwner o : reader.getOwners()) {
                 if (comboxUserName.getValue().toString().equals(o.getName())) {
                     projects = o.getHisProjects();
-                    Properties.apiAccessKey = o.getApiKey();
+                    props.apiAccessKey = o.getApiKey();
                     break;
                 }
             }
@@ -236,7 +227,7 @@ public class FXMLDocumentController implements Initializable {
             
             try {
                 //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
-                connectionToRedmine.checkAttachments(issue);
+                connectionToRedmine.checkAttachments(issue, true);
             } catch (IOException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -258,20 +249,20 @@ public class FXMLDocumentController implements Initializable {
         }
         return retVal;
     }
-
+    private RedmineConnectionProperties props = new RedmineConnectionProperties();
     @FXML
     private void handleProjectChoice() {
 
         if (textFieldURL.getText().isEmpty()) {
-            Properties.url = "http://www.hostedredmine.com";
+            props.url = "http://www.hostedredmine.com";
         } else {
-            Properties.url = textFieldURL.getText();
+            props.url = textFieldURL.getText();
         }
 
         if (!comboxProject.getValue().toString().isEmpty()) {
             for (Project p : projects) {
                 if (p.getProjectName().equals(comboxProject.getValue().toString())) {
-                    Properties.projectKey = p.getId();
+                    props.projectKey = p.getId();
                     break;
                 }
             }
@@ -279,10 +270,10 @@ public class FXMLDocumentController implements Initializable {
 
         Collection<Version> versions = new ArrayList();
 
-        connectionToRedmine = new ConnectionWithRedmine(Properties.apiAccessKey, Properties.projectKey, Properties.url);
-        journalReader = new RedmineJournalsReader(Properties.url, Properties.apiAccessKey);
+        connectionToRedmine = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
+        journalReader = new RedmineJournalsReader(props.url, props.apiAccessKey);
         try {
-            versions = connectionToRedmine.getVersions(Properties.projectKey);
+            versions = connectionToRedmine.getVersions(props.projectKey);
         } catch (RedmineException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -363,7 +354,6 @@ public class FXMLDocumentController implements Initializable {
 
         try {
             issueNumLong = Integer.parseInt(issueNum);
-            connectionToRedmine.checkSingleIssue(issueNumLong);
             this.processIssue(connectionToRedmine.getIssueByID(issueNumLong), true);
         } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.INFO, ex.toString());

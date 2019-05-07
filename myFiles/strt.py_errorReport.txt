@@ -7,6 +7,6 @@ W:  5, 0: Found indentation with tabs instead of spaces (mixed-indentation)
 E:  2, 9: Undefined variable 's' (undefined-variable)
 E:  3, 7: Undefined variable 's' (undefined-variable)
 
-----------------------------------------------------------------------
-Your code has been rated at -18.00/10 (previous run: -18.00/10, +0.00)
-
+----------------------------------------------------------------------
+Your code has been rated at -18.00/10 (previous run: -18.00/10, +0.00)
+

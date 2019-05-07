@@ -3,6 +3,7 @@
 <project id="1a1a" name="Кр1"/>
 <project id="pvk-m-2018_2019" name="2018-2019"/>
 <project id="pvk-m-121-122" name="2017-2018"/>
+<project id="python-quest-2018-2019" name="python-quest-2018-2019"/>
 <apiKey>7bd0ad78c5a96b2434a07fec485eff8a67f76214</apiKey>
 </supervisor>
 <supervisor name="Autotester PVK">

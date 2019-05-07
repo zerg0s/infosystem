@@ -2,6 +2,6 @@
 myFiles\sumwithoutdd.py:4:0: W0622: Redefining built-in 'sum' (redefined-builtin)
 myFiles\sumwithoutdd.py:5:4: R1705: Unnecessary "else" after "return" (no-else-return)
 
-------------------------------------------------------------------
-Your code has been rated at 7.14/10 (previous run: 1.43/10, +5.71)
-
+------------------------------------------------------------------
+Your code has been rated at 7.14/10 (previous run: 1.43/10, +5.71)
+

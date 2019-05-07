@@ -1,5 +1,5 @@
 #Created by Petr Gusev
-#Change list 
+#Change list
 #19.10.2018
 
 lst1 = input("Введите числа через пробел: ").split()

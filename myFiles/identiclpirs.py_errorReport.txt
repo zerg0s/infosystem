@@ -1,6 +1,6 @@
 ************* Module identiclpirs
 myFiles\identiclpirs.py:14:0: C0305: Trailing newlines (trailing-newlines)
 
-------------------------------------------------------------------
-Your code has been rated at 8.57/10 (previous run: 7.14/10, +1.43)
-
+------------------------------------------------------------------
+Your code has been rated at 8.57/10 (previous run: 7.14/10, +1.43)
+

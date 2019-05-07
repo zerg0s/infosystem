@@ -57,6 +57,16 @@
 		<test id="102" subject="Наследование" testSetFolder="classHierarchy"/>
 	</homework>
 	
+	<homework id="104" name="Регулярные выражения">
+		<test id="1041" subject="Список доменов" testSetFolder="regDomains"/>
+		<test id="1044" subject="Поиск повторов с заменой" testSetFolder="regFindReplaceRepeated"/>
+		<test id="1042" subject="Поиск повторов" testSetFolder="regFindRepeated"/>
+		<test id="1043" subject="Поиск употреблений" testSetFolder="regFindAllFormsOfTime"/>
+		<test id="1045" subject="Телефонные номера-2" testSetFolder="regPhoneNumbers"/>
+		<test id="1046" subject="Перевод шкал" testSetFolder="regChangeScales"/>
+		<test id="1047" subject="Последнее слово" testSetFolder="regLastWord"/>
+	</homework>
+	
 	<homework id="101" name="Контрольная работа номер 1">
 		<test id="1011" subject="Обращение фрагмента" testSetFolder="fragmentReverse"/>
 		<test id="1012" subject="Сумма десятичных цифр" testSetFolder="sumOfDecNumbers"/>
@@ -71,5 +81,27 @@
 		<test id="1023" subject="Вычисление количества цифр" testSetFolder="calculateSimpleDigits"/>
 		<test id="1024" subject="Чемпионат по метанию коровьих лепешек" testSetFolder="cowChampionship"/>
 		<test id="1025" subject="Жизнь в квадрате" testSetFolder="newLifeInASquare"/>
+	</homework>
+		<homework id="103" name="Контрольная работа номер 2.1">
+		<test id="1031" subject="Замена(3)" testSetFolder="kr21HtmlExchange"/>
+		<test id="1032" subject="Правильные даты(3)" testSetFolder="kr21Dates"/>
+		<test id="1033" subject="Все оттенки серого(max 5)" testSetFolder="kr21ShadesOfGrey"/>
+		<test id="1034" subject="Замена2" testSetFolder="kr21itallic"/>
+	</homework>
+
+	<homework id="104" name="Контрольная работа номер 2.2">
+		<test id="1031" subject="Сколько стоит рубль" testSetFolder="kr22RublPrice"/>
+		<test id="1032" subject="Памятные даты" testSetFolder="kr22Dates"/>
+		<test id="1033" subject="Площадь участков земли" testSetFolder="kr22Triangles"/>
+	</homework>
+	<homework id="103" name="Зачет семестр 1">
+		<test id="1031" subject="Soundex" testSetFolder="soundex"/>
+		<test id="1032" subject="Светофор" testSetFolder="trafficlights"/>
+		<test id="1033" subject="Предметный указатель" testSetFolder="indexingABook"/>
+		<test id="1034" subject="Минимум на отрезке" testSetFolder="minimumInTheFrame"/>
+		<test id="1035" subject="Правильная скобочная последовательность" testSetFolder="checkIfBracesAreCorrect"/>
+		<!--test id="1035" subject="Отсортировать в матрице столбцы по убыванию значений элементов в первой строке" testSetFolder="sortMatrixByFirstLine"/-->
+		<test id="1036" subject="Сумма произведений соседних чисел" testSetFolder="sumOfNeibors"/>
+		<test id="1037" subject="Общий префикс" testSetFolder="commonPrefix"/>
 	</homework>
 </AllITestDescription>

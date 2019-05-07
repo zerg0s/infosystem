@@ -2,11 +2,11 @@
 # 9.10.18
 # Принадлежит ли точка квадрату?
 
-def isPointInSquare(x, y):
-    return abs(x) + abs(y) <= 1
-x = float(input("Enter the coordinate x: "))
-y = float(input("Enter the coordinate y: "))
-if (isPointInSquare(x, y)):
+theXcoordinate = float(input("Введите x: "))
+theYcoordinate = float(input("Введите y: "))
+def isPointInSquare(theXcoordinate, theYcoordinate):
+    return abs(theXcoordinate) + abs(theYcoordinate) <= 1
+if (isPointInSquare(theXcoordinate, theYcoordinate)):
     print("YES")
 else:
     print("NO")

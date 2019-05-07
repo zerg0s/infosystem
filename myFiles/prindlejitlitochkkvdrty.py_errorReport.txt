@@ -4,6 +4,6 @@ C:  6, 0: Function name "IsPointInSquare" doesn't conform to camelCase naming st
 C:  6, 0: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
 C:  6, 0: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
 
------------------------------------
-Your code has been rated at 5.71/10
-
+------------------------------------------------------------------
+Your code has been rated at 5.71/10 (previous run: 5.71/10, +0.00)
+

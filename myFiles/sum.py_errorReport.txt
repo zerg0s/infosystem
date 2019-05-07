@@ -2,6 +2,6 @@ Using config file C:\InformationSystem\pylint\config.file
 ************* Module sum
 C:  6, 0: Final newline missing (missing-final-newline)
 
--------------------------------------------------------------------
-Your code has been rated at 5.00/10 (previous run: 10.00/10, -5.00)
-
+-------------------------------------------------------------------
+Your code has been rated at 5.00/10 (previous run: 10.00/10, -5.00)
+

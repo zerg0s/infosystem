@@ -4,6 +4,6 @@ myFiles\sumwithoutsum.py:6:0: C0103: Argument name "first_num" doesn't conform t
 myFiles\sumwithoutsum.py:6:0: C0103: Argument name "second_num" doesn't conform to camelCase naming style (invalid-name)
 myFiles\sumwithoutsum.py:7:4: R1705: Unnecessary "else" after "return" (no-else-return)
 
-------------------------------------------------------------------
-Your code has been rated at 4.29/10 (previous run: 4.29/10, +0.00)
-
+------------------------------------------------------------------
+Your code has been rated at 4.29/10 (previous run: 4.29/10, +0.00)
+

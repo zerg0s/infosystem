@@ -36,15 +36,14 @@ def checkCrashExists(userAnswer):
 
 
 def processAndTrimAnswer(answer):
-    return  answer.strip().replace(" \n", "\n")
-
+    return answer.strip().replace(" \n", "\n")
 
 
 ################
 # Manual Config Section
 
 easyMode = True  # в этом режиме показываются входные данные для упавших тестов.
-debug = 1  # ONLY for local test
+debug = 0 # ONLY for local test
 maxExecutionTimeDelay = 1  # max timeout for a task
 
 ################
@@ -52,8 +51,14 @@ maxExecutionTimeDelay = 1  # max timeout for a task
 
 if __name__ == "__main__":
 
-    fileToCheck = "file.py"
-    dirToCheck = "classHierarchy"
+    fileToCheck = "my.py"
+
+    dirToCheck = "kr21HtmlExchange"
+    # dirToCheck = "regFindRepeated"
+    # dirToCheck = "regLastWord"
+    # dirToCheck = "regDomains"
+    # dirToCheck = "regPhoneNumbers"
+    # dirToCheck = "regFindReplaceRepeated"
     retArrray = list()
 
     extraDataForEasyMode = ""
@@ -62,8 +67,8 @@ if __name__ == "__main__":
         if not debug:
             fileToCheck = sys.argv[1]
             dirToCheck = sys.argv[2]
-        myDir = ".\\tests\\" + dirToCheck + "\\"
-        testConfiguration = readConfing(myDir + "config.conf")
+        dirWithTests = ".\\tests\\" + dirToCheck + "\\"
+        testConfiguration = readConfing(dirWithTests + "config.conf")
 
         # для функционального программирования еще ограничение: одна инструкция языка.
         if "functional" in testConfiguration:
@@ -72,18 +77,18 @@ if __name__ == "__main__":
                 print("failed")
                 exit()
 
-        for file in filter(lambda x: x.endswith(".t"), os.listdir(myDir)):
+        for file in filter(lambda x: x.endswith(".t"), os.listdir(dirWithTests)):
 
             # для всех файлов .t с входными данными
-            if os.path.isfile(myDir + file) and file.endswith(".t"):
+            if os.path.isfile(dirWithTests + file) and file.endswith(".t"):
 
                 # tmp = "<" + myDir + file
                 # os.system("python -u " + fileToCheck + " " + tmp + " >output")
-                copy2(myDir + file, "input.txt")
+                copy2(dirWithTests + file, "input.txt")
                 proc = subprocess.Popen(["python", "-u", fileToCheck],
                                         stdout=open("output", "w+", encoding="utf-8"),
                                         stderr=subprocess.STDOUT,
-                                        stdin=open(myDir + file, encoding="utf-8"),
+                                        stdin=open(dirWithTests + file, encoding="utf-8"),
                                         )
                 # вычитываем исходный .t файл и помещаем всё содержимое во входящий поток к тестируемой программе
                 # if "input" in testConfiguration:
@@ -106,14 +111,18 @@ if __name__ == "__main__":
                         os.remove(str(testConfiguration["input"]))
 
                 # надо проверить .a файлы с ответом
-                correctAnswer = readAnswerFile(myDir + file[:file.rfind(".")] + ".a")
+                correctAnswer = readAnswerFile(dirWithTests + file[:file.rfind(".")] + ".a")
                 # вдруг будут тесты с 2 правильными ответами
                 # correctAnswer2 = readAnswerFile(myDir + file[:file.rfind(".")] + ".a1")
                 # функция проверки правильного ответа - пока единственный обязательный параметр конфига
                 funcToCheckAnswer = testConfiguration["func"]
 
-                userAnswer = open("output", "r", encoding="utf-8").read().replace("\r\n", "\n")
-                # print(userAnswer)
+                # кодировочный костыль, иногда приходит в кодировке анси
+                try:
+                    userAnswer = open("output", "r", encoding="utf-8").read().replace("\r\n", "\n")
+                except UnicodeDecodeError:
+                    userAnswer = open("output", "r", encoding="cp1251").read().replace("\r\n", "\n")
+
                 if not checkCrashExists(userAnswer):
                     userAnswer = processAndTrimAnswer(userAnswer)
                     correctAnswer = processAndTrimAnswer(correctAnswer)
@@ -121,10 +130,12 @@ if __name__ == "__main__":
                     isAnswerCorrect = funcToCheckAnswer(correctAnswer, userAnswer)
                     retArrray.append(isAnswerCorrect)
                     if not isAnswerCorrect:
-                        extraDataForEasyMode = open(myDir + file, encoding="utf-8").read()
+                        extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
                         # print(correctAnswer)
-                        # print(userAnswer)
-                        break  # программа пользователя выдала неверный результат, дальше не надо.
+                        if debug:
+                            print(userAnswer)
+                        if "ContinueIfTestFailed" not in testConfiguration:
+                            break  # программа пользователя выдала неверный результат, дальше не надо.
                 else:
                     retArrray.append(userAnswer)
                     break  # программа пользователя упала, дальше не надо.

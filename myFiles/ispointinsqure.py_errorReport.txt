@@ -3,6 +3,6 @@ myFiles\ispointinsqure.py:6:0: C0103: Function name "is_point_in_square" doesn't
 myFiles\ispointinsqure.py:6:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
 myFiles\ispointinsqure.py:6:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
 
-------------------------------------------------------------------
-Your code has been rated at 5.71/10 (previous run: 5.71/10, +0.00)
-
+------------------------------------------------------------------
+Your code has been rated at 5.71/10 (previous run: 5.71/10, +0.00)
+

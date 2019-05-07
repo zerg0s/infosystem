@@ -1,6 +1,6 @@
 def rec():
-    N = int(input())
-    if N != 0:
+    numbers = int(input())
+    if numbers != 0:
         rec()
-    print(N)
+    print(numbers)
 rec()

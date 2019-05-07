@@ -1,9 +1,10 @@
+Using config file C:\InformationSystem\pylint\config.file
 ************* Module tochko
-myFiles\tochko.py:7:0: C0103: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
-myFiles\tochko.py:7:0: C0103: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
-myFiles\tochko.py:7:18: W0621: Redefining name 'x' from outer scope (line 5) (redefined-outer-name)
-myFiles\tochko.py:7:21: W0621: Redefining name 'y' from outer scope (line 6) (redefined-outer-name)
+C:  7, 0: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+C:  7, 0: Argument name "y" doesn't conform to camelCase naming style (invalid-name)
+W:  7,18: Redefining name 'x' from outer scope (line 5) (redefined-outer-name)
+W:  7,21: Redefining name 'y' from outer scope (line 6) (redefined-outer-name)
 
-------------------------------------------------------------------
-Your code has been rated at 4.29/10 (previous run: 2.86/10, +1.43)
-
+-----------------------------------
+Your code has been rated at 4.29/10
+

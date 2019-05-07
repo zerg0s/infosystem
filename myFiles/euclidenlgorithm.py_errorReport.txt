@@ -4,6 +4,6 @@ myFiles\euclidenlgorithm.py:5:0: C0103: Argument name "b" doesn't conform to cam
 myFiles\euclidenlgorithm.py:5:8: W0621: Redefining name 'a' from outer scope (line 13) (redefined-outer-name)
 myFiles\euclidenlgorithm.py:5:11: W0621: Redefining name 'b' from outer scope (line 14) (redefined-outer-name)
 
--------------------------------------------------------------------
-Your code has been rated at 5.56/10 (previous run: 10.00/10, -4.44)
-
+-------------------------------------------------------------------
+Your code has been rated at 5.56/10 (previous run: 10.00/10, -4.44)
+

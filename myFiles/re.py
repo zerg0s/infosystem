@@ -2,8 +2,6 @@
 #Area belong
 #12.10.2018
 
-import sre_compile
-
 def isPointInArea(xPoint, yPoint):
     return ((-2*xPoint + yPoint - 2 <= 0 and 2*xPoint + 2*yPoint <= 0 and \
     (xPoint + 1)**2 + (yPoint - 1)**2 - 4 >= 0) or \

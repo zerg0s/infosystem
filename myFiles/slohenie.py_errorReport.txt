@@ -4,6 +4,6 @@ W:  4,10: Redefining name 'xone' from outer scope (line 10) (redefined-outer-nam
 W:  4,16: Redefining name 'yone' from outer scope (line 11) (redefined-outer-name)
 R:  5, 4: Unnecessary "else" after "return" (no-else-return)
 
-------------------------------------------------------------------
-Your code has been rated at 6.67/10 (previous run: 4.44/10, +2.22)
-
+------------------------------------------------------------------
+Your code has been rated at 6.67/10 (previous run: 4.44/10, +2.22)
+

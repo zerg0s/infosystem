@@ -1,6 +1,6 @@
 ************* Module moreneighbors
 myFiles\moreneighbors.py:13:0: C0304: Final newline missing (missing-final-newline)
 
--------------------------------------------------------------------
-Your code has been rated at 8.33/10 (previous run: 10.00/10, -1.67)
-
+-------------------------------------------------------------------
+Your code has been rated at 8.33/10 (previous run: 10.00/10, -1.67)
+

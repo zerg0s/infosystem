@@ -1,6 +1,4 @@
-************* Module list
-myFiles\list.py:2:12: C0303: Trailing whitespace (trailing-whitespace)
 
------------------------------------
-Your code has been rated at 8.75/10
-
+-------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 8.75/10, +1.25)
+

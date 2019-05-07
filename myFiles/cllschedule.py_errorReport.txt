@@ -7,7 +7,7 @@ W:  9, 0: Found indentation with tabs instead of spaces (mixed-indentation)
 C: 10, 0: Trailing whitespace (trailing-whitespace)
 W: 11, 0: Found indentation with tabs instead of spaces (mixed-indentation)
 C: 11, 0: Exactly one space required after assignment
-	time_all_minutes =  time_peremen + time_urok
+	time_all_minutes =  time_peremen + time_urok
                   ^ (bad-whitespace)
 C: 12, 0: Trailing whitespace (trailing-whitespace)
 C: 13, 0: Trailing whitespace (trailing-whitespace)
@@ -22,6 +22,6 @@ C:  8, 1: Variable name "time_peremen" doesn't conform to camelCase naming style
 C:  9, 1: Variable name "time_urok" doesn't conform to camelCase naming style (invalid-name)
 C: 11, 1: Variable name "time_all_minutes" doesn't conform to camelCase naming style (invalid-name)
 
----------------------------------------------------------------------
-Your code has been rated at -11.11/10 (previous run: -7.00/10, -4.11)
-
+---------------------------------------------------------------------
+Your code has been rated at -11.11/10 (previous run: -7.00/10, -4.11)
+

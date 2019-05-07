@@ -1,7 +1,4 @@
-************* Module fere
-myFiles\fere.py:21:0: C0303: Trailing whitespace (trailing-whitespace)
-myFiles\fere.py:26:0: C0305: Trailing newlines (trailing-newlines)
 
------------------------------------
-Your code has been rated at 8.57/10
-
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+

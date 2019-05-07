@@ -1,6 +1,6 @@
 ************* Module tbles
 myFiles\tbles.py:8:0: C0304: Final newline missing (missing-final-newline)
 
--------------------------------------------------------------------
-Your code has been rated at 7.50/10 (previous run: 10.00/10, -2.50)
-
+-------------------------------------------------------------------
+Your code has been rated at 7.50/10 (previous run: 10.00/10, -2.50)
+

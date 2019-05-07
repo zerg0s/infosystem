@@ -1,9 +1,9 @@
 Using config file C:\InformationSystem\pylint\config.file
 ************* Module ppelfrgment
 C:  6, 0: Exactly one space required around assignment
-s=s[:s.find('h') + 1] + s[s.rfind('h') - 1:s.find('h'):-1] + s[s.rfind('h'):]
+s=s[:s.find('h') + 1] + s[s.rfind('h') - 1:s.find('h'):-1] + s[s.rfind('h'):]
  ^ (bad-whitespace)
 
-------------------------------------------------------------------
-Your code has been rated at 6.67/10 (previous run: 8.33/10, -1.67)
-
+------------------------------------------------------------------
+Your code has been rated at 6.67/10 (previous run: 8.33/10, -1.67)
+

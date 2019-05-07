@@ -1,9 +1,9 @@
 Using config file C:\InformationSystem\pylint\config.file
 ************* Module summdesytichnihcifr
 C:  5, 0: No space allowed before bracket
-    N = int (N / 10)
+    N = int (N / 10)
             ^ (bad-whitespace)
 
--------------------------------------------------------------------
-Your code has been rated at 8.33/10 (previous run: 10.00/10, -1.67)
-
+-------------------------------------------------------------------
+Your code has been rated at 8.33/10 (previous run: 10.00/10, -1.67)
+

@@ -1,10 +1,10 @@
 Using config file C:\InformationSystem\pylint\config.file
 ************* Module kr
 C:  6, 0: Exactly one space required after assignment
-children =input().split()
+children =input().split()
          ^ (bad-whitespace)
 C:  8, 0: No space allowed around keyword argument assignment
-newSkates = sorted(skates, reverse = True)
+newSkates = sorted(skates, reverse = True)
                                    ^ (bad-whitespace)
 C: 11, 0: Trailing whitespace (trailing-whitespace)
 W: 13, 0: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
@@ -15,6 +15,6 @@ W: 17, 0: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
 W: 18, 0: Bad indentation. Found 9 spaces, expected 8 (bad-indentation)
 W: 19, 0: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
 
--------------------------------------------------------------------
-Your code has been rated at 2.86/10 (previous run: 10.00/10, -7.14)
-
+-------------------------------------------------------------------
+Your code has been rated at 2.86/10 (previous run: 10.00/10, -7.14)
+

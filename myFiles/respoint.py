@@ -1,6 +1,6 @@
 # Created by Fedyuk Yuliya
 # areasPoint
-# 18.10.2018
+# 28.10.2018
 
 
 def checkInputData():
@@ -14,13 +14,13 @@ def checkInputData():
     return data
 
 
-def isPointInArea(x, y):
-    return (-2 * x + y - 2 < 0 and 2*x + 2*y < 0 and (x + 1)**2 + (y - 1)**2 - 4 >= 0) or \
-           (-2*x + y - 2 >= 0 and 2*x + 2*y >= 0 and (x + 1)**2 + (y - 1)**2 - 4 <= 0)
+def isPointInArea(firstArg, secondArg):
+    return (-2 * firstArg + secondArg - 2 < 0 and 2*firstArg + 2*secondArg < 0 and (firstArg + 1)**2 + (secondArg - 1)**2 - 4 >= 0) or \
+           (-2*firstArg + secondArg - 2 >= 0 and 2*firstArg + 2*secondArg >= 0 and (firstArg + 1)**2 + (secondArg - 1)**2 - 4 <= 0)
 
 
 print("Введите значение x: ")
-x = checkInputData()
+oneV = checkInputData()
 print("Введите значение y: ")
-y = checkInputData()
-print("Точка принадлежит квадрату: ", (isPointInArea(x, y)))
+twoV = checkInputData()
+print("Точка принадлежит квадрату: ", (isPointInArea(oneV, twoV)))

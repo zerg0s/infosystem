@@ -6,6 +6,6 @@ myFiles\evclid.py:4:8: W0621: Redefining name 'a' from outer scope (line 1) (red
 myFiles\evclid.py:4:11: W0621: Redefining name 'b' from outer scope (line 2) (redefined-outer-name)
 myFiles\evclid.py:5:4: R1705: Unnecessary "elif" after "return" (no-else-return)
 
-------------------------------------------------------------------
-Your code has been rated at 4.55/10 (previous run: 6.36/10, -1.82)
-
+------------------------------------------------------------------
+Your code has been rated at 4.55/10 (previous run: 6.36/10, -1.82)
+

@@ -8,6 +8,6 @@ C:  6, 4: Variable name "S" doesn't conform to camelCase naming style (invalid-n
 C:  9, 8: Variable name "S" doesn't conform to camelCase naming style (invalid-name)
 C: 12, 8: Variable name "S" doesn't conform to camelCase naming style (invalid-name)
 
------------------------------------
-Your code has been rated at 4.17/10
-
+-----------------------------------
+Your code has been rated at 4.17/10
+
