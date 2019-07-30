@@ -1,0 +1,6 @@
+Using config file C:\InformationSystem\pylint\config.file
+Unable to create file C:\Users\sergeyp\.pylint.d\com1.stats: [Errno 2] No such file or directory: 'C:\\Users\\sergeyp\\.pylint.d\\com1.stats'
+
+------------------------------------
+Your code has been rated at 10.00/10
+

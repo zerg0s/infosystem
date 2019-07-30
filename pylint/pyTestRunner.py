@@ -42,8 +42,8 @@ def processAndTrimAnswer(answer):
 ################
 # Manual Config Section
 
-easyMode = True  # в этом режиме показываются входные данные для упавших тестов.
-debug = 0 # ONLY for local test
+easyMode = False  # в этом режиме показываются входные данные для упавших тестов.
+debug = 0  # ONLY for local test
 maxExecutionTimeDelay = 1  # max timeout for a task
 
 ################
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     fileToCheck = "my.py"
 
-    dirToCheck = "kr21HtmlExchange"
+    dirToCheck = "finalQuadCodes"
     # dirToCheck = "regFindRepeated"
     # dirToCheck = "regLastWord"
     # dirToCheck = "regDomains"
@@ -124,11 +124,17 @@ if __name__ == "__main__":
                     userAnswer = open("output", "r", encoding="cp1251").read().replace("\r\n", "\n")
 
                 if not checkCrashExists(userAnswer):
+
                     userAnswer = processAndTrimAnswer(userAnswer)
                     correctAnswer = processAndTrimAnswer(correctAnswer)
-
-                    isAnswerCorrect = funcToCheckAnswer(correctAnswer, userAnswer)
+                    #tricky check for random tasks - if answer could be divided into 23
+                    if "answer_code" in testConfiguration:
+                        if testConfiguration["answer_code"] == "mod23":
+                            isAnswerCorrect = (int(userAnswer) % 23 == 0)
+                    else:
+                        isAnswerCorrect = funcToCheckAnswer(correctAnswer, userAnswer)
                     retArrray.append(isAnswerCorrect)
+
                     if not isAnswerCorrect:
                         extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
                         # print(correctAnswer)

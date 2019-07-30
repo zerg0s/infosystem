@@ -1,0 +1,8 @@
+Using config file C:\InformationSystem\pylint\config.file
+************* Module belongingpointv
+W: 16,18: Unused argument 'firstNum' (unused-argument)
+W: 16,28: Unused argument 'secondNum' (unused-argument)
+
+-----------------------------------
+Your code has been rated at 8.67/10
+

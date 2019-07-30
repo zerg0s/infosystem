@@ -1,0 +1,11 @@
+Using config file C:\InformationSystem\pylint\config.file
+************* Module school
+C:  6, 0: Trailing whitespace (trailing-whitespace)
+C: 12, 0: Trailing whitespace (trailing-whitespace)
+C: 14, 0: Trailing whitespace (trailing-whitespace)
+W: 10,16: Redefining built-in 'range' (redefined-builtin)
+W:  5, 0: Unused itemgetter imported from operator (unused-import)
+
+-----------------------------------
+Your code has been rated at 3.75/10
+

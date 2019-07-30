@@ -1,0 +1,7 @@
+Using config file C:\InformationSystem\pylint\config.file
+************* Module clssmtrixv.
+R: 41, 8: Unnecessary "else" after "return" (no-else-return)
+
+------------------------------------------------------------------
+Your code has been rated at 9.80/10 (previous run: 9.80/10, -0.00)
+

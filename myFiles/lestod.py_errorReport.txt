@@ -1,0 +1,8 @@
+Using config file C:\InformationSystem\pylint\config.file
+************* Module lestod
+C:  6, 0: Argument name "x" doesn't conform to camelCase naming style (invalid-name)
+R:  7, 4: Unnecessary "else" after "return" (no-else-return)
+
+-----------------------------------
+Your code has been rated at 6.00/10
+

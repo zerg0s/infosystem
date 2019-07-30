@@ -1,0 +1,7 @@
+Using config file C:\InformationSystem\pylint\config.file
+************* Module bnkoperte
+R:  1, 0: Too many branches (16/12) (too-many-branches)
+
+-----------------------------------
+Your code has been rated at 9.74/10
+

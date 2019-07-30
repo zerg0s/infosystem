@@ -1,0 +1,8 @@
+Using config file C:\InformationSystem\pylint\config.file
+************* Module countsort
+C:  6, 0: Function name "CountSort" doesn't conform to camelCase naming style (invalid-name)
+C:  6, 0: Argument name "A" doesn't conform to camelCase naming style (invalid-name)
+
+-------------------------------------------------------------------
+Your code has been rated at 8.33/10 (previous run: 10.00/10, -1.67)
+
