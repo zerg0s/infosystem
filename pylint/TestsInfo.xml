@@ -6,6 +6,8 @@
 		<test id="14" subject="Сложное уравнение" testSetFolder="complexEquatation"/>
 		<test id="15" subject="МКАД" testSetFolder="mkad"/>
 		<test id="16" subject="Спички" testSetFolder="matches"/>
+		<test id="17" subject="Подсчет единичных битов" testSetFolder="countNonZeroBytes"/>
+		<test id="18" subject="Простой переворот числа" testSetFolder="simpleTransform"/>
 	</homework>
 	<homework id="4" name="Функции">
 		<test id="41" subject="Принадлежит ли точка области?" testSetFolder="isPointInArea"/>

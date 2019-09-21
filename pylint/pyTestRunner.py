@@ -1,3 +1,5 @@
+#код проверяльщика задач, версия 2019.23
+
 import os
 import subprocess
 import sys
@@ -42,7 +44,7 @@ def processAndTrimAnswer(answer):
 ################
 # Manual Config Section
 
-easyMode = False  # в этом режиме показываются входные данные для упавших тестов.
+easyMode = True  # в этом режиме показываются входные данные для упавших тестов.
 debug = 0  # ONLY for local test
 maxExecutionTimeDelay = 1  # max timeout for a task
 
@@ -140,7 +142,7 @@ if __name__ == "__main__":
                         # print(correctAnswer)
                         if debug:
                             print(userAnswer)
-                        if "ContinueIfTestFailed" not in testConfiguration:
+                        if "ContinueIfTestFailed" not in testConfiguration: # для толстых программ
                             break  # программа пользователя выдала неверный результат, дальше не надо.
                 else:
                     retArrray.append(userAnswer)

@@ -190,7 +190,13 @@ public class ConnectionWithRedmine {
 
         for (Attachment attach : issueAttachments) {
             if (attach.getFileName().endsWith(".py") || attach.getFileName().endsWith(".java") || attach.getFileName().endsWith(".cpp")) {
-                if (needToCheckAlreadyChecked == true || checkAttachmentID(attach.getId()) == 0) {
+                int wasChecked = -1;
+                //Если не надо перепроверять ранее проверенные, смотрим, не нашлось ли ранее проверенных
+                if (!needToCheckAlreadyChecked) {
+                    wasChecked = checkAttachmentID(attach.getId());
+                }
+                //проверяем, если не проверяли ранее или надо обязательно проверять
+                if (needToCheckAlreadyChecked || wasChecked == 0) {
                     //if (!(new PyTaskChecker(issue.getSubject())).getNameForKnownTest(issue.getSubject()).equals("")) {
 
                     String fileToManage = ".\\myFiles\\" + makeUsableFileName(attach.getFileName());

@@ -227,7 +227,7 @@ public class FXMLDocumentController implements Initializable {
             
             try {
                 //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
-                connectionToRedmine.checkAttachments(issue, true);
+                connectionToRedmine.checkAttachments(issue, false);
             } catch (IOException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }

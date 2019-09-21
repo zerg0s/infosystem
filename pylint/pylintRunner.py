@@ -25,7 +25,7 @@ if (len(realCfg) == 2):
     # stream = os.popen(scriptsFolder + r"\pylint.exe " + sys.argv[1])  # + " >" + sys.argv[1] + "_errorReport.txt")
     proc = subprocess.Popen(scriptsFolder + r"\pylint.exe " + rcPath + " " + myStyleConvension + " " + realCfg[0],
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    str1 = proc.stdout.read().decode('utf8').replace("\r\n", "\n")
+    str1 = proc.stdout.read().decode('utf8',"ignore").replace("\r\n", "\n")
     # print (str1)
     with open(realCfg[0] + "_errorReport.txt", "w+", encoding="utf-8") as outFile:
         outFile.write(str1)
