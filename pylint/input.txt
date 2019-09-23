@@ -1,4 +1,7 @@
-1
-1
+3
+ABDEX
+XBACD
+BAXED
 2
-2
+AAA
+ABCD

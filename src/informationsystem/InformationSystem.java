@@ -52,7 +52,7 @@ public class InformationSystem extends Application {
             IssuesChecker issues = new IssuesChecker(connectionOptions);
             issues.checkSingleIssue();
 
-        //} else {
+        } else {
             // загрузка конфигов
             // открытие сцены
             launch(args);

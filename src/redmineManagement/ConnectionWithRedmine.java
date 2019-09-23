@@ -195,8 +195,8 @@ public class ConnectionWithRedmine {
                 if (!needToCheckAlreadyChecked) {
                     wasChecked = checkAttachmentID(attach.getId());
                 }
-                //проверяем, если не проверяли ранее или надо обязательно проверять
-                if (needToCheckAlreadyChecked || wasChecked == 0) {
+                //Проверяем, если не проверяли ранее или надо обязательно проверять
+                if (needToCheckAlreadyChecked || (wasChecked == 0)) {
                     //if (!(new PyTaskChecker(issue.getSubject())).getNameForKnownTest(issue.getSubject()).equals("")) {
 
                     String fileToManage = ".\\myFiles\\" + makeUsableFileName(attach.getFileName());
