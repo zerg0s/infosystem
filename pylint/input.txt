@@ -1,7 +1,2 @@
-3
-ABDEX
-XBACD
-BAXED
-2
-AAA
-ABCD
+0
+0

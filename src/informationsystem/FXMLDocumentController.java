@@ -8,17 +8,19 @@ package informationsystem;
 import com.taskadapter.redmineapi.RedmineException;
 import com.taskadapter.redmineapi.bean.Issue;
 import com.taskadapter.redmineapi.bean.Version;
+
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import data.FileOperator;
+import data.Project;
+import data.ProjectOwner;
+import data.StudentsIssue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,7 +37,6 @@ import javafx.scene.control.ListView;
 import redmineManagement.ConnectionWithRedmine;
 
 /**
- *
  * @author user
  */
 public class FXMLDocumentController implements Initializable {
@@ -224,14 +225,14 @@ public class FXMLDocumentController implements Initializable {
         ArrayList<String> journals;
         if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
             System.out.println(issue.toString());
-            
+
             try {
                 //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
                 connectionToRedmine.checkAttachments(issue, false);
             } catch (IOException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             journals = journalReader.getJournals(issue.getId().toString());
             connectionToRedmine.setStudentName(getStudentName(journals, comboxUserName.getValue().toString()));
         } else if (needLog) {
@@ -249,7 +250,9 @@ public class FXMLDocumentController implements Initializable {
         }
         return retVal;
     }
+
     private RedmineConnectionProperties props = new RedmineConnectionProperties();
+
     @FXML
     private void handleProjectChoice() {
 
@@ -335,9 +338,29 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void startTests() {
-        PyTaskChecker pyChecker = new PyTaskChecker("Принадлежит ли точка области?");
-        pyChecker.getTestName3("Принадлежит ли точка области?");
+    private void downloadResults() {
+//        PyTaskChecker pyChecker = new PyTaskChecker("Принадлежит ли точка области?");
+//        pyChecker.getTestName3("Принадлежит ли точка области?");
+        String tmp = comboxVersion.getValue().toString();
+        List<Issue> tasks = connectionToRedmine.getClosedIssues(tmp);
+        ArrayList<StudentsIssue> StudentsIssues = new ArrayList<>();
+        for (Issue task : tasks) {
+            String temp = task.getStatusName();
+            if (task.getStatusName().equals("Closed")) {
+                StudentsIssue studentsIssue = new StudentsIssue();
+                studentsIssue.setStudentsName(task.getAssigneeName());
+                studentsIssue.setIssueName(task.getSubject());
+                StudentsIssues.add(studentsIssue);
+            }
+        }
+        HashMap<String, ArrayList<String>> issuesOfTheStudent = new HashMap<String, ArrayList<String>>();
+        for (StudentsIssue issue : StudentsIssues) {
+            if (!issuesOfTheStudent.containsKey(issue.getStudentsName())) {
+                issuesOfTheStudent.put(issue.getStudentsName(), new ArrayList<String>());
+            }
+            issuesOfTheStudent.get(issue.getStudentsName()).add(issue.getIssueName());
+        }
+        new FileOperator().saveDataToFile(issuesOfTheStudent);
     }
 
     @FXML

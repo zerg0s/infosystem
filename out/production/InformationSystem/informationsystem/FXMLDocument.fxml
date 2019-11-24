@@ -45,7 +45,8 @@
                         <ComboBox fx:id="comboxVersion" prefHeight="31.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="textFieldURL" maxWidth="-Infinity" prefHeight="31.0" prefWidth="254.0" promptText="http://www.hostedredmine.com" GridPane.columnIndex="1" />
                         <Button fx:id="buttonDown" mnemonicParsing="false" onAction="#handleButtonAction" text="Начать" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Button defaultButton="true" mnemonicParsing="false" onAction="#startTests" text="TEST" textFill="#d02424" GridPane.rowIndex="4">
+                  <Button defaultButton="true" mnemonicParsing="false" onAction="#downloadResults"
+                          text="DownloadResults" textFill="#d02424" GridPane.rowIndex="4">
                      <font>
                         <Font size="24.0" />
                      </font>

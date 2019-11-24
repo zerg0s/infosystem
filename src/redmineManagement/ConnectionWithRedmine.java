@@ -38,11 +38,16 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import informationsystem.*;
+import lintsForLangs.MyCheckStyle;
+import lintsForLangs.MyCppLint;
+import lintsForLangs.MyPylint;
+import lintsForLangs.PhrasesGenerator;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.apache.commons.codec.Charsets;
 import org.apache.http.entity.ContentType;
+import taskCheckers.PyTaskChecker;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -328,6 +333,21 @@ public class ConnectionWithRedmine {
         params.put("limit", "100");
         params.put("include", "attachments, journals");
         issues = issueManager.getIssues(params).getResults();
+        return issues;
+    }
+    public List<Issue> getClosedIssues(String iterationName){
+        String iterationid = getIterationIdByName(iterationName);
+
+        final Map<String, String> params = new HashMap<String, String>();
+        params.put("project_id", projectKey);
+        params.put("fixed_version_id", iterationid);
+        params.put("limit", "1000");
+        params.put("status_id", "5"); // 5 = closed
+        try {
+            issues = issueManager.getIssues(params).getResults();
+        } catch (RedmineException e) {
+            e.printStackTrace();
+        }
         return issues;
     }
 
@@ -661,6 +681,10 @@ public class ConnectionWithRedmine {
     }
 
     void checkSingleIssue(long issueNum) {
+
+    }
+
+    public void downloadResults() {
 
     }
 }

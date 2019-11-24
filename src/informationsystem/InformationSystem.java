@@ -30,6 +30,7 @@ public class InformationSystem extends Application {
     public void start(Stage stage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("/informarionsystem/FXMLDocument.fxml"));
             Scene scene = new Scene(root);
             stage.setTitle("Проверка задач в системе Redmine");
             stage.setScene(scene);

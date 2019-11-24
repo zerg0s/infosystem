@@ -1,2 +1,6 @@
-AAA
-ABCD
+Traceback (most recent call last):
+  File "file.py", line 14, in <module>
+    answer = 'YES' if isPointInSquare(abscissa, ordinate) else 'NO'
+  File "file.py", line 9, in isPointInSquare
+    sinus = yCoord / vectLength
+ZeroDivisionError: float division by zero

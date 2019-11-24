@@ -13,6 +13,9 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import data.Project;
+import data.ProjectOwner;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -22,7 +25,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import org.w3c.dom.NamedNodeMap;
+
 import org.w3c.dom.Node;
 
 /**
@@ -126,7 +129,7 @@ public class XmlReader {
         return testFolderPathInXml;
     }
 
-    private static String getValue(String tag, Element element) {
+    public static String getValue(String tag, Element element) {
         NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
         Node node = (Node) nodes.item(0);
         return node.getNodeValue();
@@ -231,7 +234,7 @@ public class XmlReader {
         this.owners = owners;
     }
 
-    HashMap<String, String> getAlltests() {
+    public HashMap<String, String> getAlltests() {
         HashMap<String, String> testsData = new HashMap<>();
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

@@ -1,0 +1,5 @@
+Using config file C:\InformationSystem_idea\pylint\config.file
+
+-------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 5.00/10, +5.00)
+
