@@ -3,7 +3,6 @@ package redmineManagement;
 import com.taskadapter.redmineapi.bean.Issue;
 import informationsystem.FXMLDocumentController;
 import informationsystem.RedmineConnectionProperties;
-import informationsystem.RedmineJournalsReader;
 
 import java.io.IOException;
 import java.util.ArrayList;

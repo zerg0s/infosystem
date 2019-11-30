@@ -21,6 +21,7 @@ import com.taskadapter.redmineapi.bean.Project;
 import com.taskadapter.redmineapi.bean.Role;
 import com.taskadapter.redmineapi.bean.User;
 import com.taskadapter.redmineapi.bean.Version;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,7 +48,9 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.apache.commons.codec.Charsets;
 import org.apache.http.entity.ContentType;
+import org.jetbrains.annotations.NotNull;
 import taskCheckers.PyTaskChecker;
+import tools.Translit;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,18 +63,17 @@ import java.util.Map;
 // 5 - closed
 
 /**
- *
  * @author user
  */
 public class ConnectionWithRedmine {
 
+    boolean perevod;
     private String url;
     private String apiAccessKey;
     private String projectKey;
     private Integer queryId = null;
     private Integer neededJavaErrorAmount;
     private float neededPythonRating = (float) 10.0;
-    boolean perevod;
     private String proverka = "";
     private Integer issueStatus;
     private String studentName = "";
@@ -126,14 +128,6 @@ public class ConnectionWithRedmine {
         this.proverka = value;
     }
 
-    public void setStudentName(String value) {
-        this.studentName = value;
-    }
-
-    public void setProfessorName(String value) {
-        this.professorName = value;
-    }
-
     public void setAssigneeName(String value) {
 
         this.assigneeName = value;
@@ -169,22 +163,30 @@ public class ConnectionWithRedmine {
         return studentName;
     }
 
+    public void setStudentName(String value) {
+        this.studentName = value;
+    }
+
     public String getProfessorName() {
         return professorName;
+    }
+
+    public void setProfessorName(String value) {
+        this.professorName = value;
     }
 
     public void checkAttachments(Issue issue) throws IOException {
         checkAttachments(issue, false);
     }
+
     public void checkAttachmentsForced(Issue issue) throws IOException {
         checkAttachments(issue, true);
     }
 
     /**
-     *
-     * @param issue - RedMineItem для проверки
+     * @param issue                     - RedmineItem для проверки
      * @param needToCheckAlreadyChecked TRUE - всегда перепроверять, игнорируя
-     * уже проверенные, FALSE - учитывать ранее проверенные issues
+     *                                  уже проверенные, FALSE - учитывать ранее проверенные issues
      * @throws IOException
      */
     public void checkAttachments(Issue issue, boolean needToCheckAlreadyChecked) throws IOException {
@@ -204,12 +206,15 @@ public class ConnectionWithRedmine {
                 if (needToCheckAlreadyChecked || (wasChecked == 0)) {
                     //if (!(new PyTaskChecker(issue.getSubject())).getNameForKnownTest(issue.getSubject()).equals("")) {
 
-                    String fileToManage = ".\\myFiles\\" + makeUsableFileName(attach.getFileName());
+                    String fileToManage = ".\\myFiles\\" + makeUsableFileName(
+                            attach.getFileName(),
+                            attach.getAuthor().getFullName(),
+                            issue.getSubject());
                     downloadAttachments(attach.getContentURL(), apiAccessKey, fileToManage);
 
                     if (attach.getFileName().endsWith(".py")) {
                         int checkRes = -1;
-                        if (doPyLint(attach, issue, fileToManage) == true) {
+                        if (doPyLint(issue, fileToManage) == true) {
                             if (!(new PyTaskChecker(issue.getSubject())).getNameForKnownTest(issue.getSubject()).equals("")) {
                                 checkRes = doPyTaskCheck(issue, fileToManage);
                             }
@@ -235,7 +240,7 @@ public class ConnectionWithRedmine {
 
                     // cleanDirectory(new File(".\\myFiles\\"));
                 }
-            } 
+            }
         }
     }
 
@@ -266,9 +271,9 @@ public class ConnectionWithRedmine {
         //this.updateIssue(issue);
     }
 
-    private boolean doPyLint(Attachment attach, Issue issue, String fileToManage) {
-        new MyPylint().startPylint(makeUsableFileName(attach.getFileName()));
-        String attachName = ".\\myFiles\\" + makeUsableFileName(attach.getFileName()) + "_errorReport.txt";
+    private boolean doPyLint(Issue issue, String fileToManage) {
+        new MyPylint().startPylint(fileToManage);
+        String attachName = fileToManage + "_errorReport.txt";
         String lastLineInReport = readLastLineInFile(attachName);
         float studentPythonRating = 0;
         try {
@@ -276,10 +281,10 @@ public class ConnectionWithRedmine {
         } catch (Exception ex) {
             studentPythonRating = -20f;
         }
-
+        //Todo: Пересмотреть условия в IF
         boolean succsessfulPyLint = false;
-        if (perevod == true && neededPythonRating <= studentPythonRating) {
-            System.out.println(neededPythonRating + " menshe " + studentPythonRating);
+        if (perevod && neededPythonRating <= studentPythonRating) {
+            System.out.println(neededPythonRating + " is less than " + studentPythonRating);
             issue.setStatusId(issueStatus);
             this.setIssueAssigneeName(issue, assigneeName);
             this.uploadAttachment(issue, attachName);
@@ -299,7 +304,7 @@ public class ConnectionWithRedmine {
         return succsessfulPyLint;
     }
 
-    private void downloadAttachments(String url, String apikey, String fileName) throws MalformedURLException, IOException {
+    private void downloadAttachments(String url, String apikey, String fileName) throws IOException {
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -335,7 +340,8 @@ public class ConnectionWithRedmine {
         issues = issueManager.getIssues(params).getResults();
         return issues;
     }
-    public List<Issue> getClosedIssues(String iterationName){
+
+    public List<Issue> getClosedIssues(String iterationName) {
         String iterationid = getIterationIdByName(iterationName);
 
         final Map<String, String> params = new HashMap<String, String>();
@@ -431,7 +437,7 @@ public class ConnectionWithRedmine {
             }
         }
         if (response == attachIsNew) {
-            String fromIntToString = Integer.toString(id) + "\r\n";
+            String fromIntToString = id + "\r\n";
             Files.write(Paths.get("AttachmentID.txt"), fromIntToString.getBytes(), StandardOpenOption.APPEND);
 
         }
@@ -640,24 +646,29 @@ public class ConnectionWithRedmine {
         return succ + " Waiting for further checks.";
     }
 
-    private String makeUsableFileName(String fileName) {
-        //
-        //
-        //тут надо что-то сделать с этим файлом: убить кириллицу и пробелы
-        //
-        //
-        fileName = fileName.toLowerCase();
-        String retStr = "";
-        retStr = retStr.trim().toLowerCase().replaceAll(" ", "");
+    //тут надо что-то сделать с этим файлом: убить кириллицу и пробелы,
+    // оставив только латиницу
+    @NotNull
+    private String makeUsableFileName(String fileName, String author, String taskTitle) {
+        fileName = (Translit.toTranslit(author.toLowerCase())
+                + "_" + Translit.toTranslit(taskTitle.toLowerCase())
+                + "_" + fileName.toLowerCase())
+                .replaceAll(" ", "");
+        StringBuilder retStr = new StringBuilder();
+
         for (int i = 0; i < fileName.length(); i++) {
-            if (fileName.charAt(i) > 'a' && fileName.charAt(i) < 'z' || fileName.charAt(i) == '.') {
-                retStr += fileName.charAt(i);
+            if (fileName.charAt(i) >= 'a' && fileName.charAt(i) <= 'z'
+                    || fileName.charAt(i) == '.'
+                    || fileName.charAt(i) == '_') {
+                retStr.append(fileName.charAt(i));
             }
         }
-        if (retStr.equalsIgnoreCase(".py")) {
-            retStr = "task.py";
+
+        //Защита от совсем левака
+        if (retStr.toString().equalsIgnoreCase(".py")) {
+            retStr = new StringBuilder("task.py");
         }
-        return retStr;
+        return retStr.toString();
     }
 
     private int doPyTaskCheck(Issue issue, String fileToManage) {

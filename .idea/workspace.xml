@@ -6,32 +6,38 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/FileOperator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/StudentsIssue.java" afterDir="false" />
+    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="added smart attach file naming and fixed attachment forceCheck">
+      <change afterPath="$PROJECT_DIR$/src/tools/Translit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AttachmentID.txt" beforeDir="false" afterPath="$PROJECT_DIR$/AttachmentID.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InformationSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/InformationSystem.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/InformationSystem_jar/FXMLDocument.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/InformationSystem_jar/InformationSystem.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/InformationSystem_jar/InformationSystem.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/informationsystem/FXMLDocument.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/informationsystem/FXMLDocument.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocument.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocument.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocumentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocumentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/InformationSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/InformationSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/MyCheckStyle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/MyCppLint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/MyPylint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/PhrasesGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/Project.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/ProjectOwner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/PyTaskChecker$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/PyTaskChecker$FileAndItsTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/PyTaskChecker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/RedmineJournalsReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/XmlReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/XmlReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/IssuesChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/IssuesChecker.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pylint/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pylint/output" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pylint/plint.bat" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/plint_v2.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/informationsystem/InformationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/InformationSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/MyCheckStyle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lintsForLangs/MyCheckStyle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/MyCppLint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lintsForLangs/MyCppLint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/MyPylint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lintsForLangs/MyPylint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/PhrasesGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lintsForLangs/PhrasesGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/ProjectOwner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/ProjectOwner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/PyTaskChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/PyTaskChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/XmlReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/XmlReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/informationsystem/RedmineJournalsReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/redmineManagement/RedmineJournalsReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lintsForLangs/MyPylint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lintsForLangs/MyPylint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redmineManagement/IssuesChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/redmineManagement/IssuesChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/контрольная_работа_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/контрольная_работа_2.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,19 +66,54 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lintsForLangs/PhrasesGenerator.java">
+        <entry file="file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            <state relative-caret-position="273">
+              <caret line="670" column="33" lean-forward="true" selection-start-line="670" selection-start-column="33" selection-end-line="670" selection-end-column="33" />
+              <folding>
+                <element signature="e#5167#5168#0" expanded="true" />
+                <element signature="e#5201#5202#0" expanded="true" />
+                <element signature="e#4154#4155#0" expanded="true" />
+                <element signature="e#4194#4195#0" expanded="true" />
+                <element signature="e#5241#5242#0" expanded="true" />
+                <element signature="e#5277#5278#0" expanded="true" />
+                <element signature="e#4244#4245#0" expanded="true" />
+                <element signature="e#4286#4287#0" expanded="true" />
+                <element signature="e#15876#15884#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/ProjectOwner.java">
+        <entry file="file://$PROJECT_DIR$/build/classes/informationsystem/FXMLDocument.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="46" column="89" lean-forward="true" selection-start-line="46" selection-start-column="89" selection-end-line="46" selection-end-column="89" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tools/Translit.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <caret line="76" column="35" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#159#175#0" expanded="true" />
+                <element signature="initializer##0;class#Translit#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/redmineManagement/IssuesChecker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="487">
+              <caret line="47" column="58" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,19 +122,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/Project.java">
+        <entry file="file://$PROJECT_DIR$/контрольная_работа_2.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="238">
+              <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/informationsystem/PyTaskChecker.java">
+        <entry file="file://$PROJECT_DIR$/src/taskCheckers/PyTaskChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="155" column="35" lean-forward="true" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
+            <state relative-caret-position="1734">
+              <caret line="156" column="35" selection-start-line="156" selection-start-column="35" selection-end-line="156" selection-end-column="35" />
               <folding>
                 <element signature="method#getTestNameOld#0;class#PyTaskChecker#0" />
               </folding>
@@ -101,38 +142,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/informationsystem/XmlReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="259" lean-forward="true" selection-start-line="259" selection-end-line="259" />
+            <state relative-caret-position="306">
+              <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lintsForLangs/MyCheckStyle.java">
+        <entry file="file://$PROJECT_DIR$/src/informationsystem/InformationSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="23" column="46" lean-forward="true" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+            <state relative-caret-position="629">
+              <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lintsForLangs/MyCppLint.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lintsForLangs/MyPylint.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state relative-caret-position="75">
+              <caret line="194" lean-forward="true" selection-start-line="194" selection-end-line="194" />
             </state>
           </provider>
         </entry>
@@ -159,13 +194,15 @@
     <findStrings>
       <find>processIssue</find>
       <find>вве</find>
-      <find>handleButtonSignleIssueCheckAction</find>
       <find>processIssu</find>
       <find>new RedmineConnectionProperties</find>
       <find>checkAttachments</find>
       <find>startTests</find>
       <find>getalla</find>
       <find>getall</find>
+      <find>handleButtonSignleIssueCheckAction</find>
+      <find>process</find>
+      <find>rocessIssue</find>
     </findStrings>
     <replaceStrings>
       <replace>uploadResults</replace>
@@ -185,8 +222,6 @@
         <option value="$PROJECT_DIR$/src/informationsystem/InformationSystem.java" />
         <option value="$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml" />
         <option value="$PROJECT_DIR$/src/data/StudentsIssue.java" />
-        <option value="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" />
-        <option value="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" />
         <option value="$PROJECT_DIR$/src/data/FileOperator.java" />
         <option value="$PROJECT_DIR$/_output.txt" />
         <option value="$PROJECT_DIR$/контрольная_работа_2.txt" />
@@ -197,6 +232,10 @@
         <option value="$PROJECT_DIR$/src/lintsForLangs/MyPylint.java" />
         <option value="$PROJECT_DIR$/src/lintsForLangs/MyCheckStyle.java" />
         <option value="$PROJECT_DIR$/src/informationsystem/XmlReader.java" />
+        <option value="$PROJECT_DIR$/pylint/plint.bat" />
+        <option value="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" />
+        <option value="$PROJECT_DIR$/src/tools/Translit.java" />
+        <option value="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" />
       </list>
     </option>
   </component>
@@ -207,17 +246,16 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="240" />
-    <option name="y" value="126" />
-    <option name="width" value="1440" />
-    <option name="height" value="765" />
+    <option name="x" value="42" />
+    <option name="y" value="45" />
+    <option name="width" value="1401" />
+    <option name="height" value="972" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -235,18 +273,19 @@
               <item name="InformationSystem_idea" type="b2602c69:ProjectViewProjectNode" />
               <item name="InformationSystem_idea" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="redmineManagement" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="InformationSystem_idea" type="b2602c69:ProjectViewProjectNode" />
               <item name="InformationSystem_idea" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="informationsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -258,7 +297,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Projects/translateApiExample" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -269,6 +308,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="redmineManagement" />
       <recent name="taskCheckers" />
       <recent name="lintsForLangs" />
       <recent name="data" />
@@ -341,7 +381,9 @@
       <workItem from="1571815216078" duration="2094000" />
       <workItem from="1572415397079" duration="4020000" />
       <workItem from="1573996210531" duration="2463000" />
-      <workItem from="1574594140501" duration="591000" />
+      <workItem from="1574594140501" duration="2119000" />
+      <workItem from="1574678419527" duration="1429000" />
+      <workItem from="1574931751283" duration="6902000" />
     </task>
     <task id="LOCAL-00001" summary="changes made in April">
       <created>1557237496099</created>
@@ -371,17 +413,23 @@
       <option name="project" value="LOCAL" />
       <updated>1569069148462</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="some refactoring">
+      <created>1574595014468</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1574595014468</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45353000" />
+    <option name="totallyTimeSpent" value="55212000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20242915" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20890689" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -390,14 +438,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3268206" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925372" weight="0.22202487" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.25754884" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3268206" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925372" weight="0.23978686" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.18827708" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.25044405" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50074625" side_tool="true" weight="0.3297491" />
@@ -416,42 +464,92 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="changes made in April" />
     <MESSAGE value="changes made in Jun" />
     <MESSAGE value="some bugfix + tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="some bugfix + tests" />
+    <MESSAGE value="some refactoring" />
+    <MESSAGE value="added smart attach file naming and fixed attachment forceCheck" />
+    <option name="LAST_COMMIT_MESSAGE" value="added smart attach file naming and fixed attachment forceCheck" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/IssuesChecker.java</url>
-          <line>42</line>
+          <line>41</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>413</line>
+          <line>420</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>431</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>349</line>
+          <line>356</line>
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
-          <line>355</line>
+          <line>359</line>
           <properties />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
@@ -460,6 +558,36 @@
           <line>15</line>
           <properties />
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
+          <line>258</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
+          <line>197</line>
+          <properties />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
+          <line>438</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/lintsForLangs/MyCheckStyle.java</url>
+          <line>21</line>
+          <properties />
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
+          <line>276</line>
+          <properties />
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -482,16 +610,6 @@
     <entry file="file://$PROJECT_DIR$/InformationSystem.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redmineManagement/IssuesChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="20" column="47" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pylint/TestsInfo.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
@@ -506,35 +624,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/informationsystem/InformationSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="53" column="38" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4811">
-          <caret line="345" selection-start-line="345" selection-end-line="345" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5440">
-          <caret line="355" selection-start-line="355" selection-end-line="355" />
         </state>
       </provider>
     </entry>
@@ -545,13 +639,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/контрольная_работа_2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
@@ -569,10 +656,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/StudentsIssue.java">
+    <entry file="file://$PROJECT_DIR$/src/data/ProjectOwner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="119">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -583,34 +673,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/ProjectOwner.java">
+    <entry file="file://$PROJECT_DIR$/src/taskCheckers/PyTaskChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lintsForLangs/MyPylint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lintsForLangs/MyCheckStyle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="46" lean-forward="true" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/informationsystem/PyTaskChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="155" column="35" lean-forward="true" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
+        <state relative-caret-position="1734">
+          <caret line="156" column="35" selection-start-line="156" selection-start-column="35" selection-end-line="156" selection-end-column="35" />
           <folding>
             <element signature="method#getTestNameOld#0;class#PyTaskChecker#0" />
           </folding>
@@ -619,8 +685,115 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/informationsystem/XmlReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="259" lean-forward="true" selection-start-line="259" selection-end-line="259" />
+        <state relative-caret-position="306">
+          <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/informationsystem/InformationSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/StudentsIssue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/контрольная_работа_2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pylint/pylintRunner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="27" column="70" selection-start-line="27" selection-start-column="70" selection-end-line="27" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pylint/plint_v2.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lintsForLangs/MyPylint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="23" column="37" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lintsForLangs/MyCheckStyle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redmineManagement/IssuesChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="47" column="58" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tools/Translit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="76" column="35" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#159#175#0" expanded="true" />
+            <element signature="initializer##0;class#Translit#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="670" column="33" lean-forward="true" selection-start-line="670" selection-start-column="33" selection-end-line="670" selection-end-column="33" />
+          <folding>
+            <element signature="e#5167#5168#0" expanded="true" />
+            <element signature="e#5201#5202#0" expanded="true" />
+            <element signature="e#4154#4155#0" expanded="true" />
+            <element signature="e#4194#4195#0" expanded="true" />
+            <element signature="e#5241#5242#0" expanded="true" />
+            <element signature="e#5277#5278#0" expanded="true" />
+            <element signature="e#4244#4245#0" expanded="true" />
+            <element signature="e#4286#4287#0" expanded="true" />
+            <element signature="e#15876#15884#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/classes/informationsystem/FXMLDocument.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="46" column="89" lean-forward="true" selection-start-line="46" selection-start-column="89" selection-end-line="46" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="194" lean-forward="true" selection-start-line="194" selection-end-line="194" />
         </state>
       </provider>
     </entry>

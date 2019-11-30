@@ -35,6 +35,7 @@ import javafx.scene.control.ToggleGroup;
 import org.apache.commons.codec.Charsets;
 import javafx.scene.control.ListView;
 import redmineManagement.ConnectionWithRedmine;
+import redmineManagement.RedmineJournalsReader;
 
 /**
  * @author user
@@ -218,17 +219,25 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void processIssue(Issue issue) {
-        processIssue(issue, false);
+        processIssue(issue, false, false);
     }
 
-    private void processIssue(Issue issue, boolean needLog) {
+    private void processIssueForced(Issue issue) {
+        processIssueForced(issue, false);
+    }
+
+    private void processIssueForced(Issue issue, boolean needLog) {
+        processIssue(issue, false, true);
+    }
+
+    private void processIssue(Issue issue, boolean needLog, boolean needForced) {
         ArrayList<String> journals;
         if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
             System.out.println(issue.toString());
 
             try {
                 //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
-                connectionToRedmine.checkAttachments(issue, false);
+                connectionToRedmine.checkAttachments(issue, needForced);
             } catch (IOException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -255,7 +264,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleProjectChoice() {
-
         if (textFieldURL.getText().isEmpty()) {
             props.url = "http://www.hostedredmine.com";
         } else {
@@ -288,7 +296,6 @@ public class FXMLDocumentController implements Initializable {
         }
         ObservableList<String> targetVersionLost = FXCollections.observableArrayList(versii);
         comboxVersion.setItems(targetVersionLost);
-
     }
 
     @FXML
@@ -297,7 +304,6 @@ public class FXMLDocumentController implements Initializable {
             connectionToRedmine.setProverka(textFieldJavaErrorAmount.getText());
         }
         //connectionToRedmine.setJavaErrorsAmount(Integer.parseInt(textFieldJavaErrorAmount.getText()));
-
     }
 
     @FXML
@@ -319,7 +325,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleIssueStatusRadioButton() {
-
         if (radioButtonStatusApproved.isSelected()) {
             connectionToRedmine.setIssueStatus(4);
         } else if (radioButtonStatusClosed.isSelected()) {
@@ -338,9 +343,8 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
+    //Загружает закрытые задачи для составления списка сдавших
     private void downloadResults() {
-//        PyTaskChecker pyChecker = new PyTaskChecker("Принадлежит ли точка области?");
-//        pyChecker.getTestName3("Принадлежит ли точка области?");
         String tmp = comboxVersion.getValue().toString();
         List<Issue> tasks = connectionToRedmine.getClosedIssues(tmp);
         ArrayList<StudentsIssue> StudentsIssues = new ArrayList<>();
@@ -365,23 +369,20 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void toChooseLocalFile() {
-
     }
 
     @FXML
-    private void handleButtonSignleIssueCheckAction(ActionEvent event) {
+    private void handleButtonSingleIssueCheckAction(ActionEvent event) {
         //Logger.getAnonymousLogger().log(Level.INFO, IssueToTestNumber.getText());
         String issueNum = IssueToTestNumber.getText();
         Integer issueNumLong = 0;
         connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
-
         try {
             issueNumLong = Integer.parseInt(issueNum);
-            this.processIssue(connectionToRedmine.getIssueByID(issueNumLong), true);
+            this.processIssueForced(connectionToRedmine.getIssueByID(issueNumLong), true);
         } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.INFO, ex.toString());
         }
-
     }
 
     public Collection<String> readFile(String fileDir) {
@@ -393,5 +394,4 @@ public class FXMLDocumentController implements Initializable {
         }
         return lines;
     }
-
 }

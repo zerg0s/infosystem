@@ -79,7 +79,7 @@
                                 <Button layoutX="344.0" layoutY="290.0" mnemonicParsing="false" text="Сохранить настройки" />
                                 <Button layoutX="344.0" layoutY="340.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="170.0" text="Начать проверку" />
                         <TextField fx:id="IssueToTestNumber" layoutY="331.0" promptText="Введите номер задачи" />
-                        <Button fx:id="SignleIssueCheck" layoutX="152.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleButtonSignleIssueCheckAction" prefHeight="25.0" prefWidth="119.0" text="Проверить задачу" />
+                        <Button fx:id="SignleIssueCheck" layoutX="152.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleButtonSingleIssueCheckAction" prefHeight="25.0" prefWidth="119.0" text="Проверить задачу" />
                             </children>
                         </AnchorPane>
                     </children>

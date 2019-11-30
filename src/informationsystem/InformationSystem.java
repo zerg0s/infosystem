@@ -5,17 +5,15 @@
  */
 package informationsystem;
 
-import com.taskadapter.redmineapi.bean.Issue;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import redmineManagement.ConnectionWithRedmine;
 import redmineManagement.IssuesChecker;
+import redmineManagement.RedmineJournalsReader;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

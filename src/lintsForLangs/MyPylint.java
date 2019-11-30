@@ -21,7 +21,7 @@ public class MyPylint {
 
         try {
             ProcessBuilder builder = new ProcessBuilder(
-                    ".\\pylint\\plint.bat", attachmentName);
+                    ".\\pylint\\plint_v2.bat", attachmentName);
             builder.redirectErrorStream(true);
             Process p = builder.start();
             BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
