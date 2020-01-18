@@ -20,7 +20,7 @@ public class MyCheckStyle {
     public void startCheckStyle(String attachmentName) {
         try {
             ProcessBuilder builder = new ProcessBuilder(
-                    ".\\checkstyle\\checkstyle.bat", ".\\myFiles\\" + attachmentName);
+                    ".\\checkstyle\\checkstyle.bat", attachmentName);
             builder.redirectErrorStream(true);
             Process p = builder.start();
             BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));

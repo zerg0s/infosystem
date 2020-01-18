@@ -22,34 +22,23 @@ import java.util.HashMap;
  *
  * @author sergeyp
  */
-public class PyTaskChecker {
+public class PyTaskChecker extends TaskChecker {
 
-    private String subject;
-    private String fileToManage;
-    private static HashMap<String, String> knownTests;
-
-    static {
-        fillData();
-    }
+    private final String  pyLintDir = ".\\Pylint\\";
 
     private void removeTempFiles(FileAndItsTest data) {
         try {
-            Files.delete(new File(".\\Pylint\\" + data.fileName).toPath());
-            //Files.delete(new File(".\\Pylint\\" + data.fileTestName).toPath());
+            Files.delete(new File(pyLintDir + data.fileName).toPath());
+            //Files.delete(new File(pyLintDir + data.fileTestName).toPath());
         } catch (IOException ex) {
             Logger.getLogger(PyTaskChecker.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private class FileAndItsTest {
-
-        public String fileName = "file.py";
-        public String testName = "test";
-    }
 
     public PyTaskChecker(String subject, String fileToManage) {
-        this.subject = subject;
-        this.fileToManage = fileToManage;
+        this.setSubject(subject);
+        this.setFileToManage(fileToManage);
     }
 
     public PyTaskChecker(String subject) {
@@ -57,12 +46,9 @@ public class PyTaskChecker {
     }
 
     public String startPyCheck() {
-        return startPyCheck(this.subject, this.fileToManage);
+        return startPyCheck(this.getSubject(), this.getFileToManage());
     }
 
-    public String getNameForKnownTest(String subject) {
-        return getTestName3(subject);
-    }
 
     public String startPyCheck(String subject, String fileToManage) throws UnsupportedOperationException {
 
@@ -78,7 +64,7 @@ public class PyTaskChecker {
             ProcessBuilder builder = new ProcessBuilder("python.exe",
                     "pyTestRunner.py", data.fileName, data.testName);
             builder.redirectErrorStream(true);
-            builder.directory(new File(".\\pylint"));
+            builder.directory(new File(pyLintDir));
             Process p = builder.start();
 
             BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -137,35 +123,14 @@ public class PyTaskChecker {
         return testFolderName;
     }
 
-    public String getTestName3(String subjectFromIssue) {
-        String testFolderName;
-        testFolderName = knownTests.getOrDefault(subjectFromIssue, "");
-        //еще одна попытка найти по неполному совпадению
-        if (testFolderName.equals("")){
-            for(String test : knownTests.keySet()){
-                if (subjectFromIssue.toLowerCase().contains(test.toLowerCase()))
-                {
-                    testFolderName = knownTests.getOrDefault(test, "");
-                }
-            }
-        }
-        return testFolderName;
-    }
-
-    private static void fillData() {
-        XmlReader reader = new XmlReader(".\\pylint\\TestsInfo.xml");
-        knownTests = reader.getAlltests();
-    }
-
     private FileAndItsTest copyFileToTempFolder(String fileToManage) {
         FileAndItsTest retVal = new FileAndItsTest();
         try {
-            Files.copy(new File(fileToManage).toPath(), new File(".\\Pylint\\" + retVal.fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(new File(fileToManage).toPath(), new File(pyLintDir + retVal.fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
             //Files.copy(new File(".\\Pylint\\tests\\" + testFileName).toPath(), new File(".\\Pylint\\" + retVal.fileTestName).toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
             Logger.getLogger(PyTaskChecker.class.getName()).log(Level.SEVERE, null, ex);
         }
         return retVal;
     }
-
 }

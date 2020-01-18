@@ -17,10 +17,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import data.FileOperator;
-import data.Project;
-import data.ProjectOwner;
-import data.StudentsIssue;
+import data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -101,6 +98,8 @@ public class FXMLDocumentController implements Initializable {
 
     private ConnectionWithRedmine connectionToRedmine;
     private RedmineJournalsReader journalReader;
+    private boolean needLog = false;
+    private RedmineConnectionProperties props = new RedmineConnectionProperties();
 
     public void initialize(URL url, ResourceBundle bn) {
 
@@ -230,6 +229,10 @@ public class FXMLDocumentController implements Initializable {
         processIssue(issue, false, true);
     }
 
+    private void processConfiguredIssue(ConfiguredTask task) {
+        processIssue(task);
+    }
+
     private void processIssue(Issue issue, boolean needLog, boolean needForced) {
         ArrayList<String> journals;
         if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
@@ -249,18 +252,33 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    private void processIssue(ConfiguredTask task) {
+        Issue issue = task.getIssue();
+        if (!isIssueInDeadStatus(issue)) {
+            System.out.println(issue.toString());
+            connectionToRedmine.setStudentName(task.getTaskCompleter());
+            connectionToRedmine.checkIssueAttachments(task);
+        } else if (needLog) {
+            System.out.println("Already Closed:" + issue.toString());
+        }
+    }
+
+    private boolean isIssueInDeadStatus(Issue issue) {
+        String status = issue.getStatusName();
+        return status.equals("Closed") || status.equals("Approved")
+                || status.equals("Blocked");
+    }
+
     String getStudentName(ArrayList<String> journals, String professorName) {
         String retVal = "";
         for (String journal : journals) {
-            if (!journal.equals(comboxUserName.getValue().toString())) {
-                retVal = comboxUserName.getValue().toString();
+            if (!journal.equals(professorName)) {
+                retVal = journal;
                 break;
             }
         }
         return retVal;
     }
-
-    private RedmineConnectionProperties props = new RedmineConnectionProperties();
 
     @FXML
     private void handleProjectChoice() {
@@ -317,9 +335,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handlePerevodCheck() {
         if (checkBoxPerevod.isSelected()) {
-            connectionToRedmine.setPerevod(true);
+            connectionToRedmine.setReturnBackIfAllOk(true);
         } else {
-            connectionToRedmine.setPerevod(false);
+            connectionToRedmine.setReturnBackIfAllOk(false);
         }
     }
 
@@ -379,7 +397,21 @@ public class FXMLDocumentController implements Initializable {
         connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
         try {
             issueNumLong = Integer.parseInt(issueNum);
-            this.processIssueForced(connectionToRedmine.getIssueByID(issueNumLong), true);
+            Issue currentIssue = connectionToRedmine.getIssueByID(issueNumLong);
+            Boolean isLintNeeded = checkBoxPythonRateScan.isSelected();
+            Boolean isForceCheck = true;
+            Double rating = 10.0;
+            if (comboBoxPythonRating.getValue() != null) {
+                Double.parseDouble(comboBoxPythonRating.getValue().toString());
+            }
+            String student = getStudentName(journalReader.getJournals(currentIssue.getId().toString()), connectionToRedmine.getProfessorName());
+
+            ConfiguredTask task = new ConfiguredTask(currentIssue, student, isForceCheck, isLintNeeded, rating);
+            System.out.println(task);
+
+            this.processConfiguredIssue(task);
+
+            //this.processIssueForced(connectionToRedmine.getIssueByID(issueNumLong), true);
         } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.INFO, ex.toString());
         }
