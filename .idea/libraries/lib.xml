@@ -1,21 +1,13 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/okio-1.13.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/httpclient-4.5.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/okhttp-3.9.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/commons-logging-1.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/redmine-java-api-3.0.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/httpcore-4.4.3.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/okhttp-3.4.0-RC1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/redmine-java-api-3.0.1-javadoc.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/okhttp-3.0.0-RC1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/json-20090211.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/commons-codec-1.9.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/redmine-java-api-3.0.1-sources.jar!/" />
-      <root url="jar://$PROJECT_DIR$/dist/run232131102/lib/slf4j-api-1.7.1.jar!/" />
+      <root url="file://$PROJECT_DIR$/../Program Files/Java/jdk13/javafx-sdk-11.0.2/lib" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../Program Files/Java/jdk13/javafx-sdk-11.0.2/lib" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../Program Files/Java/jdk13/javafx-sdk-11.0.2/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../Program Files/Java/jdk13/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
   </library>
 </component>

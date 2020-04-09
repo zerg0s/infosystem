@@ -1,0 +1,19 @@
+Starting audit...
+com.puppycrawl.tools.checkstyle.api.CheckstyleException: Exception was thrown while processing .\myFiles\pavelcheresov_razvorotposledovatelnosti_main.java
+	at com.puppycrawl.tools.checkstyle.Checker.processFiles(Checker.java:299)
+	at com.puppycrawl.tools.checkstyle.Checker.process(Checker.java:217)
+	at com.puppycrawl.tools.checkstyle.Main.runCheckstyle(Main.java:523)
+	at com.puppycrawl.tools.checkstyle.Main.runCli(Main.java:438)
+	at com.puppycrawl.tools.checkstyle.Main.main(Main.java:211)
+Caused by: com.puppycrawl.tools.checkstyle.api.CheckstyleException: NoViableAltException occurred while parsing file C:\InformationSystem_idea\.\myFiles\pavelcheresov_razvorotposledovatelnosti_main.java.
+	at com.puppycrawl.tools.checkstyle.JavaParser.parse(JavaParser.java:100)
+	at com.puppycrawl.tools.checkstyle.TreeWalker.processFiltered(TreeWalker.java:181)
+	at com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(AbstractFileSetCheck.java:83)
+	at com.puppycrawl.tools.checkstyle.Checker.processFile(Checker.java:320)
+	at com.puppycrawl.tools.checkstyle.Checker.processFiles(Checker.java:290)
+	... 4 more
+Caused by: C:\InformationSystem_idea\.\myFiles\pavelcheresov_razvorotposledovatelnosti_main.java:1:1: unexpected token: <
+	at com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer.compilationUnit(GeneratedJavaRecognizer.java:181)
+	at com.puppycrawl.tools.checkstyle.JavaParser.parse(JavaParser.java:94)
+	... 8 more
+Checkstyle ends with 1 errors.

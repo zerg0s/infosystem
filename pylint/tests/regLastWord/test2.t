@@ -1,1 +1,1 @@
-Ночь.
+Noch! Ulitsa?! Fonar. Apteka.. Isknoda net.

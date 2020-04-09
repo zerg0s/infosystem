@@ -1,0 +1,7 @@
+Using config file C:\InformationSystem_idea\pylint\config.file
+************* Module nikitaberdnik_pravilnyedaty_
+C: 11,11: Do not use `len(SEQUENCE)` to determine if a sequence is empty (len-as-condition)
+
+------------------------------------------------------------------
+Your code has been rated at 9.38/10 (previous run: 9.38/10, +0.00)
+

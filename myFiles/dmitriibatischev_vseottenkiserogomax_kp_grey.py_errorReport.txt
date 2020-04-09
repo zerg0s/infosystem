@@ -1,0 +1,7 @@
+Using config file C:\InformationSystem_idea\pylint\config.file
+************* Module dmitriibatischev_vseottenkiserogomax_kp_grey
+C: 45, 0: Line too long (118/100) (line-too-long)
+
+------------------------------------------------------------------
+Your code has been rated at 9.81/10 (previous run: 9.81/10, +0.00)
+

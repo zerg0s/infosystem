@@ -1,0 +1,8 @@
+Using config file C:\InformationSystem_idea\pylint\config.file
+************* Module nikitaberdnik_spisokdomenov_com
+C:  4, 0: Line too long (107/100) (line-too-long)
+C: 11, 0: Final newline missing (missing-final-newline)
+
+-------------------------------------------------------------------
+Your code has been rated at 7.50/10 (previous run: 10.00/10, -2.50)
+

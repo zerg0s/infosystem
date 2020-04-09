@@ -1,3 +1,4 @@
+@echo off
 cd %~dp0
 cd ..
 set JAVA_FILE=%1%

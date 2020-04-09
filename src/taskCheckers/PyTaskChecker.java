@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.File;
 import java.nio.file.StandardCopyOption;
-import java.util.HashMap;
 
 /**
  *
@@ -24,21 +23,10 @@ import java.util.HashMap;
  */
 public class PyTaskChecker extends TaskChecker {
 
-    private final String  pyLintDir = ".\\Pylint\\";
-
-    private void removeTempFiles(FileAndItsTest data) {
-        try {
-            Files.delete(new File(pyLintDir + data.fileName).toPath());
-            //Files.delete(new File(pyLintDir + data.fileTestName).toPath());
-        } catch (IOException ex) {
-            Logger.getLogger(PyTaskChecker.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-
     public PyTaskChecker(String subject, String fileToManage) {
         this.setSubject(subject);
         this.setFileToManage(fileToManage);
+        workingDir = ".\\Pylint\\";
     }
 
     public PyTaskChecker(String subject) {
@@ -64,7 +52,7 @@ public class PyTaskChecker extends TaskChecker {
             ProcessBuilder builder = new ProcessBuilder("python.exe",
                     "pyTestRunner.py", data.fileName, data.testName);
             builder.redirectErrorStream(true);
-            builder.directory(new File(pyLintDir));
+            builder.directory(new File(workingDir));
             Process p = builder.start();
 
             BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -80,7 +68,6 @@ public class PyTaskChecker extends TaskChecker {
         return sb.toString();
     }
 
-    //Все ужасно, метод писать некогда :(
     private String getTestNameOld(String subject) {
         String testFolderName = "";
         if (subject.toLowerCase().equals("Принадлежит ли точка области?".toLowerCase())) {
@@ -121,16 +108,5 @@ public class PyTaskChecker extends TaskChecker {
         XmlReader reader = new XmlReader(".\\pylint\\TestsInfo.xml");
         testFolderName = reader.getTestFolderBySubject(subject);
         return testFolderName;
-    }
-
-    private FileAndItsTest copyFileToTempFolder(String fileToManage) {
-        FileAndItsTest retVal = new FileAndItsTest();
-        try {
-            Files.copy(new File(fileToManage).toPath(), new File(pyLintDir + retVal.fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
-            //Files.copy(new File(".\\Pylint\\tests\\" + testFileName).toPath(), new File(".\\Pylint\\" + retVal.fileTestName).toPath(), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(PyTaskChecker.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return retVal;
     }
 }

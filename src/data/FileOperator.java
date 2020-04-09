@@ -11,6 +11,10 @@ import java.util.HashMap;
 public class FileOperator {
     private String outputFile = "контрольная_работа_2.txt";
 
+    public FileOperator(String outputFile) {
+        this.outputFile = outputFile;
+    }
+
     public void saveDataToFile(@NotNull HashMap<String, ArrayList<String>> issuesOfTheStudent) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
@@ -26,5 +30,13 @@ public class FileOperator {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setOutputFile(String outputFile) {
+        this.outputFile = outputFile;
+    }
+
+    public String getOutputFile() {
+        return outputFile;
     }
 }

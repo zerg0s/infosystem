@@ -10,9 +10,9 @@
 <project id="pvk-m-2018_2019" name="2018-2019"/>
 <apiKey>57a46a038e0da4bd1c0b8734e8f95cf6d97063b5</apiKey>
 </supervisor>
-<supervisor name="Irina Danilova">
-<project id="1a1a" name="Тестовый проект 1"/>
-<project id="2aa2aa" name="Тестовый проект 2"/>
-<apiKey>f4b2a2953034f344cb45c08359ee76577dc20977</apiKey>
+<supervisor name="Ekaterina Politsyna">
+<project id="python-quest-2018-2019" name="Test Project"/>
+<project id="mai-vti319-18-2019-2020" name="3й курс ТП"/>
+<apiKey>7f566bb8c0027ec71d0db820b139db2f8f3525e2</apiKey>
 </supervisor>
 </supervisors>

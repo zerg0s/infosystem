@@ -1,0 +1,10 @@
+Sand
+Sadi
+Septima
+Optimal
+Soprano
+qwerty
+awerty
+123456
+aSiaai
+seed

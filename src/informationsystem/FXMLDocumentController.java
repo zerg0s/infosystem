@@ -96,6 +96,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ListView Tasks;
 
+    @FXML
+    private CheckBox checkboxNeedLint;
+
     private ConnectionWithRedmine connectionToRedmine;
     private RedmineJournalsReader journalReader;
     private boolean needLog = false;
@@ -236,19 +239,29 @@ public class FXMLDocumentController implements Initializable {
     private void processIssue(Issue issue, boolean needLog, boolean needForced) {
         ArrayList<String> journals;
         if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
-            System.out.println(issue.toString());
-
-            try {
-                //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
-                connectionToRedmine.checkAttachments(issue, needForced);
-            } catch (IOException ex) {
-                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getAnonymousLogger().info(issue.toString());
+            Double pyRating = 10.0;
+            int javaErrorLimit = 5;
+            if (comboBoxPythonRating.getValue() != null) {
+                pyRating = Double.parseDouble(comboBoxPythonRating.getValue().toString());
             }
+
+            if (textFieldJavaErrorAmount.getText() != null) {
+                javaErrorLimit = Integer.parseInt(textFieldJavaErrorAmount.getText());
+            }
+
+            //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
+            String student = getStudentName(journalReader.getJournals(issue.getId().toString()), connectionToRedmine.getProfessorName());
+            ConfiguredTask confTask = new ConfiguredTask(issue, student,
+                    false,
+                    connectionToRedmine.getLint(), pyRating, javaErrorLimit);
+            connectionToRedmine.checkIssueAttachments(confTask);
+            //connectionToRedmine.checkAttachments(issue, needForced);
 
             journals = journalReader.getJournals(issue.getId().toString());
             connectionToRedmine.setStudentName(getStudentName(journals, comboxUserName.getValue().toString()));
         } else if (needLog) {
-            System.out.println("Already Closed:" + issue.toString());
+            Logger.getAnonymousLogger().info("Already Closed:" + issue.toString());
         }
     }
 
@@ -318,17 +331,16 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleJavaErrorScanCheck() {
-        if (checkBoxJavaErrScan.isSelected()) {
-            connectionToRedmine.setProverka(textFieldJavaErrorAmount.getText());
-        }
-        //connectionToRedmine.setJavaErrorsAmount(Integer.parseInt(textFieldJavaErrorAmount.getText()));
+        int errorAmmount = Integer.parseInt(textFieldJavaErrorAmount.getText());
+        connectionToRedmine.setJavaErrorsAmount(errorAmmount);
     }
 
     @FXML
     private void handlePyhtonRatingScanCheck() {
         if (checkBoxPythonRateScan.isSelected()) {
             //null here
-            connectionToRedmine.setRating(Float.parseFloat(comboBoxPythonRating.getValue().toString()));
+            float pythonRating = Float.parseFloat(comboBoxPythonRating.getValue().toString());
+            connectionToRedmine.setRating(pythonRating);
         }
     }
 
@@ -361,14 +373,27 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
+    private void handleCheckboxNeedLint(){
+        if (!checkboxNeedLint.isSelected()){
+            connectionToRedmine.setLint(false);
+            checkBoxJavaErrScan.setSelected(false);
+            checkBoxPythonRateScan.setSelected(false);
+        } else {
+            connectionToRedmine.setLint(true);
+            checkBoxJavaErrScan.setSelected(true);
+            checkBoxPythonRateScan.setSelected(true);
+        }
+    }
+
+    @FXML
     //Загружает закрытые задачи для составления списка сдавших
     private void downloadResults() {
-        String tmp = comboxVersion.getValue().toString();
-        List<Issue> tasks = connectionToRedmine.getClosedIssues(tmp);
+        String currentVersion = comboxVersion.getValue().toString();
+        List<Issue> tasks = connectionToRedmine.getClosedIssues(currentVersion);
         ArrayList<StudentsIssue> StudentsIssues = new ArrayList<>();
         for (Issue task : tasks) {
-            String temp = task.getStatusName();
-            if (task.getStatusName().equals("Closed")) {
+            String taskStatusName = task.getStatusName();
+            if (taskStatusName.equals("Closed")) {
                 StudentsIssue studentsIssue = new StudentsIssue();
                 studentsIssue.setStudentsName(task.getAssigneeName());
                 studentsIssue.setIssueName(task.getSubject());
@@ -382,7 +407,7 @@ public class FXMLDocumentController implements Initializable {
             }
             issuesOfTheStudent.get(issue.getStudentsName()).add(issue.getIssueName());
         }
-        new FileOperator().saveDataToFile(issuesOfTheStudent);
+        new FileOperator(currentVersion + ".txt").saveDataToFile(issuesOfTheStudent);
     }
 
     @FXML
@@ -398,16 +423,22 @@ public class FXMLDocumentController implements Initializable {
         try {
             issueNumLong = Integer.parseInt(issueNum);
             Issue currentIssue = connectionToRedmine.getIssueByID(issueNumLong);
-            Boolean isLintNeeded = checkBoxPythonRateScan.isSelected();
+            Boolean isLintNeeded = checkboxNeedLint.isSelected();
             Boolean isForceCheck = true;
-            Double rating = 10.0;
+            Double pyRating = 10.0;
+            int javaErrorLimit = 5;
             if (comboBoxPythonRating.getValue() != null) {
-                Double.parseDouble(comboBoxPythonRating.getValue().toString());
+                pyRating = Double.parseDouble(comboBoxPythonRating.getValue().toString());
             }
+
+            if (textFieldJavaErrorAmount.getText() != null) {
+                javaErrorLimit = Integer.parseInt(textFieldJavaErrorAmount.getText());
+            }
+
             String student = getStudentName(journalReader.getJournals(currentIssue.getId().toString()), connectionToRedmine.getProfessorName());
 
-            ConfiguredTask task = new ConfiguredTask(currentIssue, student, isForceCheck, isLintNeeded, rating);
-            System.out.println(task);
+            ConfiguredTask task = new ConfiguredTask(currentIssue, student, isForceCheck, isLintNeeded, pyRating, javaErrorLimit);
+            Logger.getAnonymousLogger().info(task.toString());
 
             this.processConfiguredIssue(task);
 

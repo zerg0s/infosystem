@@ -1,12 +1,21 @@
 package taskCheckers;
 
 import informationsystem.XmlReader;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TaskChecker {
     protected String subject;
     protected String fileToManage;
+    protected String workingDir = ".\\temp\\";
+
     protected static HashMap<String, String> knownTests;
 
     static {
@@ -54,6 +63,26 @@ public class TaskChecker {
             }
         }
         return testFolderName;
+    }
+
+    void removeTempFiles(@NotNull FileAndItsTest data) {
+        try {
+            Files.delete(new File(workingDir + data.fileName).toPath());
+            //Files.delete(new File(pyLintDir + data.fileTestName).toPath());
+        } catch (IOException ex) {
+            Logger.getLogger(PyTaskChecker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    FileAndItsTest copyFileToTempFolder(String fileToManage) {
+        FileAndItsTest retVal = new FileAndItsTest();
+        retVal.fileName = new File(fileToManage).toPath().getFileName().toString();
+        try {
+            Files.copy(new File(fileToManage).toPath(), new File(workingDir + retVal.fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(PyTaskChecker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retVal;
     }
 
     class FileAndItsTest {

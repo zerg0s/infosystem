@@ -14,18 +14,21 @@ public class ConfiguredTask {
                           String taskCompleter,
                           boolean isNeededForceCheck,
                           boolean isLintRequired,
-                          double requiredRating) {
+                          double requiredPythonRating,
+                          int javaErrors) {
         this.isLintRequired = isLintRequired;
         this.isNeededForceCheck = isNeededForceCheck;
         this.issue = issue;
-        this.requiredPythonRating = requiredRating;
+        this.requiredPythonRating = requiredPythonRating;
         this.taskCompleter = taskCompleter;
+        this.maxJavaLintErrors = javaErrors;
     }
 
     @Override
     public String toString() {
         return issue.toString() + " " + "Need Force: " + isNeededForceCheck +
-                " Need Lint: " + isLintRequired + " Lint Rating: " + requiredPythonRating +
+                " Need Lint: " + isLintRequired + " PyLint Rating: " + requiredPythonRating +
+                " Java Error Limit: " + maxJavaLintErrors +
                 " Student:" + taskCompleter;
     }
 

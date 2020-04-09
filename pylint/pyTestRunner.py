@@ -1,12 +1,12 @@
-#код проверяльщика задач, версия 2019.23
+# код проверяльщика задач, версия 2019.25
 
 import os
 import subprocess
 import sys
-import importlib
 
 from shutil import copy2
 from pep9 import funcCheck
+from localization import Locale
 
 
 # read the correct answer for test## from .a file
@@ -41,49 +41,70 @@ def processAndTrimAnswer(answer):
     return answer.strip().replace(" \n", "\n")
 
 
+def checkConfigurationAndRestrictions(testConfiguration):
+    if "functional" in testConfiguration:
+        sourceFileWithoutHeader = ""
+        for line in open(fileToCheck, "r", encoding="utf-8").readlines():
+            if line.strip().startswith("#"): continue
+            sourceFileWithoutHeader += line + "\n"
+        if not funcCheck(sourceFileWithoutHeader):
+            print(f"{Locale.NotInFunctional}\n{Locale.Failed}")
+            exit()
+
+    if "deny" in testConfiguration:
+        denyValues = list(map(lambda x: x.strip(), str(testConfiguration["deny"]).split(',')))
+        sourceCode = open(fileToCheck, "r", encoding="utf-8").readlines()
+        cleanSourceCode = map(lambda line:
+                              line[:len(line) + 1 + line.find("#")], sourceCode)
+        for value in denyValues:
+            if value in cleanSourceCode:
+                print(f"{Locale.HaveRestricted}\n{Locale.Failed}")
+                exit()
+
+    if "must" in testConfiguration:
+        mustValues = set(map(lambda x: x.strip(), str(testConfiguration["must"]).split(',')))
+        foundValues = set()
+        sourceCode = open(fileToCheck, "r", encoding="utf-8").readlines()
+        cleanSourceCode = map(lambda line:
+                              line[:len(line) + 1 + line.find("#")], sourceCode)
+        for value in mustValues:
+            if value in cleanSourceCode:
+                foundValues.add(value)
+        if len(foundValues) != len(mustValues):
+            print(Locale.DoesntHaveMandatory)
+            print(Locale.Failed)
+            exit()
+
+
 ################
 # Manual Config Section
 
 easyMode = True  # в этом режиме показываются входные данные для упавших тестов.
-debug = 0  # ONLY for local test
+debugMode = False  # ONLY for local test
 maxExecutionTimeDelay = 1  # max timeout for a task
-
 ################
 
-
 if __name__ == "__main__":
-
     fileToCheck = "my.py"
-
-    dirToCheck = "finalQuadCodes"
-    # dirToCheck = "regFindRepeated"
-    # dirToCheck = "regLastWord"
-    # dirToCheck = "regDomains"
-    # dirToCheck = "regPhoneNumbers"
+    dirToCheck = "regLastWord"
     # dirToCheck = "regFindReplaceRepeated"
-    retArrray = list()
+    retArray = list()
 
     extraDataForEasyMode = ""
 
-    if len(sys.argv) > 2 or debug == 1:
-        if not debug:
+    if len(sys.argv) > 2 or debugMode == 1:
+        if not debugMode:
             fileToCheck = sys.argv[1]
             dirToCheck = sys.argv[2]
         dirWithTests = ".\\tests\\" + dirToCheck + "\\"
         testConfiguration = readConfing(dirWithTests + "config.conf")
 
         # для функционального программирования еще ограничение: одна инструкция языка.
-        if "functional" in testConfiguration:
-            if not funcCheck(open(fileToCheck, "r", encoding="utf-8").read()):
-                print("Source code is not in functional style. Please retry. Only one operator is allowed")
-                print("failed")
-                exit()
+        checkConfigurationAndRestrictions(testConfiguration)
 
-        for file in filter(lambda x: x.endswith(".t"), os.listdir(dirWithTests)):
-
+        for file in sorted(filter(lambda x: x.endswith(".t"), os.listdir(dirWithTests)), key=lambda x: int(x[4:-2])):
             # для всех файлов .t с входными данными
             if os.path.isfile(dirWithTests + file) and file.endswith(".t"):
-
                 # tmp = "<" + myDir + file
                 # os.system("python -u " + fileToCheck + " " + tmp + " >output")
                 copy2(dirWithTests + file, "input.txt")
@@ -106,7 +127,7 @@ if __name__ == "__main__":
                 except subprocess.TimeoutExpired:
                     proc.kill()
                     outs, errs = proc.communicate()
-                    retArrray.append("Timeout")
+                    retArray.append(Locale.Timeout)
                     break
                 finally:
                     if "input" in testConfiguration and os.path.exists(str(testConfiguration["input"])):
@@ -116,8 +137,10 @@ if __name__ == "__main__":
                 correctAnswer = readAnswerFile(dirWithTests + file[:file.rfind(".")] + ".a")
                 # вдруг будут тесты с 2 правильными ответами
                 # correctAnswer2 = readAnswerFile(myDir + file[:file.rfind(".")] + ".a1")
+
                 # функция проверки правильного ответа - пока единственный обязательный параметр конфига
-                funcToCheckAnswer = testConfiguration["func"]
+                funcToCheckAnswer = testConfiguration.get("func", None)
+                if funcToCheckAnswer is None: break
 
                 # кодировочный костыль, иногда приходит в кодировке анси
                 try:
@@ -126,37 +149,38 @@ if __name__ == "__main__":
                     userAnswer = open("output", "r", encoding="cp1251").read().replace("\r\n", "\n")
 
                 if not checkCrashExists(userAnswer):
-
                     userAnswer = processAndTrimAnswer(userAnswer)
                     correctAnswer = processAndTrimAnswer(correctAnswer)
-                    #tricky check for random tasks - if answer could be divided into 23
+                    # tricky check for random tasks - if answer could be divided into 23
+                    isAnswerCorrect = False
                     if "answer_code" in testConfiguration:
                         if testConfiguration["answer_code"] == "mod23":
                             isAnswerCorrect = (int(userAnswer) % 23 == 0)
                     else:
                         isAnswerCorrect = funcToCheckAnswer(correctAnswer, userAnswer)
-                    retArrray.append(isAnswerCorrect)
+                    retArray.append(isAnswerCorrect)
 
                     if not isAnswerCorrect:
                         extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
                         # print(correctAnswer)
-                        if debug:
+                        if debugMode:
                             print(userAnswer)
-                        if "ContinueIfTestFailed" not in testConfiguration: # для толстых программ
+                        if "ContinueIfTestFailed" not in testConfiguration:  # для толстых программ
                             break  # программа пользователя выдала неверный результат, дальше не надо.
                 else:
-                    retArrray.append(userAnswer)
+                    retArray.append(userAnswer)
                     break  # программа пользователя упала, дальше не надо.
-    if len(retArrray) == 0:
-        print("Tests not found or something else happened plz debug")
+    if len(retArray) == 0:
+        print(Locale.GeneralError)
     else:
         print(*list(
-            map(lambda x: ["test" + str(x[0]), "Passed" if str(x[1]) is "True" else "Failed" if not x[1] else x[1]],
-                enumerate(retArrray, 1))), sep="\n")
+            map(lambda x: ["test" + str(x[0]),
+                           Locale.Passed if str(x[1]) is "True" else Locale.Failed if not x[1] else x[1]],
+                enumerate(retArray, 1))), sep="\n")
     # print(retArrray)
-    if len(set(retArrray)) == 1 and str(retArrray[0]) == "True":
-        print("passed")
+    if len(set(retArray)) == 1 and str(retArray[0]) == "True":
+        print(Locale.Passed)
     else:
         if easyMode and extraDataForEasyMode:
-            print("Wrong answer was received for input:\n%s" % extraDataForEasyMode)
-        print("failed")
+            print(Locale.EasyModeHelp % extraDataForEasyMode)
+        print(Locale.Failed)

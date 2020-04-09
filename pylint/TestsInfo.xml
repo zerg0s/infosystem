@@ -9,19 +9,33 @@
 		<test id="17" subject="Подсчет единичных битов" testSetFolder="countNonZeroBytes"/>
 		<test id="18" subject="Простой переворот числа" testSetFolder="simpleTransform"/>
 	</homework>
+		<homework id="2" name="Циклы и Строки">
+		<test id="21" subject="Перестановка слов" testSetFolder="hw2Changewords"/>
+		<test id="22" subject="Замена фрагмента" testSetFolder="hw2ChangeFragment"/>
+		<test id="23" subject="Удаление символа" testSetFolder="hw2RemoveSymbol"/>
+		<test id="24" subject="Вставка символа" testSetFolder="hw2InsertSymbol"/>
+		<test id="25" subject="Удаление каждого третьего" testSetFolder="hw2RemoveEachThird"/>
+		<test id="26" subject="Наименьшее расстояние между локальными максимумами" testSetFolder="hw2Maximums"/>
+		<test id="27" subject="Идеальный исполнитель" testSetFolder="hw2IdealExecutor"/>
+		<test id="28" subject="Пробежка по утрам" testSetFolder="hw2MorningRun"/>
+		<test id="29" subject="Второй максимум" testSetFolder="hw2SecondMax"/>
+		<test id="290" subject="Количество палиндромов" testSetFolder="hw2Palindroms"/>
+	</homework>
 	<homework id="4" name="Функции">
 		<test id="41" subject="Принадлежит ли точка области?" testSetFolder="isPointInArea"/>
 		<test id="42" subject="Принадлежит ли точка квадрату?" testSetFolder="isPointInSquare"/>
 		<test id="43" subject="Разворот последовательности" testSetFolder="reverseInput"/>
 		<test id="44" subject="Алгоритм Евклида" testSetFolder="gcdEvklid"/>
 		<test id="45" subject="Сложение без сложения" testSetFolder="sumNoAdd"/>
+		<test id="46" subject="Сумма факториалов" testSetFolder="summOfFactorials"/>
+		<test id="47" subject="Только квадраты" testSetFolder="squaresOnly"/>
 	</homework>
 	<homework id="5" name="Списки">
 		<test id="51" subject="Ферзи" testSetFolder="eightQueens"/>
 		<test id="52" subject="&quot;Сжатие&quot; списка" testSetFolder="listCompression"/>
 		<test id="53" subject="Четные индексы" testSetFolder="evenElementsByIndex"/>
 		<test id="54" subject="Больше соседей" testSetFolder="greaterThanNeighbors"/>
-		<test id="55" subject="Количество совпадающих пар" testSetFolder="numberOfEqualPairs"/>
+		<test id="55" subject="Количество совпадающих пар" testSetFolder="numberOfEqualPairs"/>	<test id="56" subject="Диофантово уравнение" testSetFolder="diofantEquatation"/>
 	</homework>
 	<homework id="6" name="ПоискИСортировка">
 		<test id="61" subject="Последний максимум" testSetFolder="lastMaxValue"/>
@@ -52,6 +66,7 @@
 		<test id="93" subject="Наименьший нечетный" testSetFolder="FuncLowestOddNumber"/>
 		<test id="94" subject="Произведение пятых степеней" testSetFolder="FuncFifthGradeMult"/>
 		<test id="95" subject="Все перестановки заданной длины" testSetFolder="FuncAllRecombinations"/>
+		<test id="96" subject="Ставки" testSetFolder="FuncBetsCocroaches"/>
 	</homework>
 	
 	<homework id="10" name="Классы">
@@ -76,6 +91,8 @@
 		<test id="1014" subject="Парты" testSetFolder="buyingNewDesks"/>
 		<test id="1015" subject="Коньки" testSetFolder="puttingOnSkates"/>
 		<test id="1016" subject="Симметричная последовательность" testSetFolder="simmetricSequence"/>
+		<test id="1017" subject="Распределение фигуристов по правилам ISU" testSetFolder="kr1SportsmenIsu"/>
+		<test id="1018" subject="Номер числа Фибоначчи" testSetFolder="kr1Fibbonachi"/>
 	</homework>
 	<homework id="102" name="Контрольная работа номер 2">
 		<test id="1021" subject="Автомобильные номера" testSetFolder="automobileNumbers"/>
@@ -83,6 +100,9 @@
 		<test id="1023" subject="Вычисление количества цифр" testSetFolder="calculateSimpleDigits"/>
 		<test id="1024" subject="Чемпионат по метанию коровьих лепешек" testSetFolder="cowChampionship"/>
 		<test id="1025" subject="Жизнь в квадрате" testSetFolder="newLifeInASquare"/>
+		<test id="1026" subject="Результаты голосования" testSetFolder="votes7persent"/>
+		<test id="1027" subject="Сумма произведений соседних чисел" testSetFolder="sumOfProducts"/>
+		<test id="1028" subject="Вычисление количества цифр-2" testSetFolder="countNumbersInList"/>
 	</homework>
 		<homework id="103" name="Контрольная работа номер 2.1">
 		<test id="1031" subject="Замена(3)" testSetFolder="kr21HtmlExchange"/>
@@ -101,7 +121,12 @@
 		<test id="1033" subject="Предметный указатель" testSetFolder="indexingABook"/>
 		<test id="1034" subject="Минимум на отрезке" testSetFolder="minimumInTheFrame"/>
 		<test id="1035" subject="Правильная скобочная последовательность" testSetFolder="checkIfBracesAreCorrect"/>
-		<!--test id="1035" subject="Отсортировать в матрице столбцы по убыванию значений элементов в первой строке" testSetFolder="sortMatrixByFirstLine"/-->
+		<test id="10311" subject="Лавочки в ТЦ Кунцево Плаза" testSetFolder="z1Lavochki"/>
+		<test id="10312" subject="Сортировка по близости" testSetFolder="z1NearestToK"/>
+		<test id="10313" subject="Таблица умножения" testSetFolder="z1TableOfMult"/>
+		<test id="10313" subject="Cтолбцы по убыванию значений элементов" testSetFolder="z1MatrixSort"/>
+		<test id="10314" subject="Заменить пробел и группы пробелов символом" testSetFolder="z1StarsAndSpaces"/>
+
 		<test id="1036" subject="Сумма произведений соседних чисел" testSetFolder="sumOfNeibors"/>
 		<test id="1037" subject="Общий префикс" testSetFolder="commonPrefix"/>
 		<test id="1038" subject="Поисковые запросы" testSetFolder="finalQueezeSearch"/>
