@@ -24,7 +24,7 @@ public class JavaTaskChecker extends TaskChecker {
     }
 
     public static void main(String[] args) {
-        JavaTaskChecker checker = new JavaTaskChecker("Парты", "myFiles/ekaterinapolitsyna_party_desks.java");
+        JavaTaskChecker checker = new JavaTaskChecker("Гражданская оборона(*)", "myFiles/nikitautochkin_grazhdanskayaoborona_civildefense.zip");
         checker.startJavaCheck();
     }
 
@@ -60,7 +60,7 @@ public class JavaTaskChecker extends TaskChecker {
                 List<String> result = walk.map(x -> x.toString())
                         .filter(f -> f.endsWith(".java")).collect(Collectors.toList());
 
-                result.forEach(System.out::println);
+                //result.forEach(System.out::println);
                 File mainFile = null;
                 boolean wasMainFound = false;
                 for (String file : result) {
@@ -212,6 +212,20 @@ public class JavaTaskChecker extends TaskChecker {
     }
 
     private String getPackageName(File javaFileFromArchive) {
-        return "ru.mai";
+        final String maiPackage = "package ";
+        StringBuilder sb = new StringBuilder();
+        try {
+            List<String> linesOfFile = Files.readAllLines(javaFileFromArchive.toPath());
+            for (String line : linesOfFile) {
+                line = line.trim();
+                if (line.trim().startsWith("package ")) {
+                    String packageStr = line.substring(line.indexOf(' ') + 1, line.indexOf(';'));
+                    return packageStr;
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MyPylint.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
     }
 }

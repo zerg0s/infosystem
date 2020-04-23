@@ -6,581 +6,32 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="added smart attach file naming and fixed attachment forceCheck">
-      <change afterPath="$PROJECT_DIR$/JavaDir/Desks.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/VoiceMail.rar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/fibonachi_last_digit_of_sum.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/fibonachi_numbers_pisano.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/gcd.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/lcm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/nikitautochkin_nomeragrupp_solution.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/output" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/NumberOfGroups.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/NumberOfGroups.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/Tools.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/Tools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/runJavac.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/denisarhipov_poiskupotreblenii_findusages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/denisarhipov_poiskupotreblenii_findusages.java_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/dmitriibatischev_spisokdomenov_..py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/dmitriibatischev_spisokdomenov_..py_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/dmitriibatischev_vseottenkiserogomax_kp_grey.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/dmitriibatischev_vseottenkiserogomax_kp_grey.py_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/dmitriizakupin_pravilnyedaty_date.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/dmitriizakupin_pravilnyedaty_date.py_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/egorpozhidaev_pravilnyedaty_kr_.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/egorpozhidaev_pravilnyedaty_kr_.py_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/egorpozhidaev_vseottenkiserogomax_color.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/egorpozhidaev_vseottenkiserogomax_color.py_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/egorpozhidaev_zamena_rep.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/egorpozhidaev_zamena_rep.py_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/ekaterinapolitsyna_party_desks.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/maksimkopev_zamena_task.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/maksimkopev_zamena_task.py_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/nikitaberdnik_pravilnyedaty_.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/nikitaberdnik_pravilnyedaty_.py_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/nikitaberdnik_spisokdomenov_com.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/nikitaberdnik_spisokdomenov_com.py_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/nikitautochkin_nomeragrupp_solution.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/nikitautochkin_nomeragrupp_solution.zip_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/pavelcheresov_razvorotposledovatelnosti_main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/pavelcheresov_razvorotposledovatelnosti_main.java_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/sergeypolitsyn_razvorotposledovatelnosti_main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/sergeypolitsyn_razvorotposledovatelnosti_main.java_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/sergeypolitsyn_shashki_draughts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/sergeypolitsyn_shashki_draughts.java_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/vladislavdyubochkin_posledneeslovo_.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/vladislavdyubochkin_posledneeslovo_.py_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/vladislavdyubochkin_posledneeslovo_last_word.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/vladislavdyubochkin_posledneeslovo_last_word.py_errorReport.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nikitautochkin_nomeragrupp_solution.zip/NumberOfGroups.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nikitautochkin_nomeragrupp_solution.zip/Tools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/localization.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/plint.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/pyTestRunner_v1.0.py_" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/pyTestRunner_v2.0.py_" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/test4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/test4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBets/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/FuncBetsCocroaches/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/buyingNewDesks/test6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/buyingNewDesks/test6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/changeSpacesToStars/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/changeSpacesToStars/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/changeSpacesToStars/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/changeSpacesToStars/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/changeSpacesToStars/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/changeSpacesToStars/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/complexEquatation/test14.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/complexEquatation/test14.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/correctGroupNames/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/correctGroupNames/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/correctGroupNames/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/correctGroupNames/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/correctGroupNames/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/correctGroupNames/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/test4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/test4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/countNumbersInList/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/diofantEquatation/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/diofantEquatation/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/diofantEquatation/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/diofantEquatation/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/diofantEquatation/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test7.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test7.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/gcdEvklid/test9.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/gcdEvklid/test9.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2ChangeFragment/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2ChangeFragment/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2ChangeFragment/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2ChangeFragment/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2ChangeFragment/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2ChangeFragment/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2ChangeFragment/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2ChangeFragment/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2ChangeFragment/test4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2ChangeFragment/test4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Changewords/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Changewords/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Changewords/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Changewords/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Changewords/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Changewords/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Changewords/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Changewords/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2IdealExecutor/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2IdealExecutor/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2IdealExecutor/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2IdealExecutor/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2InsertSymbol/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2InsertSymbol/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2InsertSymbol/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2InsertSymbol/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2InsertSymbol/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2InsertSymbol/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2InsertSymbol/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2InsertSymbol/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Maximums/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Maximums/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Maximums/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Maximums/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Maximums/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2MorningRun/test6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Palindroms/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Palindroms/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Palindroms/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Palindroms/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Palindroms/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Palindroms/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Palindroms/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2Palindroms/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2RemoveEachThird/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2RemoveEachThird/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2RemoveEachThird/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2RemoveEachThird/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2RemoveEachThird/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2RemoveEachThird/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2RemoveEachThird/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2RemoveEachThird/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2RemoveSymbol/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2RemoveSymbol/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2RemoveSymbol/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2SecondMax/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2SecondMax/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2SecondMax/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2SecondMax/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2SecondMax/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/hw2SecondMax/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kingMove/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kingMove/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/10.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/10.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/11.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/11.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/12.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/12.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/13.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/13.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/14.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/14.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/15.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/15.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/7.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/7.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/8.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/8.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/9.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/9.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1Fibbonachi/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/10.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/10.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/11.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/11.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/12.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/12.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/13.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/13.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/14.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/14.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/15.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/15.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/16.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/16.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/17.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/17.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/18.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/18.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/19.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/19.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/20.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/20.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/21.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/21.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/22.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/22.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/23.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/23.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/24.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/24.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/25.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/25.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/26.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/26.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/27.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/27.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/28.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/28.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/29.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/29.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/30.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/30.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/31.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/31.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/32.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/32.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/33.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/33.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/34.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/34.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/35.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/35.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/36.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/36.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/37.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/37.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/38.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/38.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/39.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/39.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/40.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/40.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/41.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/41.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/42.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/42.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/43.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/43.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/44.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/44.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/7.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/7.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/8.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/8.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/9.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/9.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/kr1SportsmenIsu/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/listCompression/test3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/listCompression/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/listCompression/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/numberOfEqualPairs/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/numberOfEqualPairs/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/oddDiagonalEvenNumbers/test6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/regChangeScales.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/reverseInput/test6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/reverseInput/test6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/simpleTestOfWords/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/simpleTestOfWords/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/simpleTestOfWords/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/simpleTestOfWords/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/simpleTestOfWords/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/simpleTestOfWords/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test7.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/squaresOnly/test7.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfDecNumbers/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfDecNumbers/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfDecNumbers/test6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfDecNumbers/test6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/7.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/7.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/8.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/8.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/9.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/9.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/sumOfProducts/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/summOfFactorials/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/summOfFactorials/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/summOfFactorials/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/summOfFactorials/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/summOfFactorials/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/summOfFactorials/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/summOfFactorials/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/summOfFactorials/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/summOfFactorials/test4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/summOfFactorials/test4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/test4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/test4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/votes7persent/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/Task.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1Lavochki/test6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1MatrixSort/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1MatrixSort/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1MatrixSort/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1MatrixSort/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1MatrixSort/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1MatrixSort/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/NearestToK.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test10.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test10.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test11.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test11.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test12.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test12.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test13.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test13.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test14.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test14.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test15.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test15.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test16.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test16.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test17.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test17.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test18.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test18.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test19.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test19.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test20.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test20.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test4.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test4.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test5.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test5.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test6.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test6.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test7.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test7.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test8.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test8.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test9.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1NearestToK/test9.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1StarsAndSpaces/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1StarsAndSpaces/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1StarsAndSpaces/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1StarsAndSpaces/test2.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1StarsAndSpaces/test2.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1StarsAndSpaces/test3.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1StarsAndSpaces/test3.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1TableOfMult/config.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1TableOfMult/my.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1TableOfMult/test1.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pylint/tests/z1TableOfMult/test1.t" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tools/ZipFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/NumberOfGroups.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/NumberOfGroups.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/ReverseAFragment.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/ReverseAFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/Tools.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/nikitautochkin_grazhdanskayaoborona_civildefense.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/CivilDefense/CivilDefense.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/CivilDefense/CivilDefense.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/CivilDefense/SmartCollections.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/CivilDefense/SmartCollections.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/CivilDefense/Village.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/ReverseAFragment.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/ReverseAFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JavaDir/sergeypolitsyn_obrascheniefragmenta_reverseafragment.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myFiles/nikitautochkin_grazhdanskayaoborona_civildefense.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myFiles/sergeypolitsyn_obrascheniefragmenta_reverseafragment.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myFiles/sergeypolitsyn_obrascheniefragmenta_reverseafragment.zip_errorReport.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AttachmentID.txt" beforeDir="false" afterPath="$PROJECT_DIR$/AttachmentID.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InformationSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/InformationSystem.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectKey.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectKey.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkstyle/checkstyle-8.8-all.jar" beforeDir="false" afterPath="$PROJECT_DIR$/checkstyle/checkstyle-8.8-all.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkstyle/checkstyle.bat" beforeDir="false" afterPath="$PROJECT_DIR$/checkstyle/checkstyle.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkstyle/google_checks.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkstyle/sun_checks.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDir/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDir/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDir/output" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDir/output" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocument.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocument.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocumentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocumentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/InformationSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/InformationSystem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/MyCheckStyle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/MyCppLint.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/MyPylint.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/PhrasesGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/Project.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/ProjectOwner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/PyTaskChecker$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/PyTaskChecker$FileAndItsTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/PyTaskChecker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/RedmineJournalsReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/XmlReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/XmlReader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/IssuesChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/IssuesChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/TestsInfo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/TestsInfo.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/config.file" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/config.file" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/my.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/output" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/pyTestRunner.py" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/pyTestRunner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/pyTestRunner_debug.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/pylintRunner.py" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/pylintRunner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/complexEquatation/test12.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/complexEquatation/test12.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/complexEquatation/test4.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/complexEquatation/test4.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test1.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test1.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test2.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test2.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test3.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test3.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test4.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/evenElementsByIndex/test4.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test1.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test1.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test2.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test2.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test3.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test3.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test4.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test4.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test5.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/greaterThanNeighbors/test5.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21Dates/test6.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21Dates/test6.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/.idea/forkr.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/.idea/forkr.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/scrypt.py" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/scrypt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/source.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/forkr/source.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test1.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test1.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test11.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test11.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test15.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test15.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test16.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test16.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test17.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test17.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test18.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test18.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test19.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test19.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test20.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test20.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test20.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test20.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test21.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test21.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test21.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test21.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test28.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test28.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test32.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test32.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test34.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test34.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test35.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test35.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test36.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test36.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test36.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test36.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test37.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test37.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test38.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test38.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test40.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test40.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test40.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test40.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test45.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test45.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test7.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/kr21ShadesOfGrey/test7.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/listCompression/test1.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/listCompression/test1.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/listCompression/test2.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/listCompression/test2.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/listCompression/test3.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/listCompression/test3.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/listCompression/test4.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/listCompression/test4.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/numberOfEqualPairs/test1.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/numberOfEqualPairs/test1.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/numberOfEqualPairs/test2.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/numberOfEqualPairs/test2.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/numberOfEqualPairs/test3.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/numberOfEqualPairs/test3.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/numberOfEqualPairs/test4.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/numberOfEqualPairs/test4.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/regFindAllFormsOfTime/test1.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/regFindAllFormsOfTime/test1.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/regLastWord/test1.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/regLastWord/test1.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/regLastWord/test1.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/regLastWord/test1.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/regLastWord/test2.a" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/regLastWord/test2.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/regLastWord/test2.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/regLastWord/test2.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/regPhoneNumbers/test1.t" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/regPhoneNumbers/test1.t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/tests/reverseInput/config.conf" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/tests/reverseInput/config.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/ConfiguredTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/ConfiguredTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/FileOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/FileOperator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redmineManagement/RedmineJournalsReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/redmineManagement/RedmineJournalsReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskCheckers/PyTaskChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskCheckers/PyTaskChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskCheckers/TaskChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskCheckers/TaskChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/контрольная_работа_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tools/ZipFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/ZipFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -651,7 +102,7 @@
       <recent name="data" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.JavaTaskChecker">
+  <component name="RunManager" selected="Application.RunUi">
     <configuration name="JavaTaskChecker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="taskCheckers.JavaTaskChecker" />
       <module name="InformationSystem" />
@@ -689,8 +140,8 @@
     <list>
       <item itemvalue="Application.RunUi" />
       <item itemvalue="Application.RunMainUiFx_console_test" />
-      <item itemvalue="JAR Application.RunCompiledJar" />
       <item itemvalue="Application.JavaTaskChecker" />
+      <item itemvalue="JAR Application.RunCompiledJar" />
     </list>
     <recent_temporary>
       <list>
@@ -749,7 +200,13 @@
       <workItem from="1586089066100" duration="1279000" />
       <workItem from="1586168149526" duration="5932000" />
       <workItem from="1586177812561" duration="828000" />
-      <workItem from="1586414025181" duration="7392000" />
+      <workItem from="1586414025181" duration="8627000" />
+      <workItem from="1586443179671" duration="146000" />
+      <workItem from="1586516644446" duration="1582000" />
+      <workItem from="1586535379313" duration="73000" />
+      <workItem from="1586538067840" duration="1717000" />
+      <workItem from="1586606795385" duration="580000" />
+      <workItem from="1587653744188" duration="3322000" />
     </task>
     <task id="LOCAL-00001" summary="changes made in April">
       <created>1557237496099</created>
@@ -793,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575128327432</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add Zip files">
+      <created>1586422320208</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1586422320208</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -850,7 +314,8 @@
     <MESSAGE value="some bugfix + tests" />
     <MESSAGE value="some refactoring" />
     <MESSAGE value="added smart attach file naming and fixed attachment forceCheck" />
-    <option name="LAST_COMMIT_MESSAGE" value="added smart attach file naming and fixed attachment forceCheck" />
+    <MESSAGE value="add Zip files" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Zip files" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583511729118">
@@ -866,70 +331,76 @@
     </state>
     <state x="-1129" y="449" key="#xdebugger.evaluate/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586420910805" />
     <state x="630" y="454" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1584886356153" />
-    <state x="248" y="0" key="CommitChangelistDialog2" timestamp="1580211331617">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="-1354" y="21" key="CommitChangelistDialog2" timestamp="1586422316737">
+      <screen x="-1680" y="21" width="1680" height="1010" />
     </state>
     <state x="248" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1580211331617" />
+    <state x="-1354" y="21" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422316737" />
     <state x="421" y="99" key="FileChooserDialogImpl" timestamp="1580207270895">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1580207270895" />
-    <state width="1637" height="237" key="GridCell.Tab.0.bottom" timestamp="1586422020327">
+    <state width="1637" height="261" key="GridCell.Tab.0.bottom" timestamp="1587657099107">
       <screen x="-1680" y="21" width="1680" height="1010" />
     </state>
     <state width="1202" height="151" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422020327" />
+    <state width="1637" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657099107" />
     <state width="1877" height="246" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476856" />
-    <state width="1637" height="237" key="GridCell.Tab.0.center" timestamp="1586422020326">
+    <state width="1637" height="261" key="GridCell.Tab.0.center" timestamp="1587657099106">
       <screen x="-1680" y="21" width="1680" height="1010" />
     </state>
     <state width="1202" height="151" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="237" key="GridCell.Tab.0.center/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422020326" />
+    <state width="1637" height="261" key="GridCell.Tab.0.center/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657099106" />
     <state width="1877" height="246" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476856" />
-    <state width="1637" height="237" key="GridCell.Tab.0.left" timestamp="1586422020326">
+    <state width="1637" height="261" key="GridCell.Tab.0.left" timestamp="1587657099106">
       <screen x="-1680" y="21" width="1680" height="1010" />
     </state>
     <state width="1202" height="151" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1580410002243" />
-    <state width="1637" height="237" key="GridCell.Tab.0.left/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422020326" />
+    <state width="1637" height="261" key="GridCell.Tab.0.left/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657099106" />
     <state width="1877" height="246" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476855" />
-    <state width="1637" height="237" key="GridCell.Tab.0.right" timestamp="1586422020327">
+    <state width="1637" height="261" key="GridCell.Tab.0.right" timestamp="1587657099106">
       <screen x="-1680" y="21" width="1680" height="1010" />
     </state>
     <state width="1202" height="151" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="237" key="GridCell.Tab.0.right/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422020327" />
+    <state width="1637" height="261" key="GridCell.Tab.0.right/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657099106" />
     <state width="1877" height="246" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476856" />
-    <state width="1637" height="237" key="GridCell.Tab.1.bottom" timestamp="1586422020639">
+    <state width="1637" height="237" key="GridCell.Tab.1.bottom" timestamp="1587657070612">
       <screen x="-1680" y="21" width="1680" height="1010" />
     </state>
     <state width="1202" height="151" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="237" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422020639" />
+    <state width="1637" height="237" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657070612" />
     <state width="1877" height="246" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476857" />
-    <state width="1637" height="237" key="GridCell.Tab.1.center" timestamp="1586422020639">
+    <state width="1637" height="237" key="GridCell.Tab.1.center" timestamp="1587657070612">
       <screen x="-1680" y="21" width="1680" height="1010" />
     </state>
     <state width="1202" height="151" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="237" key="GridCell.Tab.1.center/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422020639" />
+    <state width="1637" height="237" key="GridCell.Tab.1.center/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657070612" />
     <state width="1877" height="246" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476857" />
-    <state width="1637" height="237" key="GridCell.Tab.1.left" timestamp="1586422020639">
+    <state width="1637" height="237" key="GridCell.Tab.1.left" timestamp="1587657070612">
       <screen x="-1680" y="21" width="1680" height="1010" />
     </state>
     <state width="1202" height="151" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="237" key="GridCell.Tab.1.left/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422020639" />
+    <state width="1637" height="237" key="GridCell.Tab.1.left/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657070612" />
     <state width="1877" height="246" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476856" />
-    <state width="1637" height="237" key="GridCell.Tab.1.right" timestamp="1586422020639">
+    <state width="1637" height="237" key="GridCell.Tab.1.right" timestamp="1587657070612">
       <screen x="-1680" y="21" width="1680" height="1010" />
     </state>
     <state width="1202" height="151" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="237" key="GridCell.Tab.1.right/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422020639" />
+    <state width="1637" height="237" key="GridCell.Tab.1.right/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657070612" />
     <state width="1877" height="246" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476857" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1580207275493">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1580207275493" />
-    <state x="522" y="258" key="com.intellij.ide.util.TipDialog" timestamp="1586089550793">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1248" y="262" key="Vcs.Push.Dialog.v2" timestamp="1586422328918">
+      <screen x="-1680" y="21" width="1680" height="1010" />
+    </state>
+    <state x="-1248" y="262" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422328918" />
+    <state x="-1223" y="272" key="com.intellij.ide.util.TipDialog" timestamp="1586609549417">
+      <screen x="-1680" y="21" width="1680" height="1010" />
     </state>
     <state x="348" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1580393549189" />
+    <state x="-1223" y="272" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586609549417" />
     <state x="522" y="258" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1586089550793" />
     <state x="522" y="258" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585251435566" />
     <state x="-1110" y="288" key="extract.method.dialog" timestamp="1586416212056">
@@ -1002,6 +473,21 @@
           <url>file://$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java</url>
           <line>107</line>
           <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java</url>
+          <line>222</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/tools/ZipFile.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="77" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

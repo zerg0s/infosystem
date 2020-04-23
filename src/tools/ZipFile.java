@@ -8,7 +8,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class ZipFile {
-    public boolean unzipFileToDir(String fileZip, File destDir ) {
+    public boolean unzipFileToDir(String fileZip, File destDir) {
         String dest1 = destDir.getAbsolutePath();
         boolean b1 = Files.exists(Paths.get(dest1));
         boolean b = Files.exists(Paths.get(fileZip));
@@ -22,12 +22,15 @@ public class ZipFile {
             ZipEntry zipEntry = zis.getNextEntry();
             while (zipEntry != null) {
                 File newFile = newFile(destDir, zipEntry);
-                FileOutputStream fos = new FileOutputStream(newFile);
-                int len;
-                while ((len = zis.read(buffer)) > 0) {
-                    fos.write(buffer, 0, len);
+                if (!zipEntry.isDirectory()) {
+                    FileOutputStream fos = new FileOutputStream(newFile);
+
+                    int len;
+                    while ((len = zis.read(buffer)) > 0) {
+                        fos.write(buffer, 0, len);
+                    }
+                    fos.close();
                 }
-                fos.close();
                 zipEntry = zis.getNextEntry();
             }
             zis.closeEntry();
@@ -51,7 +54,12 @@ public class ZipFile {
         if (!destFilePath.startsWith(destDirPath + File.separator)) {
             throw new IOException("Entry is outside of the target dir: " + zipEntry.getName());
         }
+        Path fileOrDirPath = destFile.toPath();
+        Path parentalDirPath = new File(destFile.getParent()).toPath();
 
+        if (!Files.exists(parentalDirPath)) {
+            Files.createDirectories(parentalDirPath);
+        }
         return destFile;
     }
 }

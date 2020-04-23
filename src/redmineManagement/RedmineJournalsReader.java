@@ -73,7 +73,7 @@ public class RedmineJournalsReader {
                 journal.add(name);
             }
         } catch (JSONException ex) {
-            Logger.getLogger(RedmineJournalsReader.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(RedmineJournalsReader.class.getName()).log(Level.SEVERE, null, ex);
         }
         return journal;
     }
