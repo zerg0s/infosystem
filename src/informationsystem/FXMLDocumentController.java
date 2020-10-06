@@ -296,7 +296,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleProjectChoice() {
         if (textFieldURL.getText().isEmpty()) {
-            props.url = "http://www.hostedredmine.com";
+            props.url = "https://www.hostedredmine.com";
         } else {
             props.url = textFieldURL.getText();
         }

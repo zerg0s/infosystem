@@ -1,7 +1,6 @@
 package taskCheckers;
 
 import lintsForLangs.MyPylint;
-import org.jetbrains.annotations.NotNull;
 import tools.ZipFile;
 
 import java.io.BufferedReader;
@@ -100,11 +99,11 @@ public class JavaTaskChecker extends TaskChecker {
         return sbResultOfTests.toString();
     }
 
-    private void JavaCompileSingleJavaFile(StringBuilder sb, @NotNull FileAndItsTest data) {
+    private void JavaCompileSingleJavaFile(StringBuilder sb, FileAndItsTest data) {
         JavaCompileSingleJavaFile(sb, data, true);
     }
 
-    private void JavaCompileSingleJavaFile(StringBuilder sb, @NotNull FileAndItsTest data, boolean needManualProcessing) {
+    private void JavaCompileSingleJavaFile(StringBuilder sb, FileAndItsTest data, boolean needManualProcessing) {
         String javaFileToCompile = data.fileName;
         if (!Files.exists(Paths.get(javaFileToCompile))) {
             javaFileToCompile = workingDir + data.fileName;
@@ -145,7 +144,7 @@ public class JavaTaskChecker extends TaskChecker {
         //removeTempFiles(data);
     }
 
-    private void RunTestsForMainClass(StringBuilder sb, @NotNull TaskChecker.@NotNull FileAndItsTest data) {
+    private void RunTestsForMainClass(StringBuilder sb, TaskChecker.FileAndItsTest data) {
         try {
             String relative = new File(workingDir).toURI().relativize(new File(data.fileName).toURI()).getPath();
 

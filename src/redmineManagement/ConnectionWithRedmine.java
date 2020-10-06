@@ -14,13 +14,7 @@ import com.taskadapter.redmineapi.RedmineException;
 import com.taskadapter.redmineapi.RedmineManager;
 import com.taskadapter.redmineapi.RedmineManagerFactory;
 import com.taskadapter.redmineapi.UserManager;
-import com.taskadapter.redmineapi.bean.Attachment;
-import com.taskadapter.redmineapi.bean.Issue;
-import com.taskadapter.redmineapi.bean.Membership;
-import com.taskadapter.redmineapi.bean.Project;
-import com.taskadapter.redmineapi.bean.Role;
-import com.taskadapter.redmineapi.bean.User;
-import com.taskadapter.redmineapi.bean.Version;
+import com.taskadapter.redmineapi.bean.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,7 +40,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.apache.commons.codec.Charsets;
 import org.apache.http.entity.ContentType;
-import org.jetbrains.annotations.NotNull;
 import taskCheckers.JavaTaskChecker;
 import taskCheckers.PyTaskChecker;
 import tools.Translit;
@@ -170,7 +163,7 @@ public class ConnectionWithRedmine {
     /**
      * @param issue                     - RedmineItem для проверки
      * @param needToCheckAlreadyChecked TRUE - всегда перепроверять, игнорируя
-     *                                  уже проверенные, FALSE - учитывать ранее проверенные issues
+     *                                  уже проверенные, FALSE - учитывать ранее проверенные аттачи
      * @throws IOException
      */
     // deprecated. only for review purpose
@@ -179,9 +172,12 @@ public class ConnectionWithRedmine {
         ArrayList<Attachment> issueAttachments = new ArrayList<>(issueAttachment);
         File dir = new File(myFilesDir);
         dir.mkdirs();
-
-        for (Attachment attach : issueAttachments) {
-            if (attach.getFileName().endsWith(".py") || attach.getFileName().endsWith(".java") || attach.getFileName().endsWith(".cpp")) {
+        //Check only latest attach, the rest are already history
+        Attachment attach = issueAttachments.stream().max(Comparator.comparing(Attachment::getId)).get();
+        //for (Attachment attach : issueAttachments)
+        {
+            if (attach.getFileName().endsWith(".py") || attach.getFileName().endsWith(".java")
+                    || attach.getFileName().endsWith(".cpp")) {
                 int wasChecked = -1;
                 //Если не надо перепроверять ранее проверенные, смотрим, не нашлось ли ранее проверенных
                 if (!needToCheckAlreadyChecked) {
@@ -235,7 +231,10 @@ public class ConnectionWithRedmine {
         List<Attachment> issueAttachments = new ArrayList<Attachment>(issueAttachment);
         new File(myFilesDir).mkdirs();
 
-        for (Attachment attach : issueAttachments) {
+        //Check only latest attach, the rest are already history
+        Attachment attach = issueAttachments.stream().max(Comparator.comparing(Attachment::getId)).get();
+        //for (Attachment attach : issueAttachments)
+        {
             String attachFileName = attach.getFileName();
             if (isKnownAttachExtention(attachFileName)) {
                 int wasCheckedEarlier = -1;
@@ -557,7 +556,7 @@ public class ConnectionWithRedmine {
         int attachIsNew = 0;
 
         for (String attach : attachmentIDs) {
-            if (attach.equals("")) {
+            if (attach.trim().equals("")) {
                 continue;
             }
             long idFromFile = Long.parseLong(attach);
@@ -685,7 +684,8 @@ public class ConnectionWithRedmine {
 
     public void updateIssue(Issue issue) {
         try {
-            issueManager.update(issue);
+            mgr.getIssueManager().update(issue);
+            //issueManager.update(issue);
         } catch (RedmineException ex) {
             Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -783,7 +783,6 @@ public class ConnectionWithRedmine {
 
     //тут надо что-то сделать с этим файлом: убить кириллицу и пробелы,
     // оставив только латиницу
-    @NotNull
     private String makeUsableFileName(String fileName, String author, String taskTitle) {
         fileName = (Translit.toTranslit(author.toLowerCase())
                 + "_" + Translit.toTranslit(taskTitle.toLowerCase())

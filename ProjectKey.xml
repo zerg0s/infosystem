@@ -1,8 +1,7 @@
 ﻿<supervisors>
 <supervisor name="Sergey Politsyn">
 <project id="fifthth_grade_2020" name="PVK-M-2019_2020"/>
-<project id="pvk-m-2018_2019" name="2018-2019"/>
-<project id="pvk-m-121-122" name="2017-2018"/>
+<project id="pvk-m-2020_2021" name="2020-2021"/>
 <project id="python-quest-2018-2019" name="python-quest-2018-2019"/>
 <apiKey>7bd0ad78c5a96b2434a07fec485eff8a67f76214</apiKey>
 </supervisor>
@@ -12,7 +11,7 @@
 </supervisor>
 <supervisor name="Ekaterina Politsyna">
 <project id="python-quest-2018-2019" name="Test Project"/>
-<project id="mai-vti319-18-2019-2020" name="3й курс ТП"/>
+<project id="mai-vti319-18-2019-2020" name="2й курс ТП"/>
 <apiKey>7f566bb8c0027ec71d0db820b139db2f8f3525e2</apiKey>
 </supervisor>
 </supervisors>

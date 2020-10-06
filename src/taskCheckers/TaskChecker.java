@@ -1,7 +1,6 @@
 package taskCheckers;
 
 import informationsystem.XmlReader;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +64,7 @@ public class TaskChecker {
         return testFolderName;
     }
 
-    void removeTempFiles(@NotNull FileAndItsTest data) {
+    void removeTempFiles(FileAndItsTest data) {
         try {
             Files.delete(new File(workingDir + data.fileName).toPath());
             //Files.delete(new File(pyLintDir + data.fileTestName).toPath());

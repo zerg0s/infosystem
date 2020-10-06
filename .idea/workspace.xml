@@ -5,8 +5,27 @@
       <artifact name="InformationSystem:jar" />
     </artifacts-to-build>
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/NumberOfGroups.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/NumberOfGroups.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/ReverseAFragment.class" afterDir="false" />
@@ -21,17 +40,30 @@
       <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/ReverseAFragment.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/ReverseAFragment.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/JavaDir/sergeypolitsyn_obrascheniefragmenta_reverseafragment.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/redmine-java-api-3.1.2-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/redmine-java-api-3.1.2-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/redmine-java-api-3.1.2.jar" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/myFiles/nikitautochkin_grazhdanskayaoborona_civildefense.zip" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/myFiles/sergeypolitsyn_obrascheniefragmenta_reverseafragment.zip" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/myFiles/sergeypolitsyn_obrascheniefragmenta_reverseafragment.zip_errorReport.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/InformationSystem_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/InformationSystem_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaDir/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDir/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaDir/output" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDir/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocument.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocument.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redmineManagement/RedmineJournalsReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/redmineManagement/RedmineJournalsReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectKey.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectKey.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/redmine-java-api-3.0.1-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/redmine-java-api-3.0.1-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/redmine-java-api-3.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocumentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocumentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pylint/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pylint/output" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/FileOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/FileOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tools/ZipFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/ZipFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/taskCheckers/TaskChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskCheckers/TaskChecker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +103,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -81,15 +112,18 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="findjar.last.used.dir" value="$PROJECT_DIR$/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/redmine-java-api-3.1.2.jar" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
@@ -131,6 +165,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RunCompiledJar" type="JarApplication">
       <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/InformationSystem_jar/InformationSystem.jar" />
       <option name="WORKING_DIRECTORY" value="C:\InformationSystem" />
@@ -149,6 +194,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -206,7 +252,15 @@
       <workItem from="1586535379313" duration="73000" />
       <workItem from="1586538067840" duration="1717000" />
       <workItem from="1586606795385" duration="580000" />
-      <workItem from="1587653744188" duration="3322000" />
+      <workItem from="1587653744188" duration="3747000" />
+      <workItem from="1587709595531" duration="231000" />
+      <workItem from="1587823326362" duration="63000" />
+      <workItem from="1587823591555" duration="72000" />
+      <workItem from="1588056828778" duration="1041000" />
+      <workItem from="1588097561852" duration="118000" />
+      <workItem from="1601282575174" duration="56000" />
+      <workItem from="1601285169337" duration="3922000" />
+      <workItem from="1601623406398" duration="8372000" />
     </task>
     <task id="LOCAL-00001" summary="changes made in April">
       <created>1557237496099</created>
@@ -257,11 +311,18 @@
       <option name="project" value="LOCAL" />
       <updated>1586422320208</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix zip entries in folders">
+      <created>1587657238551</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1587657238551</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.facetType" implementationName="Python" />
@@ -284,7 +345,6 @@
                   </entry>
                 </map>
               </option>
-              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
@@ -306,6 +366,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -315,106 +376,78 @@
     <MESSAGE value="some refactoring" />
     <MESSAGE value="added smart attach file naming and fixed attachment forceCheck" />
     <MESSAGE value="add Zip files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Zip files" />
+    <MESSAGE value="fix zip entries in folders" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix zip entries in folders" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583511729118">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583511729118" />
-    <state x="765" y="228" key="#com.intellij.ide.util.MemberChooser" timestamp="1585373647598">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="765" y="228" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1585373647598" />
-    <state x="-1129" y="449" key="#xdebugger.evaluate" timestamp="1586420910805">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state x="-1129" y="449" key="#xdebugger.evaluate/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586420910805" />
-    <state x="630" y="454" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1584886356153" />
-    <state x="-1354" y="21" key="CommitChangelistDialog2" timestamp="1586422316737">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state x="248" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1580211331617" />
-    <state x="-1354" y="21" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422316737" />
-    <state x="421" y="99" key="FileChooserDialogImpl" timestamp="1580207270895">
+    <state x="121" y="0" key="#Project_Structure" timestamp="1601972655900">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1580207270895" />
-    <state width="1637" height="261" key="GridCell.Tab.0.bottom" timestamp="1587657099107">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state width="1202" height="151" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657099107" />
-    <state width="1877" height="246" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476856" />
-    <state width="1637" height="261" key="GridCell.Tab.0.center" timestamp="1587657099106">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state width="1202" height="151" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="261" key="GridCell.Tab.0.center/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657099106" />
-    <state width="1877" height="246" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476856" />
-    <state width="1637" height="261" key="GridCell.Tab.0.left" timestamp="1587657099106">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state width="1202" height="151" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1580410002243" />
-    <state width="1637" height="261" key="GridCell.Tab.0.left/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657099106" />
-    <state width="1877" height="246" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476855" />
-    <state width="1637" height="261" key="GridCell.Tab.0.right" timestamp="1587657099106">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state width="1202" height="151" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="261" key="GridCell.Tab.0.right/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657099106" />
-    <state width="1877" height="246" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476856" />
-    <state width="1637" height="237" key="GridCell.Tab.1.bottom" timestamp="1587657070612">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state width="1202" height="151" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="237" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657070612" />
-    <state width="1877" height="246" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476857" />
-    <state width="1637" height="237" key="GridCell.Tab.1.center" timestamp="1587657070612">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state width="1202" height="151" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="237" key="GridCell.Tab.1.center/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657070612" />
-    <state width="1877" height="246" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476857" />
-    <state width="1637" height="237" key="GridCell.Tab.1.left" timestamp="1587657070612">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state width="1202" height="151" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="237" key="GridCell.Tab.1.left/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657070612" />
-    <state width="1877" height="246" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476856" />
-    <state width="1637" height="237" key="GridCell.Tab.1.right" timestamp="1587657070612">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state width="1202" height="151" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1580410002244" />
-    <state width="1637" height="237" key="GridCell.Tab.1.right/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1587657070612" />
-    <state width="1877" height="246" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585391476857" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1580207275493">
+    <state x="121" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1601972655900" />
+    <state x="321" y="77" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1601282578478">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1580207275493" />
-    <state x="-1248" y="262" key="Vcs.Push.Dialog.v2" timestamp="1586422328918">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state x="-1248" y="262" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586422328918" />
-    <state x="-1223" y="272" key="com.intellij.ide.util.TipDialog" timestamp="1586609549417">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state x="348" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1580393549189" />
-    <state x="-1223" y="272" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586609549417" />
-    <state x="522" y="258" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1586089550793" />
-    <state x="522" y="258" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585251435566" />
-    <state x="-1110" y="288" key="extract.method.dialog" timestamp="1586416212056">
-      <screen x="-1680" y="21" width="1680" height="1010" />
-    </state>
-    <state x="-1110" y="288" key="extract.method.dialog/0.0.1920.1040/-1680.21.1680.1010@-1680.21.1680.1010" timestamp="1586416212056" />
-    <state x="346" y="96" width="588" height="488" key="find.popup" timestamp="1580394729076">
+    <state x="321" y="77" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.680@0.0.1280.680" timestamp="1601282578478" />
+    <state width="398" height="438" key="DebuggerActiveHint" timestamp="1601967390966">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="346" y="96" width="588" height="488" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1580394729076" />
-    <state x="342" y="147" key="new project wizard" timestamp="1581761790805">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="398" height="438" key="DebuggerActiveHint/0.0.1280.680@0.0.1280.680" timestamp="1601967390966" />
+    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1601967623137">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="342" y="147" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1581761790805" />
+    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1601967623137" />
+    <state x="348" y="82" key="FileChooserDialogImpl" timestamp="1601968643718">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="348" y="82" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1601968643718" />
+    <state width="1237" height="119" key="GridCell.Tab.0.bottom" timestamp="1601972276570">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="119" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
+    <state width="1237" height="119" key="GridCell.Tab.0.center" timestamp="1601972276570">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="119" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
+    <state width="1237" height="119" key="GridCell.Tab.0.left" timestamp="1601972276570">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="119" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
+    <state width="1237" height="119" key="GridCell.Tab.0.right" timestamp="1601972276570">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="119" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
+    <state width="1237" height="119" key="GridCell.Tab.1.bottom" timestamp="1601972276570">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="119" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
+    <state width="1237" height="119" key="GridCell.Tab.1.center" timestamp="1601972276570">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="119" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
+    <state width="1237" height="119" key="GridCell.Tab.1.left" timestamp="1601972276570">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="119" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
+    <state width="1237" height="119" key="GridCell.Tab.1.right" timestamp="1601972276570">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="119" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1601970163597">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1601970163597" />
+    <state x="0" y="0" width="587" height="680" key="find.popup" timestamp="1601972035435">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="0" y="0" width="587" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1601972035435" />
+    <state x="91" y="0" key="new project wizard" timestamp="1601970281434">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="91" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1601970281434" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1601624789799">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1601624789799" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -426,33 +459,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>494</line>
+          <line>493</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>357</line>
+          <line>356</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>290</line>
+          <line>289</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>232</line>
+          <line>228</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>278</line>
+          <line>277</line>
           <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>265</line>
-          <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
@@ -461,27 +489,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java</url>
-          <line>115</line>
+          <line>114</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java</url>
-          <line>151</line>
+          <line>150</line>
           <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java</url>
-          <line>107</line>
+          <line>106</line>
           <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java</url>
-          <line>222</line>
+          <line>221</line>
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java</url>
-          <line>49</line>
+          <line>48</line>
           <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -489,12 +517,53 @@
           <line>56</line>
           <option name="timeStamp" value="77" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
+          <line>175</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
+          <line>421</line>
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
+          <line>268</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
+          <line>419</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
+          <line>424</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
+          <line>308</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
+          <line>686</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="projectsUsers.get(24).storage" />
         <watch expression="sb" />
+        <watch expression="currentIssue.storage.map" />
       </configuration>
     </watches-manager>
   </component>

@@ -1,7 +1,5 @@
 package data;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +13,7 @@ public class FileOperator {
         this.outputFile = outputFile;
     }
 
-    public void saveDataToFile(@NotNull HashMap<String, ArrayList<String>> issuesOfTheStudent) {
+    public void saveDataToFile(HashMap<String, ArrayList<String>> issuesOfTheStudent) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
 
