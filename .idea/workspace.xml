@@ -24,46 +24,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/NumberOfGroups.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/NumberOfGroups.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/ReverseAFragment.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/ReverseAFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ ru/mai/Tools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/nikitautochkin_grazhdanskayaoborona_civildefense.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/CivilDefense/CivilDefense.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/CivilDefense/CivilDefense.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/CivilDefense/SmartCollections.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/CivilDefense/SmartCollections.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/CivilDefense/Village.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/ReverseAFragment.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/ru/mai/ReverseAFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDir/sergeypolitsyn_obrascheniefragmenta_reverseafragment.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redmine-java-api-3.1.2-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redmine-java-api-3.1.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redmine-java-api-3.1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/nikitautochkin_grazhdanskayaoborona_civildefense.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/sergeypolitsyn_obrascheniefragmenta_reverseafragment.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myFiles/sergeypolitsyn_obrascheniefragmenta_reverseafragment.zip_errorReport.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/InformationSystem_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/InformationSystem_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib3.xml" afterDir="false" />
+    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="add planio support&#10;check only latest when force check">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaDir/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDir/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaDir/output" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDir/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectKey.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectKey.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/redmine-java-api-3.0.1-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/redmine-java-api-3.0.1-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/redmine-java-api-3.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocumentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/informationsystem/FXMLDocumentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint/output" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/output" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/FileOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/FileOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskCheckers/JavaTaskChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskCheckers/TaskChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskCheckers/TaskChecker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,7 +223,7 @@
       <workItem from="1588097561852" duration="118000" />
       <workItem from="1601282575174" duration="56000" />
       <workItem from="1601285169337" duration="3922000" />
-      <workItem from="1601623406398" duration="8372000" />
+      <workItem from="1601623406398" duration="11415000" />
     </task>
     <task id="LOCAL-00001" summary="changes made in April">
       <created>1557237496099</created>
@@ -318,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587657238551</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add planio support&#10;check only latest when force check">
+      <created>1601973304413</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601973304413</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,7 +347,8 @@
     <MESSAGE value="added smart attach file naming and fixed attachment forceCheck" />
     <MESSAGE value="add Zip files" />
     <MESSAGE value="fix zip entries in folders" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix zip entries in folders" />
+    <MESSAGE value="add planio support&#10;check only latest when force check" />
+    <option name="LAST_COMMIT_MESSAGE" value="add planio support&#10;check only latest when force check" />
   </component>
   <component name="WindowStateProjectService">
     <state x="121" y="0" key="#Project_Structure" timestamp="1601972655900">
@@ -432,10 +403,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="119" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
+    <state x="456" y="275" key="ReplaceDuplicatesPrompt" timestamp="1602140533300">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="456" y="275" key="ReplaceDuplicatesPrompt/0.0.1280.680@0.0.1280.680" timestamp="1602140533300" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1601970163597">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1601970163597" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1601973350435">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1601973350435" />
+    <state x="301" y="120" key="extract.method.dialog" timestamp="1602140529705">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="301" y="120" key="extract.method.dialog/0.0.1280.680@0.0.1280.680" timestamp="1602140529704" />
     <state x="0" y="0" width="587" height="680" key="find.popup" timestamp="1601972035435">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -459,17 +442,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>493</line>
+          <line>519</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>356</line>
+          <line>381</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>289</line>
+          <line>314</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -479,7 +462,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>277</line>
+          <line>302</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -529,7 +512,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>421</line>
+          <line>447</line>
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -549,12 +532,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>308</line>
+          <line>333</line>
           <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>686</line>
+          <line>712</line>
           <option name="timeStamp" value="89" />
         </line-breakpoint>
       </breakpoints>

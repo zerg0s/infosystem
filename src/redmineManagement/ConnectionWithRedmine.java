@@ -173,7 +173,7 @@ public class ConnectionWithRedmine {
         File dir = new File(myFilesDir);
         dir.mkdirs();
         //Check only latest attach, the rest are already history
-        Attachment attach = issueAttachments.stream().max(Comparator.comparing(Attachment::getId)).get();
+        Attachment attach = getLatestCheckableAttach(issueAttachments).get();
         //for (Attachment attach : issueAttachments)
         {
             if (attach.getFileName().endsWith(".py") || attach.getFileName().endsWith(".java")
@@ -232,7 +232,14 @@ public class ConnectionWithRedmine {
         new File(myFilesDir).mkdirs();
 
         //Check only latest attach, the rest are already history
-        Attachment attach = issueAttachments.stream().max(Comparator.comparing(Attachment::getId)).get();
+        Optional<Attachment> nullableAttach =  getLatestCheckableAttach(issueAttachments);
+        Attachment attach;
+
+        if (!nullableAttach.isPresent()){
+            Logger.getAnonymousLogger().info("Can't find suitable attaches for " + task);
+            return;
+        }
+        attach = nullableAttach.get();
         //for (Attachment attach : issueAttachments)
         {
             String attachFileName = attach.getFileName();
@@ -272,6 +279,24 @@ public class ConnectionWithRedmine {
                 // cleanDirectory(new File(".\\myFiles\\"));
             }
         }
+    }
+
+    private Optional<Attachment> getLatestCheckableAttach(List<Attachment> issueAttachments) {
+        if (issueAttachments == null && issueAttachments.size() == 0) {
+            return Optional.empty();
+        }
+        int idMax = 0;
+        int maxIndex = 0;
+        for (int i = 0; i < issueAttachments.size(); i++) {
+            if (isKnownAttachExtention(issueAttachments.get(i).getFileName()) &&
+                    issueAttachments.get(i).getId() > idMax)
+            idMax = issueAttachments.get(i).getId();
+            maxIndex = i;
+        }
+        if (idMax == 0) {
+            return Optional.empty();
+        }
+        return  Optional.of(issueAttachments.get(maxIndex));
     }
 
     private void processJavaFile(ConfiguredTask task, Issue issue, String fileToManage) {
@@ -373,6 +398,7 @@ public class ConnectionWithRedmine {
     private boolean doPyLint(Issue issue, String fileToManage) {
         return doPyLint(issue, fileToManage, 10.0);
     }
+
     //см новую реализацию с Configured task ниже
     private boolean doPyLint(Issue issue, String fileToManage, double rating) {
         new MyPylint().startPylint(fileToManage);
@@ -685,7 +711,6 @@ public class ConnectionWithRedmine {
     public void updateIssue(Issue issue) {
         try {
             mgr.getIssueManager().update(issue);
-            //issueManager.update(issue);
         } catch (RedmineException ex) {
             Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
         }
