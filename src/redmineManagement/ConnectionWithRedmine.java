@@ -93,7 +93,8 @@ public class ConnectionWithRedmine {
         this.userManager = mgr.getUserManager();
 
         try {
-            projectsUsers = mgr.getMembershipManager().getMemberships(this.projectKey);
+            mgr.getTransport().setObjectsPerPage(100);
+            projectsUsers = mgr.getProjectManager().getProjectMembers(this.projectKey);
         } catch (RedmineException ex) {
             Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -233,12 +234,12 @@ public class ConnectionWithRedmine {
 
         //Check only latest attach, the rest are already history
         Optional<Attachment> nullableAttach =  getLatestCheckableAttach(issueAttachments);
-        Attachment attach;
-
+        Attachment attach =  null;
         if (!nullableAttach.isPresent()){
             Logger.getAnonymousLogger().info("Can't find suitable attaches for " + task);
             return;
         }
+
         attach = nullableAttach.get();
         //for (Attachment attach : issueAttachments)
         {
@@ -400,6 +401,7 @@ public class ConnectionWithRedmine {
     }
 
     //см новую реализацию с Configured task ниже
+    @Deprecated
     private boolean doPyLint(Issue issue, String fileToManage, double rating) {
         new MyPylint().startPylint(fileToManage);
         String attachName = fileToManage + "_errorReport.txt";
@@ -483,7 +485,7 @@ public class ConnectionWithRedmine {
         //15306
         String iterationid = getIterationIdByName(iterationName);
 
-        final Map<String, String> params = new HashMap<String, String>();
+        final Map<String, String> params = new HashMap<>();
         params.put("project_id", projectKey);
         params.put("fixed_version_id", iterationid);
         params.put("limit", "100");

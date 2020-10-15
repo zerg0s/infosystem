@@ -24,8 +24,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="add planio support&#10;check only latest when force check">
+    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="don't crash if no suitable attaches">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pylint/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pylint/output" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pylint/pyTestRunner.py" beforeDir="false" afterPath="$PROJECT_DIR$/pylint/pyTestRunner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +90,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
@@ -124,17 +128,6 @@
     <configuration name="RunUi" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="informationsystem.InformationSystem" />
       <module name="InformationSystem" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -223,7 +216,9 @@
       <workItem from="1588097561852" duration="118000" />
       <workItem from="1601282575174" duration="56000" />
       <workItem from="1601285169337" duration="3922000" />
-      <workItem from="1601623406398" duration="11415000" />
+      <workItem from="1601623406398" duration="11983000" />
+      <workItem from="1602341913131" duration="5136000" />
+      <workItem from="1602666389032" duration="4404000" />
     </task>
     <task id="LOCAL-00001" summary="changes made in April">
       <created>1557237496099</created>
@@ -288,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601973304413</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="don't crash if no suitable attaches">
+      <created>1602142037499</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1602142037499</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +350,8 @@
     <MESSAGE value="add Zip files" />
     <MESSAGE value="fix zip entries in folders" />
     <MESSAGE value="add planio support&#10;check only latest when force check" />
-    <option name="LAST_COMMIT_MESSAGE" value="add planio support&#10;check only latest when force check" />
+    <MESSAGE value="don't crash if no suitable attaches" />
+    <option name="LAST_COMMIT_MESSAGE" value="don't crash if no suitable attaches" />
   </component>
   <component name="WindowStateProjectService">
     <state x="121" y="0" key="#Project_Structure" timestamp="1601972655900">
@@ -359,62 +362,66 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="321" y="77" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.680@0.0.1280.680" timestamp="1601282578478" />
-    <state width="398" height="438" key="DebuggerActiveHint" timestamp="1601967390966">
+    <state x="396" y="44" key="#xdebugger.evaluate" timestamp="1602754115277">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="398" height="438" key="DebuggerActiveHint/0.0.1280.680@0.0.1280.680" timestamp="1601967390966" />
+    <state x="396" y="44" key="#xdebugger.evaluate/0.0.1280.680@0.0.1280.680" timestamp="1602754115277" />
+    <state width="447" height="438" key="DebuggerActiveHint" timestamp="1602753979034">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="447" height="438" key="DebuggerActiveHint/0.0.1280.680@0.0.1280.680" timestamp="1602753979034" />
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1601967623137">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1601967623137" />
-    <state x="348" y="82" key="FileChooserDialogImpl" timestamp="1601968643718">
+    <state x="348" y="82" key="FileChooserDialogImpl" timestamp="1602342020471">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="348" y="82" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1601968643718" />
-    <state width="1237" height="119" key="GridCell.Tab.0.bottom" timestamp="1601972276570">
+    <state x="348" y="82" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602342020471" />
+    <state width="1237" height="119" key="GridCell.Tab.0.bottom" timestamp="1602757298018">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="119" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
-    <state width="1237" height="119" key="GridCell.Tab.0.center" timestamp="1601972276570">
+    <state width="1237" height="119" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602757298018" />
+    <state width="1237" height="119" key="GridCell.Tab.0.center" timestamp="1602757298017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="119" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
-    <state width="1237" height="119" key="GridCell.Tab.0.left" timestamp="1601972276570">
+    <state width="1237" height="119" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602757298017" />
+    <state width="1237" height="119" key="GridCell.Tab.0.left" timestamp="1602757298017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="119" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
-    <state width="1237" height="119" key="GridCell.Tab.0.right" timestamp="1601972276570">
+    <state width="1237" height="119" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602757298017" />
+    <state width="1237" height="119" key="GridCell.Tab.0.right" timestamp="1602757298017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="119" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
-    <state width="1237" height="119" key="GridCell.Tab.1.bottom" timestamp="1601972276570">
+    <state width="1237" height="119" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602757298017" />
+    <state width="1237" height="119" key="GridCell.Tab.1.bottom" timestamp="1602757512974">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="119" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
-    <state width="1237" height="119" key="GridCell.Tab.1.center" timestamp="1601972276570">
+    <state width="1237" height="119" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602757512974" />
+    <state width="1237" height="119" key="GridCell.Tab.1.center" timestamp="1602757512973">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="119" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
-    <state width="1237" height="119" key="GridCell.Tab.1.left" timestamp="1601972276570">
+    <state width="1237" height="119" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1602757512973" />
+    <state width="1237" height="119" key="GridCell.Tab.1.left" timestamp="1602757512973">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="119" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
-    <state width="1237" height="119" key="GridCell.Tab.1.right" timestamp="1601972276570">
+    <state width="1237" height="119" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1602757512973" />
+    <state width="1237" height="119" key="GridCell.Tab.1.right" timestamp="1602757512974">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="119" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1601972276570" />
+    <state width="1237" height="119" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1602757512974" />
     <state x="456" y="275" key="ReplaceDuplicatesPrompt" timestamp="1602140533300">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="456" y="275" key="ReplaceDuplicatesPrompt/0.0.1280.680@0.0.1280.680" timestamp="1602140533300" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1601970163597">
+    <state x="121" y="0" key="SettingsEditor" timestamp="1602341975595">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1601970163597" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1601973350435">
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602341975595" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1602142043976">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1601973350435" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1602142043976" />
     <state x="301" y="120" key="extract.method.dialog" timestamp="1602140529705">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -423,6 +430,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="0" y="0" width="587" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1601972035435" />
+    <state x="409" y="242" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1602483347757">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="409" y="242" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1280.680@0.0.1280.680" timestamp="1602483347757" />
     <state x="91" y="0" key="new project wizard" timestamp="1601970281434">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -442,32 +453,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>519</line>
+          <line>521</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>381</line>
+          <line>382</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>314</line>
+          <line>315</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>228</line>
+          <line>229</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>302</line>
+          <line>303</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
-          <line>391</line>
+          <line>392</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -502,42 +513,42 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>175</line>
+          <line>176</line>
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>159</line>
+          <line>160</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>447</line>
+          <line>449</line>
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
-          <line>268</line>
+          <line>269</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
-          <line>419</line>
+          <line>420</line>
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
-          <line>424</line>
+          <line>425</line>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>333</line>
+          <line>334</line>
           <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/redmineManagement/ConnectionWithRedmine.java</url>
-          <line>712</line>
+          <line>714</line>
           <option name="timeStamp" value="89" />
         </line-breakpoint>
       </breakpoints>

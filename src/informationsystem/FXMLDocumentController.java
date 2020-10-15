@@ -252,8 +252,9 @@ public class FXMLDocumentController implements Initializable {
 
             //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
             String student = getStudentName(journalReader.getJournals(issue.getId().toString()), connectionToRedmine.getProfessorName());
+            Logger.getAnonymousLogger().info("Student is " + student);
             ConfiguredTask confTask = new ConfiguredTask(issue, student,
-                    false,
+                    needForced,
                     connectionToRedmine.getLint(), pyRating, javaErrorLimit);
             connectionToRedmine.checkIssueAttachments(confTask);
             //connectionToRedmine.checkAttachments(issue, needForced);

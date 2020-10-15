@@ -175,7 +175,7 @@ if __name__ == "__main__":
     else:
         print(*list(
             map(lambda x: ["test" + str(x[0]),
-                           Locale.Passed if str(x[1]) is "True" else Locale.Failed if not x[1] else x[1]],
+                           Locale.Passed if str(x[1]) == "True" else Locale.Failed if not x[1] else x[1]],
                 enumerate(retArray, 1))), sep="\n")
     # print(retArrray)
     if len(set(retArray)) == 1 and str(retArray[0]) == "True":
