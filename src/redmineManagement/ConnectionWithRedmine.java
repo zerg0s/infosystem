@@ -286,13 +286,14 @@ public class ConnectionWithRedmine {
         if (issueAttachments == null && issueAttachments.size() == 0) {
             return Optional.empty();
         }
-        int idMax = 0;
+        long idMax = 0;
         int maxIndex = 0;
         for (int i = 0; i < issueAttachments.size(); i++) {
             if (isKnownAttachExtention(issueAttachments.get(i).getFileName()) &&
-                    issueAttachments.get(i).getId() > idMax)
-            idMax = issueAttachments.get(i).getId();
-            maxIndex = i;
+                    issueAttachments.get(i).getId() > idMax) {
+                idMax = issueAttachments.get(i).getId();
+                maxIndex = i;
+            }
         }
         if (idMax == 0) {
             return Optional.empty();
