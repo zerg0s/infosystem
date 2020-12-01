@@ -12,10 +12,7 @@ from localization import Locale
 # read the correct answer for test## from .a file
 def readAnswerFile(pathToFile):
     if os.path.isfile(pathToFile):
-        retVal = open(pathToFile, "r", encoding="utf-8").read()
-    else:
-        retVal = ""
-    return retVal
+        return open(pathToFile, "r", encoding="utf-8").read()
 
 
 def readConfing(pathTocfg):
@@ -38,7 +35,7 @@ def checkCrashExists(userAnswer):
 
 
 def processAndTrimAnswer(answer):
-    return answer.strip().replace(" \n", "\n")
+    return answer.strip().replace(" \n", "\n") if answer else None
 
 
 def checkConfigurationAndRestrictions(testConfiguration):
@@ -81,12 +78,12 @@ def checkConfigurationAndRestrictions(testConfiguration):
 
 easyMode = True  # в этом режиме показываются входные данные для упавших тестов.
 debugMode = False  # ONLY for local test
-maxExecutionTimeDelay = 1  # max timeout for a task
+maxExecutionTimeDelay = 3  # max timeout for a task
 ################
 
 if __name__ == "__main__":
-    fileToCheck = "my.py"
-    dirToCheck = "regLastWord"
+    fileToCheck = "test.py"
+    dirToCheck = "countSort"
     # dirToCheck = "regFindReplaceRepeated"
     retArray = list()
 
@@ -136,11 +133,12 @@ if __name__ == "__main__":
                 # надо проверить .a файлы с ответом
                 correctAnswer = readAnswerFile(dirWithTests + file[:file.rfind(".")] + ".a")
                 # вдруг будут тесты с 2 правильными ответами
-                # correctAnswer2 = readAnswerFile(myDir + file[:file.rfind(".")] + ".a1")
+                correctAnswer2 = readAnswerFile(dirWithTests + file[:file.rfind(".")] + ".a1")
 
                 # функция проверки правильного ответа - пока единственный обязательный параметр конфига
                 funcToCheckAnswer = testConfiguration.get("func", None)
-                if funcToCheckAnswer is None: break
+                if funcToCheckAnswer is None:
+                    break
 
                 # кодировочный костыль, иногда приходит в кодировке анси
                 try:
@@ -148,28 +146,46 @@ if __name__ == "__main__":
                 except UnicodeDecodeError:
                     userAnswer = open("output", "r", encoding="cp1251").read().replace("\r\n", "\n")
 
-                if not checkCrashExists(userAnswer):
-                    userAnswer = processAndTrimAnswer(userAnswer)
-                    correctAnswer = processAndTrimAnswer(correctAnswer)
-                    # tricky check for random tasks - if answer could be divided into 23
-                    isAnswerCorrect = False
-                    if "answer_code" in testConfiguration:
-                        if testConfiguration["answer_code"] == "mod23":
-                            isAnswerCorrect = (int(userAnswer) % 23 == 0)
-                    else:
-                        isAnswerCorrect = funcToCheckAnswer(correctAnswer, userAnswer)
-                    retArray.append(isAnswerCorrect)
-
-                    if not isAnswerCorrect:
-                        extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
-                        # print(correctAnswer)
-                        if debugMode:
-                            print(userAnswer)
-                        if "ContinueIfTestFailed" not in testConfiguration:  # для толстых программ
-                            break  # программа пользователя выдала неверный результат, дальше не надо.
-                else:
+                if checkCrashExists(userAnswer):
+                    retArray.append(open(dirWithTests + file, encoding="utf-8").read())
+                    retArray.append(Locale.CrashFound)
                     retArray.append(userAnswer)
                     break  # программа пользователя упала, дальше не надо.
+
+                userAnswer = processAndTrimAnswer(userAnswer)
+                correctAnswer = processAndTrimAnswer(correctAnswer)
+                correctAnswer2 = processAndTrimAnswer(correctAnswer2)
+
+                #Костыль для случаев, когда любой ответ - не падение верный
+                if correctAnswer.strip() == "":
+                    retArray.append(True)
+                    continue
+
+                # tricky check for random tasks - if answer could be divided into 23
+                isAnswerCorrect = False
+                if "answer_code" in testConfiguration:
+                    if testConfiguration["answer_code"] == "mod23":
+                        isAnswerCorrect = (int(userAnswer) % 23 == 0)
+                else:
+                    correctAnswers = list()
+                    if correctAnswer:
+                        correctAnswers.append(correctAnswer)
+                    if correctAnswer2:
+                        correctAnswers.append(correctAnswer2)
+
+                    for aCorrectAnswer in correctAnswers:
+                        isAnswerCorrect |= funcToCheckAnswer(aCorrectAnswer, userAnswer)
+
+                retArray.append(isAnswerCorrect)
+
+                if not isAnswerCorrect:
+                    extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
+                    # print(correctAnswer)
+                    if debugMode:
+                        print(userAnswer)
+                    if "ContinueIfTestFailed" not in testConfiguration:  # для толстых программ
+                        break  # программа пользователя выдала неверный результат, дальше не надо.
+
     if len(retArray) == 0:
         print(Locale.GeneralError)
     else:

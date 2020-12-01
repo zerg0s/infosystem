@@ -63,15 +63,17 @@
 		<test id="83" subject="Выборы Государственной Думы" testSetFolder="parlamentElections"/>
 		<test id="84" subject="Контрольная по ударениям" testSetFolder="accentQuiz"/>
 		<test id="85" subject="Банковские счета" testSetFolder="bankAccounts"/>
+		<test id="86" subject="Подсчет уровней родства" testSetFolder="treeOfParents"/>
 	</homework>
 	
 	<homework id="9" name="ФункцПрограммирование">
-		<test id="91" subject="Количество различных чисел" testSetFolder="FuncNumberOfVariousNumersInARow"/>
+		<test id="91" subject="Количество различных чисел2" testSetFolder="FuncNumberOfVariousNumersInARow"/>
 		<test id="92" subject="Есть ли ноль?" testSetFolder="FuncIsThereAZero"/>
 		<test id="93" subject="Наименьший нечетный" testSetFolder="FuncLowestOddNumber"/>
 		<test id="94" subject="Произведение пятых степеней" testSetFolder="FuncFifthGradeMult"/>
 		<test id="95" subject="Все перестановки заданной длины" testSetFolder="FuncAllRecombinations"/>
 		<test id="96" subject="Ставки" testSetFolder="FuncBetsCocroaches"/>
+		<test id="97" subject="Реализация XOR" testSetFolder="FuncXoR"/>
 	</homework>
 	
 	<homework id="10" name="Классы">
