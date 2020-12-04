@@ -1,4 +1,4 @@
-# код проверяльщика задач, версия 2019.25
+# код проверяльщика задач, версия 2020.26
 
 import os
 import subprocess
@@ -38,6 +38,40 @@ def processAndTrimAnswer(answer):
     return answer.strip().replace(" \n", "\n") if answer else None
 
 
+def cleanMainFromFileToCheck():
+    isMainFound = False
+    sourceFileWithoutMain = ""
+    for line in open(fileToCheck, "r", encoding="utf-8").readlines():
+        if line.strip().startswith("if __name__"):
+            isMainFound = True
+            break
+        sourceFileWithoutMain += line
+    if isMainFound:
+        text_file = open(fileToCheck, "w+", encoding="utf-8")
+        text_file.write(sourceFileWithoutMain)
+        text_file.close()
+
+def addExecStdIntoTheEndOfFile():
+    text_file = open(fileToCheck, "a+", encoding="utf-8")
+    text_file.write("\n\nfrom sys import stdin\n\nif __name__ == \"__main__\": exec(stdin.read())")
+    text_file.close()
+
+def prettyPrintRetArray(retArray):
+    i = 0
+    while i < len(retArray):
+        print(f"test{i+1} - ", end="")
+        if str(retArray[i]) == "True":
+            print(Locale.Passed)
+            i += 1
+        else:
+            print(Locale.Failed)
+            i += 1
+            break
+    while i < len(retArray):
+        print(retArray[i])
+        i += 1
+
+
 def checkConfigurationAndRestrictions(testConfiguration):
     if "functional" in testConfiguration:
         sourceFileWithoutHeader = ""
@@ -73,17 +107,38 @@ def checkConfigurationAndRestrictions(testConfiguration):
             exit()
 
 
+def getCorrectAnswers(dirWithTests, fileWithTests):
+    correctAnswers = list()
+    # как минимум 1 правильный ответ должен быть, иначе считаем любой ответ правильным
+    correctAnswer = readAnswerFile(dirWithTests + fileWithTests[:fileWithTests.rfind(".")] + ".a")
+    if correctAnswer is None:
+        correctAnswer = ""
+    correctAnswers.append(correctAnswer)
+
+    # вдруг будут тесты с более чем 1 правильными ответами
+    i = 1
+    otherAnswerExists = os.path.isfile(dirWithTests + fileWithTests[:fileWithTests.rfind(".")] + ".a" + str(i))
+
+    while otherAnswerExists:
+        correctAnswer2 = readAnswerFile(dirWithTests + fileWithTests[:fileWithTests.rfind(".")] + ".a" + str(i))
+        if correctAnswer2 is None:
+            break
+        correctAnswers.append(correctAnswer2)
+        i += 1
+    return correctAnswers
+
+
 ################
 # Manual Config Section
 
 easyMode = True  # в этом режиме показываются входные данные для упавших тестов.
 debugMode = False  # ONLY for local test
-maxExecutionTimeDelay = 3  # max timeout for a task
+maxExecutionTimeDelay = 2  # max timeout for a task
 ################
 
 if __name__ == "__main__":
-    fileToCheck = "test.py"
-    dirToCheck = "countSort"
+    fileToCheck = "matrix.py"
+    dirToCheck = "classMatrix"
     # dirToCheck = "regFindReplaceRepeated"
     retArray = list()
 
@@ -99,16 +154,23 @@ if __name__ == "__main__":
         # для функционального программирования еще ограничение: одна инструкция языка.
         checkConfigurationAndRestrictions(testConfiguration)
 
-        for file in sorted(filter(lambda x: x.endswith(".t"), os.listdir(dirWithTests)), key=lambda x: int(x[4:-2])):
-            # для всех файлов .t с входными данными
+        # для всех файлов .t с входными данными
+        testFiles = sorted(filter(lambda x: x.endswith(".t"), os.listdir(dirWithTests)), key=lambda x: int(x[4:-2]))
+
+        for file in testFiles:
             if os.path.isfile(dirWithTests + file) and file.endswith(".t"):
-                # tmp = "<" + myDir + file
-                # os.system("python -u " + fileToCheck + " " + tmp + " >output")
-                copy2(dirWithTests + file, "input.txt")
+                needToCompileTestData = testConfiguration.get("needToCompileTestData", None)
+                inputDataFile = testConfiguration.get("input", "input.txt")
+
+                copy2(dirWithTests + file, inputDataFile)
+                if needToCompileTestData:
+                    cleanMainFromFileToCheck()
+                    addExecStdIntoTheEndOfFile()
+
                 proc = subprocess.Popen(["python", "-u", fileToCheck],
                                         stdout=open("output", "w+", encoding="utf-8"),
                                         stderr=subprocess.STDOUT,
-                                        stdin=open(dirWithTests + file, encoding="utf-8"),
+                                        stdin=open(inputDataFile, encoding="utf-8"),
                                         )
                 # вычитываем исходный .t файл и помещаем всё содержимое во входящий поток к тестируемой программе
                 # if "input" in testConfiguration:
@@ -130,10 +192,8 @@ if __name__ == "__main__":
                     if "input" in testConfiguration and os.path.exists(str(testConfiguration["input"])):
                         os.remove(str(testConfiguration["input"]))
 
-                # надо проверить .a файлы с ответом
-                correctAnswer = readAnswerFile(dirWithTests + file[:file.rfind(".")] + ".a")
-                # вдруг будут тесты с 2 правильными ответами
-                correctAnswer2 = readAnswerFile(dirWithTests + file[:file.rfind(".")] + ".a1")
+                # надо проверить .a файлы с ответами
+                correctAnswers = getCorrectAnswers(dirWithTests, file)
 
                 # функция проверки правильного ответа - пока единственный обязательный параметр конфига
                 funcToCheckAnswer = testConfiguration.get("func", None)
@@ -147,17 +207,19 @@ if __name__ == "__main__":
                     userAnswer = open("output", "r", encoding="cp1251").read().replace("\r\n", "\n")
 
                 if checkCrashExists(userAnswer):
-                    retArray.append(open(dirWithTests + file, encoding="utf-8").read())
+                    extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
+                    if easyMode and extraDataForEasyMode:
+                        retArray.append(Locale.EasyModeHelp % extraDataForEasyMode)
+
                     retArray.append(Locale.CrashFound)
                     retArray.append(userAnswer)
                     break  # программа пользователя упала, дальше не надо.
 
                 userAnswer = processAndTrimAnswer(userAnswer)
-                correctAnswer = processAndTrimAnswer(correctAnswer)
-                correctAnswer2 = processAndTrimAnswer(correctAnswer2)
+                correctAnswers = list(map(processAndTrimAnswer, correctAnswers))
 
-                #Костыль для случаев, когда любой ответ - не падение верный
-                if correctAnswer.strip() == "":
+                # Костыль для случаев, когда любой ответ - не падение верный
+                if len(correctAnswers) > 0 and correctAnswers[0].strip() == "":
                     retArray.append(True)
                     continue
 
@@ -166,34 +228,25 @@ if __name__ == "__main__":
                 if "answer_code" in testConfiguration:
                     if testConfiguration["answer_code"] == "mod23":
                         isAnswerCorrect = (int(userAnswer) % 23 == 0)
-                else:
-                    correctAnswers = list()
-                    if correctAnswer:
-                        correctAnswers.append(correctAnswer)
-                    if correctAnswer2:
-                        correctAnswers.append(correctAnswer2)
-
+                elif userAnswer is not None:
                     for aCorrectAnswer in correctAnswers:
                         isAnswerCorrect |= funcToCheckAnswer(aCorrectAnswer, userAnswer)
-
+                
                 retArray.append(isAnswerCorrect)
 
                 if not isAnswerCorrect:
                     extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
                     # print(correctAnswer)
                     if debugMode:
-                        print(userAnswer)
+                        retArray.append(userAnswer)
                     if "ContinueIfTestFailed" not in testConfiguration:  # для толстых программ
                         break  # программа пользователя выдала неверный результат, дальше не надо.
 
     if len(retArray) == 0:
         print(Locale.GeneralError)
     else:
-        print(*list(
-            map(lambda x: ["test" + str(x[0]),
-                           Locale.Passed if str(x[1]) == "True" else Locale.Failed if not x[1] else x[1]],
-                enumerate(retArray, 1))), sep="\n")
-    # print(retArrray)
+        prettyPrintRetArray(retArray)
+
     if len(set(retArray)) == 1 and str(retArray[0]) == "True":
         print(Locale.Passed)
     else:
