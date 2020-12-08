@@ -131,116 +131,118 @@ def getCorrectAnswers(dirWithTests, fileWithTests):
 ################
 # Manual Config Section
 
-easyMode = True  # в этом режиме показываются входные данные для упавших тестов.
-debugMode = False  # ONLY for local test
+easyMode = False  # в этом режиме показываются входные данные для упавших тестов.
 maxExecutionTimeDelay = 2  # max timeout for a task
 ################
 
 if __name__ == "__main__":
     fileToCheck = "matrix.py"
-    dirToCheck = "classMatrix"
+    dirToCheck = "classHierarchy"
     # dirToCheck = "regFindReplaceRepeated"
     retArray = list()
 
     extraDataForEasyMode = ""
 
-    if len(sys.argv) > 2 or debugMode == 1:
-        if not debugMode:
-            fileToCheck = sys.argv[1]
-            dirToCheck = sys.argv[2]
-        dirWithTests = ".\\tests\\" + dirToCheck + "\\"
-        testConfiguration = readConfing(dirWithTests + "config.conf")
+    if len(sys.argv) > 2:
+        fileToCheck = sys.argv[1]
+        dirToCheck = sys.argv[2]
+        if len(sys.argv) > 3:
+            easyMode = True if sys.argv[3] else easyMode
+            
+    dirWithTests = ".\\tests\\" + dirToCheck + "\\"
+    testConfiguration = readConfing(dirWithTests + "config.conf")
 
-        # для функционального программирования еще ограничение: одна инструкция языка.
-        checkConfigurationAndRestrictions(testConfiguration)
+    # для функционального программирования еще ограничение: одна инструкция языка.
+    checkConfigurationAndRestrictions(testConfiguration)
 
-        # для всех файлов .t с входными данными
-        testFiles = sorted(filter(lambda x: x.endswith(".t"), os.listdir(dirWithTests)), key=lambda x: int(x[4:-2]))
+    # для всех файлов .t с входными данными
+    testFiles = sorted(filter(lambda x: x.endswith(".t"), os.listdir(dirWithTests)), key=lambda x: int(x[4:-2]))
 
-        for file in testFiles:
-            if os.path.isfile(dirWithTests + file) and file.endswith(".t"):
-                needToCompileTestData = testConfiguration.get("needToCompileTestData", None)
-                inputDataFile = testConfiguration.get("input", "input.txt")
+    for file in testFiles:
+        if os.path.isfile(dirWithTests + file) and file.endswith(".t"):
+            needToCompileTestData = testConfiguration.get("needToCompileTestData", None)
+            inputDataFile = testConfiguration.get("input", "input.txt")
 
-                copy2(dirWithTests + file, inputDataFile)
-                if needToCompileTestData:
-                    cleanMainFromFileToCheck()
-                    addExecStdIntoTheEndOfFile()
+            copy2(dirWithTests + file, inputDataFile)
+            if needToCompileTestData:
+                cleanMainFromFileToCheck()
+                addExecStdIntoTheEndOfFile()
 
-                proc = subprocess.Popen(["python", "-u", fileToCheck],
-                                        stdout=open("output", "w+", encoding="utf-8"),
-                                        stderr=subprocess.STDOUT,
-                                        stdin=open(inputDataFile, encoding="utf-8"),
-                                        )
-                # вычитываем исходный .t файл и помещаем всё содержимое во входящий поток к тестируемой программе
-                # if "input" in testConfiguration:
-                #     copy2(myDir + file, str(testConfiguration["input"]))
-                #     inputDataForUsersProgram = open(str(testConfiguration["input"]), "rb").read()
-                # else:
-                #     inputDataForUsersProgram = open(myDir + file, "rb").read()
-                #     proc.stdin.write(inputDataForUsersProgram)
+            proc = subprocess.Popen(["python", "-u", fileToCheck],
+                                    stdout=open("output", "w+", encoding="utf-8"),
+                                    stderr=subprocess.STDOUT,
+                                    stdin=open(inputDataFile, encoding="utf-8"),
+                                    )
+            # вычитываем исходный .t файл и помещаем всё содержимое во входящий поток к тестируемой программе
+            # if "input" in testConfiguration:
+            #     copy2(myDir + file, str(testConfiguration["input"]))
+            #     inputDataForUsersProgram = open(str(testConfiguration["input"]), "rb").read()
+            # else:
+            #     inputDataForUsersProgram = open(myDir + file, "rb").read()
+            #     proc.stdin.write(inputDataForUsersProgram)
 
-                # ждем отклика в течение таймаута, в outs - результат работы программы
-                try:
-                    outs, errs = proc.communicate(timeout=maxExecutionTimeDelay)
-                except subprocess.TimeoutExpired:
-                    proc.kill()
-                    outs, errs = proc.communicate()
-                    retArray.append(Locale.Timeout)
-                    break
-                finally:
-                    if "input" in testConfiguration and os.path.exists(str(testConfiguration["input"])):
-                        os.remove(str(testConfiguration["input"]))
+            # ждем отклика в течение таймаута, в outs - результат работы программы
+            try:
+                outs, errs = proc.communicate(timeout=maxExecutionTimeDelay)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+                outs, errs = proc.communicate()
+                retArray.append(Locale.Timeout)
+                break
+            finally:
+                if "input" in testConfiguration and os.path.exists(str(testConfiguration["input"])):
+                    os.remove(str(testConfiguration["input"]))
 
-                # надо проверить .a файлы с ответами
-                correctAnswers = getCorrectAnswers(dirWithTests, file)
+            # надо проверить .a файлы с ответами
+            correctAnswers = getCorrectAnswers(dirWithTests, file)
 
-                # функция проверки правильного ответа - пока единственный обязательный параметр конфига
-                funcToCheckAnswer = testConfiguration.get("func", None)
-                if funcToCheckAnswer is None:
-                    break
+            # функция проверки правильного ответа - пока единственный обязательный параметр конфига
+            funcToCheckAnswer = testConfiguration.get("func", None)
+            if funcToCheckAnswer is None:
+                break
 
-                # кодировочный костыль, иногда приходит в кодировке анси
-                try:
-                    userAnswer = open("output", "r", encoding="utf-8").read().replace("\r\n", "\n")
-                except UnicodeDecodeError:
-                    userAnswer = open("output", "r", encoding="cp1251").read().replace("\r\n", "\n")
+            # кодировочный костыль, иногда приходит в кодировке анси
+            try:
+                userAnswer = open("output", "r", encoding="utf-8").read().replace("\r\n", "\n")
+            except UnicodeDecodeError:
+                userAnswer = open("output", "r", encoding="cp1251").read().replace("\r\n", "\n")
 
-                if checkCrashExists(userAnswer):
-                    extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
-                    if easyMode and extraDataForEasyMode:
-                        retArray.append(Locale.EasyModeHelp % extraDataForEasyMode)
+            if checkCrashExists(userAnswer):
+                extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
+                if easyMode and extraDataForEasyMode:
+                    retArray.append(Locale.EasyModeHelp % extraDataForEasyMode)
 
-                    retArray.append(Locale.CrashFound)
-                    retArray.append(userAnswer)
-                    break  # программа пользователя упала, дальше не надо.
+                retArray.append(Locale.CrashFound)
+                retArray.append(userAnswer)
+                break  # программа пользователя упала, дальше не надо.
 
-                userAnswer = processAndTrimAnswer(userAnswer)
-                correctAnswers = list(map(processAndTrimAnswer, correctAnswers))
+            userAnswer = processAndTrimAnswer(userAnswer)
+            correctAnswers = list(map(processAndTrimAnswer, correctAnswers))
 
-                # Костыль для случаев, когда любой ответ - не падение верный
-                if len(correctAnswers) > 0 and correctAnswers[0].strip() == "":
-                    retArray.append(True)
-                    continue
+            # Костыль для случаев, когда любой ответ - не падение верный
+            if len(correctAnswers) > 0 and correctAnswers[0].strip() == "":
+                retArray.append(True)
+                continue
 
-                # tricky check for random tasks - if answer could be divided into 23
-                isAnswerCorrect = False
-                if "answer_code" in testConfiguration:
-                    if testConfiguration["answer_code"] == "mod23":
-                        isAnswerCorrect = (int(userAnswer) % 23 == 0)
-                elif userAnswer is not None:
-                    for aCorrectAnswer in correctAnswers:
-                        isAnswerCorrect |= funcToCheckAnswer(aCorrectAnswer, userAnswer)
-                
-                retArray.append(isAnswerCorrect)
+            # tricky check for random tasks - if answer could be divided into 23
+            isAnswerCorrect = False
+            if "answer_code" in testConfiguration:
+                if testConfiguration["answer_code"] == "mod23":
+                    isAnswerCorrect = (int(userAnswer) % 23 == 0)
+            elif userAnswer is not None:
+                for aCorrectAnswer in correctAnswers:
+                    isAnswerCorrect |= funcToCheckAnswer(aCorrectAnswer, userAnswer)
 
-                if not isAnswerCorrect:
-                    extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
-                    # print(correctAnswer)
-                    if debugMode:
-                        retArray.append(userAnswer)
-                    if "ContinueIfTestFailed" not in testConfiguration:  # для толстых программ
-                        break  # программа пользователя выдала неверный результат, дальше не надо.
+            retArray.append(isAnswerCorrect)
+
+            if not isAnswerCorrect:
+                extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
+                # print(correctAnswer)
+                #if easyMode:
+                #    retArray.append(Locale.YourAnswer);
+                #    retArray.append(userAnswer)
+                if "ContinueIfTestFailed" not in testConfiguration:  # для толстых программ
+                    break  # программа пользователя выдала неверный результат, дальше не надо.
 
     if len(retArray) == 0:
         print(Locale.GeneralError)

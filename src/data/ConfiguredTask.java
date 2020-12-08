@@ -9,19 +9,22 @@ public class ConfiguredTask {
     private boolean isLintRequired;
     private double requiredPythonRating;
     private int maxJavaLintErrors;
+    private boolean isInEasyMode;
 
     public ConfiguredTask(Issue issue,
                           String taskCompleter,
                           boolean isNeededForceCheck,
                           boolean isLintRequired,
                           double requiredPythonRating,
-                          int javaErrors) {
+                          int javaErrors,
+                          boolean easyMode) {
         this.isLintRequired = isLintRequired;
         this.isNeededForceCheck = isNeededForceCheck;
         this.issue = issue;
         this.requiredPythonRating = requiredPythonRating;
         this.taskCompleter = taskCompleter;
         this.maxJavaLintErrors = javaErrors;
+        this.isInEasyMode = easyMode;
     }
 
     @Override
@@ -78,5 +81,9 @@ public class ConfiguredTask {
 
     public void setMaxJavaLintErrors(int maxJavaLintErrors) {
         this.maxJavaLintErrors = maxJavaLintErrors;
+    }
+
+    public boolean isEasyMode() {
+        return isInEasyMode;
     }
 }

@@ -85,6 +85,12 @@ public class FXMLDocumentController implements Initializable {
     private CheckBox checkBoxJavaErrScan;
 
     @FXML
+    private CheckBox easyModechk;
+
+    @FXML
+    private CheckBox checkAllIterations;
+
+    @FXML
     private CheckBox checkBoxPythonRateScan;
 
     @FXML
@@ -200,28 +206,30 @@ public class FXMLDocumentController implements Initializable {
         Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, "======Started========\n");
         connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
 
-        if (!comboxUserName.getValue().toString().isEmpty()
-                && !comboxProject.getValue().toString().isEmpty()
-                && !comboxVersion.getValue().toString().isEmpty()) {
+        boolean easyMode = easyModechk.isSelected();
+        boolean checkAll = checkAllIterations.isSelected();
+        String iterationName = !checkAll ? comboxVersion.getValue().toString() : "";
 
+        if (!comboxUserName.getValue().toString().isEmpty()
+                && !comboxProject.getValue().toString().isEmpty()) {
             List<Issue> issues = null;
             ArrayList<String> journals = null;
             try {
-                issues = connectionToRedmine.getMyIssues(comboxVersion.getValue().toString());
+                issues = connectionToRedmine.getMyIssues(iterationName);
             } catch (RedmineException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             for (Issue issue : issues) {
-                processIssue(issue);
+                processIssue(issue, easyMode);
             }
 
         }
         Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, "======Finished========\n");
     }
 
-    private void processIssue(Issue issue) {
-        processIssue(issue, false, false);
+    private void processIssue(Issue issue, boolean easyMode) {
+        processIssue(issue, false, false, easyMode);
     }
 
     private void processIssueForced(Issue issue) {
@@ -229,14 +237,14 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void processIssueForced(Issue issue, boolean needLog) {
-        processIssue(issue, false, true);
+        processIssue(issue, false, true, false);
     }
 
     private void processConfiguredIssue(ConfiguredTask task) {
         processIssue(task);
     }
 
-    private void processIssue(Issue issue, boolean needLog, boolean needForced) {
+    private void processIssue(Issue issue, boolean needLog, boolean needForced, boolean easyMode) {
         ArrayList<String> journals;
         if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
             Logger.getAnonymousLogger().info(issue.toString());
@@ -255,7 +263,7 @@ public class FXMLDocumentController implements Initializable {
             Logger.getAnonymousLogger().info("Student is " + student);
             ConfiguredTask confTask = new ConfiguredTask(issue, student,
                     needForced,
-                    connectionToRedmine.getLint(), pyRating, javaErrorLimit);
+                    connectionToRedmine.getLint(), pyRating, javaErrorLimit, easyMode);
             connectionToRedmine.checkIssueAttachments(confTask);
             //connectionToRedmine.checkAttachments(issue, needForced);
 
@@ -374,8 +382,8 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleCheckboxNeedLint(){
-        if (!checkboxNeedLint.isSelected()){
+    private void handleCheckboxNeedLint() {
+        if (!checkboxNeedLint.isSelected()) {
             connectionToRedmine.setLint(false);
             checkBoxJavaErrScan.setSelected(false);
             checkBoxPythonRateScan.setSelected(false);
@@ -420,6 +428,7 @@ public class FXMLDocumentController implements Initializable {
         //Logger.getAnonymousLogger().log(Level.INFO, IssueToTestNumber.getText());
         String issueNum = IssueToTestNumber.getText();
         Integer issueNumLong = 0;
+        boolean easyMode = easyModechk.isSelected();
         connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
         try {
             issueNumLong = Integer.parseInt(issueNum);
@@ -438,12 +447,11 @@ public class FXMLDocumentController implements Initializable {
 
             String student = getStudentName(journalReader.getJournals(currentIssue.getId().toString()), connectionToRedmine.getProfessorName());
 
-            ConfiguredTask task = new ConfiguredTask(currentIssue, student, isForceCheck, isLintNeeded, pyRating, javaErrorLimit);
+            ConfiguredTask task = new ConfiguredTask(currentIssue, student, isForceCheck, isLintNeeded, pyRating, javaErrorLimit, easyMode);
             Logger.getAnonymousLogger().info(task.toString());
 
             this.processConfiguredIssue(task);
 
-            //this.processIssueForced(connectionToRedmine.getIssueByID(issueNumLong), true);
         } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.INFO, ex.toString());
         }

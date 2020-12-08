@@ -8,4 +8,5 @@ class Locale:
     Passed = "Passed"
     EasyModeHelp = "Wrong answer was received for input:\n%s"
     CrashFound = "\nProgram crash found in your reply:\n"
+    YourAnswer = "\nYour answer is:\n"
 

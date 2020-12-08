@@ -14,6 +14,7 @@ public class TaskChecker {
     protected String subject;
     protected String fileToManage;
     protected String workingDir = ".\\temp\\";
+    protected boolean isEasyMode;
 
     protected static HashMap<String, String> knownTests;
 
@@ -39,6 +40,10 @@ public class TaskChecker {
     }
     public String getNameForKnownTest() {
         return getTestName3(getSubject());
+    }
+
+    public boolean isInEasyMode(){
+        return isEasyMode;
     }
 
     String getFileToManage() {
