@@ -1,4 +1,4 @@
-# код проверяльщика задач, версия 2020.26
+# код проверяльщика задач, версия 2020.29
 
 import os
 import subprocess
@@ -255,3 +255,4 @@ if __name__ == "__main__":
         if easyMode and extraDataForEasyMode:
             print(Locale.EasyModeHelp % extraDataForEasyMode)
         print(Locale.Failed)
+ 
