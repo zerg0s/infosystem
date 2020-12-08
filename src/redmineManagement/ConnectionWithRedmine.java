@@ -309,7 +309,7 @@ public class ConnectionWithRedmine {
         }
         //if javaLint was OK or not required
         if (javaLintResult) {
-            JavaTaskChecker javaChecker = new JavaTaskChecker(issue.getSubject(), fileToManage);
+            JavaTaskChecker javaChecker = new JavaTaskChecker(issue.getSubject(), fileToManage, task.isEasyMode());
             String testFolder = javaChecker.getNameForKnownTest();
             if (!testFolder.equals("")) {
                 processResult = doJavaTaskCheck(javaChecker, issue);
@@ -390,9 +390,11 @@ public class ConnectionWithRedmine {
                 this.uploadAttachment(task.getIssue(), fullFileName + "_errorReport.txt");
                 task.getIssue().setNotes("Some corrections are required. See the attached file");
             }
+            this.updateIssue(task.getIssue());
             return false;
         } else {
             task.getIssue().setNotes(generateSuccessMsg());
+            this.updateIssue(task.getIssue());
             return true;
         }
     }
