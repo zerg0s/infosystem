@@ -3,3 +3,4 @@
 /myFiles/
 ./ProjectKey.xml
 *.class
+/out/*
