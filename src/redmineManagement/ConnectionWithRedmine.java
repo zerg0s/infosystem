@@ -197,7 +197,7 @@ public class ConnectionWithRedmine {
                     if (attach.getFileName().endsWith(".py")) {
                         int checkRes = -1;
                         if (doPyLint(issue, fileToManage)) {
-                            PyTaskChecker checker = new PyTaskChecker(issue.getSubject(), fileToManage);
+                            PyTaskChecker checker = new PyTaskChecker(issue.getSubject(), fileToManage, false);
                             if (!checker.getNameForKnownTest(issue.getSubject()).equals("")) {
                                 checkRes = doPyTaskCheck(checker, issue);
                             }
@@ -343,7 +343,7 @@ public class ConnectionWithRedmine {
             pyLintResult = doPyLint(task, fileToManage);
         }
         if (pyLintResult) {
-            PyTaskChecker pyChecker = new PyTaskChecker(issue.getSubject(), fileToManage);
+            PyTaskChecker pyChecker = new PyTaskChecker(issue.getSubject(), fileToManage, task.isEasyMode());
             String testFolder = pyChecker.getNameForKnownTest();
             if (!testFolder.equals("")) {
                 processResult = doPyTaskCheck(pyChecker, issue);
@@ -524,12 +524,12 @@ public class ConnectionWithRedmine {
     }
 
     public List<Issue> getMyIssues(String iterationName) throws RedmineException {
-
-        String iterationid = getIterationIdByName(iterationName);
-
         final Map<String, String> params = new HashMap<>();
+
         params.put("project_id", projectKey);
-        params.put("fixed_version_id", iterationid);
+        if (iterationName != "") {
+            params.put("fixed_version_id", getIterationIdByName(iterationName));
+        }
         params.put("limit", "100");
         params.put("assigned_to_id", "me");
         params.put("include", "attachments, journals");

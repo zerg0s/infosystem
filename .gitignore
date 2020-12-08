@@ -2,3 +2,5 @@
 /JavaDir/ru/mai/
 /myFiles/
 ./ProjectKey.xml
+*.class
+/out/*

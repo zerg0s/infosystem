@@ -85,7 +85,7 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </GridPane.margin>
                   </Button>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="\@PVK Robot UI ver 3.15" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="\@PVK Robot UI ver 3.17" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </GridPane.margin>

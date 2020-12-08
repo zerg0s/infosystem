@@ -23,22 +23,23 @@ import java.nio.file.StandardCopyOption;
  */
 public class PyTaskChecker extends TaskChecker {
 
-    public PyTaskChecker(String subject, String fileToManage) {
+    public PyTaskChecker(String subject, String fileToManage, boolean isEasyMode) {
         this.setSubject(subject);
         this.setFileToManage(fileToManage);
         workingDir = ".\\Pylint\\";
+        this.isEasyMode = isEasyMode;
     }
 
     public PyTaskChecker(String subject) {
-        this(subject, "file.py");
+        this(subject, "file.py", false);
     }
 
     public String startPyCheck() {
-        return startPyCheck(this.getSubject(), this.getFileToManage());
+        return startPyCheck(this.getSubject(), this.getFileToManage(), this.isInEasyMode());
     }
 
 
-    public String startPyCheck(String subject, String fileToManage) throws UnsupportedOperationException {
+    public String startPyCheck(String subject, String fileToManage, boolean isInEasyMode) throws UnsupportedOperationException {
 
         StringBuilder sb = new StringBuilder();
         FileAndItsTest data = copyFileToTempFolder(fileToManage);
@@ -50,7 +51,7 @@ public class PyTaskChecker extends TaskChecker {
 
         try {
             ProcessBuilder builder = new ProcessBuilder("python.exe",
-                    "pyTestRunner.py", data.fileName, data.testName);
+                    "pyTestRunner.py", data.fileName, data.testName, isEasyMode ? "True" : "");
             builder.redirectErrorStream(true);
             builder.directory(new File(workingDir));
             Process p = builder.start();
