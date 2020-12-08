@@ -496,11 +496,11 @@ public class ConnectionWithRedmine {
     }
 
     public List<Issue> getClosedIssues(String iterationName) {
-        String iterationid = getIterationIdByName(iterationName);
+        String iterationId = getIterationIdByName(iterationName);
 
         final Map<String, String> params = new HashMap<String, String>();
         params.put("project_id", projectKey);
-        params.put("fixed_version_id", iterationid);
+        params.put("fixed_version_id", iterationId);
         params.put("limit", "100");
         params.put("status_id", "5"); // 5 = closed
         try {
