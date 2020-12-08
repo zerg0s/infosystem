@@ -511,7 +511,7 @@ public class ConnectionWithRedmine {
         // dirtyhack. get another 100.
         final Map<String, String> params2 = new HashMap<String, String>();
         params2.put("project_id", projectKey);
-        params2.put("fixed_version_id", iterationid);
+        params2.put("fixed_version_id", iterationId);
         params2.put("limit", "100");
         params2.put("offset", "100");
         params2.put("status_id", "5"); // 5 = closed
