@@ -16,14 +16,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class JavaTaskChecker extends TaskChecker {
-    public JavaTaskChecker(String subject, String fileToManage) {
+    public JavaTaskChecker(String subject, String fileToManage, boolean easyMode) {
         this.setSubject(subject);
         this.setFileToManage(fileToManage);
+        this.isEasyMode = easyMode;
         workingDir = ".\\JavaDir\\";
     }
 
     public static void main(String[] args) {
-        JavaTaskChecker checker = new JavaTaskChecker("Гражданская оборона(*)", "myFiles/nikitautochkin_grazhdanskayaoborona_civildefense.zip");
+        JavaTaskChecker checker = new JavaTaskChecker("Гражданская оборона(*)", "myFiles/nikitautochkin_grazhdanskayaoborona_civildefense.zip", true);
         checker.startJavaCheck();
     }
 
@@ -44,7 +45,7 @@ public class JavaTaskChecker extends TaskChecker {
         if (data.fileName.endsWith(".java")) {
             JavaCompileSingleJavaFile(sbResultOfTests, data);
         }
-        //false - просто заглушка, ее надо убрать
+
         if (data.fileName.endsWith(".zip")) {
             ZipFile zip = new ZipFile();
             File unzipTo = new File(Paths.get(workingDir.substring(2) + data.fileName.split(".zip")[0]).toUri());
@@ -58,8 +59,6 @@ public class JavaTaskChecker extends TaskChecker {
             try (Stream<Path> walk = Files.walk(unzipTo.toPath())) {
                 List<String> result = walk.map(x -> x.toString())
                         .filter(f -> f.endsWith(".java")).collect(Collectors.toList());
-
-                //result.forEach(System.out::println);
                 File mainFile = null;
                 boolean wasMainFound = false;
                 for (String file : result) {
@@ -149,7 +148,9 @@ public class JavaTaskChecker extends TaskChecker {
             String relative = new File(workingDir).toURI().relativize(new File(data.fileName).toURI()).getPath();
 
             ProcessBuilder builder = new ProcessBuilder("python.exe",
-                    "javaTestRunner.py", relative.replace(".java", ".class").replace("\\","."), data.testName);
+                    "javaTestRunner.py", relative.replace(".java", ".class").replace("\\","."),
+                    data.testName,
+                    isInEasyMode() ? "True" : "");
             builder.redirectErrorStream(true);
             builder.directory(new File(workingDir));
             Process p = builder.start();
