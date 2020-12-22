@@ -1,4 +1,4 @@
-# код проверяльщика задач, версия 2020.29
+# код проверяльщика задач, версия 2020.26
 
 import os
 import subprocess
@@ -110,10 +110,10 @@ def checkConfigurationAndRestrictions(testConfiguration):
 def getCorrectAnswers(dirWithTests, fileWithTests):
     correctAnswers = list()
     # как минимум 1 правильный ответ должен быть, иначе считаем любой ответ правильным
-    correctAnswer = readAnswerFile(dirWithTests + fileWithTests[:fileWithTests.rfind(".")] + ".a")
-    if correctAnswer is None:
-        correctAnswer = ""
-    correctAnswers.append(correctAnswer)
+    readAnswer = readAnswerFile(dirWithTests + fileWithTests[:fileWithTests.rfind(".")] + ".a")
+    if readAnswer is None:
+        readAnswer = ' '
+    correctAnswers.append(readAnswer)
 
     # вдруг будут тесты с более чем 1 правильными ответами
     i = 1
@@ -136,8 +136,8 @@ maxExecutionTimeDelay = 2  # max timeout for a task
 ################
 
 if __name__ == "__main__":
-    fileToCheck = "matrix.py"
-    dirToCheck = "classHierarchy"
+    fileToCheck = "myFile.py"
+    dirToCheck = "reverseInput"
     # dirToCheck = "regFindReplaceRepeated"
     retArray = list()
 
@@ -148,7 +148,7 @@ if __name__ == "__main__":
         dirToCheck = sys.argv[2]
         if len(sys.argv) > 3:
             easyMode = True if sys.argv[3] else easyMode
-            
+
     dirWithTests = ".\\tests\\" + dirToCheck + "\\"
     testConfiguration = readConfing(dirWithTests + "config.conf")
 
@@ -220,7 +220,9 @@ if __name__ == "__main__":
             correctAnswers = list(map(processAndTrimAnswer, correctAnswers))
 
             # Костыль для случаев, когда любой ответ - не падение верный
-            if len(correctAnswers) > 0 and correctAnswers[0].strip() == "":
+            if len(correctAnswers) > 0 and \
+                    (correctAnswers[0] is None or
+                     correctAnswers[0].strip() == ""):
                 retArray.append(True)
                 continue
 
@@ -229,7 +231,7 @@ if __name__ == "__main__":
             if "answer_code" in testConfiguration:
                 if testConfiguration["answer_code"] == "mod23":
                     isAnswerCorrect = (int(userAnswer) % 23 == 0)
-            elif userAnswer is not None:
+            elif userAnswer is not None and correctAnswers[0] is not None:
                 for aCorrectAnswer in correctAnswers:
                     isAnswerCorrect |= funcToCheckAnswer(aCorrectAnswer, userAnswer)
 
@@ -237,10 +239,9 @@ if __name__ == "__main__":
 
             if not isAnswerCorrect:
                 extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
-                # print(correctAnswer)
-                #if easyMode:
-                #    retArray.append(Locale.YourAnswer);
-                #    retArray.append(userAnswer)
+                if easyMode:
+                    retArray.append("Recieved answer:")
+                    retArray.append(userAnswer)
                 if "ContinueIfTestFailed" not in testConfiguration:  # для толстых программ
                     break  # программа пользователя выдала неверный результат, дальше не надо.
 
@@ -255,4 +256,3 @@ if __name__ == "__main__":
         if easyMode and extraDataForEasyMode:
             print(Locale.EasyModeHelp % extraDataForEasyMode)
         print(Locale.Failed)
- 
