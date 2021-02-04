@@ -18,19 +18,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import data.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxListCell;
+import javafx.util.StringConverter;
 import org.apache.commons.codec.Charsets;
-import javafx.scene.control.ListView;
 import redmineManagement.ConnectionWithRedmine;
 import redmineManagement.RedmineJournalsReader;
 
@@ -83,12 +83,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private CheckBox checkBoxJavaErrScan;
-
-    @FXML
-    private CheckBox easyModechk;
-
-    @FXML
-    private CheckBox checkAllIterations;
 
     @FXML
     private CheckBox checkBoxPythonRateScan;
@@ -168,18 +162,77 @@ public class FXMLDocumentController implements Initializable {
         comboxProject.setItems(projectNames);
     }
 
+
+    public static class Cell {
+        private final StringProperty title = new SimpleStringProperty();
+        private final BooleanProperty completed = new SimpleBooleanProperty();
+
+        public Cell(String title, boolean completed) {
+            setTitle(title);
+            setCompleted(completed);
+        }
+
+        public final StringProperty titleProperty() {
+            return this.title;
+        }
+
+
+        public final String getTitle() {
+            return this.titleProperty().get();
+        }
+
+
+        public final void setTitle(final String title) {
+            this.titleProperty().set(title);
+        }
+
+
+        public final BooleanProperty completedProperty() {
+            return this.completed;
+        }
+
+
+        public final boolean isCompleted() {
+            return this.completedProperty().get();
+        }
+
+
+        public final void setCompleted(final boolean completed) {
+            this.completedProperty().set(completed);
+        }
+    }
+
     @FXML
     private void loadLists(ActionEvent event) {
-        ArrayList<String> users = new ArrayList<>();
-        ArrayList<String> tasks = new ArrayList<>();
-        users = connectionToRedmine.getProjectUsers();
-        String tmp = comboxVersion.getValue().toString();
-        tasks = connectionToRedmine.getIterationTasks(tmp);
-        ObservableList<String> itemsWithNames = Students.getItems();
+
+        ArrayList<Cell> users = new ArrayList<>();
+        ArrayList<Cell> tasks = new ArrayList<>();
+        for (String user : connectionToRedmine.getProjectUsers()) {
+            users.add(new Cell(user, false));
+        }
+        for (String task : connectionToRedmine.getIterationTasks(comboxVersion.getValue().toString())) {
+            tasks.add(new Cell(task, false));
+        }
+
+        StringConverter<Cell> converter = new StringConverter<Cell>() {
+            @Override
+            public String toString(Cell document) {
+                return document.getTitle();
+            }
+
+            // not actually used by CheckBoxListCell
+            @Override
+            public Cell fromString(String string) {
+                return null;
+            }
+        };
+        Students.setCellFactory(CheckBoxListCell.forListView(Cell::completedProperty, converter));
+
+        ObservableList<Cell> itemsWithNames = Students.getItems();
         itemsWithNames.clear();
         itemsWithNames.addAll(users);
 
-        ObservableList<String> tasksNames = Tasks.getItems();
+        ObservableList<Cell> tasksNames = Tasks.getItems();
         tasksNames.clear();
         tasksNames.addAll(tasks);
     }
@@ -206,30 +259,28 @@ public class FXMLDocumentController implements Initializable {
         Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, "======Started========\n");
         connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
 
-        boolean easyMode = easyModechk.isSelected();
-        boolean checkAll = checkAllIterations.isSelected();
-        String iterationName = !checkAll ? comboxVersion.getValue().toString() : "";
-
         if (!comboxUserName.getValue().toString().isEmpty()
-                && !comboxProject.getValue().toString().isEmpty()) {
+                && !comboxProject.getValue().toString().isEmpty()
+                && !comboxVersion.getValue().toString().isEmpty()) {
+
             List<Issue> issues = null;
             ArrayList<String> journals = null;
             try {
-                issues = connectionToRedmine.getMyIssues(iterationName);
+                issues = connectionToRedmine.getMyIssues(comboxVersion.getValue().toString());
             } catch (RedmineException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             for (Issue issue : issues) {
-                processIssue(issue, easyMode);
+                processIssue(issue);
             }
 
         }
         Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, "======Finished========\n");
     }
 
-    private void processIssue(Issue issue, boolean easyMode) {
-        processIssue(issue, false, false, easyMode);
+    private void processIssue(Issue issue) {
+        processIssue(issue, false, false);
     }
 
     private void processIssueForced(Issue issue) {
@@ -237,14 +288,14 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void processIssueForced(Issue issue, boolean needLog) {
-        processIssue(issue, false, true, false);
+        processIssue(issue, false, true);
     }
 
     private void processConfiguredIssue(ConfiguredTask task) {
         processIssue(task);
     }
 
-    private void processIssue(Issue issue, boolean needLog, boolean needForced, boolean easyMode) {
+    private void processIssue(Issue issue, boolean needLog, boolean needForced) {
         ArrayList<String> journals;
         if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
             Logger.getAnonymousLogger().info(issue.toString());
@@ -263,7 +314,7 @@ public class FXMLDocumentController implements Initializable {
             Logger.getAnonymousLogger().info("Student is " + student);
             ConfiguredTask confTask = new ConfiguredTask(issue, student,
                     needForced,
-                    connectionToRedmine.getLint(), pyRating, javaErrorLimit, easyMode);
+                    connectionToRedmine.getLint(), pyRating, javaErrorLimit);
             connectionToRedmine.checkIssueAttachments(confTask);
             //connectionToRedmine.checkAttachments(issue, needForced);
 
@@ -428,7 +479,6 @@ public class FXMLDocumentController implements Initializable {
         //Logger.getAnonymousLogger().log(Level.INFO, IssueToTestNumber.getText());
         String issueNum = IssueToTestNumber.getText();
         Integer issueNumLong = 0;
-        boolean easyMode = easyModechk.isSelected();
         connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
         try {
             issueNumLong = Integer.parseInt(issueNum);
@@ -447,11 +497,12 @@ public class FXMLDocumentController implements Initializable {
 
             String student = getStudentName(journalReader.getJournals(currentIssue.getId().toString()), connectionToRedmine.getProfessorName());
 
-            ConfiguredTask task = new ConfiguredTask(currentIssue, student, isForceCheck, isLintNeeded, pyRating, javaErrorLimit, easyMode);
+            ConfiguredTask task = new ConfiguredTask(currentIssue, student, isForceCheck, isLintNeeded, pyRating, javaErrorLimit);
             Logger.getAnonymousLogger().info(task.toString());
 
             this.processConfiguredIssue(task);
 
+            //this.processIssueForced(connectionToRedmine.getIssueByID(issueNumLong), true);
         } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.INFO, ex.toString());
         }
