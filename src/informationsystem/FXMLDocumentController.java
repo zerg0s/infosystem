@@ -29,6 +29,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.CheckBoxListCell;
+import javafx.util.StringConverter;
 import org.apache.commons.codec.Charsets;
 import javafx.scene.control.ListView;
 import redmineManagement.ConnectionWithRedmine;
@@ -170,16 +172,36 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void loadLists(ActionEvent event) {
-        ArrayList<String> users = new ArrayList<>();
-        ArrayList<String> tasks = new ArrayList<>();
-        users = connectionToRedmine.getProjectUsers();
-        String tmp = comboxVersion.getValue().toString();
-        tasks = connectionToRedmine.getIterationTasks(tmp);
-        ObservableList<String> itemsWithNames = Students.getItems();
+
+        ArrayList<CellWithCheckBox> users = new ArrayList<>();
+        ArrayList<CellWithCheckBox> tasks = new ArrayList<>();
+        for (String user : connectionToRedmine.getProjectUsers()) {
+            users.add(new CellWithCheckBox(user, false));
+        }
+        for (String task : connectionToRedmine.getIterationTasks(comboxVersion.getValue().toString())) {
+            tasks.add(new CellWithCheckBox(task, false));
+        }
+
+        StringConverter<CellWithCheckBox> converter = new StringConverter<CellWithCheckBox>() {
+            @Override
+            public String toString(CellWithCheckBox document) {
+                return document.getTitle();
+            }
+
+            // not actually used by CheckBoxListCell
+            @Override
+            public CellWithCheckBox fromString(String string) {
+                return null;
+            }
+        };
+        Students.setCellFactory(CheckBoxListCell.forListView(CellWithCheckBox::completedProperty, converter));
+        Tasks.setCellFactory(CheckBoxListCell.forListView(CellWithCheckBox::completedProperty, converter));
+
+        ObservableList<CellWithCheckBox> itemsWithNames = Students.getItems();
         itemsWithNames.clear();
         itemsWithNames.addAll(users);
 
-        ObservableList<String> tasksNames = Tasks.getItems();
+        ObservableList<CellWithCheckBox> tasksNames = Tasks.getItems();
         tasksNames.clear();
         tasksNames.addAll(tasks);
     }
@@ -199,6 +221,9 @@ public class FXMLDocumentController implements Initializable {
                 connectionToRedmine.copyAndAssignIssue(issueId, nameTo);
             }
         }
+    }
+    @FXML
+    private void copyAndAssignSelectedIssues(ActionEvent event) {
     }
 
     @FXML
