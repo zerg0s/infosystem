@@ -58,18 +58,26 @@ def addExecStdIntoTheEndOfFile():
 
 def prettyPrintRetArray(retArray):
     i = 0
+    #  сначала распечатываем что получилось достать о тестах
     while i < len(retArray):
-        print(f"test{i+1} - ", end="")
         if str(retArray[i]) == "True":
+            print(f"test{i+1} - ", end="")
             print(Locale.Passed)
-            i += 1
-        else:
+        elif str(retArray[i]) == "False":
+            print(f"test{i+1} - ", end="")
             print(Locale.Failed)
-            i += 1
+        elif str(retArray[i]) == Locale.Timeout:
+            print(f"test{i+1} - ", end="")
+            print(retArray[i])
+        else:
             break
+        i += 1
+    
+    #  Потом всю доп информацию    
     while i < len(retArray):
         print(retArray[i])
         i += 1
+
 
 
 def checkConfigurationAndRestrictions(testConfiguration):
@@ -131,13 +139,13 @@ def getCorrectAnswers(dirWithTests, fileWithTests):
 ################
 # Manual Config Section
 
-easyMode = False  # в этом режиме показываются входные данные для упавших тестов.
+easyMode = True  # в этом режиме показываются входные данные для упавших тестов.
 maxExecutionTimeDelay = 2  # max timeout for a task
 ################
 
 if __name__ == "__main__":
-    fileToCheck = "myFile.py"
-    dirToCheck = "reverseInput"
+    fileToCheck = "svetofor.py"
+    dirToCheck = "trafficlights"
     # dirToCheck = "regFindReplaceRepeated"
     retArray = list()
 
