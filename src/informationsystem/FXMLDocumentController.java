@@ -16,10 +16,13 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.css.Match;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -178,14 +181,18 @@ public class FXMLDocumentController implements Initializable {
         for (String user : connectionToRedmine.getProjectUsers()) {
             users.add(new CellWithCheckBox(user, false));
         }
+
         for (String task : connectionToRedmine.getIterationTasks(comboxVersion.getValue().toString())) {
             tasks.add(new CellWithCheckBox(task, false));
         }
 
+//        users.add(new CellWithCheckBox("TestUser", false));
+//        tasks.add(new CellWithCheckBox("123456 - test task",false));
+
         StringConverter<CellWithCheckBox> converter = new StringConverter<CellWithCheckBox>() {
             @Override
-            public String toString(CellWithCheckBox document) {
-                return document.getTitle();
+            public String toString(CellWithCheckBox cell) {
+                return cell.getTitle();
             }
 
             // not actually used by CheckBoxListCell
@@ -194,6 +201,7 @@ public class FXMLDocumentController implements Initializable {
                 return null;
             }
         };
+
         Students.setCellFactory(CheckBoxListCell.forListView(CellWithCheckBox::completedProperty, converter));
         Tasks.setCellFactory(CheckBoxListCell.forListView(CellWithCheckBox::completedProperty, converter));
 
@@ -208,22 +216,52 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void copyAndAssignIssues(ActionEvent event) {
-        int issueId_ = Integer.parseInt(Tasks.getSelectionModel().getSelectedItem().toString().substring(0, 6));
+        Pattern pattern = Pattern.compile("\\d{6,7}", Pattern.CASE_INSENSITIVE);
+
+        Tasks.getItems().stream().forEach(item -> ((CellWithCheckBox)item).setCompleted(true));
+        Students.getItems().stream().forEach(item -> ((CellWithCheckBox)item).setCompleted(true));
         String nameTo = "";
-        //Integer[] issueIds = Arrays.stream().forEach((x) -> {Integer.parseInt(x.toString().substring(0, 6))).toAttay();
+
         ArrayList<Integer> issueIds = new ArrayList<>();
         for (Object task : Tasks.getItems().toArray()) {
-            issueIds.add(Integer.parseInt(task.toString().substring(0, 6)));
+            Matcher m = pattern.matcher(((CellWithCheckBox)task).getTitle());
+            m.find();
+            issueIds.add(Integer.parseInt(m.group()));
         }
+
         for (Integer issueId : issueIds) {
             for (int i = 0; i < Students.getItems().size(); i++) {
-                nameTo = Students.getItems().get(i).toString();
+                nameTo = ((CellWithCheckBox)Students.getItems().get(i)).getTitle();
                 connectionToRedmine.copyAndAssignIssue(issueId, nameTo);
             }
         }
     }
+
     @FXML
     private void copyAndAssignSelectedIssues(ActionEvent event) {
+        Pattern pattern = Pattern.compile("\\d{6,7}", Pattern.CASE_INSENSITIVE);
+
+        String nameTo = "";
+
+        ArrayList<Integer> issueIds = new ArrayList<>();
+        for (Object task : Tasks.getItems().toArray()) {
+            CellWithCheckBox cell = (CellWithCheckBox)task;
+            if (cell.isCompleted()) {
+                Matcher m = pattern.matcher(cell.getTitle());
+                m.find();
+                issueIds.add(Integer.parseInt(m.group()));
+            }
+        }
+
+        for (Integer issueId : issueIds) {
+            for (Object student : Students.getItems()) {
+                CellWithCheckBox cell = (CellWithCheckBox)student;
+                if (cell.isCompleted()) {
+                    nameTo = cell.getTitle();
+                    connectionToRedmine.copyAndAssignIssue(issueId, nameTo);
+                }
+            }
+        }
     }
 
     @FXML
