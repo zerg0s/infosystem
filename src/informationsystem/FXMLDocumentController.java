@@ -22,7 +22,6 @@ import java.util.regex.Pattern;
 import data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.css.Match;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -182,7 +181,7 @@ public class FXMLDocumentController implements Initializable {
             users.add(new CellWithCheckBox(user, false));
         }
 
-        for (String task : connectionToRedmine.getIterationTasks(comboxVersion.getValue().toString())) {
+        for (String task : connectionToRedmine.getIterationFreeTasks(comboxVersion.getValue().toString())) {
             tasks.add(new CellWithCheckBox(task, false));
         }
 
