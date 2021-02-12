@@ -233,9 +233,9 @@ public class ConnectionWithRedmine {
         new File(myFilesDir).mkdirs();
 
         //Check only latest attach, the rest are already history
-        Optional<Attachment> nullableAttach =  getLatestCheckableAttach(issueAttachments);
-        Attachment attach =  null;
-        if (!nullableAttach.isPresent()){
+        Optional<Attachment> nullableAttach = getLatestCheckableAttach(issueAttachments);
+        Attachment attach = null;
+        if (!nullableAttach.isPresent()) {
             Logger.getAnonymousLogger().info("Can't find suitable attaches for " + task);
             return;
         }
@@ -298,7 +298,7 @@ public class ConnectionWithRedmine {
         if (idMax == 0) {
             return Optional.empty();
         }
-        return  Optional.of(issueAttachments.get(maxIndex));
+        return Optional.of(issueAttachments.get(maxIndex));
     }
 
     private void processJavaFile(ConfiguredTask task, Issue issue, String fileToManage) {
@@ -664,8 +664,7 @@ public class ConnectionWithRedmine {
             int errorAmount = Integer.parseInt(neededNumber);
 
             return errorAmount;
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -759,7 +758,7 @@ public class ConnectionWithRedmine {
         return retArray;
     }
 
-    public ArrayList<String> getIterationTasks(String iteration) {
+    public ArrayList<String> getIterationFreeTasks(String iteration) {
         List<Issue> issues = new ArrayList<>();
         try {
             issues = getIssues(iteration);
@@ -768,7 +767,10 @@ public class ConnectionWithRedmine {
         }
         ArrayList<String> retVal = new ArrayList<>();
         for (Issue issue : issues) {
-            retVal.add(issue.getId() + ": " + issue.getSubject());
+            String assigneeName = issue.getAssigneeName();
+            if (assigneeName == null || assigneeName.equalsIgnoreCase("")) {
+                retVal.add(issue.getId() + ": " + issue.getSubject());
+            }
         }
         return retVal;
     }

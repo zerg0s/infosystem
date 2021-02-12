@@ -4,3 +4,6 @@
 ./ProjectKey.xml
 *.class
 /out/*
+/out/
+*/input.txt
+*/output*
