@@ -1,6 +1,0 @@
-************* Module tskdeletechr
-myFiles\tskdeletechr.py:9:0: C0305: Trailing newlines (trailing-newlines)
-
------------------------------------
-Your code has been rated at 6.67/10
-

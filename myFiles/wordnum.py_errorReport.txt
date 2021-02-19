@@ -1,9 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module wordnum
-C:  5, 0: No space allowed around keyword argument assignment
-file = open("input.txt", "r", encoding = "utf-8")
-                                       ^ (bad-whitespace)
-
------------------------------------
-Your code has been rated at 8.75/10
-

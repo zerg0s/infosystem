@@ -1,7 +1,0 @@
-************* Module zamena
-myFiles\zamena.py:5:23: C0303: Trailing whitespace (trailing-whitespace)
-myFiles\zamena.py:9:0: C0304: Final newline missing (missing-final-newline)
-
-------------------------------------------------------------------
-Your code has been rated at 6.67/10 (previous run: 6.67/10, +0.00)
-

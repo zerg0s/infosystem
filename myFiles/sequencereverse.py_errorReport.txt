@@ -1,6 +1,0 @@
-************* Module sequencereverse
-myFiles\sequencereverse.py:6:0: C0103: Function name "reverse_sequence" doesn't conform to camelCase naming style (invalid-name)
-
-------------------------------------------------------------------
-Your code has been rated at 8.33/10 (previous run: 8.33/10, +0.00)
-

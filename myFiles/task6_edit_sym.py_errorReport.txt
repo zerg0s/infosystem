@@ -1,9 +1,0 @@
-************* Module task6_edit_sym
-myFiles\task6_edit_sym.py:10:8: W0621: Redefining name 'i' from outer scope (line 25) (redefined-outer-name)
-myFiles\task6_edit_sym.py:8:4: C0103: Variable name "a" doesn't conform to camelCase naming style (invalid-name)
-myFiles\task6_edit_sym.py:10:4: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
-myFiles\task6_edit_sym.py:25:0: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
-
------------------------------------
-Your code has been rated at 8.00/10
-

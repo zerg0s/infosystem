@@ -1,9 +1,0 @@
-************* Module spichki
-myFiles\spichki.py:11:7: R0916: Too many boolean expressions in if statement (24/5) (too-many-boolean-expressions)
-myFiles\spichki.py:22:11: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
-myFiles\spichki.py:26:13: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
-myFiles\spichki.py:30:13: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
-
-------------------------------------------------------------------
-Your code has been rated at 8.00/10 (previous run: 0.67/10, +7.33)
-

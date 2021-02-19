@@ -1,7 +1,0 @@
-************* Module KingSteps
-myFiles\KingSteps.py:58:0: C0304: Final newline missing (missing-final-newline)
-myFiles\KingSteps.py:43:3: R1716: Simplify chained comparison between the operands (chained-comparison)
-
-------------------------------------------------------------------
-Your code has been rated at 9.35/10 (previous run: 8.06/10, +1.29)
-

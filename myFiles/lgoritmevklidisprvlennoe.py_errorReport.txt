@@ -1,8 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module lgoritmevklidisprvlennoe
-C:  5, 0: Argument name "a" doesn't conform to camelCase naming style (invalid-name)
-C:  5, 0: Argument name "b" doesn't conform to camelCase naming style (invalid-name)
-
-------------------------------------------------------------------
-Your code has been rated at 7.14/10 (previous run: 7.14/10, +0.00)
-

@@ -1,7 +1,0 @@
-************* Module euclid
-myFiles\euclid.py:5:4: R1705: Unnecessary "elif" after "return" (no-else-return)
-myFiles\euclid.py:4:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
-
-------------------------------------------------------------------
-Your code has been rated at 8.00/10 (previous run: 4.00/10, +4.00)
-

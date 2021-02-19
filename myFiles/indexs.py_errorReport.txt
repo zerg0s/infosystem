@@ -1,6 +1,0 @@
-************* Module indexs
-myFiles\indexs.py:3:0: C0304: Final newline missing (missing-final-newline)
-
------------------------------------
-Your code has been rated at 6.67/10
-

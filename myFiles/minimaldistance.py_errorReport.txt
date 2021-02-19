@@ -1,7 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module minimaldistance
-W: 21, 0: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
-
------------------------------------
-Your code has been rated at 9.50/10
-

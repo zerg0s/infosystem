@@ -1,4 +1,0 @@
-Starting audit...
-[ERROR] C:\InformationSystem_idea\.\myFiles\sergeypolitsyn_shashki_draughts.java:3:22: '{' is not preceded with whitespace. [WhitespaceAround]
-Audit done.
-Checkstyle ends with 1 errors.

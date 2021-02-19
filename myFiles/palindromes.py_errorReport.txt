@@ -1,8 +1,0 @@
-************* Module palindromes
-myFiles\palindromes.py:12:0: C0304: Final newline missing (missing-final-newline)
-myFiles\palindromes.py:1:0: C0111: Missing module docstring (missing-docstring)
-myFiles\palindromes.py:6:0: C0103: Constant name "count" doesn't conform to UPPER_CASE naming style (invalid-name)
-
------------------------------------
-Your code has been rated at 5.00/10
-

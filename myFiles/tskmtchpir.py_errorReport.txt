@@ -1,7 +1,0 @@
-************* Module tskmtchpir
-myFiles\tskmtchpir.py:11:4: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
-myFiles\tskmtchpir.py:13:12: W0612: Unused variable 'parseData' (unused-variable)
-
------------------------------------
-Your code has been rated at 8.82/10
-

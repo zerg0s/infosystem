@@ -1,3 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module words
-E:  6, 0: unexpected EOF while parsing (<string>, line 6) (syntax-error)

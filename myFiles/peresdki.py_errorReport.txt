@@ -1,7 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module peresdki
-W:  5, 4: Redefining built-in 'sum' (redefined-builtin)
-
-------------------------------------------------------------------
-Your code has been rated at 9.09/10 (previous run: 9.09/10, +0.00)
-

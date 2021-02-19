@@ -1,9 +1,0 @@
-************* Module Task773379
-myFiles\Task773379.py:6:4: C0326: Exactly one space required around comparison
-if(a==0):
-    ^^ (bad-whitespace)
-myFiles\Task773379.py:13:0: C0305: Trailing newlines (trailing-newlines)
-
------------------------------------
-Your code has been rated at 7.78/10
-

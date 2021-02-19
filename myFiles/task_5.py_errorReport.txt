@@ -1,8 +1,0 @@
-************* Module task_5
-myFiles\task_5.py:1:0: C0111: Missing module docstring (missing-docstring)
-myFiles\task_5.py:1:0: C0111: Missing function docstring (missing-docstring)
-myFiles\task_5.py:3:4: R1705: Unnecessary "else" after "return" (no-else-return)
-
------------------------------------
-Your code has been rated at 9.09/10
-

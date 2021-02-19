@@ -1,6 +1,0 @@
-************* Module SecondMax
-myFiles\SecondMax.py:9:0: W0301: Unnecessary semicolon (unnecessary-semicolon)
-
-------------------------------------------------------------------
-Your code has been rated at 9.55/10 (previous run: 8.18/10, +1.36)
-

@@ -1,8 +1,0 @@
-************* Module tsksort
-myFiles\tsksort.py:22:16: C0326: No space allowed around keyword argument assignment
-myList.sort(key = lambda valEnd: valEnd == 0)
-                ^ (bad-whitespace)
-
-------------------------------------------------------------------
-Your code has been rated at 9.29/10 (previous run: 8.57/10, +0.71)
-

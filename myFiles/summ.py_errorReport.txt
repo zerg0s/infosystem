@@ -1,7 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module summ
-C:  5, 0: Final newline missing (missing-final-newline)
-
-------------------------------------------------------------------
-Your code has been rated at 0.00/10 (previous run: 0.00/10, +0.00)
-

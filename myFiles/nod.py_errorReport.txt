@@ -1,7 +1,0 @@
-************* Module nod
-myFiles\nod.py:7:4: R1705: Unnecessary "else" after "return" (no-else-return)
-myFiles\nod.py:10:8: R1705: Unnecessary "else" after "return" (no-else-return)
-
-------------------------------------------------------------------
-Your code has been rated at 7.78/10 (previous run: 5.56/10, +2.22)
-

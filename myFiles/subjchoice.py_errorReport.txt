@@ -1,7 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module subjchoice
-C: 11, 7: Do not use `len(SEQUENCE)` to determine if a sequence is empty (len-as-condition)
-
------------------------------------
-Your code has been rated at 9.41/10
-

@@ -1,9 +1,0 @@
-************* Module Task773378
-myFiles\Task773378.py:16:26: C0326: No space allowed before bracket
-        if start[1] - end [0] <= length[2]:
-                          ^ (bad-whitespace)
-myFiles\Task773378.py:20:0: C0305: Trailing newlines (trailing-newlines)
-
------------------------------------
-Your code has been rated at 8.75/10
-

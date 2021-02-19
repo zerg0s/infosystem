@@ -1,8 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module Rasstoyanie
-W:  4, 0: Bad indentation. Found 1 spaces, expected 4 (bad-indentation)
-W:  5, 0: Bad indentation. Found 1 spaces, expected 4 (bad-indentation)
-
------------------------------------
-Your code has been rated at 7.78/10
-

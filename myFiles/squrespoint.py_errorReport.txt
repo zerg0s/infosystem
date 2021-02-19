@@ -1,7 +1,0 @@
-************* Module squrespoint
-myFiles\squrespoint.py:17:20: W0621: Redefining name 'firstNum' from outer scope (line 22) (redefined-outer-name)
-myFiles\squrespoint.py:17:30: W0621: Redefining name 'secondNum' from outer scope (line 24) (redefined-outer-name)
-
-------------------------------------------------------------------
-Your code has been rated at 8.67/10 (previous run: 6.67/10, +2.00)
-

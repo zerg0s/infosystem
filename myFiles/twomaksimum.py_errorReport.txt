@@ -1,7 +1,0 @@
-************* Module twomaksimum
-myFiles\twomaksimum.py:8:0: W0311: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
-myFiles\twomaksimum.py:18:0: C0305: Trailing newlines (trailing-newlines)
-
------------------------------------
-Your code has been rated at 8.46/10
-

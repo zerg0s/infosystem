@@ -1,7 +1,0 @@
-Using config file C:\InformationSystem_idea\pylint\config.file
-************* Module vladislavdyubochkin_posledneeslovo_
-W:  2, 0: Unnecessary semicolon (unnecessary-semicolon)
-
-------------------------------------------------------------------
-Your code has been rated at 8.00/10 (previous run: 6.00/10, +2.00)
-

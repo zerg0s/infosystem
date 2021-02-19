@@ -1,7 +1,0 @@
-************* Module tskeditsymv
-myFiles\tskeditsymv.py:11:4: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
-myFiles\tskeditsymv.py:25:0: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
-
------------------------------------
-Your code has been rated at 9.00/10
-

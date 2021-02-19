@@ -1,9 +1,0 @@
-************* Module fragmentReplacement
-myFiles\fragmentReplacement.py:10:25: C0326: Exactly one space required after comparison
-if leftH >= 0 and rightH >=0 and leftH < rightH:
-                         ^^ (bad-whitespace)
-myFiles\fragmentReplacement.py:10:3: R1716: Simplify chained comparison between the operands (chained-comparison)
-
------------------------------------
-Your code has been rated at 6.67/10
-

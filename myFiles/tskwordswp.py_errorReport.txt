@@ -1,8 +1,0 @@
-************* Module tskwordswp
-myFiles\tskwordswp.py:5:6: C0326: No space allowed before bracket
-print (sourceString[sourceString.find(' ') + 1:]\
-      ^ (bad-whitespace)
-
------------------------------------
-Your code has been rated at 5.00/10
-

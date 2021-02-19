@@ -1,6 +1,0 @@
-************* Module running
-myFiles\running.py:17:0: C0304: Final newline missing (missing-final-newline)
-
-------------------------------------------------------------------
-Your code has been rated at 9.00/10 (previous run: 8.00/10, +1.00)
-

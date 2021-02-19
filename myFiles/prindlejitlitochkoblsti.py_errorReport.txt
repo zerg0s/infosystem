@@ -1,7 +1,0 @@
-************* Module prindlejitlitochkoblsti
-myFiles\prindlejitlitochkoblsti.py:1:0: C0103: Argument name "X" doesn't conform to camelCase naming style (invalid-name)
-myFiles\prindlejitlitochkoblsti.py:1:0: C0103: Argument name "Y" doesn't conform to camelCase naming style (invalid-name)
-
-------------------------------------------------------------------
-Your code has been rated at 8.46/10 (previous run: 3.08/10, +5.38)
-

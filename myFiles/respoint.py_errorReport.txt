@@ -1,8 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module respoint
-C: 18, 0: Line too long (136/100) (line-too-long)
-C: 19, 0: Line too long (131/100) (line-too-long)
-
-------------------------------------------------------------------
-Your code has been rated at 8.67/10 (previous run: 8.67/10, +0.00)
-

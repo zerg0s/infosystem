@@ -1,6 +1,0 @@
-************* Module SecondMaximum
-myFiles\SecondMaximum.py:7:4: C0103: Variable name "in_data" doesn't conform to camelCase naming style (invalid-name)
-
------------------------------------
-Your code has been rated at 9.44/10
-

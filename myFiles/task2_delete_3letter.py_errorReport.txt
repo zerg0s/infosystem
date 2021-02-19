@@ -1,7 +1,0 @@
-************* Module task2_delete_3letter
-myFiles\task2_delete_3letter.py:10:0: C0304: Final newline missing (missing-final-newline)
-myFiles\task2_delete_3letter.py:7:0: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
-
------------------------------------
-Your code has been rated at 6.67/10
-

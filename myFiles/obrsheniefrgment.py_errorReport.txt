@@ -1,7 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module obrsheniefrgment
-C:  3, 0: Line too long (144/100) (line-too-long)
-
--------------------------------------------------------------------
-Your code has been rated at 8.33/10 (previous run: 10.00/10, -1.67)
-

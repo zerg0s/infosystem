@@ -1,8 +1,0 @@
-************* Module AlgoritmEvklida
-myFiles\AlgoritmEvklida.py:1:0: C0103: Argument name "a" doesn't conform to camelCase naming style (invalid-name)
-myFiles\AlgoritmEvklida.py:1:0: C0103: Argument name "b" doesn't conform to camelCase naming style (invalid-name)
-myFiles\AlgoritmEvklida.py:2:4: R1705: Unnecessary "else" after "return" (no-else-return)
-
------------------------------------
-Your code has been rated at 5.71/10
-

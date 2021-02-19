@@ -1,7 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module clssmtrixv
-R: 40, 4: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
-
------------------------------------
-Your code has been rated at 9.80/10
-

@@ -1,9 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module lgorithm
-W:  6, 8: Redefining name 'aone' from outer scope (line 4) (redefined-outer-name)
-W:  6,14: Redefining name 'btwo' from outer scope (line 5) (redefined-outer-name)
-R:  7, 4: Unnecessary "else" after "return" (no-else-return)
-
-------------------------------------------------------------------
-Your code has been rated at 7.27/10 (previous run: 5.45/10, +1.82)
-

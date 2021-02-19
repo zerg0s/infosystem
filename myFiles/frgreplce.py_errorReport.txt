@@ -1,5 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-
-------------------------------------
-Your code has been rated at 10.00/10
-

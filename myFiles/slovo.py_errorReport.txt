@@ -1,7 +1,0 @@
-Using config file C:\InformationSystem\pylint\config.file
-************* Module slovo
-W:  4, 8: Using possibly undefined loop variable 'w' (undefined-loop-variable)
-
-------------------------------------------------------------------
-Your code has been rated at 7.50/10 (previous run: 7.50/10, +0.00)
-

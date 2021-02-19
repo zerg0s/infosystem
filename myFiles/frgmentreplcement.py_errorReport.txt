@@ -1,8 +1,0 @@
-************* Module frgmentreplcement
-myFiles\frgmentreplcement.py:7:23: C0326: Exactly one space required after comma
-repl = repl.replace('h','H')
-                       ^ (bad-whitespace)
-
------------------------------------
-Your code has been rated at 7.50/10
-

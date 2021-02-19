@@ -1,7 +1,0 @@
-************* Module rvorot
-myFiles\rvorot.py:13:0: C0305: Trailing newlines (trailing-newlines)
-myFiles\rvorot.py:6:4: C0103: Variable name "x" doesn't conform to camelCase naming style (invalid-name)
-
-------------------------------------------------------------------
-Your code has been rated at 6.67/10 (previous run: 6.67/10, +0.00)
-

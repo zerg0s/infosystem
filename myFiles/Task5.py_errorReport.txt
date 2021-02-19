@@ -1,9 +1,0 @@
-************* Module task5
-myFiles\task5.py:25:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
-myFiles\task5.py:29:0: C0325: Unnecessary parens after 'while' keyword (superfluous-parens)
-myFiles\task5.py:12:0: C0103: Function name "check_input" doesn't conform to camelCase naming style (invalid-name)
-myFiles\task5.py:13:4: C0103: Variable name "in_data" doesn't conform to camelCase naming style (invalid-name)
-
-------------------------------------------------------------------
-Your code has been rated at 7.78/10 (previous run: 5.45/10, +2.32)
-
