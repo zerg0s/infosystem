@@ -113,10 +113,10 @@ public class FXMLDocumentController implements Initializable {
     private RedmineJournalsReader journalReader;
     private boolean needLog = false;
     private RedmineConnectionProperties props = new RedmineConnectionProperties();
-
+    private String projectKeyXml =  "ProjectKey.xml";
     public void initialize(URL url, ResourceBundle bn) {
 
-        reader.readXML("ProjectKey.xml");
+        reader.readXML(projectKeyXml);
 
         reader.getOwners().forEach((ProjectOwner p) -> {
             reader.getUsersNameList().add(p.getName());
@@ -147,6 +147,9 @@ public class FXMLDocumentController implements Initializable {
         radioButtonAppointForStudent.requestFocus();
         radioButtonAppointForProfessor.setToggleGroup(groupAppointment);
 
+        easyModechk.setSelected(reader.isEasyMode());
+        checkAllIterations.setSelected(reader.needCheckAllIterations());
+        comboxUserName.setValue(reader.getSelectedSupervisor());
     }
 
     @FXML
@@ -526,5 +529,13 @@ public class FXMLDocumentController implements Initializable {
             Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lines;
+    }
+
+    public void shutdown() {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("isEasyMode", String.valueOf(easyModechk.isSelected()));
+        map.put("checkAllIterations", String.valueOf(checkAllIterations.isSelected()));
+        map.put("SelectedSupervisor", comboxUserName.getValue().toString());
+        reader.saveSettings(projectKeyXml, map);
     }
 }
