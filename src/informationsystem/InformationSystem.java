@@ -39,11 +39,14 @@ public class InformationSystem extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+            Parent root = loader.load();
+            FXMLDocumentController controller = loader.getController();
             //Parent root = FXMLLoader.load(getClass().getResource("/informarionsystem/FXMLDocument.fxml"));
             Scene scene = new Scene(root);
             stage.setTitle("Проверка задач в системе Redmine");
             stage.setScene(scene);
+            stage.setOnHidden(e -> controller.shutdown());
             stage.show();
             String oldVersion = ((Text) root.lookup("#versionName")).getText().replaceAll("[^\\d.]", "");
             checkNewVersion(oldVersion);
@@ -142,7 +145,6 @@ public class InformationSystem extends Application {
             issues.checkSingleIssue();
 
         } else {
-            // загрузка конфигов
             // открытие сцены
             launch(args);
         }
