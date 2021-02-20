@@ -5,9 +5,9 @@
  */
 package informationsystem;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -20,6 +20,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
@@ -29,8 +36,7 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Node;
 
 /**
- *
- * @author user
+ * @author Zerg0s
  */
 public class XmlReader {
 
@@ -43,6 +49,10 @@ public class XmlReader {
     private ArrayList<String> apiKeysList = new ArrayList<String>();
     private ArrayList<ProjectOwner> owners = new ArrayList<ProjectOwner>();
     private String filePath = "";
+    private boolean isEasyMode;
+    private boolean checkAll;
+
+    private String selectedSupervisor;
 
     public XmlReader(String pathToXml) {
         this.filePath = pathToXml;
@@ -68,6 +78,7 @@ public class XmlReader {
         try {
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setIgnoringElementContentWhitespace(true);
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(filePath);
             XPathFactory xPathfactory = XPathFactory.newInstance();
@@ -93,15 +104,62 @@ public class XmlReader {
                 NodeList hisApikey = (NodeList) exprApiKey.evaluate(doc, XPathConstants.NODESET);
                 getOwners().get(i).setApiKey(hisApikey.item(0).getTextContent());
             }
+            XPathExpression isEasyModeXpath = xpath.compile(".//isEasyMode");
+            Node easyModeNode = (Node) isEasyModeXpath.evaluate(doc, XPathConstants.NODE);
+            if (easyModeNode != null) {
+                isEasyMode = Boolean.parseBoolean(easyModeNode.getTextContent());
+            }
+
+            XPathExpression isCheckAllXpath = xpath.compile(".//checkAllIterations");
+            Node isCheckAllNode = (Node) isCheckAllXpath.evaluate(doc, XPathConstants.NODE);
+            if (isCheckAllNode != null) {
+                checkAll = Boolean.parseBoolean(isCheckAllNode.getTextContent());
+            }
+            XPathExpression selectedSupervisorXpath = xpath.compile(".//SelectedSupervisor");
+            Node SelectedSupervisorNode = (Node) selectedSupervisorXpath.evaluate(doc, XPathConstants.NODE);
+            if (SelectedSupervisorNode != null) {
+                selectedSupervisor = SelectedSupervisorNode.getTextContent();
+            }
         } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
             Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
-        //тут собрали Arraylist владельцев проектов с их проектами и ключами.
-        getOwners().forEach((ProjectOwner p) -> {
-            System.out.println(p);
-        });
+    public void saveSettings(String xmlPath, Map<String, String> settingsToSave) {
+        XPathFactory xPathfactory = XPathFactory.newInstance();
+        XPath xpath = xPathfactory.newXPath();
 
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setIgnoringElementContentWhitespace(true);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(xmlPath);
+            Element settingsNode = doc.getDocumentElement();
+            settingsNode.normalize();
+            for (Map.Entry m : settingsToSave.entrySet()) {
+                if (settingsNode.getElementsByTagName((String) m.getKey()).getLength() == 0) {
+                    Element aSetting = doc.createElement((String) m.getKey());
+                    aSetting.appendChild(doc.createTextNode((String) m.getValue()));
+                    settingsNode.appendChild(aSetting);
+                } else {
+                    Node el = settingsNode.getElementsByTagName((String) m.getKey()).item(0);
+                    el.setTextContent((String) m.getValue());
+                }
+            }
+            //save xml
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File(xmlPath));
+            //transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.transform(source, result);
+
+        } catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getTestFolderBySubject(String subjectFromIssue) {
@@ -199,6 +257,10 @@ public class XmlReader {
         return projectNameList;
     }
 
+    public String getSelectedSupervisor() {
+        return selectedSupervisor;
+    }
+
     /**
      * @param projectNameList the projectNameList to set
      */
@@ -255,5 +317,13 @@ public class XmlReader {
             Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
         }
         return testsData;
+    }
+
+    public boolean isEasyMode() {
+        return isEasyMode;
+    }
+
+    public boolean needCheckAllIterations() {
+        return checkAll;
     }
 }
