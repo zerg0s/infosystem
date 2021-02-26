@@ -113,7 +113,8 @@ public class FXMLDocumentController implements Initializable {
     private RedmineJournalsReader journalReader;
     private boolean needLog = false;
     private RedmineConnectionProperties props = new RedmineConnectionProperties();
-    private String projectKeyXml =  "ProjectKey.xml";
+    private String projectKeyXml = "ProjectKey.xml";
+
     public void initialize(URL url, ResourceBundle bn) {
 
         reader.readXML(projectKeyXml);
@@ -121,19 +122,32 @@ public class FXMLDocumentController implements Initializable {
         reader.getOwners().forEach((ProjectOwner p) -> {
             reader.getUsersNameList().add(p.getName());
         });
+
+        String selectedSupervisor = reader.getSelectedSupervisor();
+        if (!selectedSupervisor.isEmpty()) {
+            comboxUserName.setValue(selectedSupervisor);
+        }
+
+        if (reader.getSelectedProject() != null) {
+            comboxProject.setValue(reader.getSelectedProject().getProjectName());
+            props.projectKey = reader.getSelectedProject().getId();
+        }
+        if (reader.getSelectedVersion() != null) {
+            comboxVersion.setValue(reader.getSelectedVersion());
+            props.iterationName = comboxVersion.getValue().toString();
+        }
+
         ObservableList<String> userNames = FXCollections.observableArrayList(reader.getUsersNameList());
         comboxUserName.setItems(userNames);
 
-        ObservableList<String> projects = FXCollections.observableArrayList(reader.getProjectNameList(userNames.get(0)));
-        this.comboxProject.setItems(projects);
+
+        //this.comboxProject.setItems(projects);
 
         ArrayList<Float> ratingValues = new ArrayList<Float>();
         for (float a = 10; a >= -3.00; a = (float) (a - 0.25)) {
             ratingValues.add(a);
         }
-
-        ObservableList<Float> pythonRatingValues = FXCollections.observableArrayList(ratingValues);
-        comboBoxPythonRating.setItems(pythonRatingValues);
+        comboBoxPythonRating.setItems(FXCollections.observableArrayList(ratingValues));
 
         final ToggleGroup groupIssueStatus = new ToggleGroup();
         radioButtonStatusClosed.setToggleGroup(groupIssueStatus);
@@ -149,30 +163,86 @@ public class FXMLDocumentController implements Initializable {
 
         easyModechk.setSelected(reader.isEasyMode());
         checkAllIterations.setSelected(reader.needCheckAllIterations());
-        comboxUserName.setValue(reader.getSelectedSupervisor());
+
+        initializeSelectedProject();
+    }
+
+    private void initializeSelectedProject() {
+        if (comboxUserName.getValue() != null) {
+            if (!comboxUserName.getValue().toString().isEmpty()) {
+                for (ProjectOwner owner : reader.getOwners()) {
+                    if (comboxUserName.getValue().toString().equals(owner.getName())) {
+                        projects = owner.getHisProjects();
+                        props.apiAccessKey = owner.getApiKey();
+                        comboxProject.setItems(FXCollections.observableArrayList(projects.stream().map((pr) ->
+                                pr.getProjectName()
+                        ).toArray()));
+                        break;
+                    }
+                }
+            }
+        }
+        String selectedProject = (String) comboxProject.getValue();
+        if (selectedProject != null) {
+            if (!selectedProject.isEmpty()) {
+                for (Project pr : projects) {
+                    if (pr.getProjectName().equals(selectedProject)) {
+                        props.projectKey = pr.getId();
+                        break;
+                    }
+                }
+            }
+        }
+        props.url = fillUrlProps(textFieldURL);
+
+        if (!props.projectKey.isEmpty() && !props.apiAccessKey.isEmpty()
+                && !props.url.isEmpty() && !props.iterationName.isEmpty()) {
+            Logger.getAnonymousLogger().info("Тест русских букв!\n");
+            Logger.getAnonymousLogger().info("Selected values: " + props.url + "\n"
+                    + props.apiAccessKey.substring(props.apiAccessKey.length() - 3) + "\n" + props.projectKey
+                    + "\n" + props.iterationName);
+            new Thread(() -> {
+                connectionToRedmine = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
+                journalReader = new RedmineJournalsReader(props.url, props.apiAccessKey);
+            }).run();
+        }
+    }
+
+    private String fillUrlProps(TextField textFieldURL) {
+        String url = "";
+
+        if (textFieldURL != null || textFieldURL.getText() != null || textFieldURL.getText().isEmpty()) {
+            url = "https://www.hostedredmine.com";
+        } else {
+            url = textFieldURL.getText();
+        }
+
+        return url;
     }
 
     @FXML
     private void handleUserChoice() {
         if (!comboxUserName.getValue().toString().isEmpty()) {
-            for (ProjectOwner o : reader.getOwners()) {
-                if (comboxUserName.getValue().toString().equals(o.getName())) {
-                    projects = o.getHisProjects();
-                    props.apiAccessKey = o.getApiKey();
+            for (ProjectOwner owner : reader.getOwners()) {
+                if (comboxUserName.getValue().toString().equals(owner.getName())) {
+                    projects = owner.getHisProjects();
+                    props.setNewApiAccessKey(owner.getApiKey());
                     break;
                 }
             }
-            for (Project p : projects) {
-                reader.getProjectIDsList().add(p.getId());
-                reader.getUsersNameList().add(p.getProjectName());
-            }
         }
-        ObservableList<String> projectNames = FXCollections.observableArrayList(reader.getProjectNameList(comboxUserName.getValue().toString()));
 
-        comboxProject.getItems().removeAll(comboxProject.getItems());
-        comboxProject.setValue(null);
-        comboxProject.valueProperty().set(null);
-        comboxProject.setItems(projectNames);
+        reFillDataForCombobox(comboxProject, reader.getProjectNameList(comboxUserName.getValue().toString()));
+        reFillDataForCombobox(comboxVersion, new ArrayList<String>());
+    }
+
+    private void reFillDataForCombobox(ComboBox toCbxToBeRefilled, ArrayList<String> data) {
+        ObservableList<String> projectNames = FXCollections.observableArrayList(data);
+
+        toCbxToBeRefilled.getItems().removeAll(toCbxToBeRefilled.getItems());
+        toCbxToBeRefilled.setValue(null);
+        toCbxToBeRefilled.valueProperty().set(null);
+        toCbxToBeRefilled.setItems(projectNames);
     }
 
     @FXML
@@ -220,20 +290,20 @@ public class FXMLDocumentController implements Initializable {
     private void copyAndAssignIssues(ActionEvent event) {
         Pattern pattern = Pattern.compile("\\d{6,7}", Pattern.CASE_INSENSITIVE);
 
-        Tasks.getItems().stream().forEach(item -> ((CellWithCheckBox)item).setCompleted(true));
-        Students.getItems().stream().forEach(item -> ((CellWithCheckBox)item).setCompleted(true));
+        Tasks.getItems().stream().forEach(item -> ((CellWithCheckBox) item).setCompleted(true));
+        Students.getItems().stream().forEach(item -> ((CellWithCheckBox) item).setCompleted(true));
         String nameTo = "";
 
         ArrayList<Integer> issueIds = new ArrayList<>();
         for (Object task : Tasks.getItems().toArray()) {
-            Matcher m = pattern.matcher(((CellWithCheckBox)task).getTitle());
+            Matcher m = pattern.matcher(((CellWithCheckBox) task).getTitle());
             m.find();
             issueIds.add(Integer.parseInt(m.group()));
         }
 
         for (Integer issueId : issueIds) {
             for (int i = 0; i < Students.getItems().size(); i++) {
-                nameTo = ((CellWithCheckBox)Students.getItems().get(i)).getTitle();
+                nameTo = ((CellWithCheckBox) Students.getItems().get(i)).getTitle();
                 connectionToRedmine.copyAndAssignIssue(issueId, nameTo);
             }
         }
@@ -247,7 +317,7 @@ public class FXMLDocumentController implements Initializable {
 
         ArrayList<Integer> issueIds = new ArrayList<>();
         for (Object task : Tasks.getItems().toArray()) {
-            CellWithCheckBox cell = (CellWithCheckBox)task;
+            CellWithCheckBox cell = (CellWithCheckBox) task;
             if (cell.isCompleted()) {
                 Matcher m = pattern.matcher(cell.getTitle());
                 m.find();
@@ -257,7 +327,7 @@ public class FXMLDocumentController implements Initializable {
 
         for (Integer issueId : issueIds) {
             for (Object student : Students.getItems()) {
-                CellWithCheckBox cell = (CellWithCheckBox)student;
+                CellWithCheckBox cell = (CellWithCheckBox) student;
                 if (cell.isCompleted()) {
                     nameTo = cell.getTitle();
                     connectionToRedmine.copyAndAssignIssue(issueId, nameTo);
@@ -356,7 +426,7 @@ public class FXMLDocumentController implements Initializable {
                 || status.equals("Blocked");
     }
 
-    String getStudentName(ArrayList<String> journals, String professorName) {
+    private String getStudentName(ArrayList<String> journals, String professorName) {
         String retVal = "";
         for (String journal : journals) {
             if (!journal.equals(professorName)) {
@@ -369,38 +439,33 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleProjectChoice() {
-        if (textFieldURL.getText().isEmpty()) {
-            props.url = "https://www.hostedredmine.com";
-        } else {
-            props.url = textFieldURL.getText();
+        props.url = fillUrlProps(textFieldURL);
+        for (Project p : projects) {
+            if (comboxProject.getValue() != null && p.getProjectName().equals(comboxProject.getValue().toString())) {
+                props.projectKey = p.getId();
+                break;
+            }
         }
 
-        if (!comboxProject.getValue().toString().isEmpty()) {
-            for (Project p : projects) {
-                if (p.getProjectName().equals(comboxProject.getValue().toString())) {
-                    props.projectKey = p.getId();
-                    break;
+        if (!props.projectKey.isEmpty()) {
+            connectionToRedmine = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
+            journalReader = new RedmineJournalsReader(props.url, props.apiAccessKey);
+
+            Collection<Version> versions = new ArrayList();
+            try {
+                versions = connectionToRedmine.getVersions(props.projectKey);
+            } catch (RedmineException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Collection<String> versii = new ArrayList<>();
+            if (versii != null || !versii.isEmpty()) {
+                for (Version ver : versions) {
+                    versii.add(ver.getName());
                 }
             }
+            ObservableList<String> targetVersionLost = FXCollections.observableArrayList(versii);
+            comboxVersion.setItems(targetVersionLost);
         }
-
-        Collection<Version> versions = new ArrayList();
-
-        connectionToRedmine = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
-        journalReader = new RedmineJournalsReader(props.url, props.apiAccessKey);
-        try {
-            versions = connectionToRedmine.getVersions(props.projectKey);
-        } catch (RedmineException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Collection<String> versii = new ArrayList<>();
-        if (versii != null || !versii.isEmpty()) {
-            for (Version ver : versions) {
-                versii.add(ver.getName());
-            }
-        }
-        ObservableList<String> targetVersionLost = FXCollections.observableArrayList(versii);
-        comboxVersion.setItems(targetVersionLost);
     }
 
     @FXML
@@ -533,9 +598,20 @@ public class FXMLDocumentController implements Initializable {
 
     public void shutdown() {
         HashMap<String, String> map = new HashMap<String, String>();
-        map.put("isEasyMode", String.valueOf(easyModechk.isSelected()));
-        map.put("checkAllIterations", String.valueOf(checkAllIterations.isSelected()));
-        map.put("SelectedSupervisor", comboxUserName.getValue().toString());
+        putToSettings(map, "isEasyMode", easyModechk.isSelected());
+        putToSettings(map, "checkAllIterations", checkAllIterations.isSelected());
+        putToSettings(map, "SelectedSupervisor", comboxUserName.getValue());
+        putToSettings(map, "SelectedIteration", comboxVersion.getValue());
+
+        if (comboxProject.getValue() != null) {
+            putToSettings(map, "SelectedProjectName", comboxProject.getValue());
+            putToSettings(map, "SelectedProjectId", props.projectKey);
+        }
         reader.saveSettings(projectKeyXml, map);
+    }
+
+    private void putToSettings(Map<String, String> map, Object key, Object value) {
+        if (map == null || key == null || value == null) return;
+        map.put(String.valueOf(key), String.valueOf(value));
     }
 }
