@@ -5,325 +5,613 @@
  */
 package informationsystem;
 
-import java.io.File;
+import com.taskadapter.redmineapi.RedmineException;
+import com.taskadapter.redmineapi.bean.Issue;
+import com.taskadapter.redmineapi.bean.Version;
+
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import data.Project;
-import data.ProjectOwner;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-
-import org.w3c.dom.Node;
+import data.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.CheckBoxListCell;
+import javafx.util.StringConverter;
+import org.apache.commons.codec.Charsets;
+import javafx.scene.control.ListView;
+import redmineManagement.ConnectionWithRedmine;
+import redmineManagement.RedmineJournalsReader;
 
 /**
- * @author Zerg0s
+ * @author user
  */
-public class XmlReader {
+public class FXMLDocumentController implements Initializable {
 
-    private String userName = "";
-    private String apiKey = "";
-    private String projectKey = "";
-    private ArrayList<String> usersNameList = new ArrayList<String>();
-    private ArrayList<String> projectIDsList = new ArrayList<String>();
-    private ArrayList<String> projectNameList = new ArrayList<String>();
-    private ArrayList<String> apiKeysList = new ArrayList<String>();
-    private ArrayList<ProjectOwner> owners = new ArrayList<ProjectOwner>();
-    private String filePath = "";
-    private boolean isEasyMode;
-    private boolean checkAll;
+    private final XmlReader reader = new XmlReader();
+    private ArrayList<Project> projects = new ArrayList<>();
 
-    private String selectedSupervisor;
+    @FXML
+    private Button buttonDown;
 
-    public XmlReader(String pathToXml) {
-        this.filePath = pathToXml;
+    @FXML
+    private ComboBox comboxVersion;
+
+    @FXML
+    private ComboBox comboxProject;
+
+    @FXML
+    private ComboBox comboxUserName;
+
+    @FXML
+    private TextField textFieldURL;
+
+    @FXML
+    private TextField IssueToTestNumber;
+
+    @FXML
+    private TextField textFieldJavaErrorAmount;
+
+    @FXML
+    private CheckBox checkBoxPerevod;
+
+    @FXML
+    private ComboBox comboBoxPythonRating;
+
+    @FXML
+    private RadioButton radioButtonStatusClosed;
+
+    @FXML
+    private RadioButton radioButtonStatusApproved;
+
+    @FXML
+    private RadioButton radioButtonAppointForStudent;
+
+    @FXML
+    private RadioButton radioButtonAppointForProfessor;
+
+    @FXML
+    private CheckBox checkBoxJavaErrScan;
+
+    @FXML
+    private CheckBox easyModechk;
+
+    @FXML
+    private CheckBox checkAllIterations;
+
+    @FXML
+    private CheckBox checkBoxPythonRateScan;
+
+    @FXML
+    private Button fileChoose;
+
+    @FXML
+    private ListView Students;
+
+    @FXML
+    private ListView Tasks;
+
+    @FXML
+    private CheckBox checkboxNeedLint;
+
+    private ConnectionWithRedmine connectionToRedmine;
+    private RedmineJournalsReader journalReader;
+    private boolean needLog = false;
+    private RedmineConnectionProperties props = new RedmineConnectionProperties();
+    private String projectKeyXml = "ProjectKey.xml";
+
+    public void initialize(URL url, ResourceBundle bn) {
+
+        reader.readXML(projectKeyXml);
+
+        reader.getOwners().forEach((ProjectOwner p) -> {
+            reader.getUsersNameList().add(p.getName());
+        });
+
+        String selectedSupervisor = reader.getSelectedSupervisor();
+        if (!selectedSupervisor.isEmpty()) {
+            comboxUserName.setValue(selectedSupervisor);
+        }
+
+        if (reader.getSelectedProject() != null) {
+            comboxProject.setValue(reader.getSelectedProject().getProjectName());
+            props.projectKey = reader.getSelectedProject().getId();
+        }
+        if (reader.getSelectedVersion() != null) {
+            comboxVersion.setValue(reader.getSelectedVersion());
+            props.iterationName = comboxVersion.getValue().toString();
+        }
+
+        ObservableList<String> userNames = FXCollections.observableArrayList(reader.getUsersNameList());
+        comboxUserName.setItems(userNames);
+
+
+        //this.comboxProject.setItems(projects);
+
+        ArrayList<Float> ratingValues = new ArrayList<Float>();
+        for (float a = 10; a >= -3.00; a = (float) (a - 0.25)) {
+            ratingValues.add(a);
+        }
+        comboBoxPythonRating.setItems(FXCollections.observableArrayList(ratingValues));
+
+        final ToggleGroup groupIssueStatus = new ToggleGroup();
+        radioButtonStatusClosed.setToggleGroup(groupIssueStatus);
+        radioButtonStatusClosed.setSelected(true);
+        radioButtonStatusClosed.requestFocus();
+        radioButtonStatusApproved.setToggleGroup(groupIssueStatus);
+
+        final ToggleGroup groupAppointment = new ToggleGroup();
+        radioButtonAppointForStudent.setToggleGroup(groupAppointment);
+        radioButtonAppointForStudent.setSelected(true);
+        radioButtonAppointForStudent.requestFocus();
+        radioButtonAppointForProfessor.setToggleGroup(groupAppointment);
+
+        easyModechk.setSelected(reader.isEasyMode());
+        checkAllIterations.setSelected(reader.needCheckAllIterations());
+
+        initializeSelectedProject();
     }
 
-    XmlReader() {
-
-    }
-
-    public void setUserName(String name) {
-        this.userName = name;
-    }
-
-    public void setApiKey(String apikey) {
-        this.apiKey = apikey;
-    }
-
-    public void setProjectKey(String projectkey) {
-        this.projectKey = projectkey;
-    }
-
-    public void readXML(String filePath) {
-        try {
-
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            factory.setIgnoringElementContentWhitespace(true);
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(filePath);
-            XPathFactory xPathfactory = XPathFactory.newInstance();
-            XPath xpath = xPathfactory.newXPath();
-
-            //xpath for gettings names
-            XPathExpression exprOwners = xpath.compile(".//supervisor/@name");
-            NodeList nl = (NodeList) exprOwners.evaluate(doc, XPathConstants.NODESET);
-            for (int i = 0; i < nl.getLength(); i++) {
-                String owner = nl.item(i).getTextContent();
-                getOwners().add(new ProjectOwner(owner));
-                //get all project by supervisor
-                XPathExpression exprProjects = xpath.compile(".//supervisor[@name='" + owner + "']/project");
-                NodeList hisProjects = (NodeList) exprProjects.evaluate(doc, XPathConstants.NODESET);
-                for (int j = 0; j < hisProjects.getLength(); j++) {
-                    Element e = (Element) hisProjects.item(j);
-                    String name = e.getAttribute("name");
-                    String id = e.getAttribute("id");
-                    getOwners().get(i).getHisProjects().add(new Project(name, id));
+    private void initializeSelectedProject() {
+        if (comboxUserName.getValue() != null) {
+            if (!comboxUserName.getValue().toString().isEmpty()) {
+                for (ProjectOwner owner : reader.getOwners()) {
+                    if (comboxUserName.getValue().toString().equals(owner.getName())) {
+                        projects = owner.getHisProjects();
+                        props.apiAccessKey = owner.getApiKey();
+                        comboxProject.setItems(FXCollections.observableArrayList(projects.stream().map((pr) ->
+                                pr.getProjectName()
+                        ).toArray()));
+                        break;
+                    }
                 }
-                //add apikey
-                XPathExpression exprApiKey = xpath.compile(".//supervisor[@name='" + owner + "']/apiKey");
-                NodeList hisApikey = (NodeList) exprApiKey.evaluate(doc, XPathConstants.NODESET);
-                getOwners().get(i).setApiKey(hisApikey.item(0).getTextContent());
             }
-            XPathExpression isEasyModeXpath = xpath.compile(".//isEasyMode");
-            Node easyModeNode = (Node) isEasyModeXpath.evaluate(doc, XPathConstants.NODE);
-            if (easyModeNode != null) {
-                isEasyMode = Boolean.parseBoolean(easyModeNode.getTextContent());
+        }
+        String selectedProject = (String) comboxProject.getValue();
+        if (selectedProject != null) {
+            if (!selectedProject.isEmpty()) {
+                for (Project pr : projects) {
+                    if (pr.getProjectName().equals(selectedProject)) {
+                        props.projectKey = pr.getId();
+                        break;
+                    }
+                }
+            }
+        }
+        props.url = fillUrlProps(textFieldURL);
+
+        if (!props.projectKey.isEmpty() && !props.apiAccessKey.isEmpty()
+                && !props.url.isEmpty() && !props.iterationName.isEmpty()) {
+            Logger.getAnonymousLogger().info("Тест русских букв!\n");
+            Logger.getAnonymousLogger().info("Selected values: " + props.url + "\n"
+                    + props.apiAccessKey.substring(props.apiAccessKey.length() - 3) + "\n" + props.projectKey
+                    + "\n" + props.iterationName);
+            new Thread(() -> {
+                connectionToRedmine = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
+                journalReader = new RedmineJournalsReader(props.url, props.apiAccessKey);
+            }).run();
+        }
+    }
+
+    private String fillUrlProps(TextField textFieldURL) {
+        String url = "";
+
+        if (textFieldURL != null || textFieldURL.getText() != null || textFieldURL.getText().isEmpty()) {
+            url = "https://www.hostedredmine.com";
+        } else {
+            url = textFieldURL.getText();
+        }
+
+        return url;
+    }
+
+    @FXML
+    private void handleUserChoice() {
+        if (!comboxUserName.getValue().toString().isEmpty()) {
+            for (ProjectOwner owner : reader.getOwners()) {
+                if (comboxUserName.getValue().toString().equals(owner.getName())) {
+                    projects = owner.getHisProjects();
+                    props.setNewApiAccessKey(owner.getApiKey());
+                    break;
+                }
+            }
+        }
+
+        reFillDataForCombobox(comboxProject, reader.getProjectNameList(comboxUserName.getValue().toString()));
+        reFillDataForCombobox(comboxVersion, new ArrayList<String>());
+    }
+
+    private void reFillDataForCombobox(ComboBox toCbxToBeRefilled, ArrayList<String> data) {
+        ObservableList<String> projectNames = FXCollections.observableArrayList(data);
+
+        toCbxToBeRefilled.getItems().removeAll(toCbxToBeRefilled.getItems());
+        toCbxToBeRefilled.setValue(null);
+        toCbxToBeRefilled.valueProperty().set(null);
+        toCbxToBeRefilled.setItems(projectNames);
+    }
+
+    @FXML
+    private void loadLists(ActionEvent event) {
+
+        ArrayList<CellWithCheckBox> users = new ArrayList<>();
+        ArrayList<CellWithCheckBox> tasks = new ArrayList<>();
+        for (String user : connectionToRedmine.getProjectUsers()) {
+            users.add(new CellWithCheckBox(user, false));
+        }
+
+        for (String task : connectionToRedmine.getIterationFreeTasks(comboxVersion.getValue().toString())) {
+            tasks.add(new CellWithCheckBox(task, false));
+        }
+
+//        users.add(new CellWithCheckBox("TestUser", false));
+//        tasks.add(new CellWithCheckBox("123456 - test task",false));
+
+        StringConverter<CellWithCheckBox> converter = new StringConverter<CellWithCheckBox>() {
+            @Override
+            public String toString(CellWithCheckBox cell) {
+                return cell.getTitle();
             }
 
-            XPathExpression isCheckAllXpath = xpath.compile(".//checkAllIterations");
-            Node isCheckAllNode = (Node) isCheckAllXpath.evaluate(doc, XPathConstants.NODE);
-            if (isCheckAllNode != null) {
-                checkAll = Boolean.parseBoolean(isCheckAllNode.getTextContent());
+            // not actually used by CheckBoxListCell
+            @Override
+            public CellWithCheckBox fromString(String string) {
+                return null;
             }
-            XPathExpression selectedSupervisorXpath = xpath.compile(".//SelectedSupervisor");
-            Node SelectedSupervisorNode = (Node) selectedSupervisorXpath.evaluate(doc, XPathConstants.NODE);
-            if (SelectedSupervisorNode != null) {
-                selectedSupervisor = SelectedSupervisorNode.getTextContent();
+        };
+
+        Students.setCellFactory(CheckBoxListCell.forListView(CellWithCheckBox::completedProperty, converter));
+        Tasks.setCellFactory(CheckBoxListCell.forListView(CellWithCheckBox::completedProperty, converter));
+
+        ObservableList<CellWithCheckBox> itemsWithNames = Students.getItems();
+        itemsWithNames.clear();
+        itemsWithNames.addAll(users);
+
+        ObservableList<CellWithCheckBox> tasksNames = Tasks.getItems();
+        tasksNames.clear();
+        tasksNames.addAll(tasks);
+    }
+
+    @FXML
+    private void copyAndAssignIssues(ActionEvent event) {
+        Pattern pattern = Pattern.compile("\\d{6,7}", Pattern.CASE_INSENSITIVE);
+
+        Tasks.getItems().stream().forEach(item -> ((CellWithCheckBox) item).setCompleted(true));
+        Students.getItems().stream().forEach(item -> ((CellWithCheckBox) item).setCompleted(true));
+        String nameTo = "";
+
+        ArrayList<Integer> issueIds = new ArrayList<>();
+        for (Object task : Tasks.getItems().toArray()) {
+            Matcher m = pattern.matcher(((CellWithCheckBox) task).getTitle());
+            m.find();
+            issueIds.add(Integer.parseInt(m.group()));
+        }
+
+        for (Integer issueId : issueIds) {
+            for (int i = 0; i < Students.getItems().size(); i++) {
+                nameTo = ((CellWithCheckBox) Students.getItems().get(i)).getTitle();
+                connectionToRedmine.copyAndAssignIssue(issueId, nameTo);
             }
-        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
-            Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void copyAndAssignSelectedIssues(ActionEvent event) {
+        Pattern pattern = Pattern.compile("\\d{6,7}", Pattern.CASE_INSENSITIVE);
+
+        String nameTo = "";
+
+        ArrayList<Integer> issueIds = new ArrayList<>();
+        for (Object task : Tasks.getItems().toArray()) {
+            CellWithCheckBox cell = (CellWithCheckBox) task;
+            if (cell.isCompleted()) {
+                Matcher m = pattern.matcher(cell.getTitle());
+                m.find();
+                issueIds.add(Integer.parseInt(m.group()));
+            }
+        }
+
+        for (Integer issueId : issueIds) {
+            for (Object student : Students.getItems()) {
+                CellWithCheckBox cell = (CellWithCheckBox) student;
+                if (cell.isCompleted()) {
+                    nameTo = cell.getTitle();
+                    connectionToRedmine.copyAndAssignIssue(issueId, nameTo);
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void handleButtonAction(ActionEvent event) {
+        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, "======Started========\n");
+        connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
+
+        boolean easyMode = easyModechk.isSelected();
+        boolean checkAll = checkAllIterations.isSelected();
+        String iterationName = !checkAll ? comboxVersion.getValue().toString() : "";
+
+        if (!comboxUserName.getValue().toString().isEmpty()
+                && !comboxProject.getValue().toString().isEmpty()) {
+            List<Issue> issues = null;
+            ArrayList<String> journals = null;
+            try {
+                issues = connectionToRedmine.getMyIssues(iterationName);
+            } catch (RedmineException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            for (Issue issue : issues) {
+                processIssue(issue, easyMode);
+            }
+
+        }
+        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, "======Finished========\n");
+    }
+
+    private void processIssue(Issue issue, boolean easyMode) {
+        processIssue(issue, false, false, easyMode);
+    }
+
+    private void processIssueForced(Issue issue) {
+        processIssueForced(issue, false);
+    }
+
+    private void processIssueForced(Issue issue, boolean needLog) {
+        processIssue(issue, false, true, false);
+    }
+
+    private void processConfiguredIssue(ConfiguredTask task) {
+        processIssue(task);
+    }
+
+    private void processIssue(Issue issue, boolean needLog, boolean needForced, boolean easyMode) {
+        ArrayList<String> journals;
+        if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
+            Logger.getAnonymousLogger().info(issue.toString());
+            Double pyRating = 10.0;
+            int javaErrorLimit = 5;
+            if (comboBoxPythonRating.getValue() != null) {
+                pyRating = Double.parseDouble(comboBoxPythonRating.getValue().toString());
+            }
+
+            if (textFieldJavaErrorAmount.getText() != null) {
+                javaErrorLimit = Integer.parseInt(textFieldJavaErrorAmount.getText());
+            }
+
+            //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
+            String student = getStudentName(journalReader.getJournals(issue.getId().toString()), connectionToRedmine.getProfessorName());
+            Logger.getAnonymousLogger().info("Student is " + student);
+            ConfiguredTask confTask = new ConfiguredTask(issue, student,
+                    needForced,
+                    connectionToRedmine.getLint(), pyRating, javaErrorLimit, easyMode);
+            connectionToRedmine.checkIssueAttachments(confTask);
+            //connectionToRedmine.checkAttachments(issue, needForced);
+
+            journals = journalReader.getJournals(issue.getId().toString());
+            connectionToRedmine.setStudentName(getStudentName(journals, comboxUserName.getValue().toString()));
+        } else if (needLog) {
+            Logger.getAnonymousLogger().info("Already Closed:" + issue.toString());
+        }
+    }
+
+    private void processIssue(ConfiguredTask task) {
+        Issue issue = task.getIssue();
+        if (!isIssueInDeadStatus(issue)) {
+            System.out.println(issue.toString());
+            connectionToRedmine.setStudentName(task.getTaskCompleter());
+            connectionToRedmine.checkIssueAttachments(task);
+        } else if (needLog) {
+            System.out.println("Already Closed:" + issue.toString());
+        }
+    }
+
+    private boolean isIssueInDeadStatus(Issue issue) {
+        String status = issue.getStatusName();
+        return status.equals("Closed") || status.equals("Approved")
+                || status.equals("Blocked");
+    }
+
+    private String getStudentName(ArrayList<String> journals, String professorName) {
+        String retVal = "";
+        for (String journal : journals) {
+            if (!journal.equals(professorName)) {
+                retVal = journal;
+                break;
+            }
+        }
+        return retVal;
+    }
+
+    @FXML
+    private void handleProjectChoice() {
+        props.url = fillUrlProps(textFieldURL);
+        for (Project p : projects) {
+            if (comboxProject.getValue() != null && p.getProjectName().equals(comboxProject.getValue().toString())) {
+                props.projectKey = p.getId();
+                break;
+            }
+        }
+
+        if (!props.projectKey.isEmpty()) {
+            connectionToRedmine = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
+            journalReader = new RedmineJournalsReader(props.url, props.apiAccessKey);
+
+            Collection<Version> versions = new ArrayList();
+            try {
+                versions = connectionToRedmine.getVersions(props.projectKey);
+            } catch (RedmineException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Collection<String> versii = new ArrayList<>();
+            if (versii != null || !versii.isEmpty()) {
+                for (Version ver : versions) {
+                    versii.add(ver.getName());
+                }
+            }
+            ObservableList<String> targetVersionLost = FXCollections.observableArrayList(versii);
+            comboxVersion.setItems(targetVersionLost);
+        }
+    }
+
+    @FXML
+    private void handleJavaErrorScanCheck() {
+        int errorAmmount = Integer.parseInt(textFieldJavaErrorAmount.getText());
+        connectionToRedmine.setJavaErrorsAmount(errorAmmount);
+    }
+
+    @FXML
+    private void handlePyhtonRatingScanCheck() {
+        if (checkBoxPythonRateScan.isSelected()) {
+            //null here
+            float pythonRating = Float.parseFloat(comboBoxPythonRating.getValue().toString());
+            connectionToRedmine.setRating(pythonRating);
+        }
+    }
+
+    @FXML
+    private void handlePerevodCheck() {
+        if (checkBoxPerevod.isSelected()) {
+            connectionToRedmine.setReturnBackIfAllOk(true);
+        } else {
+            connectionToRedmine.setReturnBackIfAllOk(false);
+        }
+    }
+
+    @FXML
+    private void handleIssueStatusRadioButton() {
+        if (radioButtonStatusApproved.isSelected()) {
+            connectionToRedmine.setIssueStatus(4);
+        } else if (radioButtonStatusClosed.isSelected()) {
+            connectionToRedmine.setIssueStatus(5);
+        }
+    }
+
+    @FXML
+    private void handeRadioButtonAppointments() {
+
+        if (radioButtonAppointForStudent.isSelected()) {
+            connectionToRedmine.setAssigneeName(connectionToRedmine.getStudentName());
+        } else if (radioButtonAppointForProfessor.isSelected()) {
+            connectionToRedmine.setAssigneeName(connectionToRedmine.getProfessorName());
+        }
+    }
+
+    @FXML
+    private void handleCheckboxNeedLint() {
+        if (!checkboxNeedLint.isSelected()) {
+            connectionToRedmine.setLint(false);
+            checkBoxJavaErrScan.setSelected(false);
+            checkBoxPythonRateScan.setSelected(false);
+        } else {
+            connectionToRedmine.setLint(true);
+            checkBoxJavaErrScan.setSelected(true);
+            checkBoxPythonRateScan.setSelected(true);
+        }
+    }
+
+    @FXML
+    //Загружает закрытые задачи для составления списка сдавших
+    private void downloadResults() {
+        String currentVersion = comboxVersion.getValue().toString();
+        List<Issue> tasks = connectionToRedmine.getClosedIssues(currentVersion);
+        ArrayList<StudentsIssue> StudentsIssues = new ArrayList<>();
+        for (Issue task : tasks) {
+            String taskStatusName = task.getStatusName();
+            if (taskStatusName.equals("Closed")) {
+                StudentsIssue studentsIssue = new StudentsIssue();
+                studentsIssue.setStudentsName(task.getAssigneeName());
+                studentsIssue.setIssueName(task.getSubject());
+                StudentsIssues.add(studentsIssue);
+            }
+        }
+        HashMap<String, ArrayList<String>> issuesOfTheStudent = new HashMap<String, ArrayList<String>>();
+        for (StudentsIssue issue : StudentsIssues) {
+            if (!issuesOfTheStudent.containsKey(issue.getStudentsName())) {
+                issuesOfTheStudent.put(issue.getStudentsName(), new ArrayList<String>());
+            }
+            issuesOfTheStudent.get(issue.getStudentsName()).add(issue.getIssueName());
+        }
+        new FileOperator(currentVersion + ".txt").saveDataToFile(issuesOfTheStudent);
+    }
+
+    @FXML
+    private void toChooseLocalFile() {
+    }
+
+    @FXML
+    private void handleButtonSingleIssueCheckAction(ActionEvent event) {
+        String issueNum = IssueToTestNumber.getText();
+        Integer issueNumLong = 0;
+        boolean easyMode = easyModechk.isSelected();
+        connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
+        try {
+            issueNumLong = Integer.parseInt(issueNum);
+            Issue currentIssue = connectionToRedmine.getIssueByID(issueNumLong);
+            Boolean isLintNeeded = checkboxNeedLint.isSelected();
+            Boolean isForceCheck = true;
+            Double pyRating = 10.0;
+            int javaErrorLimit = 5;
+            if (comboBoxPythonRating.getValue() != null) {
+                pyRating = Double.parseDouble(comboBoxPythonRating.getValue().toString());
+            }
+
+            if (textFieldJavaErrorAmount.getText() != null) {
+                javaErrorLimit = Integer.parseInt(textFieldJavaErrorAmount.getText());
+            }
+
+            String student = getStudentName(journalReader.getJournals(currentIssue.getId().toString()), connectionToRedmine.getProfessorName());
+
+            ConfiguredTask task = new ConfiguredTask(currentIssue, student, isForceCheck, isLintNeeded, pyRating, javaErrorLimit, easyMode);
+            Logger.getAnonymousLogger().info(task.toString());
+
+            this.processConfiguredIssue(task);
+
         } catch (Exception ex) {
-            Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getAnonymousLogger().log(Level.INFO, ex.toString());
         }
     }
 
-    public void saveSettings(String xmlPath, Map<String, String> settingsToSave) {
-        XPathFactory xPathfactory = XPathFactory.newInstance();
-        XPath xpath = xPathfactory.newXPath();
-
+    public Collection<String> readFile(String fileDir) {
+        Collection<String> lines = new ArrayList<>();
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            factory.setIgnoringElementContentWhitespace(true);
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(xmlPath);
-            Element settingsNode = doc.getDocumentElement();
-            settingsNode.normalize();
-            for (Map.Entry m : settingsToSave.entrySet()) {
-                if (settingsNode.getElementsByTagName((String) m.getKey()).getLength() == 0) {
-                    Element aSetting = doc.createElement((String) m.getKey());
-                    aSetting.appendChild(doc.createTextNode((String) m.getValue()));
-                    settingsNode.appendChild(aSetting);
-                } else {
-                    Node el = settingsNode.getElementsByTagName((String) m.getKey()).item(0);
-                    el.setTextContent((String) m.getValue());
-                }
-            }
-            //save xml
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(xmlPath));
-            //transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            transformer.transform(source, result);
-
-        } catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
-            e.printStackTrace();
+            lines = Files.readAllLines(Paths.get(fileDir), Charsets.UTF_8);
+        } catch (IOException ex) {
+            Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return lines;
     }
 
-    public String getTestFolderBySubject(String subjectFromIssue) {
-        String testFolderPathInXml = "";
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(this.filePath);
-            XPathFactory xPathfactory = XPathFactory.newInstance();
-            XPath xpath = xPathfactory.newXPath();
-            //xpath for gettings names
-            XPathExpression subjectFromXml = xpath.compile(".//test");
-            NodeList listOfTestNodes = (NodeList) subjectFromXml.evaluate(doc, XPathConstants.NODESET);
+    public void shutdown() {
+        HashMap<String, String> map = new HashMap<String, String>();
+        putToSettings(map, "isEasyMode", easyModechk.isSelected());
+        putToSettings(map, "checkAllIterations", checkAllIterations.isSelected());
+        putToSettings(map, "SelectedSupervisor", comboxUserName.getValue());
+        putToSettings(map, "SelectedIteration", comboxVersion.getValue());
 
-            //тут можно добавить более "умный" поиск, пока ищем только - полное совпадение
-            for (int i = 0; i < listOfTestNodes.getLength(); i++) {
-                Element e = (Element) listOfTestNodes.item(i);
-                if (subjectFromIssue.toLowerCase().contains(e.getAttribute("subject").toLowerCase())) {
-                    testFolderPathInXml = e.getAttribute("testSetFolder");
-                }
-            }
-        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
-            Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
+        if (comboxProject.getValue() != null) {
+            putToSettings(map, "SelectedProjectName", comboxProject.getValue());
+            putToSettings(map, "SelectedProjectId", props.projectKey);
         }
-        return testFolderPathInXml;
+        reader.saveSettings(projectKeyXml, map);
     }
 
-    public static String getValue(String tag, Element element) {
-        NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
-        Node node = (Node) nodes.item(0);
-        return node.getNodeValue();
-    }
-
-    /**
-     * @return the userName
-     */
-    public String getUserName() {
-        return userName;
-    }
-
-    /**
-     * @return the apiKey
-     */
-    public String getApiKey() {
-        return apiKey;
-    }
-
-    /**
-     * @return the projectKey
-     */
-    public String getProjectKey() {
-        return projectKey;
-    }
-
-    /**
-     * @return the usersNameList
-     */
-    public ArrayList<String> getUsersNameList() {
-        return usersNameList;
-    }
-
-    /**
-     * @param usersNameList the usersNameList to set
-     */
-    public void setUsersNameList(ArrayList<String> usersNameList) {
-        this.usersNameList = usersNameList;
-    }
-
-    /**
-     * @return the projectIDsList
-     */
-    public ArrayList<String> getProjectIDsList() {
-        return projectIDsList;
-    }
-
-    /**
-     * @param projectIDsList the projectIDsList to set
-     */
-    public void setProjectIDsList(ArrayList<String> projectIDsList) {
-        this.projectIDsList = projectIDsList;
-    }
-
-    /**
-     * @return the projectNameList
-     */
-    public ArrayList<String> getProjectNameList(String ownerName) {
-        projectNameList.clear();
-        for (ProjectOwner owner : this.owners) {
-            if (owner.getName().equals(ownerName)) {
-                for (Project project : owner.getHisProjects()) {
-                    projectNameList.add(project.getProjectName());
-                }
-            }
-        }
-        return projectNameList;
-    }
-
-    public String getSelectedSupervisor() {
-        return selectedSupervisor;
-    }
-
-    /**
-     * @param projectNameList the projectNameList to set
-     */
-    public void setProjectNameList(ArrayList<String> projectNameList) {
-        this.projectNameList = projectNameList;
-    }
-
-    /**
-     * @return the apiKeysList
-     */
-    public ArrayList<String> getApiKeysList() {
-        return apiKeysList;
-    }
-
-    /**
-     * @param apiKeysList the apiKeysList to set
-     */
-    public void setApiKeysList(ArrayList<String> apiKeysList) {
-        this.apiKeysList = apiKeysList;
-    }
-
-    /**
-     * @return the owners
-     */
-    public ArrayList<ProjectOwner> getOwners() {
-        return owners;
-    }
-
-    /**
-     * @param owners the owners to set
-     */
-    public void setOwners(ArrayList<ProjectOwner> owners) {
-        this.owners = owners;
-    }
-
-    public HashMap<String, String> getAlltests() {
-        HashMap<String, String> testsData = new HashMap<>();
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(this.filePath);
-            XPathFactory xPathfactory = XPathFactory.newInstance();
-            XPath xpath = xPathfactory.newXPath();
-            //xpath for gettings names
-            XPathExpression subjectFromXml = xpath.compile(".//test");
-            NodeList listOfTestNodes = (NodeList) subjectFromXml.evaluate(doc, XPathConstants.NODESET);
-
-            //тут можно добавить более "умный" поиск, пока ищем только - полное совпадение
-            for (int i = 0; i < listOfTestNodes.getLength(); i++) {
-                Element e = (Element) listOfTestNodes.item(i);
-                testsData.put(e.getAttribute("subject"), e.getAttribute("testSetFolder"));
-            }
-        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
-            Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return testsData;
-    }
-
-    public boolean isEasyMode() {
-        return isEasyMode;
-    }
-
-    public boolean needCheckAllIterations() {
-        return checkAll;
+    private void putToSettings(Map<String, String> map, Object key, Object value) {
+        if (map == null || key == null || value == null) return;
+        map.put(String.valueOf(key), String.valueOf(value));
     }
 }
