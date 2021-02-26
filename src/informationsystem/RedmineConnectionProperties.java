@@ -7,15 +7,18 @@ package informationsystem;
 
 /**
  *
- * @author user
+ * @author Zerg0s
  */
 public class RedmineConnectionProperties {
     public String url = "";
     public String apiAccessKey = "";
     public String projectKey = "";
-    public Integer queryId = null;
-    public int javaErrorAmount = 0;
-    public double pythonErrorRating = 0;
-    public String perevod = null;
     public String issueNumbers = "";
+    public String iterationName = "";
+
+    public void setNewApiAccessKey(String apiKey) {
+        this.apiAccessKey = apiKey;
+        this.iterationName = "";
+        this.projectKey = "";
+    }
 }
