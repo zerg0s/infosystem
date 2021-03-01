@@ -1,10 +1,11 @@
-/JavaDir/ ru/mai/
 /JavaDir/ru/mai/
-/myFiles/
+/JavaDir/ru/mai/*
+/myFiles/*
 ./ProjectKey.xml
 *.class
 /out/*
 /out/
 */input.txt
 */output*
+*/out/*
 *.conf
