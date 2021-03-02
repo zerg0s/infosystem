@@ -24,7 +24,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="add new setting - LinterMode">
+    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="add new updater">
       <change afterPath="$PROJECT_DIR$/javaFx/lib/src.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InformationSystem.jar" beforeDir="false" />
@@ -40,11 +40,8 @@
       <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pylint/input.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pylint/output" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/LintReportMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/LintReportMode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/informationsystem/InformationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/InformationSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationsystem/XmlReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/XmlReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,7 +290,7 @@
       <workItem from="1613665402154" duration="2946000" />
       <workItem from="1614351938095" duration="914000" />
       <workItem from="1614423802357" duration="2416000" />
-      <workItem from="1614599509797" duration="16529000" />
+      <workItem from="1614599509797" duration="18783000" />
     </task>
     <task id="LOCAL-00001" summary="changes made in April">
       <created>1557237496099</created>
@@ -512,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614674971899</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="add new updater">
+      <created>1614681099480</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1614681099480</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -584,7 +588,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added smart attach file naming and fixed attachment forceCheck" />
     <MESSAGE value="add Zip files" />
     <MESSAGE value="fix zip entries in folders" />
     <MESSAGE value="add planio support&#10;check only latest when force check" />
@@ -609,7 +612,8 @@
     <MESSAGE value="version 3.22" />
     <MESSAGE value="update gitignore" />
     <MESSAGE value="add new setting - LinterMode" />
-    <option name="LAST_COMMIT_MESSAGE" value="add new setting - LinterMode" />
+    <MESSAGE value="add new updater" />
+    <option name="LAST_COMMIT_MESSAGE" value="add new updater" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -113,7 +113,7 @@ public class InformationSystem extends Application {
     private String readOnlineXml() {
         try (InputStream in = new URL(onlineResource).openStream()) {
             byte[] bytes = in.readAllBytes();
-            return new String(bytes, Charset.defaultCharset());
+            return new String(bytes, Charset.forName("utf8"));
         } catch (IOException e) {
             e.printStackTrace();
             return "";
