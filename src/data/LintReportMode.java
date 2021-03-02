@@ -46,4 +46,14 @@ public class LintReportMode {
     public String toString() {
         return modeName;
     }
+
+    public String toStringForXml() {
+        return toModeStr(modeNumber) + " - " + modeName;
+    }
+
+    private String toModeStr(int modeNumber) {
+        if (modeNumber == 1) return "hard";
+        if (modeNumber == 2) return "nightmare";
+        return "default";
+    }
 }

@@ -7,9 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.xml.sax.SAXException;
 import redmineManagement.IssuesChecker;
 import redmineManagement.RedmineJournalsReader;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
@@ -33,8 +36,9 @@ import java.util.stream.Stream;
 public class InformationSystem extends Application {
 
     private RedmineJournalsReader redmineJournalsReader;
-    private final String onlineResource = "http://textanalysis.ru/pvkrobot/version.txt";
+    private final String onlineResource = "http://textanalysis.ru/pvkrobot/version.xml";
     private final String onlineResourceDistr = "http://textanalysis.ru/pvkrobot/InformationSystem.jar";
+    private String onlineXml;
 
     @Override
     public void start(Stage stage) {
@@ -57,14 +61,19 @@ public class InformationSystem extends Application {
     }
 
     private void checkNewVersion(String oldVersion) {
-        String onlineVersion = checkNewOnlineVersion();
+        onlineXml = readOnlineXml();
+        String onlineVersion = checkNewOnlineVersion(onlineXml);
         ButtonType myOK = new ButtonType("Обновить", ButtonBar.ButtonData.OK_DONE);
 
         if (Float.parseFloat(oldVersion) < Float.parseFloat(onlineVersion)) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Доступна новая версия!", myOK, ButtonType.CANCEL);
-            alert.setHeaderText("Новая версия: " + onlineVersion);
-            alert.setContentText("Текущая версия: " + oldVersion + ". Все несохраненные данные будут утеряны.");
-            alert.setTitle("Доступна новая версия!");
+            String newVersionAvailable = "Доступна новая версия!";
+            String oldVersionData = "Текущая версия: " + oldVersion + ".\nВсе несохраненные данные будут утеряны.";
+            String newVersionData = "Новая версия: " + onlineVersion;
+            newVersionData += getNewVersionDescription(onlineXml);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, newVersionAvailable, myOK, ButtonType.CANCEL);
+            alert.setHeaderText(newVersionData);
+            alert.setContentText(oldVersionData);
+            alert.setTitle(newVersionAvailable);
 
             Optional<ButtonType> result = alert.showAndWait();
             if (!result.isPresent() || result.get() == myOK) {
@@ -101,6 +110,34 @@ public class InformationSystem extends Application {
         }
     }
 
+    private String readOnlineXml() {
+        try (InputStream in = new URL(onlineResource).openStream()) {
+            byte[] bytes = in.readAllBytes();
+            return new String(bytes, Charset.defaultCharset());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    private String getNewVersionDescription(String readXml) {
+        try (InputStream in = new URL(onlineResource).openStream()) {
+            List<String> descriptions = XmlReader.getDescription(readXml, "description", "point");
+            return String.join("", descriptions);
+        } catch (IOException | ParserConfigurationException | SAXException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    private String checkNewOnlineVersion(String readXml) {
+        try {
+            return XmlReader.getTextTagValue("version", XmlReader.loadXMLFromString(readXml));
+        } catch (IOException | ParserConfigurationException | SAXException e) {
+            e.printStackTrace();
+            return "0";
+        }
+    }
 
     private boolean downloadDistr() {
         try (InputStream in = new URL(onlineResourceDistr).openStream()) {
@@ -110,16 +147,6 @@ public class InformationSystem extends Application {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
-        }
-    }
-
-    private String checkNewOnlineVersion() {
-        try (InputStream in = new URL(onlineResource).openStream()) {
-            byte[] bytes = in.readAllBytes();
-            return new String(bytes, Charset.defaultCharset());
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "0";
         }
     }
 

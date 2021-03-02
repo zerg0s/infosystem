@@ -7,6 +7,7 @@ package informationsystem;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,11 +15,13 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import data.LintReportMode;
 import data.Project;
 import data.ProjectOwner;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.transform.OutputKeys;
@@ -54,6 +57,8 @@ public class XmlReader {
     private String selectedSupervisor = "";
     private Project selectedProject;
     private String selectedVersion = "";
+
+    private LintReportMode selectedLintMode;
 
     public XmlReader(String pathToXml) {
         this.filePath = pathToXml;
@@ -136,6 +141,12 @@ public class XmlReader {
                 selectedVersion = selectedVersionNode.getTextContent();
             }
 
+            XPathExpression selectedLintModeXpath = xpath.compile(".//SelectedLintMode");
+            Node selectedLintModeNode = (Node) selectedLintModeXpath.evaluate(doc, XPathConstants.NODE);
+            if (selectedLintModeNode != null) {
+                selectedLintMode = LintReportMode.valueOf(selectedLintModeNode.getTextContent());
+            }
+
         } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
             Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -207,6 +218,31 @@ public class XmlReader {
         NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
         Node node = (Node) nodes.item(0);
         return node.getNodeValue();
+    }
+
+    public static Document loadXMLFromString(String xml) throws ParserConfigurationException, IOException, SAXException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        InputSource is = new InputSource(new StringReader(xml));
+        return builder.parse(is);
+    }
+
+    public static String getTextTagValue(String tag, Document doc){
+        return getValue(tag, doc.getDocumentElement());
+    }
+
+    public static List<String> getDescription(String readXml, String descriptionTag, String itemTag) throws IOException, SAXException, ParserConfigurationException {
+        NodeList nodes = loadXMLFromString(readXml).getDocumentElement()
+                .getElementsByTagName(itemTag);
+        List<String> nodesList = new ArrayList<>();
+        for (int i = 0; i<nodes.getLength(); i++) {
+            nodesList.add(((Node)nodes.item(i)).getChildNodes().item(0).getNodeValue());
+        }
+        return nodesList;
+    }
+
+    public LintReportMode getSelectedLintMode() {
+        return selectedLintMode;
     }
 
     /**

@@ -167,6 +167,23 @@ public class FXMLDocumentController implements Initializable {
         checkAllIterations.setSelected(reader.needCheckAllIterations());
 
         initializeSelectedProject();
+        setSelectedLintMode();
+    }
+
+    private void setSelectedLintMode() {
+        if (reader.getSelectedLintMode() == null) {
+            return;
+        }
+
+        ObservableList<LintReportMode> items = lintErrorsNotificationsType.getItems();
+        int itemToSelect = items.get(0).getModeNumber();
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getModeNumber() == reader.getSelectedLintMode().getModeNumber()) {
+                itemToSelect = i;
+                break;
+            }
+        }
+        lintErrorsNotificationsType.getSelectionModel().select(itemToSelect);
     }
 
     private void initializeSelectedProject() {
@@ -616,6 +633,12 @@ public class FXMLDocumentController implements Initializable {
             putToSettings(map, "SelectedProjectName", comboxProject.getValue());
             putToSettings(map, "SelectedProjectId", props.projectKey);
         }
+
+        if (lintErrorsNotificationsType.getValue() != null) {
+            LintReportMode lintReportMode = (LintReportMode) lintErrorsNotificationsType.getValue();
+            putToSettings(map, "SelectedLintMode", lintReportMode.toStringForXml());
+        }
+
         reader.saveSettings(projectKeyXml, map);
     }
 
