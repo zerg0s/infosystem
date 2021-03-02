@@ -11,13 +11,17 @@ public class ConfiguredTask {
     private int maxJavaLintErrors;
     private boolean isInEasyMode;
 
+
+
+    private LintReportMode lintReportMode;
+
     public ConfiguredTask(Issue issue,
                           String taskCompleter,
                           boolean isNeededForceCheck,
                           boolean isLintRequired,
                           double requiredPythonRating,
                           int javaErrors,
-                          boolean easyMode) {
+                          boolean easyMode, LintReportMode lintReportMode) {
         this.isLintRequired = isLintRequired;
         this.isNeededForceCheck = isNeededForceCheck;
         this.issue = issue;
@@ -25,6 +29,15 @@ public class ConfiguredTask {
         this.taskCompleter = taskCompleter;
         this.maxJavaLintErrors = javaErrors;
         this.isInEasyMode = easyMode;
+        this.lintReportMode = lintReportMode;
+    }
+
+    public LintReportMode getLintReportMode() {
+        return lintReportMode;
+    }
+
+    public void setLintReportMode(LintReportMode mode) {
+        this.lintReportMode = mode;
     }
 
     @Override
@@ -32,7 +45,8 @@ public class ConfiguredTask {
         return issue.toString() + " " + "Need Force: " + isNeededForceCheck +
                 " Need Lint: " + isLintRequired + " PyLint Rating: " + requiredPythonRating +
                 " Java Error Limit: " + maxJavaLintErrors +
-                " Student:" + taskCompleter;
+                " Student:" + taskCompleter +
+                " LintMode: " + lintReportMode;
     }
 
     public Issue getIssue() {

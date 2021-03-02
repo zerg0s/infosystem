@@ -109,6 +109,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private CheckBox checkboxNeedLint;
 
+    @FXML
+    private ComboBox lintErrorsNotificationsType;
+
     private ConnectionWithRedmine connectionToRedmine;
     private RedmineJournalsReader journalReader;
     private boolean needLog = false;
@@ -139,7 +142,6 @@ public class FXMLDocumentController implements Initializable {
 
         ObservableList<String> userNames = FXCollections.observableArrayList(reader.getUsersNameList());
         comboxUserName.setItems(userNames);
-
 
         //this.comboxProject.setItems(projects);
 
@@ -182,6 +184,7 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
         }
+
         String selectedProject = (String) comboxProject.getValue();
         if (selectedProject != null) {
             if (!selectedProject.isEmpty()) {
@@ -398,7 +401,8 @@ public class FXMLDocumentController implements Initializable {
             Logger.getAnonymousLogger().info("Student is " + student);
             ConfiguredTask confTask = new ConfiguredTask(issue, student,
                     needForced,
-                    connectionToRedmine.getLint(), pyRating, javaErrorLimit, easyMode);
+                    connectionToRedmine.getLint(), pyRating, javaErrorLimit,
+                    easyMode, (LintReportMode) lintErrorsNotificationsType.getValue());
             connectionToRedmine.checkIssueAttachments(confTask);
             //connectionToRedmine.checkAttachments(issue, needForced);
 
@@ -576,7 +580,12 @@ public class FXMLDocumentController implements Initializable {
 
             String student = getStudentName(journalReader.getJournals(currentIssue.getId().toString()), connectionToRedmine.getProfessorName());
 
-            ConfiguredTask task = new ConfiguredTask(currentIssue, student, isForceCheck, isLintNeeded, pyRating, javaErrorLimit, easyMode);
+            ConfiguredTask task = new ConfiguredTask(currentIssue, student, isForceCheck,
+                    isLintNeeded, pyRating, javaErrorLimit, easyMode,
+                    (LintReportMode) lintErrorsNotificationsType.getValue());
+            if (task.getLintReportMode() == null) {
+                task.setLintReportMode(new LintReportMode(0, "Default"));
+            }
             Logger.getAnonymousLogger().info(task.toString());
 
             this.processConfiguredIssue(task);

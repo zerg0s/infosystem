@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import data.ConfiguredTask;
+import data.LintReportMode;
 import informationsystem.*;
 import lintsForLangs.MyCheckStyle;
 import lintsForLangs.MyCppLint;
@@ -42,7 +43,9 @@ import org.apache.commons.codec.Charsets;
 import org.apache.http.entity.ContentType;
 import taskCheckers.JavaTaskChecker;
 import taskCheckers.PyTaskChecker;
+import textUtils.TextUtils;
 import tools.Translit;
+
 //Status_id HELP 
 // 0 - new
 // 1 - assigned
@@ -368,8 +371,9 @@ public class ConnectionWithRedmine {
     private void doCppLint(String attachFileName, Issue issue) {
         new MyCppLint().startCpplint(attachFileName);
         this.uploadAttachment(issue, myFilesDir + attachFileName + "_errorReport.txt");
-        String lastLine = readLastLineInFile(myFilesDir + attachFileName + "_errorReport.txt");
-        int studentCppErrorAmount = this.cppErrorAmountDetectionInFile(lastLine);
+        String[] allLines = TextUtils.readReportFile(myFilesDir + attachFileName + "_errorReport.txt");
+        String lastLine = allLines[allLines.length - 1];
+        int studentCppErrorAmount = TextUtils.cppErrorAmountDetectionInFile(lastLine);
         System.out.println("we have " + studentCppErrorAmount);
         System.out.println("we have line " + lastLine);
         issue.setNotes(lastLine);
@@ -382,15 +386,25 @@ public class ConnectionWithRedmine {
 
     private boolean doJavaLint(ConfiguredTask task, String fullFileName) {
         new MyCheckStyle().startCheckStyle(fullFileName);
-        String lastLine = readLastLineInFile(fullFileName + "_errorReport.txt");
-        int studentJavaErrorAmount = this.javaErrorAmountDetectionInFile(lastLine);
+        String[] allLines = TextUtils.readReportFile(fullFileName + "_errorReport.txt");
+        String lastLine = allLines[allLines.length - 1];
+        String notesForIssue = "";
+        int studentJavaErrorAmount = TextUtils.javaErrorAmountDetectionInFile(lastLine);
 
         if (studentJavaErrorAmount > task.getMaxJavaLintErrors()) {
             if (task != null) {
-                this.uploadAttachment(task.getIssue(), fullFileName + "_errorReport.txt");
-                task.getIssue().setNotes("Some corrections are required. See the attached file");
+                if (task.getLintReportMode().getModeNumber() != LintReportMode.NIGHTMARE_MODE) {
+                    if (task.getLintReportMode().getModeNumber() == LintReportMode.DEFAULT_MODE) {
+                        notesForIssue = TextUtils.getPrettyErrors(allLines);
+                        this.uploadAttachment(task.getIssue(), fullFileName + "_errorReport.txt");
+                    } else {
+                        notesForIssue = lastLine;
+                    }
+                }
+                task.getIssue().setNotes(notesForIssue + "\nSome corrections are required.");
+                //this.updateIssue(task.getIssue());
             }
-            this.updateIssue(task.getIssue());
+
             return false;
         } else {
             task.getIssue().setNotes(generateSuccessMsg());
@@ -408,10 +422,11 @@ public class ConnectionWithRedmine {
     private boolean doPyLint(Issue issue, String fileToManage, double rating) {
         new MyPylint().startPylint(fileToManage);
         String attachName = fileToManage + "_errorReport.txt";
-        String lastLineInReport = readLastLineInFile(attachName);
+        String[] alllines = TextUtils.readReportFile(attachName);
+        String lastLineInReport = alllines[alllines.length - 1];
         float studentPythonRating = 0;
         try {
-            studentPythonRating = this.pythonRatingCheck(lastLineInReport);
+            studentPythonRating = TextUtils.pythonRatingCheck(lastLineInReport);
         } catch (Exception ex) {
             studentPythonRating = -20f;
         }
@@ -436,10 +451,13 @@ public class ConnectionWithRedmine {
     private boolean doPyLint(ConfiguredTask task, String fileToManage) {
         new MyPylint().startPylint(fileToManage);
         String attachName = fileToManage + "_errorReport.txt";
-        String lastLineInReport = readLastLineInFile(attachName);
+        String[] reportLines = TextUtils.readReportFile(attachName);
+        String lastLineInReport = reportLines[reportLines.length - 1];
+        String notesForIssue = "";
+
         double studentPythonRating = 0;
         try {
-            studentPythonRating = this.pythonRatingCheck(lastLineInReport);
+            studentPythonRating = TextUtils.pythonRatingCheck(lastLineInReport);
         } catch (Exception ex) {
             studentPythonRating = -200;
         }
@@ -447,21 +465,30 @@ public class ConnectionWithRedmine {
 
         if (task.getRequiredPythonRating() > studentPythonRating) {
             String studentsName = getStudentsName(task.getIssue().getId(), this.professorName);
-            System.out.println("(PyLint - assigning back to Student) - " + studentsName + " " + lastLineInReport);
+            if (studentsName.isBlank()) {
+                studentsName = professorName;
+            }
+
+            Logger.getAnonymousLogger().info("(PyLint - assigning back to Student) - " + studentsName + " " + lastLineInReport);
             this.setIssueAssigneeNameForIssue(task.getIssue(), studentsName);
-            lastLineInReport += "\n Some corrections are required! Check the report and keep trying!";
-            this.uploadAttachment(task.getIssue(), attachName);
+            lastLineInReport = TextUtils.generateErrorMsg(task, lastLineInReport);
+
+            if (task.getLintReportMode().getModeNumber() == LintReportMode.DEFAULT_MODE) {
+                notesForIssue = TextUtils.getPrettyErrors(reportLines);
+                lastLineInReport = String.format("Error(s): %d", notesForIssue.split("\n").length - 2);
+                this.uploadAttachment(task.getIssue(), attachName);
+            }
         } else {
-            lastLineInReport += "\n" + generateSuccessMsg();
+            lastLineInReport = "\n" + generateSuccessMsg();
             isPLintSuccessful = true;
         }
-        task.getIssue().setNotes(lastLineInReport);
-        this.updateIssue(task.getIssue());
+        notesForIssue += lastLineInReport;
+        task.getIssue().setNotes(notesForIssue);
+        //this.updateIssue(task.getIssue());
         return isPLintSuccessful;
     }
 
     private void downloadAttachments(String url, String apikey, String fileName) throws IOException {
-
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)
@@ -630,87 +657,6 @@ public class ConnectionWithRedmine {
         }
     }
 
-    private String readLastLineInFile(String fileDir) {
-        List<String> lines = new ArrayList<>();
-        try {
-            lines = Files.readAllLines(Paths.get(fileDir), Charsets.UTF_8);
-        } catch (IOException ex) {
-            Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String result = "";
-        for (int i = lines.size() - 1; i >= 0; i--) {
-            if (!lines.get(i).isEmpty()) {
-                result = lines.get(i);
-                break;
-            }
-        }
-        if (result.indexOf('(') != -1) {
-            result = result.substring(0, result.indexOf('('));
-        }
-
-        return result;
-    }
-
-    public Integer javaErrorAmountDetectionInFile(String string) {
-        if (!string.toLowerCase().contains("audit done.")) {
-            ArrayList<String> words = new ArrayList<>();
-            if (!string.isEmpty()) {
-                for (String retval : string.split(" ")) {
-                    words.add(retval);
-                }
-            }
-
-            String neededNumber = words.get((words.size()) - 2);
-            int errorAmount = Integer.parseInt(neededNumber);
-
-            return errorAmount;
-        } else {
-            return 0;
-        }
-    }
-
-    public Integer cppErrorAmountDetectionInFile(String string) {
-
-        ArrayList<String> words = new ArrayList<>();
-        if (!string.isEmpty()) {
-            for (String retval : string.split(" ")) {
-                words.add(retval);
-            }
-            words.addAll(Arrays.asList(string.split(" ")));
-        }
-
-        String neededNumber = words.get((words.size()) - 1);
-        int errorAmount = Integer.parseInt(neededNumber);
-
-        return errorAmount;
-    }
-
-    public Float pythonRatingCheck(String lastStringInReport) {
-        ArrayList<String> splittedWords = new ArrayList<>();
-        //String result = "";
-        if (!lastStringInReport.isEmpty()) {
-            for (String word : lastStringInReport.split(" ")) {
-                splittedWords.add(word);
-            }
-        }
-        String matchedConstruction = "";
-        for (String word : splittedWords) {
-            if (Pattern.compile(".?\\d+(\\.)?(\\d+)?").matcher(word).find()) {
-                System.out.println(word);
-                matchedConstruction = word;
-                break;
-            }
-
-        }
-        for (String rateValue : matchedConstruction.split("/")) {
-            matchedConstruction = rateValue;
-            break;
-        }
-
-        float rateValue = Float.parseFloat(matchedConstruction);
-        System.out.println(rateValue);
-        return rateValue;
-    }
 
     public void updateIssue(Issue issue) {
         try {
@@ -809,8 +755,8 @@ public class ConnectionWithRedmine {
     }
 
     private String generateSuccessMsg() {
-        String succ = new PhrasesGenerator().getSuccessRandomPhrase();
-        return succ + " Waiting for further checks.";
+        String succ = "First step. Checking style...\n";
+        return succ + new PhrasesGenerator().getSuccessRandomPhrase() + " Waiting for further checks.";
     }
 
     //тут надо что-то сделать с этим файлом: убить кириллицу и пробелы,
