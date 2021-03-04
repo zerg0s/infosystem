@@ -47,12 +47,16 @@ public class InformationSystem extends Application {
             Parent root = loader.load();
             FXMLDocumentController controller = loader.getController();
             //Parent root = FXMLLoader.load(getClass().getResource("/informarionsystem/FXMLDocument.fxml"));
+            loader.setRoot(this);
+            loader.setClassLoader(getClass().getClassLoader());
+
             Scene scene = new Scene(root);
             stage.setTitle("Проверка задач в системе Redmine");
             stage.setScene(scene);
             stage.setOnHidden(e -> controller.shutdown());
             stage.show();
-            String oldVersion = ((Text) root.lookup("#versionName")).getText().replaceAll("[^\\d.]", "");
+            String oldVersion = ((Text) root.lookup("#versionName"))
+                    .getText().replaceAll("[^\\d.]", "");
             checkNewVersion(oldVersion);
         } catch (IOException ex) {
             Logger.getLogger(InformationSystem.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,8 +145,8 @@ public class InformationSystem extends Application {
 
     private boolean downloadDistr() {
         try (InputStream in = new URL(onlineResourceDistr).openStream()) {
-            Files.copy(in, Paths.get(onlineResourceDistr.substring(onlineResourceDistr.lastIndexOf('/') + 1) + "_new.jar"),
-                    StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(in, Paths.get(onlineResourceDistr.substring(onlineResourceDistr.lastIndexOf('/') + 1) + "_new.jar"), StandardCopyOption.REPLACE_EXISTING);
+            //Files.copy(in, Paths.get("InformationSystem_new.jar"), StandardCopyOption.REPLACE_EXISTING);
             return true;
         } catch (IOException e) {
             e.printStackTrace();

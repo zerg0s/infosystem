@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import java.lang.Integer?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
@@ -25,8 +24,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import data.LintReportMode?>
-<TabPane fx:id="myTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="517.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="informationsystem.FXMLDocumentController">
+<TabPane fx:id="myTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="517.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="informationsystem.FXMLDocumentController">
     <tabs>
         <Tab text="Подключение">
             <content>
@@ -62,27 +60,27 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                        <ComboBox fx:id="comboxUserName" onAction="#handleUserChoice" prefHeight="31.0" prefWidth="212.0" promptText="Руководитель" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                        <ComboBox fx:id="comboxUserName" onAction="#handleUserChoice" prefHeight="31.0" prefWidth="214.0" promptText="Руководитель" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin></ComboBox>
-                        <ComboBox fx:id="comboxProject" onAction="#handleProjectChoice" prefHeight="31.0" prefWidth="214.0" promptText="Проект" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                        <ComboBox fx:id="comboxProject" onAction="#handleProjectChoice" prefHeight="31.0" prefWidth="211.0" promptText="Проект" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin></ComboBox>
-                        <ComboBox fx:id="comboxVersion" prefHeight="31.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                        <ComboBox fx:id="comboxVersion" prefHeight="31.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin></ComboBox>
-                        <TextField fx:id="textFieldURL" maxWidth="-Infinity" prefHeight="31.0" prefWidth="232.0" promptText="http://www.hostedredmine.com" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <TextField fx:id="textFieldURL" maxWidth="-Infinity" prefHeight="31.0" prefWidth="215.0" promptText="http://www.hostedredmine.com" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets />
+                        <Insets right="5.0" />
                      </GridPane.margin></TextField>
                         <Button fx:id="buttonDown" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="0.0" text="Начать проверку задач" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Button>
-                  <Button defaultButton="true" mnemonicParsing="false" onAction="#downloadResults" prefHeight="29.0" prefWidth="235.0" text="Скачать результаты итерации" textFill="#e31717d2" GridPane.rowIndex="7">
+                  <Button defaultButton="true" mnemonicParsing="false" onAction="#downloadResults" text="Скачать результаты итерации" textFill="#272222d1" GridPane.rowIndex="7">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -90,18 +88,21 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                      <GridPane.margin>
-                        <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="10.0" left="5.0" top="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Text fx:id="versionName" strokeType="OUTSIDE" strokeWidth="0.0" text="\@PVK Robot UI ver 3.24" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
+                  <Text fx:id="versionName" strokeType="OUTSIDE" strokeWidth="0.0" text="\\@PVK Robot UI ver 3.25" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </GridPane.margin>
                   </Text>
-                  <Label prefHeight="51.0" prefWidth="308.0" text="Главная страница" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Label text="PVK Robot" textAlignment="CENTER" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </GridPane.margin>
                   </Label>
                   <CheckBox fx:id="easyModechk" mnemonicParsing="false" selected="true" text="Показывать ответ в случае ошибки" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
                   <CheckBox fx:id="checkAllIterations" mnemonicParsing="false" selected="true" text="Проверять все итерации проекта" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
@@ -164,13 +165,6 @@
                                              <HBox.margin>
                                                 <Insets bottom="10.0" left="15.0" />
                                              </HBox.margin>
-                                              <items>
-                                                  <FXCollections fx:factory="observableArrayList">
-                                                      <LintReportMode fx:value="Default - По умолчанию(показывать, где ошибки)" />
-                                                      <LintReportMode fx:value="Hard - Только количество ошибок" />
-                                                      <LintReportMode fx:value="Nightmare - Только наличие ошибок" />
-                                                  </FXCollections>
-                                              </items>
                                           </ComboBox>
                                        </children>
                                        <padding>

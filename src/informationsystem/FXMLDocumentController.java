@@ -174,7 +174,7 @@ public class FXMLDocumentController implements Initializable {
         if (reader.getSelectedLintMode() == null) {
             return;
         }
-
+        lintErrorsNotificationsType.setItems(FXCollections.observableArrayList(getData()));
         ObservableList<LintReportMode> items = lintErrorsNotificationsType.getItems();
         int itemToSelect = items.get(0).getModeNumber();
         for (int i = 0; i < items.size(); i++) {
@@ -184,6 +184,14 @@ public class FXMLDocumentController implements Initializable {
             }
         }
         lintErrorsNotificationsType.getSelectionModel().select(itemToSelect);
+    }
+
+    private List<LintReportMode> getData() {
+        List<LintReportMode> retList = new ArrayList<LintReportMode>();
+        retList.add(LintReportMode.valueOf("Default - По умолчанию(показывать, где ошибки)"));
+        retList.add(LintReportMode.valueOf("Hard - Только количество ошибок"));
+        retList.add(LintReportMode.valueOf("Nightmare - Только наличие ошибок"));
+        return retList;
     }
 
     private void initializeSelectedProject() {

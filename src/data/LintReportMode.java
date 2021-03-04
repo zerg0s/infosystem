@@ -26,6 +26,11 @@ public class LintReportMode {
         modeName = s;
     }
 
+    public LintReportMode() {
+        modeNumber = 0;
+        modeName = "default";
+    }
+
     public int getModeNumber() {
         return modeNumber;
     }

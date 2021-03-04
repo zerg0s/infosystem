@@ -24,9 +24,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="add new updater">
+    <list default="true" id="0239c80e-29b2-4dff-8c06-1f68c893c353" name="Default Changelist" comment="update version to 3.24">
       <change afterPath="$PROJECT_DIR$/javaFx/lib/src.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AttachmentID.txt" beforeDir="false" afterPath="$PROJECT_DIR$/AttachmentID.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InformationSystem.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaDir/input.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaDir/output" beforeDir="false" />
@@ -40,7 +41,9 @@
       <change beforePath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pylint/input.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pylint/output" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/LintReportMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/LintReportMode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocument.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/informationsystem/InformationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/informationsystem/InformationSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,17 +176,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="RunCompiledJar" type="JarApplication">
       <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/InformationSystem_jar/InformationSystem.jar" />
       <option name="WORKING_DIRECTORY" value="C:\InformationSystem" />
@@ -290,7 +282,8 @@
       <workItem from="1613665402154" duration="2946000" />
       <workItem from="1614351938095" duration="914000" />
       <workItem from="1614423802357" duration="2416000" />
-      <workItem from="1614599509797" duration="18783000" />
+      <workItem from="1614599509797" duration="20508000" />
+      <workItem from="1614840258654" duration="1904000" />
     </task>
     <task id="LOCAL-00001" summary="changes made in April">
       <created>1557237496099</created>
@@ -516,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614681099480</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="update version to 3.24">
+      <created>1614689344486</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1614689344486</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,7 +588,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add Zip files" />
     <MESSAGE value="fix zip entries in folders" />
     <MESSAGE value="add planio support&#10;check only latest when force check" />
     <MESSAGE value="don't crash if no suitable attaches" />
@@ -613,7 +612,8 @@
     <MESSAGE value="update gitignore" />
     <MESSAGE value="add new setting - LinterMode" />
     <MESSAGE value="add new updater" />
-    <option name="LAST_COMMIT_MESSAGE" value="add new updater" />
+    <MESSAGE value="update version to 3.24" />
+    <option name="LAST_COMMIT_MESSAGE" value="update version to 3.24" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -675,7 +675,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
-          <line>370</line>
+          <line>378</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -685,7 +685,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
-          <line>518</line>
+          <line>526</line>
           <option name="timeStamp" value="91" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -695,7 +695,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/informationsystem/FXMLDocumentController.java</url>
-          <line>603</line>
+          <line>611</line>
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
