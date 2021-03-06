@@ -9,3 +9,11 @@
 */output*
 */out/*
 *.conf
+.idea/workspace.xml
+.idea/shelf/Uncommitted_changes_before_Update_at_2_26_2021_5_53_PM__Default_Changelist_.xml
+InformationSystem.jar
+JavaDir/.idea/JavaDir.iml
+JavaDir/.idea/misc.xml
+JavaDir/.idea/*
+javaFx/lib/src.zip
+out/production/*
