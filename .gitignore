@@ -1,3 +1,6 @@
+*.iml
+.idea
+out
 /JavaDir/ru/mai/
 /JavaDir/ru/mai/*
 /myFiles/*
@@ -38,3 +41,4 @@ out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class
 .idea/workspace.xml
 .idea/workspace.xml
 *.class
+.idea/workspace.xml
