@@ -1,1 +1,1 @@
-rabbit rabbit fox fox
+*rabbit rabbit fox fox

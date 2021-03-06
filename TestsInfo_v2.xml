@@ -89,6 +89,7 @@
 		<test id="1045" subject="Телефонные номера-2" testSetFolder="regPhoneNumbers"/>
 		<test id="1046" subject="Перевод шкал" testSetFolder="regChangeScales"/>
 		<test id="1047" subject="Последнее слово" testSetFolder="regLastWord"/>
+		<test id="1048" subject="Поиск настроек игры" testSetFolder="regGameSettings"/>
 	</homework>
 	
 	<homework id="101" name="Контрольная работа номер 1">
@@ -141,5 +142,10 @@
 		<test id="1037" subject="Общий префикс" testSetFolder="commonPrefix"/>
 		<test id="1038" subject="Поисковые запросы" testSetFolder="finalQueezeSearch"/>
 		<test id="1039" subject="Секретные коды доступа к данным &quot;квадрогона&quot;" testSetFolder="finalQuadCodes"/>
+	</homework>
+	<homework id="105" name="Домашняя работа dateTime">
+		<test id="1040" subject="Рабочие будни" testSetFolder="dateTime_workDays"/>
+		<test id="1041" subject="Учет времени выполнения задач" testSetFolder="dateTime_timeManagementdateTime_timeManagement"/>
+		<test id="1042" subject="Система бронирования отелей" testSetFolder="dateTime_hotels"/>
 	</homework>
 </AllTestDescription>
