@@ -24,3 +24,14 @@ out/production/InformationSystem/informationsystem/FXMLDocument.fxml
 out/production/InformationSystem/informationsystem/FXMLDocument.fxml
 out/production/InformationSystem/informationsystem/FXMLDocumentController.class
 pylint/__pycache__/**
+JavaDir/__pycache__/localization.cpython-38.pyc
+.idea/workspace.xml
+InformationSystem.iml
+out/production/InformationSystem/informationsystem/RedmineConnectionProperties.class
+out/production/InformationSystem/informationsystem/XmlReader.class
+out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class
+.idea/workspace.xml
+InformationSystem.iml
+out/production/InformationSystem/informationsystem/RedmineConnectionProperties.class
+out/production/InformationSystem/informationsystem/XmlReader.class
+out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class
