@@ -35,3 +35,4 @@ InformationSystem.iml
 out/production/InformationSystem/informationsystem/RedmineConnectionProperties.class
 out/production/InformationSystem/informationsystem/XmlReader.class
 out/production/InformationSystem/redmineManagement/ConnectionWithRedmine.class
+.idea/workspace.xml
