@@ -17,3 +17,4 @@ JavaDir/.idea/misc.xml
 JavaDir/.idea/*
 javaFx/lib/src.zip
 out/production/*
+.idea/workspace.xml
