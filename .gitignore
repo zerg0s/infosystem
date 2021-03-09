@@ -1,11 +1,9 @@
 *.iml
 .idea
-out
 /JavaDir/ru/mai/**
 /myFiles/**
 ./ProjectKey.xml
 *.class
-/out/**
 */input.txt
 out/**
 InformationSystem.jar
