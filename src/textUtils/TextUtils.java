@@ -48,7 +48,7 @@ public class TextUtils {
         try {
             lines = Files.readAllLines(Paths.get(fileDir), Charsets.UTF_8);
         } catch (IOException ex) {
-            Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
         String result = "";
         int i = lines.size() - 1;
@@ -124,7 +124,19 @@ public class TextUtils {
         }
 
         float rateValue = Float.parseFloat(matchedConstruction);
-        System.out.println(rateValue);
+        logger.info(Float.toString(rateValue));
         return rateValue;
     }
+
+    public static List<String> readFile(String fileDir) {
+        List<String> lines = new ArrayList<>();
+        try {
+            lines = Files.readAllLines(Paths.get(fileDir), Charsets.UTF_8);
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, null, ex);
+        }
+        return lines;
+    }
+
+    static Logger logger = Logger.getLogger(TextUtils.class.getSimpleName());
 }

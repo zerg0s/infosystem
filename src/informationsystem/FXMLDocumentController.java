@@ -20,21 +20,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import data.*;
+import informationsystem.TasksManager.FxmlTasksController;
+import informationsystem.TasksManager.TaskInfo;
+import informationsystem.TasksManager.TasksKeeper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.apache.commons.codec.Charsets;
-import javafx.scene.control.ListView;
 import redmineManagement.ConnectionWithRedmine;
 import redmineManagement.RedmineJournalsReader;
 
@@ -43,7 +48,7 @@ import redmineManagement.RedmineJournalsReader;
  */
 public class FXMLDocumentController implements Initializable {
 
-    private final XmlReader reader = new XmlReader();
+    private final XmlReader reader = new XmlReader(".\\TestsInfo_v2.xml");
     private ArrayList<Project> projects = new ArrayList<>();
 
     @FXML
@@ -112,11 +117,42 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ComboBox lintErrorsNotificationsType;
 
+    @FXML
+    private Button btnTaskPrev;
+
+    @FXML
+    private Button btnTaskNext;
+
+    @FXML
+    private ComboBox<String> cbxAllAvailableTasks;
+
+    @FXML
+    private ComboBox<String> cbxTestsForTask;
+
+    @FXML
+    private TextArea txtTestInput;
+
+    @FXML
+    private TextArea txtTestOutput;
+
+    @FXML
+    private Button btnAddNewTask;
+
+    @FXML
+    private Button btnAddNewTest;
+
+    @FXML
+    private Button btnDetails;
+
+    @FXML
+    private Tab tasksTab;
+
     private ConnectionWithRedmine connectionToRedmine;
     private RedmineJournalsReader journalReader;
     private boolean needLog = false;
     private RedmineConnectionProperties props = new RedmineConnectionProperties();
     private String projectKeyXml = "ProjectKey.xml";
+    private TasksKeeper tasksKeeper;
 
     public void initialize(URL url, ResourceBundle bn) {
 
@@ -225,8 +261,8 @@ public class FXMLDocumentController implements Initializable {
 
         if (!props.projectKey.isEmpty() && !props.apiAccessKey.isEmpty()
                 && !props.url.isEmpty() && !props.iterationName.isEmpty()) {
-            Logger.getAnonymousLogger().info("Тест русских букв!\n");
-            Logger.getAnonymousLogger().info("Selected values: " + props.url + "\n"
+            logger.info("Тест русских букв!\n");
+            logger.info("Selected values: " + props.url + "\n"
                     + props.apiAccessKey.substring(props.apiAccessKey.length() - 3) + "\n" + props.projectKey
                     + "\n" + props.iterationName);
             new Thread(() -> {
@@ -285,9 +321,6 @@ public class FXMLDocumentController implements Initializable {
         for (String task : connectionToRedmine.getIterationFreeTasks(comboxVersion.getValue().toString())) {
             tasks.add(new CellWithCheckBox(task, false));
         }
-
-//        users.add(new CellWithCheckBox("TestUser", false));
-//        tasks.add(new CellWithCheckBox("123456 - test task",false));
 
         StringConverter<CellWithCheckBox> converter = new StringConverter<CellWithCheckBox>() {
             @Override
@@ -366,7 +399,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, "======Started========\n");
+        logger.log(Level.INFO, "======Started========\n");
         connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
 
         boolean easyMode = easyModechk.isSelected();
@@ -380,7 +413,7 @@ public class FXMLDocumentController implements Initializable {
             try {
                 issues = connectionToRedmine.getMyIssues(iterationName);
             } catch (RedmineException ex) {
-                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                logger.log(Level.SEVERE, null, ex);
             }
 
             for (Issue issue : issues) {
@@ -388,7 +421,7 @@ public class FXMLDocumentController implements Initializable {
             }
 
         }
-        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.INFO, "======Finished========\n");
+        logger.log(Level.INFO, "======Finished========\n");
     }
 
     private void processIssue(Issue issue, boolean easyMode) {
@@ -410,7 +443,7 @@ public class FXMLDocumentController implements Initializable {
     private void processIssue(Issue issue, boolean needLog, boolean needForced, boolean easyMode) {
         ArrayList<String> journals;
         if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
-            Logger.getAnonymousLogger().info(issue.toString());
+            logger.info(issue.toString());
             Double pyRating = 10.0;
             int javaErrorLimit = 5;
             if (comboBoxPythonRating.getValue() != null) {
@@ -423,7 +456,7 @@ public class FXMLDocumentController implements Initializable {
 
             //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
             String student = getStudentName(journalReader.getJournals(issue.getId().toString()), connectionToRedmine.getProfessorName());
-            Logger.getAnonymousLogger().info("Student is " + student);
+            logger.info("Student is " + student);
             ConfiguredTask confTask = new ConfiguredTask(issue, student,
                     needForced,
                     connectionToRedmine.getLint(), pyRating, javaErrorLimit,
@@ -434,7 +467,7 @@ public class FXMLDocumentController implements Initializable {
             journals = journalReader.getJournals(issue.getId().toString());
             connectionToRedmine.setStudentName(getStudentName(journals, comboxUserName.getValue().toString()));
         } else if (needLog) {
-            Logger.getAnonymousLogger().info("Already Closed:" + issue.toString());
+            logger.info("Already Closed:" + issue.toString());
         }
     }
 
@@ -484,7 +517,7 @@ public class FXMLDocumentController implements Initializable {
             try {
                 versions = connectionToRedmine.getVersions(props.projectKey);
             } catch (RedmineException ex) {
-                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                logger.log(Level.SEVERE, null, ex);
             }
             Collection<String> versii = new ArrayList<>();
             if (versii != null || !versii.isEmpty()) {
@@ -506,8 +539,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handlePyhtonRatingScanCheck() {
         if (checkBoxPythonRateScan.isSelected()) {
-            //null here
-            float pythonRating = Float.parseFloat(comboBoxPythonRating.getValue().toString());
+            float pythonRating = (float) 10.0;
+            if (comboBoxPythonRating.getValue() != null) {
+                pythonRating = Float.parseFloat(comboBoxPythonRating.getValue().toString());
+            }
             connectionToRedmine.setRating(pythonRating);
         }
     }
@@ -554,6 +589,14 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
+    private void seeTestsForATask() {
+        tasksTab.getTabPane().getSelectionModel().select(tasksTab);
+        String taskName = "Шашки";
+        cbxAllAvailableTasks.getSelectionModel().select(taskName);
+        cbxTestsForTask.getSelectionModel().select(0);
+    }
+
+    @FXML
     //Загружает закрытые задачи для составления списка сдавших
     private void downloadResults() {
         String currentVersion = comboxVersion.getValue().toString();
@@ -579,7 +622,8 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void toChooseLocalFile() {
+    private void saveAllTasks(ActionEvent event) {
+
     }
 
     @FXML
@@ -611,23 +655,33 @@ public class FXMLDocumentController implements Initializable {
             if (task.getLintReportMode() == null) {
                 task.setLintReportMode(new LintReportMode(0, "Default"));
             }
-            Logger.getAnonymousLogger().info(task.toString());
+            logger.info(task.toString());
 
             this.processConfiguredIssue(task);
 
         } catch (Exception ex) {
-            Logger.getAnonymousLogger().log(Level.INFO, ex.toString());
+            logger.log(Level.INFO, ex.toString());
         }
     }
 
-    public Collection<String> readFile(String fileDir) {
-        Collection<String> lines = new ArrayList<>();
+    private void OpenTaskStage(ActionEvent event, TaskInfo taskInfo) {
+        Parent root;
         try {
-            lines = Files.readAllLines(Paths.get(fileDir), Charsets.UTF_8);
-        } catch (IOException ex) {
-            Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TasksManager/TaskView.fxml"));
+            root = loader.load();
+            FxmlTasksController tasksController = loader.getController();
+            tasksController.setTask(taskInfo);
+            Stage stage = new Stage();
+            stage.setTitle("Добавить новую задачу");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setOnHidden(e -> tasksController.shutdown());
+            stage.initOwner(
+                    ((Node) event.getSource()).getScene().getWindow());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return lines;
     }
 
     public void shutdown() {
@@ -654,4 +708,106 @@ public class FXMLDocumentController implements Initializable {
         if (map == null || key == null || value == null) return;
         map.put(String.valueOf(key), String.valueOf(value));
     }
+
+    @FXML
+    private void btnPrevTaskClick(ActionEvent event) {
+        cbxTestsForTask.getSelectionModel().select(
+                (cbxTestsForTask.getSelectionModel().getSelectedIndex() - 1) % cbxTestsForTask.getItems().size());
+    }
+
+    @FXML
+    private void btnTaskNextClicked(ActionEvent event) {
+        cbxTestsForTask.getSelectionModel().select(
+                (cbxTestsForTask.getSelectionModel().getSelectedIndex() + 1) % cbxTestsForTask.getItems().size());
+    }
+
+    @FXML
+    private void initTasksTab() {
+        if (!tasksTab.isSelected()) {
+            return;
+        }
+        logger.info("tasksTab is Selected. Starting.");
+        tasksKeeper = TasksKeeper.update(reader);
+
+        cbxAllAvailableTasks.setItems(FXCollections.observableArrayList(tasksKeeper.getAllTaskNames()));
+
+        txtTestInput.textProperty().addListener((observable, oldValue, newValue) -> {
+            if ((cbxTestsForTask.getValue() == null) || oldValue.isBlank()
+                    || newValue.isBlank() || newValue.equals(oldValue)) {
+                return;
+            }
+            tasksKeeper.getSelectedTask().setTestInput(cbxTestsForTask.getValue(), newValue);
+        });
+
+        txtTestOutput.textProperty().addListener((observable, oldValue, newValue) -> {
+            if ((cbxTestsForTask.getValue() == null) || oldValue.isBlank()
+                    || newValue.isBlank() || newValue.equals(oldValue)) {
+                return;
+            }
+            tasksKeeper.getSelectedTask().setTestOutput(cbxTestsForTask.getValue(), newValue);
+        });
+        Image image = new Image(getClass().getResourceAsStream(".\\plus.png"), 25, 25, false, false);
+        ImageView imagePlus = new ImageView(image);
+
+        Image image2 = new Image(getClass().getResourceAsStream(".\\plus.png"), 25, 25, false, false);
+        ImageView imagePlus2 = new ImageView(image2);
+
+        btnAddNewTask.setGraphic(imagePlus);
+        btnAddNewTest.setGraphic(imagePlus2);
+
+        Image imageInfo = new Image(getClass().getResourceAsStream(".\\info.png"), 25, 25, false, false);
+        ImageView imageViewInfo = new ImageView(imageInfo);
+        btnDetails.setGraphic(imageViewInfo);
+    }
+
+    @FXML
+    private void handleTaskChoice() {
+        try {
+            String selected = cbxAllAvailableTasks.getSelectionModel().getSelectedItem();
+            if (selected == null) {
+                return;
+            }
+
+            cbxTestsForTask.getItems().clear();
+            cbxTestsForTask.setItems(FXCollections.observableArrayList(
+                    tasksKeeper.getAllTests(selected)));
+            txtTestInput.clear();
+            txtTestOutput.clear();
+        } catch (IOException e) {
+            logger.info(e.toString());
+        }
+    }
+
+    @FXML
+    private void handleTestChoice() {
+        String selected = cbxAllAvailableTasks.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            return;
+        }
+
+        TaskInfo taskInfo = tasksKeeper.getTestByName(selected);
+        if (cbxTestsForTask.getValue() != null) {
+            txtTestInput.clear();
+            txtTestOutput.clear();
+            txtTestInput.setText(taskInfo.getTestContent(cbxTestsForTask.getValue().toString(), false));
+            txtTestOutput.setText(taskInfo.getTestContent(cbxTestsForTask.getValue().toString(), true));
+        }
+    }
+
+    @FXML
+    private void addNewTask(ActionEvent event){
+        OpenTaskStage(event, new TaskInfo());
+    }
+
+    @FXML
+    private void editTask(ActionEvent event) {
+        OpenTaskStage(event, tasksKeeper.getSelectedTask());
+    }
+
+    @FXML
+    private void addNewTest(){
+        logger.info("addNew click");
+    }
+
+    private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());
 }

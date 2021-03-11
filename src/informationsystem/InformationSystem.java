@@ -46,7 +46,6 @@ public class InformationSystem extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
             Parent root = loader.load();
             FXMLDocumentController controller = loader.getController();
-            //Parent root = FXMLLoader.load(getClass().getResource("/informarionsystem/FXMLDocument.fxml"));
             loader.setRoot(this);
             loader.setClassLoader(getClass().getClassLoader());
 

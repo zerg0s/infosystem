@@ -11,6 +11,7 @@ import java.io.StringReader;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,6 +19,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import data.LintReportMode;
 import data.Project;
 import data.ProjectOwner;
+import informationsystem.TasksManager.TaskInfo;
+import informationsystem.TasksManager.TasksKeeper;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -48,7 +51,7 @@ public class XmlReader {
     private String projectKey = "";
     private ArrayList<String> usersNameList = new ArrayList<String>();
     private ArrayList<String> apiKeysList = new ArrayList<String>();
-    private ArrayList<String>  projectNameList = new ArrayList<String>();
+    private ArrayList<String> projectNameList = new ArrayList<String>();
     private ArrayList<ProjectOwner> owners = new ArrayList<ProjectOwner>();
     private String filePath = "";
     private boolean isEasyMode;
@@ -64,7 +67,7 @@ public class XmlReader {
         this.filePath = pathToXml;
     }
 
-    XmlReader() {
+    public XmlReader() {
 
     }
 
@@ -227,7 +230,7 @@ public class XmlReader {
         return builder.parse(is);
     }
 
-    public static String getTextTagValue(String tag, Document doc){
+    public static String getTextTagValue(String tag, Document doc) {
         return getValue(tag, doc.getDocumentElement());
     }
 
@@ -235,8 +238,8 @@ public class XmlReader {
         NodeList nodes = loadXMLFromString(readXml).getDocumentElement()
                 .getElementsByTagName(itemTag);
         List<String> nodesList = new ArrayList<>();
-        for (int i = 0; i<nodes.getLength(); i++) {
-            nodesList.add(((Node)nodes.item(i)).getChildNodes().item(0).getNodeValue());
+        for (int i = 0; i < nodes.getLength(); i++) {
+            nodesList.add(((Node) nodes.item(i)).getChildNodes().item(0).getNodeValue());
         }
         return nodesList;
     }
@@ -334,8 +337,11 @@ public class XmlReader {
         this.owners = owners;
     }
 
-    public HashMap<String, String> getAlltests() {
-        HashMap<String, String> testsData = new HashMap<>();
+    public TasksKeeper getAlltests() {
+        //HashMap<String, String> testsData = new HashMap<>();
+        TaskInfo testData;
+        TasksKeeper tasksKeeper = new TasksKeeper();
+
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -348,13 +354,25 @@ public class XmlReader {
 
             //тут можно добавить более "умный" поиск, пока ищем только - полное совпадение
             for (int i = 0; i < listOfTestNodes.getLength(); i++) {
+                testData = new TaskInfo();
                 Element e = (Element) listOfTestNodes.item(i);
-                testsData.put(e.getAttribute("subject"), e.getAttribute("testSetFolder"));
+                testData.setTaskName(e.getAttribute("subject"));
+                testData.setTaskPath(e.getAttribute("testSetFolder"));
+                testData.setTaskId(e.getAttribute("id"));
+                NodeList listOfDescr = e.getChildNodes();
+                for (int j = 0; j < listOfDescr.getLength(); j++) {
+                    Node node = (Node) listOfDescr.item(j);
+                    if (node.getNodeName().equals("description")) {
+                        testData.setTaskBody(node.getTextContent().trim());
+                    }
+                }
+                tasksKeeper.put(testData);
             }
         } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
             Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return testsData;
+
+        return tasksKeeper;
     }
 
     public boolean isEasyMode() {
