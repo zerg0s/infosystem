@@ -43,7 +43,7 @@ public class TasksKeeper {
     }
 
     public List<String> getAllTests(String taskName) throws IOException {
-        TaskInfo taskInfo =  getTestByName(taskName);
+        TaskInfo taskInfo = getTestByName(taskName);
         setSelectedTask(taskInfo);
         List<String> tests = Files.list(Path.of(TasksKeeper.PathToTests, taskInfo.getTaskPath()))
                 .filter(path -> path.toString().toLowerCase().endsWith(".t"))
@@ -54,12 +54,12 @@ public class TasksKeeper {
         return tests;
     }
 
-    private void setSelectedTask(TaskInfo taskInfo) {
-        selectedTask = taskInfo;
-    }
-
     public TaskInfo getSelectedTask() {
         return selectedTask;
+    }
+
+    public void setSelectedTask(TaskInfo task) {
+        this.selectedTask = task;
     }
 
     public TaskInfo getTestByName(String value) {

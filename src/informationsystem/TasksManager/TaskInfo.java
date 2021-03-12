@@ -109,6 +109,9 @@ public class TaskInfo {
             logger.info(e.toString());
         }
     }
+    public void saveAllData() {
+
+    }
 
     private static Logger logger = Logger.getLogger(TaskInfo.class.getSimpleName());
 }

@@ -675,13 +675,34 @@ public class FXMLDocumentController implements Initializable {
             stage.setTitle("Добавить новую задачу");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.setOnHidden(e -> tasksController.shutdown());
+            stage.setOnHidden(e -> {
+                updateSelectedItem(cbxAllAvailableTasks, tasksKeeper.getSelectedTask().getTaskName());
+                tasksKeeper.setSelectedTask(tasksController.getTaskInfo());
+                tasksController.shutdown();
+            });
             stage.initOwner(
                     ((Node) event.getSource()).getScene().getWindow());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateSelectedItem(ComboBox<String> cbx, String task) {
+        String oldItem = cbx.getSelectionModel().getSelectedItem();
+        if (oldItem == null) {
+            oldItem = cbx.getValue();
+        }
+
+        ObservableList<String> items = cbx.getItems();
+        for(int i = 0; i< items.size(); i++) {
+            if (items.get(i).equals(oldItem)) {
+                items.set(i, task);
+                break;
+            }
+        }
+
+        cbx.setItems(items);
     }
 
     public void shutdown() {
@@ -746,18 +767,6 @@ public class FXMLDocumentController implements Initializable {
             }
             tasksKeeper.getSelectedTask().setTestOutput(cbxTestsForTask.getValue(), newValue);
         });
-        Image image = new Image(getClass().getResourceAsStream(".\\plus.png"), 25, 25, false, false);
-        ImageView imagePlus = new ImageView(image);
-
-        Image image2 = new Image(getClass().getResourceAsStream(".\\plus.png"), 25, 25, false, false);
-        ImageView imagePlus2 = new ImageView(image2);
-
-        btnAddNewTask.setGraphic(imagePlus);
-        btnAddNewTest.setGraphic(imagePlus2);
-
-        Image imageInfo = new Image(getClass().getResourceAsStream(".\\info.png"), 25, 25, false, false);
-        ImageView imageViewInfo = new ImageView(imageInfo);
-        btnDetails.setGraphic(imageViewInfo);
     }
 
     @FXML
@@ -795,7 +804,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void addNewTask(ActionEvent event){
+    private void addNewTask(ActionEvent event) {
         OpenTaskStage(event, new TaskInfo());
     }
 
@@ -805,7 +814,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void addNewTest(){
+    private void addNewTest() {
         logger.info("addNew click");
     }
 
