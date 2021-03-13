@@ -1,12 +1,15 @@
-# код проверяльщика задач, версия 2020.26
+# код проверяльщика задач, версия 2021.27
 
 import os
 import subprocess
 import sys
 
 from shutil import copy2
+from typing import List
+
 from pep9 import funcCheck
 from localization import Locale
+from testReport import TestReport
 
 
 # read the correct answer for test## from .a file
@@ -51,33 +54,25 @@ def cleanMainFromFileToCheck():
         text_file.write(sourceFileWithoutMain)
         text_file.close()
 
+
 def addExecStdIntoTheEndOfFile():
     text_file = open(fileToCheck, "a+", encoding="utf-8")
     text_file.write("\n\nfrom sys import stdin\n\nif __name__ == \"__main__\": exec(stdin.read())")
     text_file.close()
 
-def prettyPrintRetArray(retArray):
-    i = 0
-    #  сначала распечатываем что получилось достать о тестах
-    while i < len(retArray):
-        if str(retArray[i]) == "True":
-            print(f"test{i+1} - ", end="")
-            print(Locale.Passed)
-        elif str(retArray[i]) == "False":
-            print(f"test{i+1} - ", end="")
-            print(Locale.Failed)
-        elif str(retArray[i]) == Locale.Timeout:
-            print(f"test{i+1} - ", end="")
-            print(retArray[i])
-        else:
-            break
-        i += 1
-    
-    #  Потом всю доп информацию    
-    while i < len(retArray):
-        print(retArray[i])
-        i += 1
 
+def prettyPrintRetArray(retArray: List[TestReport]):
+    i = 0
+    for reportLine in retArray:
+        if reportLine[0] == TestReport.TEST:
+            print(f"test{i + 1} - ", end="")
+            if str(reportLine[1]) == "True":
+                print(Locale.Passed)
+            else:
+                print(Locale.Failed)
+            i += 1
+        else:
+            print(reportLine[1])
 
 
 def checkConfigurationAndRestrictions(testConfiguration):
@@ -139,13 +134,13 @@ def getCorrectAnswers(dirWithTests, fileWithTests):
 ################
 # Manual Config Section
 
-easyMode = True  # в этом режиме показываются входные данные для упавших тестов.
+easyMode = False  # в этом режиме показываются входные данные для упавших тестов.
 maxExecutionTimeDelay = 2  # max timeout for a task
 ################
 
 if __name__ == "__main__":
-    fileToCheck = "svetofor.py"
-    dirToCheck = "trafficlights"
+    fileToCheck = "myFile.py"
+    dirToCheck = "reverseInput"
     # dirToCheck = "regFindReplaceRepeated"
     retArray = list()
 
@@ -195,7 +190,7 @@ if __name__ == "__main__":
             except subprocess.TimeoutExpired:
                 proc.kill()
                 outs, errs = proc.communicate()
-                retArray.append(Locale.Timeout)
+                retArray.append(TestReport(TestReport.OTHER, Locale.Timeout))
                 break
             finally:
                 if "input" in testConfiguration and os.path.exists(str(testConfiguration["input"])):
@@ -218,10 +213,10 @@ if __name__ == "__main__":
             if checkCrashExists(userAnswer):
                 extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
                 if easyMode and extraDataForEasyMode:
-                    retArray.append(Locale.EasyModeHelp % extraDataForEasyMode)
+                    retArray.append(TestReport(TestReport.OTHER, Locale.EasyModeHelp % extraDataForEasyMode))
 
-                retArray.append(Locale.CrashFound)
-                retArray.append(userAnswer)
+                retArray.append(TestReport(TestReport.OTHER, Locale.CrashFound))
+                retArray.append(TestReport(TestReport.OTHER, userAnswer))
                 break  # программа пользователя упала, дальше не надо.
 
             userAnswer = processAndTrimAnswer(userAnswer)
@@ -231,7 +226,7 @@ if __name__ == "__main__":
             if len(correctAnswers) > 0 and \
                     (correctAnswers[0] is None or
                      correctAnswers[0].strip() == ""):
-                retArray.append(True)
+                retArray.append(TestReport(TestReport.TEST, "True"))
                 continue
 
             # tricky check for random tasks - if answer could be divided into 23
@@ -243,13 +238,14 @@ if __name__ == "__main__":
                 for aCorrectAnswer in correctAnswers:
                     isAnswerCorrect |= funcToCheckAnswer(aCorrectAnswer, userAnswer)
 
-            retArray.append(isAnswerCorrect)
+            retArray.append(TestReport(TestReport.TEST, isAnswerCorrect))
 
             if not isAnswerCorrect:
                 extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
                 if easyMode:
-                    retArray.append("Recieved answer:")
-                    retArray.append(userAnswer)
+                    retArray.append(TestReport(TestReport.OTHER, Locale.RecievedAnswer))
+                    retArray.append(TestReport(TestReport.OTHER, userAnswer))
+                    retArray.append(TestReport(TestReport.OTHER, Locale.EasyModeHelp % extraDataForEasyMode))
                 if "ContinueIfTestFailed" not in testConfiguration:  # для толстых программ
                     break  # программа пользователя выдала неверный результат, дальше не надо.
 
@@ -258,9 +254,8 @@ if __name__ == "__main__":
     else:
         prettyPrintRetArray(retArray)
 
-    if len(set(retArray)) == 1 and str(retArray[0]) == "True":
+    # костыль для Java-стороны Locale.Passed в последней строке вывода значит, что задача принята.
+    if all(map(lambda x: x[1] == "True", retArray)) == 0:
         print(Locale.Passed)
     else:
-        if easyMode and extraDataForEasyMode:
-            print(Locale.EasyModeHelp % extraDataForEasyMode)
-        print(Locale.Failed)
+        print(Locale.Total, Locale.Failed, sep="\n")
