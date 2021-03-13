@@ -6,6 +6,7 @@ import org.apache.commons.codec.Charsets;
 import redmineManagement.ConnectionWithRedmine;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -48,8 +49,17 @@ public class TextUtils {
         try {
             lines = Files.readAllLines(Paths.get(fileDir), Charsets.UTF_8);
         } catch (IOException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, ex.toString());
         }
+
+        if (lines.isEmpty()) {
+            try {
+                lines = Files.readAllLines(Paths.get(fileDir), Charset.forName("windows-1251"));
+            } catch (IOException ex) {
+                logger.log(Level.SEVERE, ex.toString());
+            }
+        }
+
         String result = "";
         int i = lines.size() - 1;
         while (lines.size() > 0) {
