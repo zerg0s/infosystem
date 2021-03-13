@@ -116,10 +116,11 @@
 		<test id="1028" subject="Вычисление количества цифр-2" testSetFolder="countNumbersInList"/>
 	</homework>
 		<homework id="103" name="Контрольная работа номер 2.1">
-		<test id="1031" subject="Замена(3)" testSetFolder="kr21HtmlExchange"/>
-		<test id="1032" subject="Правильные даты(3)" testSetFolder="kr21Dates"/>
+		<test id="1031" subject="Замена" testSetFolder="kr21HtmlExchange"/>
+		<test id="1032" subject="Правильные даты" testSetFolder="kr21Dates"/>
 		<test id="1033" subject="Все оттенки серого(max 5)" testSetFolder="kr21ShadesOfGrey"/>
 		<test id="1034" subject="Замена2" testSetFolder="kr21itallic"/>
+		<test id="1035" subject="Сколько до лета" testSetFolder="kr21daysBetweenDates"/>
 	</homework>
 	<homework id="104" name="Контрольная работа номер 2.2">
 		<test id="1031" subject="Сколько стоит рубль" testSetFolder="kr22RublPrice"/>
@@ -135,8 +136,11 @@
 		<test id="10311" subject="Лавочки в ТЦ Кунцево Плаза" testSetFolder="z1Lavochki"/>
 		<test id="10312" subject="Сортировка по близости" testSetFolder="z1NearestToK"/>
 		<test id="10313" subject="Таблица умножения" testSetFolder="z1TableOfMult"/>
-		<test id="10313" subject="Cтолбцы по убыванию значений элементов" testSetFolder="z1MatrixSort"/>
-		<test id="10314" subject="Заменить пробел и группы пробелов символом" testSetFolder="z1StarsAndSpaces"/>
+		<test id="10314" subject="Cтолбцы по убыванию значений элементов" testSetFolder="z1MatrixSort"/>
+		<test id="10315" subject="Заменить пробел и группы пробелов символом" testSetFolder="z1StarsAndSpaces"/>
+		<test id="87" subject="Правильная расстановка ударений" testSetFolder="accentQuiz"/>
+		<test id="10316" subject="Отражение матрицы" testSetFolder="z1MatrixReflection"/>
+
 
 		<test id="1036" subject="Сумма произведений соседних чисел" testSetFolder="sumOfNeibors"/>
 		<test id="1037" subject="Общий префикс" testSetFolder="commonPrefix"/>
