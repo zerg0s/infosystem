@@ -9,17 +9,15 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
 import redmineManagement.IssuesChecker;
-import redmineManagement.RedmineJournalsReader;
+import redmineManagement.RedmineAlternativeReader;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
@@ -35,7 +33,7 @@ import java.util.stream.Stream;
  */
 public class InformationSystem extends Application {
 
-    private RedmineJournalsReader redmineJournalsReader;
+    private RedmineAlternativeReader redmineAlternativeReader;
     private final String onlineResource = "http://textanalysis.ru/pvkrobot/version.xml";
     private final String onlineResourceDistr = "http://textanalysis.ru/pvkrobot/InformationSystem.jar";
     private String onlineXml;

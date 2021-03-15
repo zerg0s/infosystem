@@ -27,7 +27,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 import data.ConfiguredTask;
 import data.LintReportMode;
@@ -97,6 +96,7 @@ public class ConnectionWithRedmine {
 
         try {
             mgr.getTransport().setObjectsPerPage(100);
+            mgr.setObjectsPerPage(100);
             projectsUsers = mgr.getProjectManager().getProjectMembers(this.projectKey);
         } catch (RedmineException ex) {
             Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,12 +131,14 @@ public class ConnectionWithRedmine {
                 break;
             }
         }
+
         if (id != 0) {
             issue.setAssigneeId(id);
             issue.setAssigneeName(value);
         } else {
-            Logger.getLogger(this.getClass().getName()).warning("Can't find user" + value);
+            Logger.getLogger(this.getClass().getName()).warning("Can't find user " + value);
         }
+
         return issue;
     }
 
@@ -746,7 +748,7 @@ public class ConnectionWithRedmine {
     }
 
     private String getStudentsName(int id, String managerName) {
-        String st = new RedmineJournalsReader(url, this.apiAccessKey).getStudentsName(id, managerName);
+        String st = new RedmineAlternativeReader(url, this.apiAccessKey).getStudentsName(id, managerName);
         return st;
     }
 

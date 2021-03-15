@@ -11,8 +11,6 @@ import com.taskadapter.redmineapi.bean.Version;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,14 +32,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import org.apache.commons.codec.Charsets;
 import redmineManagement.ConnectionWithRedmine;
-import redmineManagement.RedmineJournalsReader;
+import redmineManagement.RedmineAlternativeReader;
 
 /**
  * @author user
@@ -148,7 +143,7 @@ public class FXMLDocumentController implements Initializable {
     private Tab tasksTab;
 
     private ConnectionWithRedmine connectionToRedmine;
-    private RedmineJournalsReader journalReader;
+    private RedmineAlternativeReader journalReader;
     private boolean needLog = false;
     private RedmineConnectionProperties props = new RedmineConnectionProperties();
     private String projectKeyXml = "ProjectKey.xml";
@@ -267,7 +262,7 @@ public class FXMLDocumentController implements Initializable {
                     + "\n" + props.iterationName);
             new Thread(() -> {
                 connectionToRedmine = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
-                journalReader = new RedmineJournalsReader(props.url, props.apiAccessKey);
+                journalReader = new RedmineAlternativeReader(props.url, props.apiAccessKey);
             }).run();
         }
     }
@@ -511,7 +506,7 @@ public class FXMLDocumentController implements Initializable {
 
         if (!props.projectKey.isEmpty()) {
             connectionToRedmine = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
-            journalReader = new RedmineJournalsReader(props.url, props.apiAccessKey);
+            journalReader = new RedmineAlternativeReader(props.url, props.apiAccessKey);
 
             Collection<Version> versions = new ArrayList();
             try {

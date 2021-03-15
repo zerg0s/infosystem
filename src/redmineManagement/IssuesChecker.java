@@ -11,14 +11,14 @@ import java.util.logging.Logger;
 
 public class IssuesChecker {
     private ConnectionWithRedmine connectionToRedmine;
-    private RedmineJournalsReader redmineJournalsReader;
+    private RedmineAlternativeReader redmineAlternativeReader;
     private RedmineConnectionProperties props;
     private String professorName = "Sergey Politsyn";
 
     public IssuesChecker(RedmineConnectionProperties props) {
         this.props = props;
         connectionToRedmine = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
-        redmineJournalsReader = new RedmineJournalsReader(props.url, props.apiAccessKey);
+        redmineAlternativeReader = new RedmineAlternativeReader(props.url, props.apiAccessKey);
     }
 
     public void checkSingleIssue() {
@@ -46,7 +46,7 @@ public class IssuesChecker {
                 System.out.println(issue.toString());
                 //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
                 connectionToRedmine.checkAttachmentsForced(issue);
-                journals = redmineJournalsReader.getJournals(issue.getId().toString());
+                journals = redmineAlternativeReader.getJournals(issue.getId().toString());
                 connectionToRedmine.setStudentName(getStudentName(journals, professorName));
             }
         } catch (IOException ex) {
