@@ -21,9 +21,8 @@ import data.Project;
 import data.ProjectOwner;
 import informationsystem.TasksManager.TaskInfo;
 import informationsystem.TasksManager.TasksKeeper;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import javafx.util.Pair;
+import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -38,8 +37,6 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-
-import org.w3c.dom.Node;
 
 /**
  * @author Zerg0s
@@ -71,6 +68,43 @@ public class XmlReader {
 
     }
 
+    public static Pair<String, String> getFilePath(String xml, String attribute) {
+        Pair<String, String> fromTo = new Pair<String, String>("", "");
+        try {
+            final Document doc = loadXMLFromString(xml);
+            XPathFactory xPathfactory = XPathFactory.newInstance();
+            XPath xpath = xPathfactory.newXPath();
+
+            //xpath for gettings paths
+            String xPath = String.format(".//files/file[@descr=\"%s\"]", attribute);
+            XPathExpression exprFrom = xpath.compile(xPath);
+            Element fileNode = (Element) exprFrom.evaluate(doc, XPathConstants.NODE);
+            fromTo = new Pair<String, String>(fileNode.getAttribute("from"),
+                    fileNode.getAttribute("to"));
+        } catch (ParserConfigurationException | IOException | SAXException | XPathExpressionException e) {
+            e.printStackTrace();
+        }
+        return fromTo;
+    }
+
+    public static ArrayList<Pair<String, String>> getAllAdditionalFiles(String xml) {
+        Pair<String, String> fromTo = new Pair<String, String>("", "");
+        ArrayList<Pair<String, String>> files = new ArrayList<>();
+        try {
+            final Document doc = loadXMLFromString(xml);
+            NodeList fileNodes = ((Element) doc.getElementsByTagName("root").item(0)).getElementsByTagName("file");
+            for (int i = 0; i < fileNodes.getLength(); i++) {
+                Element fileElement = (Element) fileNodes.item(i);
+                fromTo = new Pair<String, String>(fileElement.getAttribute("from"),
+                        fileElement.getAttribute("to"));
+                files.add(fromTo);
+            }
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            e.printStackTrace();
+        }
+        return files;
+    }
+
     public void setUserName(String name) {
         this.userName = name;
     }
@@ -83,9 +117,8 @@ public class XmlReader {
         this.projectKey = projectkey;
     }
 
-    public void readXML(String filePath) {
+    public void readConfigXML(String filePath) {
         try {
-
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setIgnoringElementContentWhitespace(true);
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -179,13 +212,7 @@ public class XmlReader {
                 }
             }
             //save xml
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(xmlPath));
-            //transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            transformer.transform(source, result);
+            saveXml(doc, xmlPath);
 
         } catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
             e.printStackTrace();
@@ -337,7 +364,7 @@ public class XmlReader {
         this.owners = owners;
     }
 
-    public TasksKeeper getAlltests() {
+    public TasksKeeper getAllTests() {
         //HashMap<String, String> testsData = new HashMap<>();
         TaskInfo testData;
         TasksKeeper tasksKeeper = new TasksKeeper();
@@ -389,5 +416,61 @@ public class XmlReader {
 
     public String getSelectedVersion() {
         return selectedVersion;
+    }
+
+    public void saveTask(TaskInfo selectedTask) {
+        XPathFactory xPathfactory = XPathFactory.newInstance();
+        XPath xpath = xPathfactory.newXPath();
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setIgnoringElementContentWhitespace(true);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(filePath);
+            Element rootNode = doc.getDocumentElement();
+            rootNode.normalize();
+
+            //find the test Node
+            String xPathStringElem = String.format(".//test[@id=\"%s\"]", selectedTask.getTaskId());
+            Element foundElement = (Element) xpath.evaluate(xPathStringElem, rootNode, XPathConstants.NODE);
+
+            //may be it already has a description
+            String xPathString = String.format("./description");
+            Element description = (Element) xpath.evaluate(xPathString, foundElement, XPathConstants.NODE);
+
+            if (description != null) {
+                Node newNode = description.getFirstChild();
+                if (newNode != null) {
+                    newNode.setTextContent(selectedTask.getTaskBody());
+                    description.replaceChild(description.getFirstChild(), newNode);
+                } else {
+                    description.appendChild(doc.createCDATASection(selectedTask.getTaskBody()));
+                }
+            } else {
+                if (foundElement.getAttribute("subject").equalsIgnoreCase(selectedTask.getTaskName())) {
+                    Element newDescription = doc.createElement("description");
+                    CDATASection newDescriptionCdata = doc.createCDATASection(selectedTask.getTaskBody());
+                    newDescription.appendChild(newDescriptionCdata);
+                    foundElement.appendChild(newDescription);
+                }
+            }
+
+            //set new subject
+            foundElement.setAttribute("subject", selectedTask.getTaskName());
+            saveXml(doc, filePath);
+
+        } catch (ParserConfigurationException | SAXException | IOException | TransformerException | XPathExpressionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveXml(Document doc, String filePath) throws TransformerException {
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource source = new DOMSource(doc);
+        StreamResult result = new StreamResult(new File(filePath));
+        //transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+        transformer.transform(source, result);
     }
 }

@@ -7,9 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import org.xml.sax.SAXException;
 import redmineManagement.IssuesChecker;
-import redmineManagement.RedmineAlternativeReader;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
@@ -20,6 +20,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -33,9 +34,7 @@ import java.util.stream.Stream;
  */
 public class InformationSystem extends Application {
 
-    private RedmineAlternativeReader redmineAlternativeReader;
-    private final String onlineResource = "http://textanalysis.ru/pvkrobot/version.xml";
-    private final String onlineResourceDistr = "http://textanalysis.ru/pvkrobot/InformationSystem.jar";
+    private final String onlineResource = "http://textanalysis.ru/pvkrobot/";
     private String onlineXml;
 
     @Override
@@ -77,8 +76,10 @@ public class InformationSystem extends Application {
             alert.setTitle(newVersionAvailable);
 
             Optional<ButtonType> result = alert.showAndWait();
+            //download main distributive - mandatory file for a new version
+            //should be named InformationSystem.jar_new.jar
             if (!result.isPresent() || result.get() == myOK) {
-                if (downloadDistr()) {
+               // if (updateFile(XmlReader.getFilePath(onlineXml, "main"))) {
 //                    // Run a java app in a separate system process
 //                        for (String file : listFiles(".")) {
 //                            // if there is a 'standard' bat to run our program
@@ -90,9 +91,8 @@ public class InformationSystem extends Application {
 //                                        e.printStackTrace();
 //                                    }
 //                                }).start();
-                                System.exit(0);
+                    //System.exit(0);
 //                            }
-                    System.exit(0);
 //                    String runCmdLine ="rename InformationSystem.jar_new.jar InformationSystem.jar";
 //                    String runCmdLine2 = "java.exe --module-path \".\\lib\" --add-modules javafx.controls,javafx.fxml " +
 //                            " -Dfile.encoding=UTF-8 -classpath \"InformationSystem.jar;.\\lib\\javafx-swt.jar;" +
@@ -106,13 +106,18 @@ public class InformationSystem extends Application {
 //                        e.printStackTrace();
 //                    }
 //                    System.exit(0);
+               // }
+                ArrayList<Pair<String, String>> files = XmlReader.getAllAdditionalFiles(onlineXml);
+                for (Pair<String, String> fileFromTo : files) {
+                    updateFile(fileFromTo);
                 }
+                System.exit(0);
             }
         }
     }
 
     private String readOnlineXml() {
-        try (InputStream in = new URL(onlineResource).openStream()) {
+        try (InputStream in = new URL(onlineResource + "version.xml").openStream()) {
             byte[] bytes = in.readAllBytes();
             return new String(bytes, Charset.forName("utf8"));
         } catch (IOException e) {
@@ -122,7 +127,7 @@ public class InformationSystem extends Application {
     }
 
     private String getNewVersionDescription(String readXml) {
-        try (InputStream in = new URL(onlineResource).openStream()) {
+        try {
             List<String> descriptions = XmlReader.getDescription(readXml, "description", "point");
             return String.join("", descriptions);
         } catch (IOException | ParserConfigurationException | SAXException e) {
@@ -140,10 +145,15 @@ public class InformationSystem extends Application {
         }
     }
 
-    private boolean downloadDistr() {
-        try (InputStream in = new URL(onlineResourceDistr).openStream()) {
-            Files.copy(in, Paths.get(onlineResourceDistr.substring(onlineResourceDistr.lastIndexOf('/') + 1) + "_new.jar"), StandardCopyOption.REPLACE_EXISTING);
-            //Files.copy(in, Paths.get("InformationSystem_new.jar"), StandardCopyOption.REPLACE_EXISTING);
+    private boolean updateFile(Pair<String, String> pathFromPathTo) {
+        StringBuilder resultingPath = new StringBuilder(onlineResource);
+        if (pathFromPathTo == null || pathFromPathTo.getKey().isBlank()) {
+            return false;
+        }
+
+        resultingPath.append(pathFromPathTo.getKey());
+        try (InputStream in = new URL(resultingPath.toString()).openStream()) {
+            Files.copy(in, Paths.get(pathFromPathTo.getValue()), StandardCopyOption.REPLACE_EXISTING);
             return true;
         } catch (IOException e) {
             e.printStackTrace();

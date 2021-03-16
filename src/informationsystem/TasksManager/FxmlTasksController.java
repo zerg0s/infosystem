@@ -80,17 +80,20 @@ public class FxmlTasksController implements Initializable {
         if (taskInfo.getTaskName() != null) {
             txtTaskTitle.setText(taskInfo.getTaskName());
         }
+
         if (taskInfo.getTaskBody() != null) {
             txtTaskDescription.setText(taskInfo.getTaskBody());
         }
     }
 
-    public TaskInfo getTaskInfo()
-    {
+    public TaskInfo getTaskInfo() {
         return taskInfo;
     }
 
     private void saveTask(TaskInfo selectedTask) {
         //toDO: Save task to tasks xml
+        String xmlWithTests = "TestsInfo_v2.xml";
+        XmlReader reader = new XmlReader(xmlWithTests);
+        reader.saveTask(selectedTask);
     }
 }

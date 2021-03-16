@@ -8,18 +8,18 @@ package lintsForLangs;
 import java.util.Random;
 
 /**
- *
  * @author Politsyn
  */
 public class PhrasesGenerator {
 
     private String[] phraseStorage
-            = {"Great work!", "Awesome! 10 out of 10!",
-                "Nice attempt.", "Code accepted.",
-                "Your know PEP8. You can talk to Robot.",
-                "My god, one of the best styles.", "Stylish code. Accepted",
-                "Outstanding. Not many can PEP so easily.", "Gj! See u later!",
-                "How do you do, Mr. Know-all?", "It\'s really worth to respect."};
+            = {"Great work!", "Awesome code!",
+            "Nice attempt.", "Code accepted.", "Static test was OK. Can u go further?", "Robot: First phase is True",
+            "Your know Lint. You can talk to Robot.",
+            "Hope you can\'t play chess better than StockFish bot. But you passed the Linter.",
+            "My god, one of the best styles.", "Stylish code. Accepted",
+            "Outstanding. Not many can pass linter so easily.", "Gj! See u later!",
+            "How do you do, Mr. Know-all?", "It\'s really worth to respect."};
 
     public String getSuccessRandomPhrase() {
         int i = new Random().nextInt(100);

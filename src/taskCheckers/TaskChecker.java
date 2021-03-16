@@ -24,7 +24,7 @@ public class TaskChecker {
 
     private static void fillData() {
         XmlReader reader = new XmlReader(".\\TestsInfo_v2.xml");
-        knownTests = reader.getAlltests().getOldStyleTasks();
+        knownTests = reader.getAllTests().getOldStyleTasks();
     }
 
     public String getSubject() {

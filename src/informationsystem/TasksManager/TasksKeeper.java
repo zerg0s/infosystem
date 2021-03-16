@@ -20,7 +20,7 @@ public class TasksKeeper {
     }
 
     public static TasksKeeper update(XmlReader reader) {
-        return reader.getAlltests();
+        return reader.getAllTests();
     }
 
     public void put(TaskInfo testData) {

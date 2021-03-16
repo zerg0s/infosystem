@@ -151,7 +151,7 @@ public class FXMLDocumentController implements Initializable {
 
     public void initialize(URL url, ResourceBundle bn) {
 
-        reader.readXML(projectKeyXml);
+        reader.readConfigXML(projectKeyXml);
 
         reader.getOwners().forEach((ProjectOwner p) -> {
             reader.getUsersNameList().add(p.getName());
@@ -662,6 +662,9 @@ public class FXMLDocumentController implements Initializable {
     private void OpenTaskStage(ActionEvent event, TaskInfo taskInfo) {
         Parent root;
         try {
+            if (taskInfo == null) {
+                return;
+            }
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TasksManager/TaskView.fxml"));
             root = loader.load();
             FxmlTasksController tasksController = loader.getController();
@@ -690,7 +693,7 @@ public class FXMLDocumentController implements Initializable {
         }
 
         ObservableList<String> items = cbx.getItems();
-        for(int i = 0; i< items.size(); i++) {
+        for (int i = 0; i < items.size(); i++) {
             if (items.get(i).equals(oldItem)) {
                 items.set(i, task);
                 break;
