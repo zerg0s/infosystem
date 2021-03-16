@@ -243,7 +243,7 @@ if __name__ == "__main__":
             if not isAnswerCorrect:
                 extraDataForEasyMode = open(dirWithTests + file, encoding="utf-8").read()
                 if easyMode:
-                    retArray.append(TestReport(TestReport.OTHER, Locale.RecievedAnswer))
+                    retArray.append(TestReport(TestReport.OTHER, Locale.ReceivedAnswer))
                     retArray.append(TestReport(TestReport.OTHER, userAnswer))
                     retArray.append(TestReport(TestReport.OTHER, Locale.EasyModeHelp % extraDataForEasyMode))
                 if "ContinueIfTestFailed" not in testConfiguration:  # для толстых программ

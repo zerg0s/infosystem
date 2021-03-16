@@ -1,5 +1,5 @@
 class Locale:
-    RecievedAnswer = "Recieved answer: "
+    ReceivedAnswer = "Received answer: "
     Total = "Finally: "
     DoesntHaveMandatory = "Source code may not contain mandatory values or functions. Read the task more carefully! Please retry."
     NotInFunctional = "Source code is not in functional style. Please retry. Only one language operator is allowed."
