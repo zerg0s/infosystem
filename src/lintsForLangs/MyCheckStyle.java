@@ -33,7 +33,8 @@ public class MyCheckStyle {
                 System.out.println(line);
             }
         } catch (IOException ex) {
-            Logger.getLogger(MyCheckStyle.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
     }
+    private static Logger logger = Logger.getLogger(MyCheckStyle.class.getName());
 }

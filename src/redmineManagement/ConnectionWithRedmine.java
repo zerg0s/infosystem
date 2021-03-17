@@ -397,7 +397,7 @@ public class ConnectionWithRedmine {
             if (task != null) {
                 if (task.getLintReportMode().getModeNumber() != LintReportMode.NIGHTMARE_MODE) {
                     if (task.getLintReportMode().getModeNumber() == LintReportMode.DEFAULT_MODE) {
-                        notesForIssue = TextUtils.getPrettyErrors(allLines);
+                        notesForIssue = TextUtils.getPrettyErrorsJava(allLines);
                         this.uploadAttachment(task.getIssue(), fullFileName + "_errorReport.txt");
                     } else {
                         notesForIssue = lastLine;
@@ -476,7 +476,7 @@ public class ConnectionWithRedmine {
             lastLineInReport = TextUtils.generateErrorMsg(task, lastLineInReport);
 
             if (task.getLintReportMode().getModeNumber() == LintReportMode.DEFAULT_MODE) {
-                notesForIssue = TextUtils.getPrettyErrors(reportLines);
+                notesForIssue = TextUtils.getPrettyErrorsPython(reportLines);
                 lastLineInReport = String.format("Error(s): %d", notesForIssue.split("\n").length - 2);
                 this.uploadAttachment(task.getIssue(), attachName);
             }

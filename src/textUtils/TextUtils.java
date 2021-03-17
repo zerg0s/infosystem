@@ -18,17 +18,31 @@ import java.util.regex.Pattern;
 
 public class TextUtils {
     /**
-     * TODO: доделать!*
-     *
-     * @param reportLines
+     *     * @param reportLines
      * @return
      */
-    public static String getPrettyErrors(String[] reportLines) {
+    public static String getPrettyErrorsJava(String[] reportLines) {
         int i = 0;
         String result = "";
         while (i < reportLines.length - 2) {
             i++;
-            result += reportLines[i] + "\n";
+            result += reportLines[i].replaceAll("^\\[ERROR\\](.*)(\\.java:)(.*)$",
+                    "[ERROR]Line $3") + "\n";
+        }
+        return result;
+    }
+
+    /**
+     *     * @param reportLines
+     * @return
+     */
+    public static String getPrettyErrorsPython(String[] reportLines) {
+        int i = 0;
+        String result = "";
+        while (i < reportLines.length - 2) {
+            i++;
+            result += reportLines[i].replaceAll("^(.*)(\\.py:)(.*)$",
+                    "[ERROR]Line $3") + "\n";
         }
         return result;
     }
