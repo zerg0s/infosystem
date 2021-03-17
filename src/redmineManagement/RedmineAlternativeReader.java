@@ -38,7 +38,7 @@ public class RedmineAlternativeReader {
     }
 
     public ArrayList<String> getJournals(String issueId) {
-        ArrayList<String> journals = parseNames(getItems(issueId, "issues"));
+        ArrayList<String> journals = parseNames(getItems( "issues", issueId));
         return journals;
     }
 
