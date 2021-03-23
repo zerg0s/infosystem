@@ -5,6 +5,7 @@
  */
 package informationsystem;
 
+import com.sun.media.jfxmediaimpl.platform.Platform;
 import com.taskadapter.redmineapi.RedmineException;
 import com.taskadapter.redmineapi.bean.Issue;
 import com.taskadapter.redmineapi.bean.Version;
@@ -166,20 +167,16 @@ public class FXMLDocumentController implements Initializable {
             comboxProject.setValue(reader.getSelectedProject().getProjectName());
             props.projectKey = reader.getSelectedProject().getId();
         }
-        if (reader.getSelectedVersion() != null) {
-            comboxVersion.setValue(reader.getSelectedVersion());
-            props.iterationName = comboxVersion.getValue().toString();
-        }
-
         ObservableList<String> userNames = FXCollections.observableArrayList(reader.getUsersNameList());
         comboxUserName.setItems(userNames);
 
-        //this.comboxProject.setItems(projects);
+        this.comboxProject.setItems(FXCollections.observableArrayList(projects));
 
         ArrayList<Float> ratingValues = new ArrayList<Float>();
         for (float a = 10; a >= -3.00; a = (float) (a - 0.25)) {
             ratingValues.add(a);
         }
+
         comboBoxPythonRating.setItems(FXCollections.observableArrayList(ratingValues));
 
         final ToggleGroup groupIssueStatus = new ToggleGroup();
@@ -244,15 +241,18 @@ public class FXMLDocumentController implements Initializable {
         String selectedProject = (String) comboxProject.getValue();
         if (selectedProject != null) {
             if (!selectedProject.isEmpty()) {
-                for (Project pr : projects) {
-                    if (pr.getProjectName().equals(selectedProject)) {
-                        props.projectKey = pr.getId();
-                        break;
-                    }
-                }
+                props.projectKey = projects.stream().filter(pr ->
+                        pr.getProjectName().equals(selectedProject)).findFirst().get().getId();
             }
         }
+
         props.url = fillUrlProps(textFieldURL);
+
+        String selectedIteration = reader.getSelectedVersion();
+        if (selectedIteration != null) {
+            comboxVersion.setValue(selectedIteration);
+            props.iterationName = selectedIteration;
+        }
 
         if (!props.projectKey.isEmpty() && !props.apiAccessKey.isEmpty()
                 && !props.url.isEmpty() && !props.iterationName.isEmpty()) {
@@ -260,11 +260,18 @@ public class FXMLDocumentController implements Initializable {
             logger.info("Selected values: " + props.url + "\n"
                     + props.apiAccessKey.substring(props.apiAccessKey.length() - 3) + "\n" + props.projectKey
                     + "\n" + props.iterationName);
-            new Thread(() -> {
-                connectionToRedmine = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
-                journalReader = new RedmineAlternativeReader(props.url, props.apiAccessKey);
-            }).run();
+
+            updateProjectIterationsAsync(props);
         }
+    }
+
+    private void updateProjectIterationsAsync(RedmineConnectionProperties aPproperties) {
+        javafx.application.Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                getAllIterations(aPproperties);
+            }
+        });
     }
 
     private String fillUrlProps(TextField textFieldURL) {
@@ -505,24 +512,28 @@ public class FXMLDocumentController implements Initializable {
         }
 
         if (!props.projectKey.isEmpty()) {
-            connectionToRedmine = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
-            journalReader = new RedmineAlternativeReader(props.url, props.apiAccessKey);
-
-            Collection<Version> versions = new ArrayList();
-            try {
-                versions = connectionToRedmine.getVersions(props.projectKey);
-            } catch (RedmineException ex) {
-                logger.log(Level.SEVERE, null, ex);
-            }
-            Collection<String> versii = new ArrayList<>();
-            if (versii != null || !versii.isEmpty()) {
-                for (Version ver : versions) {
-                    versii.add(ver.getName());
-                }
-            }
-            ObservableList<String> targetVersionLost = FXCollections.observableArrayList(versii);
-            comboxVersion.setItems(targetVersionLost);
+            updateProjectIterationsAsync(props);
         }
+    }
+
+    private void getAllIterations(RedmineConnectionProperties properties) {
+        connectionToRedmine = new ConnectionWithRedmine(properties.apiAccessKey, properties.projectKey, properties.url);
+        journalReader = new RedmineAlternativeReader(properties.url, properties.apiAccessKey);
+
+        Collection<Version> versions = new ArrayList();
+        try {
+            versions = connectionToRedmine.getVersions(props.projectKey);
+        } catch (RedmineException ex) {
+            logger.log(Level.SEVERE, null, ex);
+        }
+        Collection<String> allIterations = new ArrayList<>();
+        if (allIterations != null || !allIterations.isEmpty()) {
+            for (Version ver : versions) {
+                allIterations.add(ver.getName());
+            }
+        }
+        ObservableList<String> targetVersionLost = FXCollections.observableArrayList(allIterations);
+        comboxVersion.setItems(targetVersionLost);
     }
 
     @FXML

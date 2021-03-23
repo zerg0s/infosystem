@@ -316,7 +316,7 @@ public class ConnectionWithRedmine {
         if (javaLintResult) {
             JavaTaskChecker javaChecker = new JavaTaskChecker(issue.getSubject(), fileToManage, task.isEasyMode());
             String testFolder = javaChecker.getNameForKnownTest();
-            if (!testFolder.equals("")) {
+            if (!testFolder.isBlank()) {
                 processResult = doJavaTaskCheck(javaChecker, issue);
             }
         } else {

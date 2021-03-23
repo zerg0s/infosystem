@@ -108,7 +108,7 @@ if __name__ == "__main__":
         if os.path.isfile(dirWithTests + file) and file.endswith(".t"):
             inputDataFile = testConfiguration.get("input", "input.txt")
             copy2(dirWithTests + file, inputDataFile)
-            proc = subprocess.Popen(["java", fileToCheck.replace(".class", "")],
+            proc = subprocess.Popen(["java", "-Dfile.encoding=utf-8", fileToCheck.replace(".class", "")],
                                     stdout=open("output", "w+", encoding="utf-8"),
                                     stderr=subprocess.STDOUT,
                                     stdin=open(inputDataFile, encoding="utf-8"),
