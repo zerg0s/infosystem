@@ -825,6 +825,16 @@ public class ConnectionWithRedmine {
 
     }
 
+    public Issue getIssueWithJournals(Integer issueId) {
+        Issue issue = null;
+        try {
+            issue = issueManager.getIssueById(issueId, Include.journals);
+        } catch (RedmineException e) {
+            e.printStackTrace();
+        }
+        return issue;
+    }
+
     public void setLint(boolean lintStatus) {
         lint = lintStatus;
     }

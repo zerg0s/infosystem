@@ -5,9 +5,9 @@
  */
 package informationsystem;
 
-import com.sun.media.jfxmediaimpl.platform.Platform;
 import com.taskadapter.redmineapi.RedmineException;
 import com.taskadapter.redmineapi.bean.Issue;
+import com.taskadapter.redmineapi.bean.Journal;
 import com.taskadapter.redmineapi.bean.Version;
 
 import java.io.IOException;
@@ -22,8 +22,10 @@ import data.*;
 import informationsystem.TasksManager.FxmlTasksController;
 import informationsystem.TasksManager.TaskInfo;
 import informationsystem.TasksManager.TasksKeeper;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -139,6 +141,9 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Button btnDetails;
+
+    @FXML
+    private Button btnCheckClosed;
 
     @FXML
     private Tab tasksTab;
@@ -266,12 +271,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void updateProjectIterationsAsync(RedmineConnectionProperties aPproperties) {
-        javafx.application.Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                getAllIterations(aPproperties);
-            }
-        });
+        new Thread(() -> getAllIterations(aPproperties)).start();
     }
 
     private String fillUrlProps(TextField textFieldURL) {
@@ -297,7 +297,6 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
         }
-
         reFillDataForCombobox(comboxProject, reader.getProjectNameList(comboxUserName.getValue().toString()));
         reFillDataForCombobox(comboxVersion, new ArrayList<String>());
     }
@@ -533,7 +532,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
         ObservableList<String> targetVersionLost = FXCollections.observableArrayList(allIterations);
-        comboxVersion.setItems(targetVersionLost);
+        Platform.runLater(() -> comboxVersion.setItems(targetVersionLost));
     }
 
     @FXML
@@ -825,6 +824,55 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void addNewTest() {
         logger.info("addNew click");
+    }
+
+    @FXML
+    private void checkWhoClosedTheIssues() {
+        btnCheckClosed.setDisable(true);
+        btnCheckClosed.setText("В процессе..");
+        final String professofName = comboxUserName.getValue().toString();
+        final String currentVersion = comboxVersion.getValue().toString();
+        final List<Issue> tasks = connectionToRedmine.getClosedIssues(currentVersion);
+
+        Task task = new Task() {
+            @Override
+            public Void call() {
+                List<Issue> fraudTasks = new ArrayList<>();
+                for (Issue issue : tasks) {
+                    Issue issue1 = connectionToRedmine.getIssueWithJournals(issue.getId());
+                    Optional<Journal> completitor = issue1.getJournals().stream()
+                            .max((j1, j2) -> Integer.compare(j1.getId(), j2.getId()));
+                    String user = completitor.get().getUser().getFullName();
+                    if (!user.equals(professofName)) {
+                        fraudTasks.add(issue1);
+                    }
+                }
+
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "newVersionAvailable", ButtonType.OK);
+                    alert.setHeaderText("Проверка закрытых задач");
+                    StringBuilder body = new StringBuilder("Найдено нечестно закрытых: " + String.valueOf(fraudTasks.size()));
+                    body.append("\n");
+                    for (Issue issue : fraudTasks) {
+                        body.append(issue.toString());
+                        body.append("\n");
+                    }
+
+                    alert.setContentText(body.toString());
+                    alert.setTitle("Проверка закрытых задач");
+                    Optional<ButtonType> result = alert.showAndWait();
+                });
+                Platform.runLater(() -> {
+                    btnCheckClosed.setDisable(false);
+                    btnCheckClosed.setText("Проверить итерацию");
+                });
+                return null;
+            }
+        };
+
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
     }
 
     private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());

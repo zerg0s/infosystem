@@ -81,18 +81,30 @@
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Button>
-                  <Button defaultButton="true" mnemonicParsing="false" onAction="#downloadResults" text="Скачать результаты итерации" textFill="#272222d1" GridPane.rowIndex="7">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
+                  <HBox spacing="10.0" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets bottom="12.0" left="5.0" top="10.0" />
                      </GridPane.margin>
-                  </Button>
-                  <Text fx:id="versionName" strokeType="OUTSIDE" strokeWidth="0.0" text="\@PVK Robot UI ver 3.28" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Button defaultButton="true" mnemonicParsing="false" onAction="#downloadResults" text="Скачать результаты" textFill="#272222d1">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="btnCheckClosed" defaultButton="true" mnemonicParsing="false" onAction="#checkWhoClosedTheIssues" text="Проверить итерацию" textFill="#272222d1">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Text fx:id="versionName" strokeType="OUTSIDE" strokeWidth="0.0" text="\@PVK Robot UI ver 3.29" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </GridPane.margin>
