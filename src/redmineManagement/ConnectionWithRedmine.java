@@ -798,7 +798,7 @@ public class ConnectionWithRedmine {
             issue.setNotes("All tests passed");
             success = 1;
         } else {
-            issue.setNotes(result);
+            issue.setNotes("<pre>" + result + "</pre>");
         }
         return success;
     }
@@ -816,7 +816,7 @@ public class ConnectionWithRedmine {
             issue.setNotes("All tests passed");
             success = 1;
         } else {
-            issue.setNotes(result);
+            issue.setNotes("<pre>" + result + "</pre>");
         }
         return success;
     }
