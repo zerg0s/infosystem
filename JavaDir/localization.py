@@ -6,7 +6,7 @@ class Locale:
     HaveRestricted = "Source code may contain restricted values or functions. Please retry."
     Failed = "Failed"
     Timeout = "Timeout"
-    GeneralError = "Tests not found or something else happened plz debug"
+    GeneralError = "An unknown error was found, please contact your supervisor."
     Passed = "Passed"
     EasyModeHelp = "Wrong answer was received for input:\n%s"
     CrashFound = "\nProgram crash found in your reply:\n"

@@ -30,6 +30,9 @@ def readConfing(pathTocfg):
             dictOfConfigs["func"] = lambda x, y: x.lower() in y.lower()
         else:
             dictOfConfigs["func"] = lambda x, y: (x.strip() == y.strip())
+    else:
+        dictOfConfigs["func"] = lambda x, y: x.lower() in y.lower()        
+    
     return dictOfConfigs
 
 

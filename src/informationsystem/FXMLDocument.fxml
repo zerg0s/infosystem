@@ -104,9 +104,9 @@
                         </Button>
                      </children>
                   </HBox>
-                  <Text fx:id="versionName" strokeType="OUTSIDE" strokeWidth="0.0" text="\@PVK Robot UI ver 3.29" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
+                  <Text fx:id="versionName" strokeType="OUTSIDE" strokeWidth="0.0" text="\@PVK Robot UI ver 3.30" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                        <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                      </GridPane.margin>
                   </Text>
                   <Label text="PVK Robot" textAlignment="CENTER" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
