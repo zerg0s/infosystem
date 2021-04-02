@@ -25,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane fx:id="myTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="517.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="informationsystem.FXMLDocumentController">
+<TabPane fx:id="myTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="517.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="informationsystem.FXMLDocumentController">
     <tabs>
         <Tab text="Подключение">
             <content>
@@ -41,8 +41,8 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints fillHeight="false" maxHeight="145.33333333333337" minHeight="10.0" prefHeight="145.33333333333337" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="59.0" minHeight="0.0" prefHeight="17.0" vgrow="SOMETIMES" />
+                        <RowConstraints fillHeight="false" maxHeight="204.0" minHeight="10.0" prefHeight="182.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="78.0" minHeight="0.0" prefHeight="59.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="21.0" prefWidth="253.0" text="Введите url ресурса:" GridPane.rowIndex="1">
@@ -77,37 +77,40 @@
                      <GridPane.margin>
                         <Insets right="12.0" />
                      </GridPane.margin></TextField>
-                        <Button fx:id="buttonDown" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="0.0" text="Начать проверку задач" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                        <Button fx:id="buttonDown" defaultButton="true" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="63.0" prefWidth="256.0" text="Начать проверку задач" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font></Button>
-                  <HBox spacing="10.0" GridPane.rowIndex="7">
-                     <GridPane.margin>
-                        <Insets bottom="12.0" left="5.0" top="10.0" />
-                     </GridPane.margin>
+                  <VBox spacing="3.0" GridPane.rowIndex="7">
                      <children>
-                        <Button defaultButton="true" mnemonicParsing="false" onAction="#downloadResults" text="Скачать результаты" textFill="#272222d1">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
+                        <Button defaultButton="true" mnemonicParsing="false" onAction="#downloadResults" prefWidth="150.0" text="Скачать результаты" textFill="#272222d1">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
-                        </Button>
-                        <Button fx:id="btnCheckClosed" defaultButton="true" mnemonicParsing="false" onAction="#checkWhoClosedTheIssues" text="Проверить итерацию" textFill="#272222d1">
                            <font>
-                              <Font size="10.0" />
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnCheckClosed" defaultButton="true" mnemonicParsing="false" onAction="#checkWhoClosedTheIssues" prefWidth="150.0" text="Проверить итерацию" textFill="#272222d1">
+                           <font>
+                              <Font size="14.0" />
                            </font>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Button>
                      </children>
-                  </HBox>
+                     <padding>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
                   <Text fx:id="versionName" strokeType="OUTSIDE" strokeWidth="0.0" text="\@PVK Robot UI ver 3.30" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
                         <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </Text>
                   <Label text="PVK Robot" textAlignment="CENTER" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
