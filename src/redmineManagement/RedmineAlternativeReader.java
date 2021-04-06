@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.taskadapter.redmineapi.bean.Issue;
 import data.OurProjectMember;
+import data.StudentsIssue;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -27,6 +29,7 @@ public class RedmineAlternativeReader {
     private String redmineUrl;
     private String apiKey;
     private String projectKeyName;
+    private final String STATUS_CLOSED = "-5";
 
     public RedmineAlternativeReader(String redmineUrl, String key) {
         this.redmineUrl = redmineUrl;
@@ -37,6 +40,11 @@ public class RedmineAlternativeReader {
         this.redmineUrl = redmineUrl;
         this.apiKey = apiKey;
         this.projectKeyName = projectKeyName;
+    }
+
+    public ArrayList<StudentsIssue> getAllClosedIssues() {
+        ArrayList<StudentsIssue> issues = parseIssues(getItems( "issues", STATUS_CLOSED));
+        return issues;
     }
 
     public ArrayList<String> getJournals(String issueId) {
@@ -66,14 +74,20 @@ public class RedmineAlternativeReader {
         OkHttpClient client = new OkHttpClient();
 
         String requestStr = redmineUrl + "/" + whatToGet;
-        if (!issueId.isBlank()) {
+        if (!issueId.isBlank() && !issueId.equals(STATUS_CLOSED)) {
             requestStr += "/" + issueId;
         }
         requestStr += ".json";
         HttpUrl.Builder urlBuilder = HttpUrl.parse(requestStr).newBuilder();
         if (whatToGet.equalsIgnoreCase("issues")) {
             urlBuilder.addQueryParameter("include", "journals");
+            urlBuilder.addQueryParameter("project_id", this.projectKeyName);
         }
+        
+        if (issueId.equals(STATUS_CLOSED)) {
+            urlBuilder.addQueryParameter("status_id", "5");
+        }
+
         urlBuilder.addQueryParameter("limit", "100");
         String url = urlBuilder.build().toString();
 
@@ -136,6 +150,10 @@ public class RedmineAlternativeReader {
             Logger.getLogger(RedmineAlternativeReader.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ourMembers;
+    }
+
+    private ArrayList<StudentsIssue> parseIssues(String issues) {
+        return new ArrayList<StudentsIssue>();
     }
 
     public String getStudentsName(int issueId, String manager) {

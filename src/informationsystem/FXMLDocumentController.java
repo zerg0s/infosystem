@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import data.*;
 import informationsystem.TasksManager.FxmlTasksController;
@@ -607,7 +608,9 @@ public class FXMLDocumentController implements Initializable {
         String currentVersion = comboxVersion.getValue().toString();
         List<Issue> tasks = connectionToRedmine.getClosedIssues(currentVersion);
         ArrayList<StudentsIssue> StudentsIssues = new ArrayList<>();
-        for (Issue task : tasks) {
+        for (Issue task : tasks.stream()
+                .sorted((x,y) -> x.getAssigneeName().compareTo(y.getAssigneeName()))
+                .collect(Collectors.toList())) {
             String taskStatusName = task.getStatusName();
             if (taskStatusName.equals("Closed")) {
                 StudentsIssue studentsIssue = new StudentsIssue();
@@ -830,6 +833,9 @@ public class FXMLDocumentController implements Initializable {
     private void checkWhoClosedTheIssues() {
         btnCheckClosed.setDisable(true);
         btnCheckClosed.setText("В процессе..");
+        RedmineAlternativeReader redmineReader =
+                new RedmineAlternativeReader(props.url, props.apiAccessKey, props.projectKey);
+        redmineReader.getAllClosedIssues();
         final String professofName = comboxUserName.getValue().toString();
         final String currentVersion = comboxVersion.getValue().toString();
         final List<Issue> tasks = connectionToRedmine.getClosedIssues(currentVersion);

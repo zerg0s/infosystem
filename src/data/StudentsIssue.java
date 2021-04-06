@@ -1,22 +1,40 @@
 package data;
 
 public class StudentsIssue {
-    private String StudentsName;
-    private String IssueName;
+    private int id;
+    private String studentsName;
+    private String issueTitle;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getIssueName() {
-        return IssueName;
+        return issueTitle;
     }
 
     public void setIssueName(String issueName) {
-        IssueName = issueName;
+        issueTitle = issueName;
     }
 
     public String getStudentsName() {
-        return StudentsName;
+        return studentsName;
     }
 
-    public void setStudentsName(String studentsName) {
-        StudentsName = studentsName;
+    public void setStudentsName(String name) {
+        studentsName = name;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentsIssue{" +
+                "id=" + id +
+                ", studentsName='" + studentsName + '\'' +
+                ", issueTitle='" + issueTitle + '\'' +
+                '}';
     }
 }
