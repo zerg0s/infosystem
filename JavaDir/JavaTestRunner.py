@@ -20,12 +20,16 @@ def readConfing(pathTocfg):
         fileContent = open(pathTocfg, "r", encoding="utf-8").read()
         keypairs = fileContent.split("\t")
         dictOfConfigs = {k: v for k, v in map(lambda x: x.split("="), keypairs)}
+
     # В словарь записан полный конфиг. В поле func функция проверки
     if "func" in dictOfConfigs:
         if dictOfConfigs["func"] == "contains":
             dictOfConfigs["func"] = lambda x, y: x.lower() in y.lower()
         else:
             dictOfConfigs["func"] = lambda x, y: (x.strip() == y.strip())
+    else:
+        dictOfConfigs["func"] = lambda x, y: x.lower() in y.lower()
+
     return dictOfConfigs
 
 
@@ -85,7 +89,7 @@ maxExecutionTimeDelay = 2  # max timeout for a task
 
 if __name__ == "__main__":
     fileToCheck = "Desks.class"
-    dirToCheck = "buyingNewDesks"
+    dirToCheck = "simpleTestOfWords"
     # dirToCheck = "regFindReplaceRepeated"
     retArray = list()
 
@@ -191,7 +195,6 @@ if __name__ == "__main__":
 
     if len(set(retArray)) == 1 and str(retArray[0]) == "True":
         print(Locale.Passed)
-
     else:
         if easyMode and extraDataForEasyMode:
             print(Locale.EasyModeHelp % extraDataForEasyMode)
