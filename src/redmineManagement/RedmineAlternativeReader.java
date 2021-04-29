@@ -153,7 +153,8 @@ public class RedmineAlternativeReader {
     }
 
     private ArrayList<StudentsIssue> parseIssues(String issues) {
-        return new ArrayList<StudentsIssue>();
+        //ToDO: decide if this method is really required.
+        return null;
     }
 
     public String getStudentsName(int issueId, String manager) {

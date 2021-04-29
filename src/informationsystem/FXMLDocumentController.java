@@ -123,6 +123,9 @@ public class FXMLDocumentController implements Initializable {
     private Button btnTaskNext;
 
     @FXML
+    private Button btnGetResults;
+
+    @FXML
     private ComboBox<String> cbxAllAvailableTasks;
 
     @FXML
@@ -157,7 +160,7 @@ public class FXMLDocumentController implements Initializable {
     private TasksKeeper tasksKeeper;
 
     public void initialize(URL url, ResourceBundle bn) {
-
+        logger.info("Тест русских букв!\n");
         reader.readConfigXML(projectKeyXml);
 
         reader.getOwners().forEach((ProjectOwner p) -> {
@@ -262,7 +265,6 @@ public class FXMLDocumentController implements Initializable {
 
         if (!props.projectKey.isEmpty() && !props.apiAccessKey.isEmpty()
                 && !props.url.isEmpty() && !props.iterationName.isEmpty()) {
-            logger.info("Тест русских букв!\n");
             logger.info("Selected values: " + props.url + "\n"
                     + props.apiAccessKey.substring(props.apiAccessKey.length() - 3) + "\n" + props.projectKey
                     + "\n" + props.iterationName);
@@ -607,25 +609,71 @@ public class FXMLDocumentController implements Initializable {
     private void downloadResults() {
         String currentVersion = comboxVersion.getValue().toString();
         List<Issue> tasks = connectionToRedmine.getClosedIssues(currentVersion);
-        ArrayList<StudentsIssue> StudentsIssues = new ArrayList<>();
-        for (Issue task : tasks.stream()
-                .sorted((x,y) -> x.getAssigneeName().compareTo(y.getAssigneeName()))
-                .collect(Collectors.toList())) {
+        Task task = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                Platform.runLater(() -> {
+                    btnGetResults.setDisable(true);
+                    btnGetResults.setText("В процессе..");
+                });
+                getResults(currentVersion, tasks);
+                Platform.runLater(() -> {
+                    btnGetResults.setDisable(false);
+                    btnGetResults.setText("Скачать результаты");
+                });
+                return null;
+            }
+        };
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
+    }
+
+    //Загружает закрытые задачи для составления списка сдавших
+    private void getResults(String currentVersion, List<Issue> tasks) {
+        // First, we must check who has closed the issues
+        List<Issue> fraudTasks = checkWhoClosedTheIssues(tasks);
+        if (fraudTasks.size() > 0) {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "", ButtonType.OK);
+                alert.setHeaderText("Проверка закрытых задач. Всего задач: " + tasks.size());
+                StringBuilder body = new StringBuilder("Найдено нечестно закрытых: " + String.valueOf(fraudTasks.size()));
+                body.append("\n");
+                for (Issue issue : fraudTasks) {
+                    String badStudent =
+                            new RedmineAlternativeReader(props.url, props.apiAccessKey, props.projectKey)
+                                    .getStudentsName(issue.getId(), connectionToRedmine.getProfessorName());
+                    body.append(badStudent + ":\n" + issue.toString());
+                    body.append("\n");
+                }
+                alert.setContentText(body.toString());
+                alert.setTitle("Проверка закрытых задач");
+                Optional<ButtonType> result = alert.showAndWait();
+            });
+            return;
+        }
+
+        ArrayList<StudentsIssue> studentsIssues = new ArrayList<>();
+        for (Issue task : tasks) {
             String taskStatusName = task.getStatusName();
             if (taskStatusName.equals("Closed")) {
-                StudentsIssue studentsIssue = new StudentsIssue();
-                studentsIssue.setStudentsName(task.getAssigneeName());
-                studentsIssue.setIssueName(task.getSubject());
-                StudentsIssues.add(studentsIssue);
+                StudentsIssue currentIssue = new StudentsIssue();
+                currentIssue.setStudentsName(task.getAssigneeName());
+                currentIssue.setIssueName(task.getSubject());
+                studentsIssues.add(currentIssue);
             }
         }
+
         HashMap<String, ArrayList<String>> issuesOfTheStudent = new HashMap<String, ArrayList<String>>();
-        for (StudentsIssue issue : StudentsIssues) {
-            if (!issuesOfTheStudent.containsKey(issue.getStudentsName())) {
-                issuesOfTheStudent.put(issue.getStudentsName(), new ArrayList<String>());
+        for (StudentsIssue issue : studentsIssues) {
+            if (issue.getStudentsName() != null) {
+                if (!issuesOfTheStudent.containsKey(issue.getStudentsName())) {
+                    issuesOfTheStudent.put(issue.getStudentsName(), new ArrayList<String>());
+                }
+                issuesOfTheStudent.get(issue.getStudentsName()).add(issue.getIssueName());
             }
-            issuesOfTheStudent.get(issue.getStudentsName()).add(issue.getIssueName());
         }
+
         new FileOperator(currentVersion + ".txt").saveDataToFile(issuesOfTheStudent);
     }
 
@@ -831,19 +879,20 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void checkWhoClosedTheIssues() {
-        btnCheckClosed.setDisable(true);
-        btnCheckClosed.setText("В процессе..");
+    }
+
+    private List<Issue> checkWhoClosedTheIssues(List<Issue> tasks) {
         RedmineAlternativeReader redmineReader =
                 new RedmineAlternativeReader(props.url, props.apiAccessKey, props.projectKey);
-        redmineReader.getAllClosedIssues();
+        //redmineReader.getAllClosedIssues();
         final String professofName = comboxUserName.getValue().toString();
         final String currentVersion = comboxVersion.getValue().toString();
-        final List<Issue> tasks = connectionToRedmine.getClosedIssues(currentVersion);
+        //final List<Issue> tasks = connectionToRedmine.getClosedIssues(currentVersion);
+        final List<Issue> fraudTasks = new ArrayList<>();
 
         Task task = new Task() {
             @Override
             public Void call() {
-                List<Issue> fraudTasks = new ArrayList<>();
                 for (Issue issue : tasks) {
                     Issue issue1 = connectionToRedmine.getIssueWithJournals(issue.getId());
                     Optional<Journal> completitor = issue1.getJournals().stream()
@@ -854,24 +903,6 @@ public class FXMLDocumentController implements Initializable {
                     }
                 }
 
-                Platform.runLater(() -> {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "newVersionAvailable", ButtonType.OK);
-                    alert.setHeaderText("Проверка закрытых задач");
-                    StringBuilder body = new StringBuilder("Найдено нечестно закрытых: " + String.valueOf(fraudTasks.size()));
-                    body.append("\n");
-                    for (Issue issue : fraudTasks) {
-                        body.append(issue.toString());
-                        body.append("\n");
-                    }
-
-                    alert.setContentText(body.toString());
-                    alert.setTitle("Проверка закрытых задач");
-                    Optional<ButtonType> result = alert.showAndWait();
-                });
-                Platform.runLater(() -> {
-                    btnCheckClosed.setDisable(false);
-                    btnCheckClosed.setText("Проверить итерацию");
-                });
                 return null;
             }
         };
@@ -879,6 +910,12 @@ public class FXMLDocumentController implements Initializable {
         Thread t = new Thread(task);
         t.setDaemon(true);
         t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            logger.info(e.toString());
+        }
+        return fraudTasks;
     }
 
     private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());
