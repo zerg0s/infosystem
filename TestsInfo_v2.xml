@@ -1,4 +1,4 @@
-﻿<AllTestDescription>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><AllTestDescription>
 	<homework id="1" name="Арифметика">
 		<test id="11" subject="Шашки" testSetFolder="checkers"/>
 		<test id="12" subject="Ход короля" testSetFolder="kingMove"/>
@@ -20,7 +20,7 @@
 		<test id="28" subject="Пробежка по утрам" testSetFolder="hw2MorningRun"/>
 		<test id="29" subject="Второй максимум" testSetFolder="hw2SecondMax"/>
 		<test id="290" subject="Количество палиндромов" testSetFolder="hw2Palindroms"/>
-		<test id="291" subject=" Заменить пробел и группы пробелов символом &quot;*&quot;" testSetFolder="changeSpacesToStars"/>
+		<test id="291" subject="Заменить пробел и группы пробелов символом &quot;*&quot;" testSetFolder="changeSpacesToStars"/>
 		<test id="292" subject="Номера групп" testSetFolder="correctGroupNames"/>
 		<test id="293" subject="Простая проверка слов" testSetFolder="simpleTestOfWords"/>
 	</homework>
@@ -37,7 +37,7 @@
 		<test id="51" subject="Ферзи" testSetFolder="eightQueens"/>
 		<test id="52" subject="&quot;Сжатие&quot; списка" testSetFolder="listCompression"/>
 		<test id="53" subject="Четные индексы" testSetFolder="evenElementsByIndex"/>
-		<test id="54" subject="Больше соседей" testSetFolder="greaterThanNeighbors"/>
+		<test id="54" subject="Больше соседей" testSetFolder="greaterThanNeighbors"><description/></test>
 		<test id="55" subject="Количество совпадающих пар" testSetFolder="numberOfEqualPairs"/>	<test id="56" subject="Диофантово уравнение" testSetFolder="diofantEquatation"/>
 		<test id="56" subject="Диофантово уравнение" testSetFolder="diofantEquatation"/>
 	</homework>
@@ -112,7 +112,7 @@
 		<test id="1024" subject="Чемпионат по метанию коровьих лепешек" testSetFolder="cowChampionship"/>
 		<test id="1025" subject="Жизнь в квадрате" testSetFolder="newLifeInASquare"/>
 		<test id="1026" subject="Результаты голосования" testSetFolder="votes7persent"/>
-		<test id="1027" subject="Сумма произведений соседних чисел" testSetFolder="sumOfProducts"/>
+		<test id="1027" subject="Сумма произведений соседних чисел" testSetFolder="sumOfNeibors"/>
 		<test id="1028" subject="Вычисление количества цифр-2" testSetFolder="countNumbersInList"/>
 	</homework>
 		<homework id="103" name="Контрольная работа номер 2.1">
@@ -136,7 +136,7 @@
 		<test id="10311" subject="Лавочки в ТЦ Кунцево Плаза" testSetFolder="z1Lavochki"/>
 		<test id="10312" subject="Сортировка по близости" testSetFolder="z1NearestToK"/>
 		<test id="10313" subject="Таблица умножения" testSetFolder="z1TableOfMult"/>
-		<test id="10314" subject="Cтолбцы по убыванию значений элементов" testSetFolder="z1MatrixSort"/>
+		<test id="10314" subject="Cтолбцы по убыванию значений элементов" testSetFolder="z1MatrixSort"><description/></test>
 		<test id="10315" subject="Заменить пробел и группы пробелов символом" testSetFolder="z1StarsAndSpaces"/>
 		<test id="87" subject="Правильная расстановка ударений" testSetFolder="accentQuiz"/>
 		<test id="10316" subject="Отражение матрицы" testSetFolder="z1MatrixReflection"/>
