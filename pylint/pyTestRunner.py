@@ -258,7 +258,7 @@ if __name__ == "__main__":
         prettyPrintRetArray(retArray)
 
     # костыль для Java-стороны Locale.Passed в последней строке вывода значит, что задача принята.
-    if all(map(lambda x: x[1] == "True", retArray)) == 0:
+    if retArray and all(map(lambda x: str(x[1]) == "True", retArray)):
         print(Locale.Passed)
     else:
         print(Locale.Total, Locale.Failed, sep="\n")

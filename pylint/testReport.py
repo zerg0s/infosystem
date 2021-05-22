@@ -8,9 +8,9 @@ class TestReport:
     __type = str()
     __description = str()
 
-    def __init__(self, type: str, resultString: str):
-        self.__type = type
-        self.__description = resultString
+    def __init__(self, typeOfReport: str, resultString: str):
+        self.__type = typeOfReport
+        self.__description = str(resultString)
 
     def getType(self):
         return self.__type
@@ -18,7 +18,7 @@ class TestReport:
     def getDescription(self):
         return self.__description
 
-    def setType(self, type: str) -> None:
+    def setType(self, typeOFReport: str) -> None:
         self.__type = type
 
     def setDescription(self, description: str) -> None:
