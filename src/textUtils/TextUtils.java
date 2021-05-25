@@ -92,6 +92,9 @@ public class TextUtils {
     }
 
     public static Integer javaErrorAmountDetectionInFile(String string) {
+        if (string.equals("")) {
+            return 0;
+        }
         if (!string.toLowerCase().contains("audit done.")) {
             ArrayList<String> words = new ArrayList<>();
             if (!string.isEmpty()) {
