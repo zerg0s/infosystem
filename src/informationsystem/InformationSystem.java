@@ -34,7 +34,7 @@ import java.util.stream.Stream;
  */
 public class InformationSystem extends Application {
 
-    private final String onlineResource = "http://textanalysis.ru/pvkrobot/";
+    private final String onlineResource = "https://textanalysis.ru/pvkrobot/";
     private String onlineXml;
 
     @Override
