@@ -192,7 +192,6 @@ public class ConnectionWithRedmine {
                 //Проверяем, если не проверяли ранее или надо обязательно проверять
                 if (needToCheckAlreadyChecked || (wasChecked == 0)) {
                     //if (!(new PyTaskChecker(issue.getSubject())).getNameForKnownTest(issue.getSubject()).equals("")) {
-
                     String fileToManage = ".\\myFiles\\" + makeUsableFileName(
                             attach.getFileName(),
                             attach.getAuthor().getFullName(),
@@ -389,7 +388,7 @@ public class ConnectionWithRedmine {
     private boolean doJavaLint(ConfiguredTask task, String fullFileName) {
         new MyCheckStyle().startCheckStyle(fullFileName);
         String[] allLines = TextUtils.readReportFile(fullFileName + "_errorReport.txt");
-        String lastLine = allLines[allLines.length - 1];
+        String lastLine = getStringWithErrorAmmountJava(allLines);
         String notesForIssue = "";
         int studentJavaErrorAmount = TextUtils.javaErrorAmountDetectionInFile(lastLine);
 
@@ -413,6 +412,17 @@ public class ConnectionWithRedmine {
             this.updateIssue(task.getIssue());
             return true;
         }
+    }
+
+    private String getStringWithErrorAmmountJava(String[] allLines) {
+        String checkStyle = "Checkstyle ends with";
+        int countErrors = 0;
+        for (String line : allLines) {
+            if (line.contains(checkStyle)) {
+                countErrors += TextUtils.javaErrorAmountDetectionInFile(line);
+            }
+        }
+        return String.format(checkStyle + " %d errors.", countErrors);
     }
 
     private boolean doPyLint(Issue issue, String fileToManage) {

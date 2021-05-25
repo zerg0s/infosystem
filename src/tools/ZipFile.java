@@ -1,9 +1,14 @@
 package tools;
 
+import lintsForLangs.MyPylint;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -43,6 +48,24 @@ public class ZipFile {
             result = false;
         }
         return result;
+    }
+
+    public String getPackageName(File javaFileFromArchive) {
+        final String maiPackage = "package ";
+        StringBuilder sb = new StringBuilder();
+        try {
+            List<String> linesOfFile = Files.readAllLines(javaFileFromArchive.toPath());
+            for (String line : linesOfFile) {
+                line = line.trim();
+                if (line.trim().startsWith("package ")) {
+                    String packageStr = line.substring(line.indexOf(' ') + 1, line.indexOf(';'));
+                    return packageStr;
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MyPylint.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
     }
 
     private File newFile(File destinationDir, ZipEntry zipEntry) throws IOException {

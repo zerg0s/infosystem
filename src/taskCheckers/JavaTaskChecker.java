@@ -65,7 +65,8 @@ public class JavaTaskChecker extends TaskChecker {
                 for (String file : result) {
                     File javaFileFromArchive = new File(file);
                     // check and place a file into the correct subfolder which corresponds to its package
-                    String fileNameWithPackage = getPackageName(javaFileFromArchive).replace('.', '\\') + "\\" + javaFileFromArchive.toPath().getFileName();
+                    String fileNameWithPackage = zip.getPackageName(javaFileFromArchive).replace('.', '\\') +
+                            "\\" + javaFileFromArchive.toPath().getFileName();
 
                     Path pathFrom = Paths.get(javaFileFromArchive.getAbsolutePath());
                     Path pathTo = Paths.get(new File(workingDir.substring(2) + fileNameWithPackage).getAbsolutePath());
@@ -88,12 +89,9 @@ public class JavaTaskChecker extends TaskChecker {
                 JavaCompileSingleJavaFile(sbResultOfTests, data, false);
 
                 //send to python check .class with full path of the main file
-
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
         //Logger.getLogger(MyPylint.class.getName()).log(Level.INFO, sb.toString());
         return sbResultOfTests.toString();
@@ -211,23 +209,5 @@ public class JavaTaskChecker extends TaskChecker {
             Logger.getLogger(MyPylint.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-    }
-
-    private String getPackageName(File javaFileFromArchive) {
-        final String maiPackage = "package ";
-        StringBuilder sb = new StringBuilder();
-        try {
-            List<String> linesOfFile = Files.readAllLines(javaFileFromArchive.toPath());
-            for (String line : linesOfFile) {
-                line = line.trim();
-                if (line.trim().startsWith("package ")) {
-                    String packageStr = line.substring(line.indexOf(' ') + 1, line.indexOf(';'));
-                    return packageStr;
-                }
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(MyPylint.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "";
     }
 }

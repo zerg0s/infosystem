@@ -2,6 +2,7 @@ package textUtils;
 
 import data.ConfiguredTask;
 import data.LintReportMode;
+import javafx.css.Match;
 import org.apache.commons.codec.Charsets;
 import redmineManagement.ConnectionWithRedmine;
 
@@ -14,37 +15,40 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TextUtils {
     /**
-     *     * @param reportLines
+     * * @param reportLines
+     *
      * @return
      */
     public static String getPrettyErrorsJava(String[] reportLines) {
         int i = 0;
-        String result = "";
+        StringBuffer result = new StringBuffer();
         while (i < reportLines.length - 2) {
             i++;
-            result += reportLines[i].replaceAll("^\\[ERROR\\](.*)(\\.java:)(.*)$",
-                    "[ERROR]Line $3") + "\n";
+            result.append(reportLines[i].replaceAll("^\\[ERROR\\](.*)(\\\\(\\w+)\\.java:)(.*)$",
+                    "[ERROR]File: $3.java, Line: $4") + "\n");
         }
-        return result;
+        return result.toString();
     }
 
     /**
-     *     * @param reportLines
+     * * @param reportLines
+     *
      * @return
      */
     public static String getPrettyErrorsPython(String[] reportLines) {
         int i = 0;
-        String result = "";
+        StringBuffer result = new StringBuffer();
         while (i < reportLines.length - 2) {
             i++;
-            result += reportLines[i].replaceAll("^(.*)(\\.py:)(.*)$",
-                    "[ERROR]Line $3") + "\n";
+            result.append(reportLines[i].replaceAll("^(.*)(\\.py:)(.*)$",
+                    "[ERROR]Line $3") + "\n");
         }
-        return result;
+        return result.toString();
     }
 
     public static String generateErrorMsg(ConfiguredTask task, String lastLineInReport) {
@@ -62,16 +66,12 @@ public class TextUtils {
         List<String> lines = new ArrayList<>();
         try {
             lines = Files.readAllLines(Paths.get(fileDir), Charsets.UTF_8);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, ex.toString());
-        }
 
-        if (lines.isEmpty()) {
-            try {
+            if (lines.isEmpty()) {
                 lines = Files.readAllLines(Paths.get(fileDir), Charset.forName("windows-1251"));
-            } catch (IOException ex) {
-                logger.log(Level.SEVERE, ex.toString());
             }
+        } catch (IOException ex) {
+            logger.info(ex.getMessage());
         }
 
         String result = "";
@@ -91,41 +91,23 @@ public class TextUtils {
         return lines.toArray(new String[0]);
     }
 
-    public static Integer javaErrorAmountDetectionInFile(String string) {
-        if (string.equals("")) {
-            return 0;
-        }
-        if (!string.toLowerCase().contains("audit done.")) {
-            ArrayList<String> words = new ArrayList<>();
-            if (!string.isEmpty()) {
-                for (String retval : string.split(" ")) {
-                    words.add(retval);
-                }
+    public static Integer javaErrorAmountDetectionInFile(String lastlineInFile) {
+        try {
+            Pattern pattern = Pattern.compile("\\d+");
+            Matcher m = pattern.matcher(lastlineInFile);
+            m.find();
+            String numberOfErrors =  m.group();
+            if (numberOfErrors != null && !numberOfErrors.equals("")) {
+                return Integer.parseInt(numberOfErrors);
             }
-
-            String neededNumber = words.get((words.size()) - 2);
-            int errorAmount = Integer.parseInt(neededNumber);
-
-            return errorAmount;
-        } else {
-            return 0;
+        } catch (IllegalStateException ex) {
+            logger.info(ex.getMessage());
         }
+        return 0;
     }
 
     public static Integer cppErrorAmountDetectionInFile(String string) {
-
-        ArrayList<String> words = new ArrayList<>();
-        if (!string.isEmpty()) {
-            for (String retval : string.split(" ")) {
-                words.add(retval);
-            }
-            words.addAll(Arrays.asList(string.split(" ")));
-        }
-
-        String neededNumber = words.get((words.size()) - 1);
-        int errorAmount = Integer.parseInt(neededNumber);
-
-        return errorAmount;
+        return javaErrorAmountDetectionInFile(string);
     }
 
     public static Float pythonRatingCheck(String lastStringInReport) {
