@@ -12,3 +12,5 @@ javaFx/lib/src.zip
 pylint/__pycache__/**
 JavaDir/__pycache__/**
 
+/JavaDir/myFiles/**
+/JavaDir/output
