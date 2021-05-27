@@ -1,6 +1,8 @@
 package informationsystem;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -54,7 +56,7 @@ public class InformationSystem extends Application {
             stage.show();
             String oldVersion = ((Text) root.lookup("#versionName"))
                     .getText().replaceAll("[^\\d.]", "");
-            checkNewVersion(oldVersion);
+            new Thread(() -> checkNewVersion(oldVersion)).start();
         } catch (IOException ex) {
             Logger.getLogger(InformationSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -69,28 +71,29 @@ public class InformationSystem extends Application {
             String onlineXmlTemp = readOnlineXml(path);
             if (Float.parseFloat(checkNewOnlineVersion(onlineXmlTemp)) > onlineVersion) {
                 onlineVersion = Float.parseFloat(checkNewOnlineVersion(onlineXmlTemp));
-                onlineResource = path;
+                onlineResource = path.substring(0, path.lastIndexOf('/') + 1);
                 onlineXml = onlineXmlTemp;
             }
         }
 
         ButtonType myOK = new ButtonType("Обновить", ButtonBar.ButtonData.OK_DONE);
+        float finalOnlineVersion = onlineVersion;
+        Platform.runLater(() -> {
+            if (Float.parseFloat(oldVersion) < finalOnlineVersion) {
+                String newVersionAvailable = "Доступна новая версия!";
+                String oldVersionData = "Текущая версия: " + oldVersion + ".\nВсе несохраненные данные будут утеряны.";
+                String newVersionData = "Новая версия: " + finalOnlineVersion;
+                newVersionData += getNewVersionDescription(onlineXml);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, newVersionAvailable, myOK, ButtonType.CANCEL);
+                alert.setHeaderText(newVersionData);
+                alert.setContentText(oldVersionData);
+                alert.setTitle(newVersionAvailable);
 
-        if (Float.parseFloat(oldVersion) < onlineVersion) {
-            String newVersionAvailable = "Доступна новая версия!";
-            String oldVersionData = "Текущая версия: " + oldVersion + ".\nВсе несохраненные данные будут утеряны.";
-            String newVersionData = "Новая версия: " + onlineVersion;
-            newVersionData += getNewVersionDescription(onlineXml);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, newVersionAvailable, myOK, ButtonType.CANCEL);
-            alert.setHeaderText(newVersionData);
-            alert.setContentText(oldVersionData);
-            alert.setTitle(newVersionAvailable);
-
-            Optional<ButtonType> result = alert.showAndWait();
-            //download main distributive - mandatory file for a new version
-            //should be named InformationSystem.jar_new.jar
-            if (!result.isPresent() || result.get() == myOK) {
-                // if (updateFile(XmlReader.getFilePath(onlineXml, "main"))) {
+                Optional<ButtonType> result = alert.showAndWait();
+                //download main distributive - mandatory file for a new version
+                //should be named InformationSystem.jar_new.jar
+                if (!result.isPresent() || result.get() == myOK) {
+                    // if (updateFile(XmlReader.getFilePath(onlineXml, "main"))) {
 //                    // Run a java app in a separate system process
 //                        for (String file : listFiles(".")) {
 //                            // if there is a 'standard' bat to run our program
@@ -102,7 +105,7 @@ public class InformationSystem extends Application {
 //                                        e.printStackTrace();
 //                                    }
 //                                }).start();
-                //System.exit(0);
+                    //System.exit(0);
 //                            }
 //                    String runCmdLine ="rename InformationSystem.jar_new.jar InformationSystem.jar";
 //                    String runCmdLine2 = "java.exe --module-path \".\\lib\" --add-modules javafx.controls,javafx.fxml " +
@@ -117,29 +120,32 @@ public class InformationSystem extends Application {
 //                        e.printStackTrace();
 //                    }
 //                    System.exit(0);
-                // }
-                ArrayList<Pair<String, String>> files = XmlReader.getAllAdditionalFiles(onlineXml);
-                for (Pair<String, String> fileFromTo : files) {
-                    updateFile(fileFromTo);
+                    // }
+                    ArrayList<Pair<String, String>> files = XmlReader.getAllAdditionalFiles(onlineXml);
+                    for (Pair<String, String> fileFromTo : files) {
+                        updateFile(fileFromTo);
+                    }
+                    System.exit(0);
                 }
-                System.exit(0);
             }
-        }
+        });
     }
 
     private Iterable<String> updateUpdatersList(String[] updatersList) {
+        List<String> sources = new ArrayList<>();
         try {
-            List<String> updateSources = Stream.concat(Arrays.stream(updatersList).sequential(),
-                    Files.readAllLines(Path.of("updater.dat")).stream()).collect(Collectors.toList());
-            return Stream.concat(updateSources.stream(),
-                                 updateSources.stream().map((s -> s.endsWith("/") ? s.concat("version.xml")
-                                                                                  : s.concat("/version.xml"))))
-                    .distinct()
-                    .collect(Collectors.toList());
+            sources = Files.readAllLines(Path.of("updater.dat"));
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
-        return Arrays.asList(updatersList);
+
+        List<String> updateSources = Stream.concat(Arrays.stream(updatersList).sequential(),
+                sources.stream()).collect(Collectors.toList());
+        return Stream.concat(updateSources.stream(),
+                updateSources.stream().map((s -> s.endsWith("/") ? s.concat("version.xml")
+                        : s.concat("/version.xml"))))
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     private String readOnlineXml(String path) {
