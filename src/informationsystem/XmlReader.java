@@ -245,9 +245,14 @@ public class XmlReader {
     }
 
     public static String getValue(String tag, Element element) {
-        NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
-        Node node = (Node) nodes.item(0);
-        return node.getNodeValue();
+        if (tag != null && element != null) {
+            Node node = element.getElementsByTagName(tag).item(0);
+            if (node != null) {
+                Node childNode = (Node) node.getChildNodes().item(0);
+                return childNode.getNodeValue();
+            }
+        }
+        return "";
     }
 
     public static Document loadXMLFromString(String xml) throws ParserConfigurationException, IOException, SAXException {

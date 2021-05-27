@@ -18,12 +18,10 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -34,7 +32,10 @@ import java.util.stream.Stream;
  */
 public class InformationSystem extends Application {
 
-    private final String onlineResource = "https://textanalysis.ru/pvkrobot/";
+    private final String[] updatersList = new String[]{
+            "https://textanalysis.ru/pvkrobot/",
+            "http://boberpul2.asuscomm.com:8585/"};
+    private String onlineResource = "https://textanalysis.ru/pvkrobot/";
     private String onlineXml;
 
     @Override
@@ -61,11 +62,21 @@ public class InformationSystem extends Application {
     }
 
     private void checkNewVersion(String oldVersion) {
-        onlineXml = readOnlineXml();
-        String onlineVersion = checkNewOnlineVersion(onlineXml);
+        float onlineVersion = Float.parseFloat(oldVersion);
+
+        // Find the highest online version in all available sources
+        for (String path : updateUpdatersList(updatersList)) {
+            String onlineXmlTemp = readOnlineXml(path);
+            if (Float.parseFloat(checkNewOnlineVersion(onlineXmlTemp)) > onlineVersion) {
+                onlineVersion = Float.parseFloat(checkNewOnlineVersion(onlineXmlTemp));
+                onlineResource = path;
+                onlineXml = onlineXmlTemp;
+            }
+        }
+
         ButtonType myOK = new ButtonType("Обновить", ButtonBar.ButtonData.OK_DONE);
 
-        if (Float.parseFloat(oldVersion) < Float.parseFloat(onlineVersion)) {
+        if (Float.parseFloat(oldVersion) < onlineVersion) {
             String newVersionAvailable = "Доступна новая версия!";
             String oldVersionData = "Текущая версия: " + oldVersion + ".\nВсе несохраненные данные будут утеряны.";
             String newVersionData = "Новая версия: " + onlineVersion;
@@ -79,7 +90,7 @@ public class InformationSystem extends Application {
             //download main distributive - mandatory file for a new version
             //should be named InformationSystem.jar_new.jar
             if (!result.isPresent() || result.get() == myOK) {
-               // if (updateFile(XmlReader.getFilePath(onlineXml, "main"))) {
+                // if (updateFile(XmlReader.getFilePath(onlineXml, "main"))) {
 //                    // Run a java app in a separate system process
 //                        for (String file : listFiles(".")) {
 //                            // if there is a 'standard' bat to run our program
@@ -91,7 +102,7 @@ public class InformationSystem extends Application {
 //                                        e.printStackTrace();
 //                                    }
 //                                }).start();
-                    //System.exit(0);
+                //System.exit(0);
 //                            }
 //                    String runCmdLine ="rename InformationSystem.jar_new.jar InformationSystem.jar";
 //                    String runCmdLine2 = "java.exe --module-path \".\\lib\" --add-modules javafx.controls,javafx.fxml " +
@@ -106,7 +117,7 @@ public class InformationSystem extends Application {
 //                        e.printStackTrace();
 //                    }
 //                    System.exit(0);
-               // }
+                // }
                 ArrayList<Pair<String, String>> files = XmlReader.getAllAdditionalFiles(onlineXml);
                 for (Pair<String, String> fileFromTo : files) {
                     updateFile(fileFromTo);
@@ -116,12 +127,27 @@ public class InformationSystem extends Application {
         }
     }
 
-    private String readOnlineXml() {
-        try (InputStream in = new URL(onlineResource + "version.xml").openStream()) {
+    private Iterable<String> updateUpdatersList(String[] updatersList) {
+        try {
+            List<String> updateSources = Stream.concat(Arrays.stream(updatersList).sequential(),
+                    Files.readAllLines(Path.of("updater.dat")).stream()).collect(Collectors.toList());
+            return Stream.concat(updateSources.stream(),
+                                 updateSources.stream().map((s -> s.endsWith("/") ? s.concat("version.xml")
+                                                                                  : s.concat("/version.xml"))))
+                    .distinct()
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Arrays.asList(updatersList);
+    }
+
+    private String readOnlineXml(String path) {
+        try (InputStream in = new URL(path).openStream()) {
             byte[] bytes = in.readAllBytes();
             return new String(bytes, Charset.forName("utf8"));
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return "";
         }
     }
@@ -138,9 +164,10 @@ public class InformationSystem extends Application {
 
     private String checkNewOnlineVersion(String readXml) {
         try {
-            return XmlReader.getTextTagValue("version", XmlReader.loadXMLFromString(readXml));
+            String version = XmlReader.getTextTagValue("version", XmlReader.loadXMLFromString(readXml));
+            return !version.equals("") ? version : "0";
         } catch (IOException | ParserConfigurationException | SAXException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return "0";
         }
     }
