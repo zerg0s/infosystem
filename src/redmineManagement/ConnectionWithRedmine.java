@@ -42,7 +42,7 @@ import org.apache.commons.codec.Charsets;
 import org.apache.http.entity.ContentType;
 import taskCheckers.JavaTaskChecker;
 import taskCheckers.PyTaskChecker;
-import textUtils.TextUtils;
+import tools.TextUtils;
 import tools.Translit;
 
 //Status_id HELP 
@@ -84,9 +84,9 @@ public class ConnectionWithRedmine {
     private List<Membership> projectsUsers;
     private List<Version> versions;
 
-    public ConnectionWithRedmine(String apikey, String projectkey2, String url) {
+    public ConnectionWithRedmine(String apikey, String projectkey, String url) {
         this.apiAccessKey = apikey;
-        this.projectKey = projectkey2;
+        this.projectKey = projectkey;
         this.url = url;
         this.mgr = RedmineManagerFactory.createWithApiKey(url, apiAccessKey);
         this.issueManager = mgr.getIssueManager();
@@ -99,7 +99,7 @@ public class ConnectionWithRedmine {
             mgr.setObjectsPerPage(100);
             projectsUsers = mgr.getProjectManager().getProjectMembers(this.projectKey);
         } catch (RedmineException ex) {
-            Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
     }
 
@@ -136,7 +136,7 @@ public class ConnectionWithRedmine {
             issue.setAssigneeId(id);
             issue.setAssigneeName(value);
         } else {
-            Logger.getLogger(this.getClass().getName()).warning("Can't find user " + value);
+            logger.warning("Can't find user " + value);
         }
 
         return issue;
@@ -255,7 +255,7 @@ public class ConnectionWithRedmine {
                     try {
                         wasCheckedEarlier = isAttachmentIdWasEarlierChecked(attach.getId());
                     } catch (IOException ex) {
-                        Logger.getLogger(ConnectionWithRedmine.class.getName()).warning(ex.toString());
+                        logger.warning(ex.toString());
                     }
                 }
                 //Проверяем файл аттача: 1)если не проверяли ранее 0) надо обязательно проверять
@@ -267,7 +267,7 @@ public class ConnectionWithRedmine {
                     try {
                         downloadAttachments(attach.getContentURL(), apiAccessKey, fileToManage);
                     } catch (IOException ex) {
-                        Logger.getLogger(ConnectionWithRedmine.class.getName()).warning(ex.toString());
+                        logger.warning(ex.toString());
                     }
 
                     if (attachFileName.endsWith(".py")) {
@@ -592,7 +592,7 @@ public class ConnectionWithRedmine {
                 }
             }
         } catch (RedmineException ex) {
-            Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
         return retVal;
     }
@@ -614,7 +614,7 @@ public class ConnectionWithRedmine {
             File file = new File(path);
             attachmentManager.addAttachmentToIssue(issue.getId(), file, ContentType.TEXT_PLAIN.getMimeType());
         } catch (RedmineException | IOException ex) {
-            Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
     }
 
@@ -669,12 +669,11 @@ public class ConnectionWithRedmine {
         }
     }
 
-
     public void updateIssue(Issue issue) {
         try {
             mgr.getIssueManager().update(issue);
         } catch (RedmineException ex) {
-            Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
     }
 
@@ -686,7 +685,7 @@ public class ConnectionWithRedmine {
             try {
                 this.checkAttachments(issue);
             } catch (IOException ex) {
-                Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
+                logger.log(Level.SEVERE, null, ex);
             }
         } else if (version == null) {
             System.out.println("Issue without target version");
@@ -694,7 +693,7 @@ public class ConnectionWithRedmine {
             try {
                 this.checkAttachments(issue);
             } catch (IOException ex) {
-                Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
+                logger.log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -707,7 +706,7 @@ public class ConnectionWithRedmine {
         try {
             memberships = membershipManager.getMemberships(projectKey);
         } catch (RedmineException ex) {
-            Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
         ArrayList<String> retArray = new ArrayList<>();
         for (Membership m : memberships) {
@@ -721,7 +720,7 @@ public class ConnectionWithRedmine {
         try {
             issues = getIssues(iteration);
         } catch (RedmineException ex) {
-            Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
         ArrayList<String> retVal = new ArrayList<>();
         for (Issue issue : issues) {
@@ -738,7 +737,7 @@ public class ConnectionWithRedmine {
         try {
             currIssue = getIssueByID(issueId);
         } catch (RedmineException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
         Issue newIssue = new Issue();
         newIssue.setSubject(currIssue.getSubject());
@@ -752,7 +751,7 @@ public class ConnectionWithRedmine {
         try {
             mgr.getIssueManager().createIssue(newIssue);
         } catch (RedmineException ex) {
-            Logger.getLogger(ConnectionWithRedmine.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
 
     }
@@ -852,4 +851,6 @@ public class ConnectionWithRedmine {
     public boolean getLint() {
         return lint;
     }
+
+    private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());
 }
