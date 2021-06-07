@@ -27,6 +27,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import data.ConfiguredTask;
 import data.LintReportMode;
@@ -74,6 +75,7 @@ public class ConnectionWithRedmine {
     private String assigneeName = "";
 
     private RedmineManager mgr;
+
     private IssueManager issueManager;
     private AttachmentManager attachmentManager;
     private List<Issue> issues;
@@ -101,6 +103,10 @@ public class ConnectionWithRedmine {
         } catch (RedmineException ex) {
             logger.log(Level.SEVERE, null, ex);
         }
+    }
+
+    public IssueManager getIssueManager() {
+        return issueManager;
     }
 
     public void setRating(float value) {
@@ -523,45 +529,56 @@ public class ConnectionWithRedmine {
         return issues;
     }
 
-    public List<Issue> getIssues(String iterationName) throws RedmineException {
-        //15306
+    private List<Issue> getIssues(String iterationName, boolean openOrClosed) throws RedmineException {
         String iterationid = getIterationIdByName(iterationName);
+        boolean hasMoreIssues = true;
+        int offset = 0;
+        List<Issue> tmpList = new ArrayList<>();
+        while (hasMoreIssues) {
+            final Map<String, String> params = new HashMap<>();
+            params.put("project_id", projectKey);
+            params.put("fixed_version_id", iterationid);
+            params.put("limit", "100");
+            params.put("offset", String.valueOf(offset));
+            params.put("include", "attachments, journals");
+            if (!openOrClosed) {
+                params.put("status_id", "5");
+            }
+            List<Issue> current = issueManager.getIssues(params).getResults();
+            tmpList.addAll(current);
+            if (current.size() == 0) {
+                hasMoreIssues = false;
+            }
+            offset += 100;
+        }
 
-        final Map<String, String> params = new HashMap<>();
-        params.put("project_id", projectKey);
-        params.put("fixed_version_id", iterationid);
-        params.put("limit", "100");
-        params.put("include", "attachments, journals");
-        issues = issueManager.getIssues(params).getResults();
+        issues = tmpList;
         return issues;
+    }
+    public List<Issue> getOpenedIssues(String iterationName) throws RedmineException {
+        return getIssues(iterationName, true);
     }
 
     public List<Issue> getClosedIssues(String iterationName) {
-        String iterationId = getIterationIdByName(iterationName);
+        try {
+            return getIssues(iterationName, false);
+        } catch (RedmineException e) {
+            logger.info(e.getMessage());
+        }
+        return new ArrayList<Issue>();
+    }
 
-        final Map<String, String> params = new HashMap<String, String>();
-        params.put("project_id", projectKey);
-        params.put("fixed_version_id", iterationId);
-        params.put("limit", "100");
-        params.put("status_id", "5"); // 5 = closed
+    public List<Issue> getUniqueIssues(String iterationName) {
+        List<Issue> uniqueIssues = new ArrayList<>();
+        Set<String> set = new HashSet<>();
         try {
-            issues = issueManager.getIssues(params).getResults();
+            uniqueIssues.addAll(getClosedIssues(iterationName));
+            uniqueIssues.addAll(getOpenedIssues(iterationName));
+            uniqueIssues.removeIf(issue -> !set.add(issue.getSubject()));
         } catch (RedmineException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
-        // dirtyhack. get another 100.
-        final Map<String, String> params2 = new HashMap<String, String>();
-        params2.put("project_id", projectKey);
-        params2.put("fixed_version_id", iterationId);
-        params2.put("limit", "100");
-        params2.put("offset", "100");
-        params2.put("status_id", "5"); // 5 = closed
-        try {
-            issues.addAll(issueManager.getIssues(params2).getResults());
-        } catch (RedmineException e) {
-            e.printStackTrace();
-        }
-        return issues;
+        return uniqueIssues;
     }
 
     public List<Issue> getMyIssues(String iterationName) throws RedmineException {
@@ -597,11 +614,18 @@ public class ConnectionWithRedmine {
         return retVal;
     }
 
-    public Collection<Version> getVersions(String projectKey) throws RedmineException {
-        Project project = projectManager.getProjectByKey(projectKey);
-        int projectID = project.getId();
-        versions = projectManager.getVersions(projectID);
-        return versions;
+    public Collection<String> getVersions(String projectKey) {
+        List<Version> allVersions = new ArrayList<>();
+        try {
+            allVersions = projectManager.getVersions(projectManager.getProjectByKey(projectKey).getId());
+        } catch (RedmineException e) {
+            e.printStackTrace();
+        }
+        return allVersions.stream().map(v -> v.getName()).collect(Collectors.toList());
+    }
+
+    public Collection<String> getVersions() {
+        return getVersions(projectKey);
     }
 
     public Issue getIssueByID(Integer issueID) throws RedmineException {
@@ -718,7 +742,7 @@ public class ConnectionWithRedmine {
     public ArrayList<String> getIterationFreeTasks(String iteration) {
         List<Issue> issues = new ArrayList<>();
         try {
-            issues = getIssues(iteration);
+            issues = getOpenedIssues(iteration);
         } catch (RedmineException ex) {
             logger.log(Level.SEVERE, null, ex);
         }
@@ -852,5 +876,10 @@ public class ConnectionWithRedmine {
         return lint;
     }
 
+    public void getIterations() {
+
+    }
+
     private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());
+
 }

@@ -8,7 +8,6 @@ package informationsystem;
 import com.taskadapter.redmineapi.RedmineException;
 import com.taskadapter.redmineapi.bean.Issue;
 import com.taskadapter.redmineapi.bean.Journal;
-import com.taskadapter.redmineapi.bean.Version;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import data.*;
 import informationsystem.TasksManager.FxmlTasksController;
@@ -41,6 +39,7 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import redmineManagement.ConnectionWithRedmine;
 import redmineManagement.RedmineAlternativeReader;
+import tools.IssueCrawler;
 
 /**
  * @author user
@@ -148,6 +147,9 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Button btnCheckClosed;
+
+    @FXML
+    private Button btnDownloadAll;
 
     @FXML
     private Tab tasksTab;
@@ -518,23 +520,11 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    private void getAllIterations(RedmineConnectionProperties properties) {
+    public void getAllIterations(RedmineConnectionProperties properties) {
         connectionToRedmine = new ConnectionWithRedmine(properties.apiAccessKey, properties.projectKey, properties.url);
-        journalReader = new RedmineAlternativeReader(properties.url, properties.apiAccessKey);
 
-        Collection<Version> versions = new ArrayList();
-        try {
-            versions = connectionToRedmine.getVersions(props.projectKey);
-        } catch (RedmineException ex) {
-            logger.log(Level.SEVERE, null, ex);
-        }
-        Collection<String> allIterations = new ArrayList<>();
-        if (allIterations != null || !allIterations.isEmpty()) {
-            for (Version ver : versions) {
-                allIterations.add(ver.getName());
-            }
-        }
-        ObservableList<String> targetVersionLost = FXCollections.observableArrayList(allIterations);
+        ObservableList<String> targetVersionLost = FXCollections.observableArrayList(
+                connectionToRedmine.getVersions(props.projectKey));
         Platform.runLater(() -> comboxVersion.setItems(targetVersionLost));
     }
 
@@ -916,6 +906,13 @@ public class FXMLDocumentController implements Initializable {
             logger.info(e.toString());
         }
         return fraudTasks;
+    }
+
+    @FXML
+    private void btnDownloadAllClick(ActionEvent e) {
+        btnDownloadAll.setText(btnDownloadAll.getText().substring(1)); //just for fun
+        IssueCrawler crawler = new IssueCrawler(props);
+        List<Issue> issues = crawler.getAllProjectIssues(comboxVersion.getValue().toString());
     }
 
     private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());
