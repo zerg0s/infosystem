@@ -144,5 +144,9 @@ public class TextUtils {
         return lines;
     }
 
+    public static boolean isNullOrEmpty(String testStr) {
+        return (testStr == null) || testStr.trim().isEmpty() ;
+    }
+
     static Logger logger = Logger.getLogger(TextUtils.class.getSimpleName());
 }

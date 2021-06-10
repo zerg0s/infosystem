@@ -912,7 +912,11 @@ public class FXMLDocumentController implements Initializable {
     private void btnDownloadAllClick(ActionEvent e) {
         btnDownloadAll.setText(btnDownloadAll.getText().substring(1)); //just for fun
         IssueCrawler crawler = new IssueCrawler(props);
-        List<Issue> issues = crawler.getAllProjectIssues(comboxVersion.getValue().toString());
+        crawler.getAllProjectIssues(comboxVersion.getValue().toString());
+        TasksKeeper keeper = reader.getAllTests();
+        keeper.setXmlReader(reader);
+        crawler.substractKnownIssues(keeper.getAllTaskNames());
+        keeper.addNewTests(crawler.getIssuesWithAttachments());
     }
 
     private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());

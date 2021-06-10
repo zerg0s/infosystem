@@ -1,7 +1,9 @@
 package informationsystem.TasksManager;
 
+import com.taskadapter.redmineapi.bean.Issue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import tools.Translit;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,7 +19,19 @@ public class TaskInfo {
     private String taskName;
     private String taskBody;
     private String taskPath;
+    private String iterationPath;
     private List<String> allAvailableTests = new ArrayList<String>();
+
+    public TaskInfo() {
+    }
+
+    public TaskInfo(Issue issue) {
+        this.taskBody = issue.getDescription();
+        this.iterationPath = issue.getTargetVersion().getName();
+        // ?? this.taskId
+        this.taskName = issue.getSubject();
+        this.taskPath = Translit.toTranslit(issue.getSubject());
+    }
 
     public String getTaskId() {
         return taskId;
@@ -112,6 +126,14 @@ public class TaskInfo {
 
     public void saveAllData() {
 
+    }
+
+    public String getIterationPath() {
+        return iterationPath;
+    }
+
+    public void setIterationPath(String iterationPath) {
+        this.iterationPath = iterationPath;
     }
 
     private static Logger logger = Logger.getLogger(TaskInfo.class.getSimpleName());

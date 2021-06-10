@@ -521,7 +521,6 @@ public class ConnectionWithRedmine {
             Path to = Paths.get(fileName); //convert from String to Path
             Files.copy(in, to, StandardCopyOption.REPLACE_EXISTING);
         }
-
     }
 
     public List<Issue> getIssues() throws RedmineException {

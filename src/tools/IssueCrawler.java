@@ -11,10 +11,15 @@ import java.util.List;
 public class IssueCrawler {
     private ConnectionWithRedmine connection;
     private RedmineConnectionProperties properties;
+    private final List<Issue> issues;
 
+    public List<Issue> getIssues() {
+        return issues;
+    }
     public IssueCrawler(RedmineConnectionProperties props) {
         properties = props;
         connection = new ConnectionWithRedmine(props.apiAccessKey,props.projectKey, props.url);
+        issues = new ArrayList<>();
     }
 
     public List<Issue> getAllProjectIssues(String iteration) {
@@ -24,14 +29,31 @@ public class IssueCrawler {
                 allIssues.addAll(connection.getUniqueIssues(version));
             }
 
-            //connection.getIssues();
-            return allIssues;
+            issues.addAll(allIssues);
         } else {
-            return connection.getUniqueIssues(iteration);
+            issues.addAll(connection.getUniqueIssues(iteration));
         }
+        return issues;
     }
 
     public List<Issue> getAllProjectIssues() {
-       return getAllProjectIssues(null);
+       issues.addAll(getAllProjectIssues(null));
+       return issues;
+    }
+
+    public void substractKnownIssues(List<String> allTaskNames) {
+        issues.removeIf(issues -> allTaskNames.contains(issues.getSubject()));
+    }
+
+    public List<Issue> getIssuesWithAttachments() {
+        List<Issue> issuesWithAttachments = new ArrayList<>();
+        for (Issue issue : issues) {
+            try {
+                issuesWithAttachments.add(connection.getIssueByID(issue.getId()));
+            } catch (RedmineException e) {
+                e.printStackTrace();
+            }
+        }
+        return issuesWithAttachments;
     }
 }

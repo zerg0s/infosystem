@@ -1,5 +1,6 @@
 package informationsystem.TasksManager;
 
+import com.taskadapter.redmineapi.bean.Issue;
 import informationsystem.XmlReader;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class TasksKeeper {
 
     private HashSet<TaskInfo> allTasks = new HashSet<>();
     private TaskInfo selectedTask;
+    private XmlReader reader;
 
     public TasksKeeper() {
 
@@ -65,5 +67,25 @@ public class TasksKeeper {
     public TaskInfo getTestByName(String value) {
         return allTasks.stream().filter(item -> item.getTaskName().equals(value))
                 .findFirst().get();
+    }
+
+    public void addNewTests(List<Issue> issuesToAdd) {
+        for (Issue issue : issuesToAdd) {
+            addNewTest(issue);
+        }
+    }
+
+    private void addNewTest(Issue issue) {
+        TaskInfo task = new TaskInfo(issue);
+        if (!reader.exists(task)) {
+            reader.addTask(task);
+        }
+        else {
+            reader.saveTask(task);
+        }
+    }
+
+    public void setXmlReader(XmlReader reader) {
+        this.reader = reader;
     }
 }
