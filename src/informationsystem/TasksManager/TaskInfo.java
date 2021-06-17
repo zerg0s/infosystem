@@ -136,5 +136,9 @@ public class TaskInfo {
         this.iterationPath = iterationPath;
     }
 
+    public String toString() {
+        return taskId + " - " + iterationPath + " - " + taskName;
+    }
+
     private static Logger logger = Logger.getLogger(TaskInfo.class.getSimpleName());
 }

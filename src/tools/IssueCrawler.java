@@ -16,9 +16,10 @@ public class IssueCrawler {
     public List<Issue> getIssues() {
         return issues;
     }
+
     public IssueCrawler(RedmineConnectionProperties props) {
         properties = props;
-        connection = new ConnectionWithRedmine(props.apiAccessKey,props.projectKey, props.url);
+        connection = new ConnectionWithRedmine(props.apiAccessKey, props.projectKey, props.url);
         issues = new ArrayList<>();
     }
 
@@ -33,12 +34,13 @@ public class IssueCrawler {
         } else {
             issues.addAll(connection.getUniqueIssues(iteration));
         }
+
         return issues;
     }
 
     public List<Issue> getAllProjectIssues() {
-       issues.addAll(getAllProjectIssues(null));
-       return issues;
+        issues.addAll(getAllProjectIssues(null));
+        return issues;
     }
 
     public void substractKnownIssues(List<String> allTaskNames) {
@@ -54,6 +56,7 @@ public class IssueCrawler {
                 e.printStackTrace();
             }
         }
+
         return issuesWithAttachments;
     }
 }

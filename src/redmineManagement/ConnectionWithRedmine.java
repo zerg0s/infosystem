@@ -32,6 +32,7 @@ import java.util.stream.Collectors;
 import data.ConfiguredTask;
 import data.LintReportMode;
 import informationsystem.*;
+import informationsystem.TasksManager.TaskInfo;
 import lintsForLangs.MyCheckStyle;
 import lintsForLangs.MyCppLint;
 import lintsForLangs.MyPylint;
@@ -100,6 +101,7 @@ public class ConnectionWithRedmine {
             mgr.getTransport().setObjectsPerPage(100);
             mgr.setObjectsPerPage(100);
             projectsUsers = mgr.getProjectManager().getProjectMembers(this.projectKey);
+            versions = projectManager.getVersions(projectManager.getProjectByKey(projectKey).getId());
         } catch (RedmineException ex) {
             logger.log(Level.SEVERE, null, ex);
         }
@@ -554,6 +556,7 @@ public class ConnectionWithRedmine {
         issues = tmpList;
         return issues;
     }
+
     public List<Issue> getOpenedIssues(String iterationName) throws RedmineException {
         return getIssues(iterationName, true);
     }
@@ -776,7 +779,24 @@ public class ConnectionWithRedmine {
         } catch (RedmineException ex) {
             logger.log(Level.SEVERE, null, ex);
         }
+    }
 
+    public void createNewIssueToRedmine(TaskInfo task) {
+        try {
+            Issue newIssue = new Issue();
+            newIssue.setSubject(task.getTaskName());
+            newIssue.setTargetVersion(versions.stream()
+                    .filter(v -> v.getName().equals(task.getIterationPath()))
+                    .findFirst().get());
+            //newIssue.setCategory(issueManager.getCategories().stream().findFirst());
+            newIssue.setProjectId(projectManager.getProjectByKey(projectKey).getId());
+            newIssue.setPrivateIssue(true);
+            newIssue.setAssigneeName("");
+            newIssue.setDescription(task.getTaskBody());
+            mgr.getIssueManager().createIssue(newIssue);
+        } catch (RedmineException ex) {
+            logger.info(ex.getMessage());
+        }
     }
 
     private String getStudentsName(int id, String managerName) {

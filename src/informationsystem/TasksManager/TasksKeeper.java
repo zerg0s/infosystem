@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 public class TasksKeeper {
     static String PathToTests = ".\\pylint\\tests\\";
 
+
     private HashSet<TaskInfo> allTasks = new HashSet<>();
     private TaskInfo selectedTask;
     private XmlReader reader;
@@ -29,6 +30,10 @@ public class TasksKeeper {
         allTasks.add(testData);
     }
 
+    public HashSet<TaskInfo> getAllTasks() {
+        return allTasks;
+    }
+
     public HashMap<String, String> getOldStyleTasks() {
         HashMap<String, String> oldStyleTasks = new HashMap<>();
         for (TaskInfo taskInfo : allTasks) {
@@ -39,6 +44,14 @@ public class TasksKeeper {
 
     public List<String> getAllTaskNames() {
         return allTasks.stream()
+                .flatMap(p -> Stream.of(p.getTaskName()))
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getTasksByIteration(String iteration) {
+        //allTasks.stream().forEach(System.out::println);
+        return allTasks.stream().filter(taskInfo -> taskInfo.getIterationPath().equalsIgnoreCase(iteration))
                 .flatMap(p -> Stream.of(p.getTaskName()))
                 .sorted()
                 .collect(Collectors.toList());
@@ -75,6 +88,20 @@ public class TasksKeeper {
         }
     }
 
+    public void setXmlReader(XmlReader reader) {
+        this.reader = reader;
+    }
+
+    public void UpdateTasks(List<Issue> issues) {
+    }
+
+    public List<String> getAllIterations() {
+        return allTasks.stream()
+                .map(task -> task.getIterationPath()).distinct()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
     private void addNewTest(Issue issue) {
         TaskInfo task = new TaskInfo(issue);
         if (!reader.exists(task)) {
@@ -85,7 +112,5 @@ public class TasksKeeper {
         }
     }
 
-    public void setXmlReader(XmlReader reader) {
-        this.reader = reader;
-    }
+
 }

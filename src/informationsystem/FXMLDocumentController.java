@@ -128,6 +128,9 @@ public class FXMLDocumentController implements Initializable {
     private ComboBox<String> cbxAllAvailableTasks;
 
     @FXML
+    private ComboBox<String> cbxAllAvailableIterations;
+
+    @FXML
     private ComboBox<String> cbxTestsForTask;
 
     @FXML
@@ -668,8 +671,10 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void saveAllTasks(ActionEvent event) {
-
+    private void addTaskToMyIteration(ActionEvent event) {
+        TaskInfo task = tasksKeeper.getSelectedTask();
+        task.setIterationPath(props.iterationName);
+        connectionToRedmine.createNewIssueToRedmine(task);
     }
 
     @FXML
@@ -710,7 +715,7 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    private void OpenTaskStage(ActionEvent event, TaskInfo taskInfo) {
+    private void openTaskStage(ActionEvent event, TaskInfo taskInfo) {
         Parent root;
         try {
             if (taskInfo == null) {
@@ -800,7 +805,7 @@ public class FXMLDocumentController implements Initializable {
         tasksKeeper = TasksKeeper.update(reader);
 
         cbxAllAvailableTasks.setItems(FXCollections.observableArrayList(tasksKeeper.getAllTaskNames()));
-
+        cbxAllAvailableIterations.setItems(FXCollections.observableArrayList(tasksKeeper.getAllIterations()));
         txtTestInput.textProperty().addListener((observable, oldValue, newValue) -> {
             if ((cbxTestsForTask.getValue() == null) || oldValue.isBlank()
                     || newValue.isBlank() || newValue.equals(oldValue)) {
@@ -816,6 +821,16 @@ public class FXMLDocumentController implements Initializable {
             }
             tasksKeeper.getSelectedTask().setTestOutput(cbxTestsForTask.getValue(), newValue);
         });
+    }
+
+    @FXML
+    private void handleIterationChoice() {
+        String selected = cbxAllAvailableIterations.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            return;
+        }
+        List<String> tesksByIter = tasksKeeper.getTasksByIteration(selected);
+        cbxAllAvailableTasks.setItems(FXCollections.observableArrayList(tesksByIter));
     }
 
     @FXML
@@ -854,12 +869,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void addNewTask(ActionEvent event) {
-        OpenTaskStage(event, new TaskInfo());
+        openTaskStage(event, new TaskInfo());
     }
 
     @FXML
     private void editTask(ActionEvent event) {
-        OpenTaskStage(event, tasksKeeper.getSelectedTask());
+        openTaskStage(event, tasksKeeper.getSelectedTask());
     }
 
     @FXML
@@ -912,11 +927,11 @@ public class FXMLDocumentController implements Initializable {
     private void btnDownloadAllClick(ActionEvent e) {
         btnDownloadAll.setText(btnDownloadAll.getText().substring(1)); //just for fun
         IssueCrawler crawler = new IssueCrawler(props);
-        crawler.getAllProjectIssues(comboxVersion.getValue().toString());
+        crawler.getAllProjectIssues();
         TasksKeeper keeper = reader.getAllTests();
         keeper.setXmlReader(reader);
         crawler.substractKnownIssues(keeper.getAllTaskNames());
-        keeper.addNewTests(crawler.getIssuesWithAttachments());
+        keeper.addNewTests(crawler.getIssues());
     }
 
     private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());

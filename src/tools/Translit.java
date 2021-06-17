@@ -34,9 +34,9 @@ public class Translit {
         letters.put("Ч", "Ch");
         letters.put("Ш", "Sh");
         letters.put("Щ", "Sch");
-        letters.put("Ъ", "'");
+        letters.put("Ъ", "");
         letters.put("Ы", "Y");
-        letters.put("Ъ", "'");
+        letters.put("Ъ", "");
         letters.put("Э", "E");
         letters.put("Ю", "Yu");
         letters.put("Я", "Ya");
@@ -67,9 +67,9 @@ public class Translit {
         letters.put("ч", "ch");
         letters.put("ш", "sh");
         letters.put("щ", "sch");
-        letters.put("ъ", "'");
+        letters.put("ъ", "");
         letters.put("ы", "y");
-        letters.put("ъ", "'");
+        letters.put("ъ", "");
         letters.put("э", "e");
         letters.put("ю", "yu");
         letters.put("я", "ya");
