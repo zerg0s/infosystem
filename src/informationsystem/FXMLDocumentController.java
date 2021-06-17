@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import data.*;
 import informationsystem.TasksManager.FxmlTasksController;
@@ -40,6 +41,7 @@ import javafx.util.StringConverter;
 import redmineManagement.ConnectionWithRedmine;
 import redmineManagement.RedmineAlternativeReader;
 import tools.IssueCrawler;
+import tools.TextUtils;
 
 /**
  * @author user
