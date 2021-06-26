@@ -16,6 +16,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import redmineManagement.IssuesChecker;
 import tools.TextUtils;
+import tools.ZipFile;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
@@ -83,6 +84,8 @@ public class InformationSystem extends Application {
 
             final int onlineUploadId = getUploadId(onlineXmlTemp);
             if (checkUploadIsRequired(onlineUploadId, oldUploadId)) {
+                ZipFile appZip = new ZipFile();
+                appZip.makeZip(".\\pylint", "tests.zip");
                 boolean testsWereUploaded = uploadTests(onlineResource + "upload.php", String.valueOf(onlineUploadId));
                 if (testsWereUploaded) {
                     saveTestUploadStatus(onlineUploadId);
@@ -176,7 +179,7 @@ public class InformationSystem extends Application {
                     xmlFromFile);
             return Integer.parseInt(idString);
         } catch (NumberFormatException | IOException | SAXException | ParserConfigurationException ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
         }
         return 0;
     }
@@ -235,14 +238,14 @@ public class InformationSystem extends Application {
             writer.append("--" + boundary + "--").append(CRLF).flush();
             // Request is lazily fired whenever you need to obtain information about response.
             int responseCode = ((HttpURLConnection) connection).getResponseCode();
-
+            /* Print Server's response for debug reasons
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     ((HttpURLConnection) connection).getInputStream()));
             String inputLine;
             while ((inputLine = in.readLine()) != null)
                 System.out.println(inputLine);
             in.close();
-
+            */
             return responseCode == 200;
         } catch (IOException e) {
             e.printStackTrace();
