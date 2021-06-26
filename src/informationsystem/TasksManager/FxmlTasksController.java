@@ -5,7 +5,8 @@
  */
 package informationsystem.TasksManager;
 
-import informationsystem.XmlReader;
+import informationsystem.xml.TasksXmlReader;
+import informationsystem.xml.XmlReader;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -91,9 +92,8 @@ public class FxmlTasksController implements Initializable {
     }
 
     private void saveTask(TaskInfo selectedTask) {
-        //toDO: Save task to tasks xml
         String xmlWithTests = "TestsInfo_v2.xml";
-        XmlReader reader = new XmlReader(xmlWithTests);
+        TasksXmlReader reader = new TasksXmlReader(xmlWithTests);
         reader.saveTask(selectedTask);
     }
 }

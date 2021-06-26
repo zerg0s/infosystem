@@ -1,8 +1,10 @@
 package informationsystem;
 
+import informationsystem.xml.OnlineXmlReader;
+import informationsystem.xml.SettingsXmlReader;
+import informationsystem.xml.XmlReader;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,15 +12,17 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import redmineManagement.IssuesChecker;
+import tools.TextUtils;
 
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -65,21 +69,31 @@ public class InformationSystem extends Application {
 
     private void checkNewVersion(String oldVersion) {
         float onlineVersion = Float.parseFloat(oldVersion);
+        final int oldUploadId = getOldUploadId("ProjectKey.xml");
 
         // Find the highest online version in all available sources
         for (String path : updateUpdatersList(updatersList)) {
-            String onlineXmlTemp = readOnlineXml(path);
+            String onlineXmlTemp = downloadOnlineXml(path);
             if (Float.parseFloat(checkNewOnlineVersion(onlineXmlTemp)) > onlineVersion) {
                 onlineVersion = Float.parseFloat(checkNewOnlineVersion(onlineXmlTemp));
                 onlineResource = path.substring(0, path.lastIndexOf('/') + 1);
                 onlineXml = onlineXmlTemp;
             }
-        }
 
-        ButtonType myOK = new ButtonType("Обновить", ButtonBar.ButtonData.OK_DONE);
+
+            final int onlineUploadId = getUploadId(onlineXmlTemp);
+            if (checkUploadIsRequired(onlineUploadId, oldUploadId)) {
+                boolean testsWereUploaded = uploadTests(onlineResource + "upload.php", String.valueOf(onlineUploadId));
+                if (testsWereUploaded) {
+                    saveTestUploadStatus(onlineUploadId);
+                }
+            }
+        }
         float finalOnlineVersion = onlineVersion;
-        Platform.runLater(() -> {
-            if (Float.parseFloat(oldVersion) < finalOnlineVersion) {
+        if (Float.parseFloat(oldVersion) < finalOnlineVersion) {
+            //show alert on UI and start update if OK
+            Platform.runLater(() -> {
+                ButtonType myOK = new ButtonType("Обновить", ButtonBar.ButtonData.OK_DONE);
                 String newVersionAvailable = "Доступна новая версия!";
                 String oldVersionData = "Текущая версия: " + oldVersion + ".\nВсе несохраненные данные будут утеряны.";
                 String newVersionData = "Новая версия: " + finalOnlineVersion;
@@ -121,14 +135,128 @@ public class InformationSystem extends Application {
 //                    }
 //                    System.exit(0);
                     // }
-                    ArrayList<Pair<String, String>> files = XmlReader.getAllAdditionalFiles(onlineXml);
+                    ArrayList<Pair<String, String>> files = OnlineXmlReader.getAllAdditionalFiles(onlineXml);
                     for (Pair<String, String> fileFromTo : files) {
                         updateFile(fileFromTo);
                     }
                     System.exit(0);
                 }
+            });
+        }
+    }
+
+    private int getUploadId(String readXml) {
+        if (TextUtils.isNullOrEmpty(readXml)) {
+            return 0;
+        }
+        try {
+            String idString = XmlReader.getTextTagValue("uploadId", XmlReader.loadXMLFromString(readXml));
+            if(!TextUtils.isNullOrEmpty(idString)) {
+                return Integer.parseInt(idString);
             }
-        });
+
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            logger.log(Level.FINE, e.getMessage());
+        }
+        return 0;
+    }
+
+    private void saveTestUploadStatus(int uploadId) {
+        final String settingsXml = "ProjectKey.xml";
+        SettingsXmlReader reader = new SettingsXmlReader(settingsXml);
+        reader.saveSettings(settingsXml, new HashMap<>() {{
+            put("UploadId", String.valueOf(uploadId));
+        }});
+    }
+
+    private int getOldUploadId(String settingsXml) {
+        try {
+            Document xmlFromFile = XmlReader.loadXMLFromString(Files.readString(Path.of(settingsXml)));
+            String idString = XmlReader.getTextTagValue("UploadId",
+                    xmlFromFile);
+            return Integer.parseInt(idString);
+        } catch (NumberFormatException | IOException | SAXException | ParserConfigurationException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    private boolean uploadTests(String whereToUpload, String version) {
+        String charset = "UTF-8";
+        String param = "value";
+        File textFile = new File("TestsInfo_v2.xml");
+        File binaryFile = new File("tests.zip");
+        String boundary = Long.toHexString(System.currentTimeMillis()); //just need a unique value
+        String CRLF = "\r\n"; // Line separator required by multipart/form-data.
+
+        URLConnection connection = null;
+        try {
+            connection = new URL(whereToUpload).openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+        } catch (IOException e) {
+
+        }
+
+        if (connection == null) {
+            return false;
+        }
+
+        try (
+                OutputStream output = Objects.requireNonNull(connection).getOutputStream();
+                PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
+        ) {
+            // Send normal param.
+            writer.append("--" + boundary).append(CRLF);
+            writer.append("Content-Disposition: form-data; name=\"param\"").append(CRLF);
+            writer.append("Content-Type: text/plain; charset=" + charset).append(CRLF);
+            writer.append(CRLF).append(param).append(CRLF).flush();
+
+            // Send xml file - testsInfo.
+            writer.append("--" + boundary).append(CRLF);
+            writer.append("Content-Disposition: form-data; name=\"TestsInfo\"; filename=\"" + getFileNameWithOwner(textFile.getName(), version) + "\"").append(CRLF);
+            writer.append("Content-Type: text/xml; charset=" + charset).append(CRLF);
+            writer.append(CRLF).flush();
+            Files.copy(textFile.toPath(), output);
+            output.flush();
+            writer.append(CRLF).flush();
+
+            // Send binary file - tests.zip.
+            writer.append("--" + boundary).append(CRLF);
+            writer.append("Content-Disposition: form-data; name=\"testsZip\"; filename=\"" + getFileNameWithOwner(binaryFile.getName(), version) + "\"").append(CRLF);
+            writer.append("Content-Type: " + URLConnection.guessContentTypeFromName(binaryFile.getName())).append(CRLF);
+            writer.append("Content-Transfer-Encoding: binary").append(CRLF);
+            writer.append(CRLF).flush();
+            Files.copy(binaryFile.toPath(), output);
+            output.flush();
+            writer.append(CRLF).flush();
+
+            // End of multipart/form-data.
+            writer.append("--" + boundary + "--").append(CRLF).flush();
+            // Request is lazily fired whenever you need to obtain information about response.
+            int responseCode = ((HttpURLConnection) connection).getResponseCode();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    ((HttpURLConnection) connection).getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null)
+                System.out.println(inputLine);
+            in.close();
+
+            return responseCode == 200;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    private String getFileNameWithOwner(String name, String version) {
+        return String.format("%s-%s-%s", System.getProperty("user.name"), version, name);
+    }
+
+    private boolean checkUploadIsRequired(int uploadId, int old) {
+        return uploadId > old;
     }
 
     private Iterable<String> updateUpdatersList(String[] updatersList) {
@@ -148,19 +276,19 @@ public class InformationSystem extends Application {
                 .collect(Collectors.toList());
     }
 
-    private String readOnlineXml(String path) {
+    private String downloadOnlineXml(String path) {
         try (InputStream in = new URL(path).openStream()) {
             byte[] bytes = in.readAllBytes();
-            return new String(bytes, Charset.forName("utf8"));
+            return new String(bytes, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            //e.printStackTrace();
+            //e.printStackTrace(); //not intended to be used.
             return "";
         }
     }
 
     private String getNewVersionDescription(String readXml) {
         try {
-            List<String> descriptions = XmlReader.getDescription(readXml, "description", "point");
+            List<String> descriptions = OnlineXmlReader.getDescription(readXml, "description", "point");
             return String.join("", descriptions);
         } catch (IOException | ParserConfigurationException | SAXException e) {
             e.printStackTrace();
@@ -173,7 +301,7 @@ public class InformationSystem extends Application {
             String version = XmlReader.getTextTagValue("version", XmlReader.loadXMLFromString(readXml));
             return !version.equals("") ? version : "0";
         } catch (IOException | ParserConfigurationException | SAXException e) {
-            //e.printStackTrace();
+            logger.log(Level.FINE, e.getMessage());
             return "0";
         }
     }
@@ -195,7 +323,7 @@ public class InformationSystem extends Application {
     }
 
     private Set<String> listFiles(String dir) {
-        return Stream.of(new File(dir).listFiles())
+        return Stream.of(Objects.requireNonNull(new File(dir).listFiles()))
                 .filter(file -> !file.isDirectory())
                 .map(File::getName)
                 .collect(Collectors.toSet());
@@ -221,4 +349,5 @@ public class InformationSystem extends Application {
         }
     }
 
+    private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());
 }

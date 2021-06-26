@@ -1,6 +1,8 @@
 package taskCheckers;
 
-import informationsystem.XmlReader;
+import informationsystem.xml.SettingsXmlReader;
+import informationsystem.xml.TasksXmlReader;
+import informationsystem.xml.XmlReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +25,7 @@ public class TaskChecker {
     }
 
     private static void fillData() {
-        XmlReader reader = new XmlReader(".\\TestsInfo_v2.xml");
+        TasksXmlReader reader = new TasksXmlReader(".\\TestsInfo_v2.xml");
         knownTests = reader.getAllTests().getOldStyleTasks();
     }
 

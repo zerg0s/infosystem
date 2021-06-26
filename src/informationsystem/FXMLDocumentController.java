@@ -16,12 +16,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import data.*;
 import informationsystem.TasksManager.FxmlTasksController;
 import informationsystem.TasksManager.TaskInfo;
 import informationsystem.TasksManager.TasksKeeper;
+import informationsystem.xml.SettingsXmlReader;
+import informationsystem.xml.TasksXmlReader;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,14 +42,15 @@ import javafx.util.StringConverter;
 import redmineManagement.ConnectionWithRedmine;
 import redmineManagement.RedmineAlternativeReader;
 import tools.IssueCrawler;
-import tools.TextUtils;
 
 /**
  * @author user
  */
 public class FXMLDocumentController implements Initializable {
 
-    private final XmlReader reader = new XmlReader(".\\TestsInfo_v2.xml");
+    private final TasksXmlReader tasksReader = new TasksXmlReader(".\\TestsInfo_v2.xml");
+    private final SettingsXmlReader settingsReader = new SettingsXmlReader(".\\ProjectKey.xml");
+
     private ArrayList<Project> projects = new ArrayList<>();
 
     @FXML
@@ -168,22 +170,22 @@ public class FXMLDocumentController implements Initializable {
 
     public void initialize(URL url, ResourceBundle bn) {
         logger.info("Тест русских букв!\n");
-        reader.readConfigXML(projectKeyXml);
+        settingsReader.readConfigXML(projectKeyXml);
 
-        reader.getOwners().forEach((ProjectOwner p) -> {
-            reader.getUsersNameList().add(p.getName());
+        settingsReader.getOwners().forEach((ProjectOwner p) -> {
+            settingsReader.getUsersNameList().add(p.getName());
         });
 
-        String selectedSupervisor = reader.getSelectedSupervisor();
+        String selectedSupervisor = settingsReader.getSelectedSupervisor();
         if (!selectedSupervisor.isEmpty()) {
             comboxUserName.setValue(selectedSupervisor);
         }
 
-        if (reader.getSelectedProject() != null) {
-            comboxProject.setValue(reader.getSelectedProject().getProjectName());
-            props.projectKey = reader.getSelectedProject().getId();
+        if (settingsReader.getSelectedProject() != null) {
+            comboxProject.setValue(settingsReader.getSelectedProject().getProjectName());
+            props.projectKey = settingsReader.getSelectedProject().getId();
         }
-        ObservableList<String> userNames = FXCollections.observableArrayList(reader.getUsersNameList());
+        ObservableList<String> userNames = FXCollections.observableArrayList(settingsReader.getUsersNameList());
         comboxUserName.setItems(userNames);
 
         this.comboxProject.setItems(FXCollections.observableArrayList(projects));
@@ -207,22 +209,22 @@ public class FXMLDocumentController implements Initializable {
         radioButtonAppointForStudent.requestFocus();
         radioButtonAppointForProfessor.setToggleGroup(groupAppointment);
 
-        easyModechk.setSelected(reader.isEasyMode());
-        checkAllIterations.setSelected(reader.needCheckAllIterations());
+        easyModechk.setSelected(settingsReader.isEasyMode());
+        checkAllIterations.setSelected(settingsReader.needCheckAllIterations());
 
         initializeSelectedProject();
         setSelectedLintMode();
     }
 
     private void setSelectedLintMode() {
-        if (reader.getSelectedLintMode() == null) {
+        if (settingsReader.getSelectedLintMode() == null) {
             return;
         }
         lintErrorsNotificationsType.setItems(FXCollections.observableArrayList(getData()));
         ObservableList<LintReportMode> items = lintErrorsNotificationsType.getItems();
         int itemToSelect = items.get(0).getModeNumber();
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getModeNumber() == reader.getSelectedLintMode().getModeNumber()) {
+            if (items.get(i).getModeNumber() == settingsReader.getSelectedLintMode().getModeNumber()) {
                 itemToSelect = i;
                 break;
             }
@@ -241,7 +243,7 @@ public class FXMLDocumentController implements Initializable {
     private void initializeSelectedProject() {
         if (comboxUserName.getValue() != null) {
             if (!comboxUserName.getValue().toString().isEmpty()) {
-                for (ProjectOwner owner : reader.getOwners()) {
+                for (ProjectOwner owner : settingsReader.getOwners()) {
                     if (comboxUserName.getValue().toString().equals(owner.getName())) {
                         projects = owner.getHisProjects();
                         props.apiAccessKey = owner.getApiKey();
@@ -264,7 +266,7 @@ public class FXMLDocumentController implements Initializable {
 
         props.url = fillUrlProps(textFieldURL);
 
-        String selectedIteration = reader.getSelectedVersion();
+        String selectedIteration = settingsReader.getSelectedVersion();
         if (selectedIteration != null) {
             comboxVersion.setValue(selectedIteration);
             props.iterationName = selectedIteration;
@@ -299,7 +301,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleUserChoice() {
         if (!comboxUserName.getValue().toString().isEmpty()) {
-            for (ProjectOwner owner : reader.getOwners()) {
+            for (ProjectOwner owner : settingsReader.getOwners()) {
                 if (comboxUserName.getValue().toString().equals(owner.getName())) {
                     projects = owner.getHisProjects();
                     props.setNewApiAccessKey(owner.getApiKey());
@@ -307,7 +309,7 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
         }
-        reFillDataForCombobox(comboxProject, reader.getProjectNameList(comboxUserName.getValue().toString()));
+        reFillDataForCombobox(comboxProject, settingsReader.getProjectNameList(comboxUserName.getValue().toString()));
         reFillDataForCombobox(comboxVersion, new ArrayList<String>());
     }
 
@@ -778,7 +780,7 @@ public class FXMLDocumentController implements Initializable {
             putToSettings(map, "SelectedLintMode", lintReportMode.toStringForXml());
         }
 
-        reader.saveSettings(projectKeyXml, map);
+        settingsReader.saveSettings(projectKeyXml, map);
     }
 
     private void putToSettings(Map<String, String> map, Object key, Object value) {
@@ -804,7 +806,7 @@ public class FXMLDocumentController implements Initializable {
             return;
         }
         logger.info("tasksTab is Selected. Starting.");
-        tasksKeeper = TasksKeeper.update(reader);
+        tasksKeeper = TasksKeeper.update(tasksReader);
 
         cbxAllAvailableTasks.setItems(FXCollections.observableArrayList(tasksKeeper.getAllTaskNames()));
         cbxAllAvailableIterations.setItems(FXCollections.observableArrayList(tasksKeeper.getAllIterations()));
@@ -930,8 +932,8 @@ public class FXMLDocumentController implements Initializable {
         btnDownloadAll.setText(btnDownloadAll.getText().substring(1)); //just for fun
         IssueCrawler crawler = new IssueCrawler(props);
         crawler.getAllProjectIssues();
-        TasksKeeper keeper = reader.getAllTests();
-        keeper.setXmlReader(reader);
+        TasksKeeper keeper = tasksReader.getAllTests();
+        keeper.setXmlReader(tasksReader);
         crawler.substractKnownIssues(keeper.getAllTaskNames());
         keeper.addNewTests(crawler.getIssues());
     }
