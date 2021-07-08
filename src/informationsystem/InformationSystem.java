@@ -81,7 +81,6 @@ public class InformationSystem extends Application {
                 onlineXml = onlineXmlTemp;
             }
 
-
             final int onlineUploadId = getUploadId(onlineXmlTemp);
             if (checkUploadIsRequired(onlineUploadId, oldUploadId)) {
                 ZipFile appZip = new ZipFile();

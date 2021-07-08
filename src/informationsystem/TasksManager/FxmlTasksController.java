@@ -70,7 +70,6 @@ public class FxmlTasksController implements Initializable {
 
     public void shutdown() {
         saveTask(taskInfo);
-        Logger.getAnonymousLogger().info("Shutting down");
     }
 
     public void setTask(TaskInfo taskInfo) {
@@ -94,6 +93,10 @@ public class FxmlTasksController implements Initializable {
     private void saveTask(TaskInfo selectedTask) {
         String xmlWithTests = "TestsInfo_v2.xml";
         TasksXmlReader reader = new TasksXmlReader(xmlWithTests);
-        reader.saveTask(selectedTask);
+        if (reader.exists(taskInfo)) {
+            reader.saveTask(selectedTask);
+        } else {
+            reader.addTask(selectedTask);
+        }
     }
 }

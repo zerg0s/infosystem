@@ -23,6 +23,11 @@ public class TaskInfo {
     private List<String> allAvailableTests = new ArrayList<String>();
 
     public TaskInfo() {
+        taskId = "";
+        taskName = "";
+        taskBody = "";
+        taskPath = "";
+        iterationPath = "";
     }
 
     public TaskInfo(Issue issue) {

@@ -122,6 +122,7 @@ public class TasksXmlReader extends XmlReader {
             Element taskNode = doc.createElement("test");
             String taskId = !TextUtils.isNullOrEmpty(selectedTask.getTaskId()) ? selectedTask.getTaskId() :
                     getNextId(rootNode);
+            selectedTask.setTaskId(taskId);
             taskNode.setAttribute("id", taskId);
             taskNode.setAttribute("testSetFolder", selectedTask.getTaskPath());
             taskNode.setAttribute("subject", selectedTask.getTaskName());

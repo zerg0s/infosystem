@@ -79,8 +79,9 @@ public class TasksKeeper {
     }
 
     public TaskInfo getTestByName(String value) {
-        return allTasks.stream().filter(item -> item.getTaskName().equals(value))
-                .findFirst().get();
+        Optional<TaskInfo> task = allTasks.stream().filter(item -> item.getTaskName().equals(value))
+                .findFirst();
+        return (task.isPresent()) ? task.get() : new TaskInfo();
     }
 
     public void addNewTests(List<Issue> issuesToAdd) {

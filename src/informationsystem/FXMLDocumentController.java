@@ -42,6 +42,7 @@ import javafx.util.StringConverter;
 import redmineManagement.ConnectionWithRedmine;
 import redmineManagement.RedmineAlternativeReader;
 import tools.IssueCrawler;
+import tools.TextUtils;
 
 /**
  * @author user
@@ -734,7 +735,12 @@ public class FXMLDocumentController implements Initializable {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setOnHidden(e -> {
-                updateSelectedItem(cbxAllAvailableTasks, tasksKeeper.getSelectedTask().getTaskName());
+                TaskInfo task = tasksKeeper.getSelectedTask();
+                if (task != null) {
+                    updateSelectedItem(cbxAllAvailableTasks, task.getTaskName());
+                } else {
+                    addNewSelectedItem(cbxAllAvailableTasks, tasksController.getTaskInfo().getTaskName());
+                }
                 tasksKeeper.setSelectedTask(tasksController.getTaskInfo());
                 tasksController.shutdown();
             });
@@ -744,6 +750,11 @@ public class FXMLDocumentController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void addNewSelectedItem(ComboBox<String> cbxAllAvailableTasks, String taskName) {
+        cbxAllAvailableTasks.getItems().add(taskName);
+        cbxAllAvailableTasks.setValue(taskName);
     }
 
     private void updateSelectedItem(ComboBox<String> cbx, String task) {
@@ -873,7 +884,10 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void addNewTask(ActionEvent event) {
-        openTaskStage(event, new TaskInfo());
+        TaskInfo task = new TaskInfo();
+        task.setIterationPath(cbxAllAvailableIterations.getValue());
+        tasksKeeper.setSelectedTask(null);
+        openTaskStage(event, task);
     }
 
     @FXML

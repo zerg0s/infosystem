@@ -373,7 +373,7 @@
                                  </GridPane.margin></ComboBox>
                               <HBox spacing="5.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
                                  <children>
-                                    <Button fx:id="btnAddNewTask" alignment="TOP_CENTER" contentDisplay="TOP" disable="true" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addNewTask" prefHeight="25.0" prefWidth="40.0" text="+">
+                                    <Button fx:id="btnAddNewTask" alignment="TOP_CENTER" contentDisplay="TOP" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addNewTask" prefHeight="25.0" prefWidth="40.0" text="+">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
