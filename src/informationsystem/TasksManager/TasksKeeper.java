@@ -81,12 +81,12 @@ public class TasksKeeper {
     public TaskInfo getTestByName(String value) {
         Optional<TaskInfo> task = allTasks.stream().filter(item -> item.getTaskName().equals(value))
                 .findFirst();
-        return (task.isPresent()) ? task.get() : new TaskInfo();
+        return task.orElseGet(TaskInfo::new);
     }
 
     public void addNewTests(List<Issue> issuesToAdd) {
         for (Issue issue : issuesToAdd) {
-            addNewTest(issue);
+            addNewTask(issue);
         }
     }
 
@@ -99,19 +99,22 @@ public class TasksKeeper {
 
     public List<String> getAllIterations() {
         return allTasks.stream()
-                .map(task -> task.getIterationPath()).distinct()
+                .map(TaskInfo::getIterationPath).distinct()
                 .sorted()
                 .collect(Collectors.toList());
     }
 
-    private void addNewTest(Issue issue) {
-        TaskInfo task = new TaskInfo(issue);
+    public void addNewTask(TaskInfo task) {
         if (!reader.exists(task)) {
             reader.addTask(task);
+            allTasks.add(task);
         } else {
             reader.saveTask(task);
         }
     }
 
-
+    private void addNewTask(Issue issue) {
+        TaskInfo task = new TaskInfo(issue);
+        addNewTask(task);
+    }
 }

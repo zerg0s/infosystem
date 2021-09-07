@@ -1137,16 +1137,16 @@ co
     <test id="72" subject="Поиск повторов с заменой" testSetFolder="regFindReplaceRepeated">
       <description><![CDATA[С помощью регулярных выражений найдите в строке дважды подряд повторяющиеся слова.
 Удалите эти повторы, распечатайте строку без повторов.
-Пример:
++Пример 1:+
 Ввод
 Send me a letter letter.
 Вывод
 Send me a letter.
++Пример 2:+
 Ввод
 What a a nice girl girl.
 Вывод
-What a nice girl.
-]]></description>
+What a nice girl.]]></description>
     </test>
     <test id="73" subject="Поиск повторов" testSetFolder="regFindRepeated">
       <description><![CDATA[С помощью регулярных выражений найдите в строке дважды подряд повторяющиеся слова.
@@ -2135,6 +2135,21 @@ False
 Вывод:
 True
 ]]></description>
+    </test>
+    <test id="258" subject="123" testSetFolder="">
+      <description><![CDATA[123]]></description>
+    </test>
+    <test id="259" subject="111" testSetFolder="">
+      <description/>
+    </test>
+    <test id="260" subject="333" testSetFolder="">
+      <description/>
+    </test>
+    <test id="261" subject="444" testSetFolder="">
+      <description><![CDATA[555]]></description>
+    </test>
+    <test id="262" subject="" testSetFolder="">
+      <description/>
     </test>
   </homework>
   <homework name="Лабораторная работа 0">

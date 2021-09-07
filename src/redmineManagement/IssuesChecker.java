@@ -1,5 +1,6 @@
 package redmineManagement;
 
+import com.taskadapter.redmineapi.RedmineException;
 import com.taskadapter.redmineapi.bean.Issue;
 import informationsystem.FXMLDocumentController;
 import informationsystem.RedmineConnectionProperties;
@@ -27,7 +28,7 @@ public class IssuesChecker {
 
     public void checkSingleIssue(String issueNumber) {
 
-        Integer issueNumLong;
+        int issueNumLong;
 
         try {
             issueNumLong = Integer.parseInt(issueNumber);
@@ -38,20 +39,19 @@ public class IssuesChecker {
     }
 
     private void processIssue(int issueNumLong) {
-
         ArrayList<String> journals;
         try {
             Issue issue = connectionToRedmine.getIssueByID(issueNumLong);
             if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
-                System.out.println(issue.toString());
+                logger.log(Level.INFO, issue.toString());
                 //connectionToRedmine.setVersionForCheck(comboxVersion.getValue().toString(), issue);
                 connectionToRedmine.checkAttachmentsForced(issue);
                 journals = redmineAlternativeReader.getJournals(issue.getId().toString());
                 connectionToRedmine.setStudentName(getStudentName(journals, professorName));
             }
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
+
+        } catch (IOException | RedmineException ex) {
+            logger.log(Level.SEVERE, null, ex);
         }
     }
 
@@ -66,5 +66,5 @@ public class IssuesChecker {
         return retVal;
     }
 
-
+    private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());
 }

@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import data.*;
 import informationsystem.TasksManager.FxmlTasksController;
@@ -328,7 +329,7 @@ public class FXMLDocumentController implements Initializable {
 
         ArrayList<CellWithCheckBox> users = new ArrayList<>();
         ArrayList<CellWithCheckBox> tasks = new ArrayList<>();
-        for (String user : connectionToRedmine.getProjectUsers()) {
+        for (String user : connectionToRedmine.getProjectUsers().stream().sorted().collect(Collectors.toList())) {
             users.add(new CellWithCheckBox(user, false));
         }
 
@@ -740,6 +741,7 @@ public class FXMLDocumentController implements Initializable {
                     updateSelectedItem(cbxAllAvailableTasks, task.getTaskName());
                 } else {
                     addNewSelectedItem(cbxAllAvailableTasks, tasksController.getTaskInfo().getTaskName());
+                    tasksKeeper.addNewTask(tasksController.getTaskInfo());
                 }
                 tasksKeeper.setSelectedTask(tasksController.getTaskInfo());
                 tasksController.shutdown();
@@ -818,6 +820,7 @@ public class FXMLDocumentController implements Initializable {
         }
         logger.info("tasksTab is Selected. Starting.");
         tasksKeeper = TasksKeeper.update(tasksReader);
+        tasksKeeper.setXmlReader(tasksReader);
 
         cbxAllAvailableTasks.setItems(FXCollections.observableArrayList(tasksKeeper.getAllTaskNames()));
         cbxAllAvailableIterations.setItems(FXCollections.observableArrayList(tasksKeeper.getAllIterations()));
