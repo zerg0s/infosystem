@@ -216,6 +216,7 @@ public class FXMLDocumentController implements Initializable {
 
         initializeSelectedProject();
         setSelectedLintMode();
+        journalReader = new RedmineAlternativeReader(props.url, props.apiAccessKey, props.projectKey);
     }
 
     private void setSelectedLintMode() {
