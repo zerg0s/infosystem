@@ -32,6 +32,16 @@ public class TextUtils {
         return result.toString();
     }
 
+    public static String getPrettyErrorsCpp(String[] reportLines) {
+        int i = 0;
+        StringBuffer result = new StringBuffer();
+        while (i < reportLines.length) {
+            result.append(reportLines[i] + "\n");
+            i++;
+        }
+        return result.toString();
+    }
+
     /**
      * * @param reportLines
      *

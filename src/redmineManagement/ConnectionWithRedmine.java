@@ -229,9 +229,9 @@ public class ConnectionWithRedmine {
                         doJavaLint(attach.getFileName());
                     }
 
-                    if (attach.getFileName().endsWith(".cpp")) {
-                        doCppLint(attach, issue);
-                    }
+                    //if (attach.getFileName().endsWith(".cpp")) {
+                        //doCppLint(attach, issue );
+                    //}
                     // cleanDirectory(new File(".\\myFiles\\"));
                 }
             }
@@ -286,7 +286,7 @@ public class ConnectionWithRedmine {
                     }
                     //for cpp we can do lint only now :(
                     if (attachFileName.endsWith(".cpp")) {
-                        doCppLint(fileToManage, issue);
+                        doCppLint(fileToManage, issue, task);
                     }
                 }
                 // cleanDirectory(new File(".\\myFiles\\"));
@@ -369,24 +369,41 @@ public class ConnectionWithRedmine {
         return attachName.endsWith(".py") || attachName.endsWith(".java") || attachName.endsWith(".zip") || attachName.endsWith(".cpp");
     }
 
-    private void doCppLint(Attachment attach, Issue issue) {
+    private void doCppLint(Attachment attach, Issue issue, ConfiguredTask task) {
         String fileToManage = myFilesDir + makeUsableFileName(
                 attach.getFileName(),
                 attach.getAuthor().getFullName(),
-                issue.getSubject());
-        doCppLint(fileToManage, issue);
+                task.getIssue().getSubject());
+        doCppLint(fileToManage, issue, task);
     }
 
-    private void doCppLint(String attachFileName, Issue issue) {
-        new MyCppLint().startCpplint(attachFileName);
-        this.uploadAttachment(issue, myFilesDir + attachFileName + "_errorReport.txt");
-        String[] allLines = TextUtils.readReportFile(myFilesDir + attachFileName + "_errorReport.txt");
+    private boolean doCppLint(String fullFileName, Issue issue, ConfiguredTask task) {
+        new MyCppLint().startCpplint(fullFileName);
+        String[] allLines = TextUtils.readReportFile(fullFileName + "_errorReport.txt");
         String lastLine = allLines[allLines.length - 1];
+        String notesForIssue = "";
+
         int studentCppErrorAmount = TextUtils.cppErrorAmountDetectionInFile(lastLine);
-        System.out.println("we have " + studentCppErrorAmount);
-        System.out.println("we have line " + lastLine);
-        issue.setNotes(lastLine);
-        this.updateIssue(issue);
+        if (studentCppErrorAmount > task.getMaxJavaLintErrors()) {
+            if (task != null) {
+                if (task.getLintReportMode().getModeNumber() != LintReportMode.NIGHTMARE_MODE) {
+                    if (task.getLintReportMode().getModeNumber() == LintReportMode.DEFAULT_MODE) {
+                        notesForIssue = TextUtils.getPrettyErrorsCpp(allLines);
+                        this.uploadAttachment(task.getIssue(), fullFileName + "_errorReport.txt");
+                    } else {
+                        notesForIssue = lastLine;
+                    }
+                }
+                task.getIssue().setNotes(notesForIssue + "\nSome corrections are required.");
+                this.updateIssue(task.getIssue());
+            }
+
+            return false;
+        } else {
+            task.getIssue().setNotes(generateSuccessMsg());
+            this.updateIssue(task.getIssue());
+            return true;
+        }
     }
 
     private void doJavaLint(String fullFileName) {

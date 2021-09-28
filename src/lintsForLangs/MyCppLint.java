@@ -5,6 +5,7 @@
  */
 package lintsForLangs;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
@@ -14,25 +15,23 @@ import java.util.logging.Logger;
  * @author user
  */
 public class MyCppLint {
+    private final String flags = "--filter=-,+build/include,-build/include_order,+build/include_what_you_use,+build/storage_class,+readability/alt_tokens,+readability/braces,+readability/casting,+readability/inheritance,+runtime/casting,-runtime/explicit,+whitespace/blank_line,+whitespace/braces,+whitespace/comma,+whitespace/comments,+whitespace/empty_conditional_body,+whitespace/empty_loop_body,+whitespace/end_of_line,+whitespace/ending_newline,+whitespace/forcolon,+whitespace/indent,+whitespace/line_length,+whitespace/newline,+whitespace/operators,+whitespace/parens,+whitespace/semicolon,+whitespace/tab --linelength=100";
+
     public MyCppLint() {
     }
 
     public void startCpplint(String attachmentName) {
         try {
             ProcessBuilder builder = new ProcessBuilder(
-                    ".\\cpplint\\cpplint.bat" , attachmentName);
+                    "python.exe", ".\\cpplint\\cpplint.py", flags, attachmentName);
             builder.redirectErrorStream(true);
+            builder.redirectOutput(new File(attachmentName + "_errorReport.txt"));
+            //builder.directory();
             Process p = builder.start();
-            BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String line;
-            while (true) {
-                line = r.readLine();
-                if (line == null) {
-                    break;
-                }
-                System.out.println(line);
-            }
-        } catch (IOException ex) {
+            p.waitFor();
+            if (p.exitValue() != 0)
+                throw new IOException("Pylint process exited abnormally, it is not expected.");
+        } catch (IOException | InterruptedException ex) {
             Logger.getLogger(MyCppLint.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

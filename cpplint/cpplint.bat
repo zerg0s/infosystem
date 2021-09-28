@@ -1,3 +1,3 @@
 cd %~dp0
 cd ..
-python .\cpplint\cpplintRunner.py .\myFiles\%1%
+python .\cpplint\cpplint.py %1% >_errorReport.txt
