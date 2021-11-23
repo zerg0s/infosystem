@@ -11,7 +11,7 @@ public class PvkLogger {
     private ByteArrayOutputStream logStream;
     private StreamHandler streamHandler;
     private Logger logger;
-    private static PvkLogger pvkLogger;
+    private static PvkLogger instance;
     private LoggerWindowController loggerWindow;
 
     protected PvkLogger(String name, boolean needConsole) {
@@ -33,17 +33,17 @@ public class PvkLogger {
     }
 
     public static PvkLogger getLogger(String name, boolean needConsole) {
-        if (pvkLogger == null) {
-            return new PvkLogger(name, needConsole);
+        if (instance == null) {
+            instance = new PvkLogger(name, needConsole);
         }
-        return pvkLogger;
+        return instance;
     }
 
     public static PvkLogger getLogger(String name) {
-        if (pvkLogger == null) {
+        if (instance == null) {
             return new PvkLogger(name, false);
         }
-        return pvkLogger;
+        return instance;
     }
 
     public void info(String data) {

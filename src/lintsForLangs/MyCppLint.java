@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package lintsForLangs;
+import tools.PvkLogger;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +34,7 @@ public class MyCppLint {
             if (p.exitValue() != 0)
                 throw new IOException("Pylint process exited abnormally, it is not expected.");
         } catch (IOException | InterruptedException ex) {
-            Logger.getLogger(MyCppLint.class.getName()).log(Level.SEVERE, null, ex);
+            PvkLogger.getLogger(MyCppLint.class.getSimpleName()).error(ex.toString());
         }
     }
 }

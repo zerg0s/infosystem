@@ -261,7 +261,7 @@ public class ConnectionWithRedmine {
             this.setIssueAssigneeNameForIssue(issue, student);
         }
 
-        processResult(task, issue, processResult);
+        processResult(task, processResult);
     }
 
 
@@ -286,12 +286,13 @@ public class ConnectionWithRedmine {
             this.setIssueAssigneeNameForIssue(issue, student);
         }
 
-        processResult(task, issue, processResult);
+        processResult(task, processResult);
     }
 
-    private void processResult(ConfiguredTask task, Issue issue, int processResult) {
+    private void processResult(ConfiguredTask task, int processResult) {
+        Issue issue = task.getIssue();
         if (processResult != -1) {
-            logger.info(processResult + "(after tests - back to Student) - " + task.getTaskCompleter());
+            logger.info(TextUtils.getStringResult(processResult) + " (after tests - back to Student) - " + task.getTaskCompleter());
             this.setIssueAssigneeNameForIssue(issue, task.getTaskCompleter());
             if (processResult == 1 && this.returnBackIfAllOk) {
                 issue.setStatusId(STATUS_ID_CLOSED);
@@ -318,7 +319,7 @@ public class ConnectionWithRedmine {
             }
         }
 
-        processResult(task, issue, processResult);
+        processResult(task, processResult);
     }
 
     private boolean isKnownAttachExtention(String attachName) {
@@ -430,7 +431,7 @@ public class ConnectionWithRedmine {
                 studentsName = professorName;
             }
 
-            Logger.getAnonymousLogger().info("(PyLint - assigning back to Student) - " + studentsName + " " + lastLineInReport);
+            logger.info("(PyLint - assigning back to Student) - " + studentsName + " " + lastLineInReport);
             this.setIssueAssigneeNameForIssue(task.getIssue(), studentsName);
             lastLineInReport = TextUtils.generateErrorMsg(task, lastLineInReport);
 
