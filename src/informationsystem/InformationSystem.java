@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
-import redmineManagement.IssuesChecker;
 import tools.TextUtils;
 import tools.ZipFile;
 
@@ -153,7 +152,7 @@ public class InformationSystem extends Application {
         }
         try {
             String idString = XmlReader.getTextTagValue("uploadId", XmlReader.loadXMLFromString(readXml));
-            if(!TextUtils.isNullOrEmpty(idString)) {
+            if (!TextUtils.isNullOrEmpty(idString)) {
                 return Integer.parseInt(idString);
             }
 
@@ -272,8 +271,8 @@ public class InformationSystem extends Application {
         List<String> updateSources = Stream.concat(Arrays.stream(updatersList).sequential(),
                 sources.stream()).collect(Collectors.toList());
         return Stream.concat(updateSources.stream(),
-                updateSources.stream().map((s -> s.endsWith("/") ? s.concat("version.xml")
-                        : s.concat("/version.xml"))))
+                        updateSources.stream().map((s -> s.endsWith("/") ? s.concat("version.xml")
+                                : s.concat("/version.xml"))))
                 .distinct()
                 .collect(Collectors.toList());
     }
@@ -332,21 +331,9 @@ public class InformationSystem extends Application {
     }
 
     public static void main(String[] args) {
-
         System.setProperty("java.net.useSystemProxies", "true");
-
-        if (args.length != 0) {
-            RedmineConnectionProperties connectionOptions = new RedmineConnectionProperties();
-            connectionOptions.projectKey = args[1];
-            connectionOptions.url = args[0];
-            connectionOptions.apiAccessKey = args[2];
-            connectionOptions.issueNumbers = args[3];
-            IssuesChecker issues = new IssuesChecker(connectionOptions);
-            issues.checkSingleIssue();
-        } else {
-            // открытие сцены
-            launch(args);
-        }
+        // открытие сцены
+        launch(args);
     }
 
     private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());

@@ -39,8 +39,25 @@ public class PvkLogger {
         return pvkLogger;
     }
 
+    public static PvkLogger getLogger(String name) {
+        if (pvkLogger == null) {
+            return new PvkLogger(name, false);
+        }
+        return pvkLogger;
+    }
+
     public void info(String data) {
         logger.info(data);
+        flushAll(data);
+    }
+
+    public void warning(String data) {
+        logger.info(data);
+        flushAll(data);
+    }
+
+    public void error(String data) {
+        logger.severe(data);
         flushAll(data);
     }
 

@@ -29,6 +29,13 @@ public class CppTaskChecker extends TaskChecker {
         System.out.println(sb.toString());
     }
 
+    public String startCppCheck() {
+        FileAndItsTest fileAndItsTest = copyFileToTempFolder(getFileToManage());
+        fileAndItsTest.testName = getNameForKnownTest();
+        StringBuilder sb = cppCompileSingleCppFile(fileAndItsTest);
+        return sb.toString();
+    }
+
     private StringBuilder cppCompileSingleCppFile(FileAndItsTest data) {
         StringBuilder sb = new StringBuilder();
         String cppFileToCompile = data.fileName;
@@ -58,7 +65,7 @@ public class CppTaskChecker extends TaskChecker {
                 sb.append(line + "\n");
             }
             if (p.exitValue() == 0) {
-                RunTestsForBinaryFile(sb, data);
+                runTestsForBinaryFile(sb, data);
             }
         } catch (IOException ex) {
             Logger.getLogger(CppTaskChecker.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,7 +74,7 @@ public class CppTaskChecker extends TaskChecker {
         return sb;
     }
 
-    private void RunTestsForBinaryFile(StringBuilder sb, TaskChecker.FileAndItsTest data) {
+    private void runTestsForBinaryFile(StringBuilder sb, TaskChecker.FileAndItsTest data) {
         try {
             String relative = new File(workingDir).toURI().relativize(
                     new File(data.fileName).toURI()).getPath() + ".exe";

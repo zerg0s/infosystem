@@ -25,7 +25,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -42,23 +41,24 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.apache.commons.codec.Charsets;
 import org.apache.http.entity.ContentType;
+import taskCheckers.CppTaskChecker;
 import taskCheckers.JavaTaskChecker;
 import taskCheckers.PyTaskChecker;
+import tools.PvkLogger;
 import tools.TextUtils;
 import tools.Translit;
-
-//Status_id HELP 
-// 0 - new
-// 1 - assigned
-// 2 - in progress
-// 3 - resolved 
-// 4 - approved
-// 5 - closed
 
 /**
  * @author user
  */
 public class ConnectionWithRedmine {
+    static final int STATUS_ID_NEW = 0;
+    static final int STATUS_ID_ASSIGNED = 1;
+    static final int STATUS_ID_INPROGRESS = 2;
+    static final int STATUS_ID_RESOLVED = 3;
+    static final int STATUS_ID_APPROVED = 4;
+    static final int STATUS_ID_CLOSED = 5;
+
     static final String myFilesDir = ".\\myFiles\\";
 
     boolean returnBackIfAllOk = true;
@@ -103,7 +103,7 @@ public class ConnectionWithRedmine {
             projectsUsers = mgr.getProjectManager().getProjectMembers(this.projectKey);
             versions = projectManager.getVersions(projectManager.getProjectByKey(projectKey).getId());
         } catch (RedmineException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.info(ex.toString());
         }
     }
 
@@ -166,78 +166,6 @@ public class ConnectionWithRedmine {
         this.professorName = value;
     }
 
-    public void checkAttachments(Issue issue) throws IOException {
-        checkAttachments(issue, false);
-    }
-
-    public void checkAttachmentsForced(Issue issue) throws IOException {
-        checkAttachments(issue, true);
-    }
-
-    /**
-     * @param issue                     - RedmineItem для проверки
-     * @param needToCheckAlreadyChecked TRUE - всегда перепроверять, игнорируя
-     *                                  уже проверенные, FALSE - учитывать ранее проверенные аттачи
-     * @throws IOException
-     */
-    // deprecated. only for review purpose
-    public void checkAttachments(Issue issue, boolean needToCheckAlreadyChecked) throws IOException {
-        Collection<Attachment> issueAttachment = issue.getAttachments();
-        ArrayList<Attachment> issueAttachments = new ArrayList<>(issueAttachment);
-        File dir = new File(myFilesDir);
-        dir.mkdirs();
-        //Check only latest attach, the rest are already history
-        Attachment attach = getLatestCheckableAttach(issueAttachments).get();
-        //for (Attachment attach : issueAttachments)
-        {
-            if (attach.getFileName().endsWith(".py") || attach.getFileName().endsWith(".java")
-                    || attach.getFileName().endsWith(".cpp")) {
-                int wasChecked = -1;
-                //Если не надо перепроверять ранее проверенные, смотрим, не нашлось ли ранее проверенных
-                if (!needToCheckAlreadyChecked) {
-                    wasChecked = isAttachmentIdWasEarlierChecked(attach.getId());
-                }
-                //Проверяем, если не проверяли ранее или надо обязательно проверять
-                if (needToCheckAlreadyChecked || (wasChecked == 0)) {
-                    //if (!(new PyTaskChecker(issue.getSubject())).getNameForKnownTest(issue.getSubject()).equals("")) {
-                    String fileToManage = ".\\myFiles\\" + makeUsableFileName(
-                            attach.getFileName(),
-                            attach.getAuthor().getFullName(),
-                            issue.getSubject());
-                    downloadAttachments(attach.getContentURL(), apiAccessKey, fileToManage);
-
-                    if (attach.getFileName().endsWith(".py")) {
-                        int checkRes = -1;
-                        if (doPyLint(issue, fileToManage)) {
-                            PyTaskChecker checker = new PyTaskChecker(issue.getSubject(), fileToManage, false);
-                            if (!checker.getNameForKnownTest(issue.getSubject()).equals("")) {
-                                checkRes = doPyTaskCheck(checker, issue);
-                            }
-                        }
-                        if (checkRes != -1) {
-                            String studentsName = getStudentsName(issue.getId(), this.professorName);
-                            System.out.println(checkRes + "(after tests - back to Student) - " + studentsName);
-                            this.setIssueAssigneeNameForIssue(issue, studentsName);
-                            if (checkRes == 1) {
-                                issue.setStatusId(5);
-                            }
-                            this.updateIssue(issue);
-                        }
-                    }
-
-                    if (attach.getFileName().endsWith(".java")) {
-                        doJavaLint(attach.getFileName());
-                    }
-
-                    //if (attach.getFileName().endsWith(".cpp")) {
-                        //doCppLint(attach, issue );
-                    //}
-                    // cleanDirectory(new File(".\\myFiles\\"));
-                }
-            }
-        }
-    }
-
     public void checkIssueAttachments(ConfiguredTask task) {
         Issue issue = task.getIssue();
         Collection<Attachment> issueAttachment = issue.getAttachments();
@@ -248,48 +176,50 @@ public class ConnectionWithRedmine {
         Optional<Attachment> nullableAttach = getLatestCheckableAttach(issueAttachments);
         Attachment attach = null;
         if (!nullableAttach.isPresent()) {
-            Logger.getAnonymousLogger().info("Can't find suitable attaches for " + task);
+            logger.info("Can't find suitable attaches for " + task);
             return;
         }
 
         attach = nullableAttach.get();
-        //for (Attachment attach : issueAttachments)
-        {
-            String attachFileName = attach.getFileName();
-            if (isKnownAttachExtention(attachFileName)) {
-                int wasCheckedEarlier = -1;
-                //Если не надо перепроверять ранее проверенные, смотрим, не нашлось ли ранее проверенных
-                if (!task.isNeededForceCheck()) {
-                    try {
-                        wasCheckedEarlier = isAttachmentIdWasEarlierChecked(attach.getId());
-                    } catch (IOException ex) {
-                        logger.warning(ex.toString());
-                    }
-                }
-                //Проверяем файл аттача: 1)если не проверяли ранее 0) надо обязательно проверять
-                if (task.isNeededForceCheck() || wasCheckedEarlier == 0) {
-                    String fileToManage = myFilesDir + makeUsableFileName(
-                            attachFileName,
-                            attach.getAuthor().getFullName(),
-                            issue.getSubject());
-                    try {
-                        downloadAttachments(attach.getContentURL(), apiAccessKey, fileToManage);
-                    } catch (IOException ex) {
-                        logger.warning(ex.toString());
-                    }
+        checkSingleFileAttachment(attach, task);
+    }
 
-                    if (attachFileName.endsWith(".py")) {
-                        processPythonFile(task, issue, fileToManage);
-                    }
-                    if (attachFileName.endsWith(".zip") || attachFileName.endsWith(".java")) {
-                        processJavaFile(task, issue, fileToManage);
-                    }
-                    //for cpp we can do lint only now :(
-                    if (attachFileName.endsWith(".cpp")) {
-                        doCppLint(fileToManage, issue, task);
-                    }
+    private void checkSingleFileAttachment(Attachment attach, ConfiguredTask task) {
+        String attachFileName = attach.getFileName();
+        Issue issue = task.getIssue();
+
+        if (isKnownAttachExtention(attachFileName)) {
+            int wasCheckedEarlier = -1;
+            //Если не надо перепроверять ранее проверенные, смотрим, не нашлось ли ранее проверенных
+            if (!task.isNeededForceCheck()) {
+                try {
+                    wasCheckedEarlier = isAttachmentIdWasEarlierChecked(attach.getId());
+                } catch (IOException ex) {
+                    logger.warning(ex.toString());
                 }
-                // cleanDirectory(new File(".\\myFiles\\"));
+            }
+            //Проверяем файл аттача: 1)если не проверяли ранее 0) надо обязательно проверять
+            if (task.isNeededForceCheck() || wasCheckedEarlier == 0) {
+                String fileToManage = myFilesDir + makeUsableFileName(
+                        attachFileName,
+                        attach.getAuthor().getFullName(),
+                        issue.getSubject());
+                try {
+                    downloadAttachments(attach.getContentURL(), apiAccessKey, fileToManage);
+                } catch (IOException ex) {
+                    logger.warning(ex.toString());
+                }
+
+                if (attachFileName.endsWith(".py")) {
+                    processPythonFile(task, issue, fileToManage);
+                }
+                if (attachFileName.endsWith(".zip") || attachFileName.endsWith(".java")) {
+                    processJavaFile(task, issue, fileToManage);
+                }
+
+                if (attachFileName.endsWith(".cpp")) {
+                    processCppFile(task, fileToManage);
+                }
             }
         }
     }
@@ -334,15 +264,40 @@ public class ConnectionWithRedmine {
         processResult(task, issue, processResult);
     }
 
+
+    private void processCppFile(ConfiguredTask task, String fileToManage) {
+        int processResult = -1;
+        boolean cppLintResult = true;
+        Issue issue = task.getIssue();
+
+        if (task.isLintRequired()) {
+            cppLintResult = doCppLint(fileToManage, task);
+        }
+
+        //if javaLint was OK or not required
+        if (cppLintResult) {
+            CppTaskChecker cppTaskChecker = new CppTaskChecker(issue.getSubject(), fileToManage, task.isEasyMode());
+            String testFolder = cppTaskChecker.getNameForKnownTest();
+            if (!testFolder.isBlank()) {
+                processResult = doCppTaskCheck(cppTaskChecker, issue);
+            }
+        } else {
+            String student = task.getTaskCompleter();
+            this.setIssueAssigneeNameForIssue(issue, student);
+        }
+
+        processResult(task, issue, processResult);
+    }
+
     private void processResult(ConfiguredTask task, Issue issue, int processResult) {
         if (processResult != -1) {
-            Logger.getAnonymousLogger().info(processResult + "(after tests - back to Student) - " + task.getTaskCompleter());
+            logger.info(processResult + "(after tests - back to Student) - " + task.getTaskCompleter());
             this.setIssueAssigneeNameForIssue(issue, task.getTaskCompleter());
             if (processResult == 1 && this.returnBackIfAllOk) {
-                issue.setStatusId(5);
+                issue.setStatusId(STATUS_ID_CLOSED);
             }
             if (processResult == 1 && !this.returnBackIfAllOk) {
-                issue.setStatusId(4);
+                issue.setStatusId(STATUS_ID_APPROVED);
             }
         }
 
@@ -370,15 +325,15 @@ public class ConnectionWithRedmine {
         return attachName.endsWith(".py") || attachName.endsWith(".java") || attachName.endsWith(".zip") || attachName.endsWith(".cpp");
     }
 
-    private void doCppLint(Attachment attach, Issue issue, ConfiguredTask task) {
+    private void doCppLint(Attachment attach, ConfiguredTask task) {
         String fileToManage = myFilesDir + makeUsableFileName(
                 attach.getFileName(),
                 attach.getAuthor().getFullName(),
                 task.getIssue().getSubject());
-        doCppLint(fileToManage, issue, task);
+        doCppLint(fileToManage, task);
     }
 
-    private boolean doCppLint(String fullFileName, Issue issue, ConfiguredTask task) {
+    private boolean doCppLint(String fullFileName, ConfiguredTask task) {
         new MyCppLint().startCpplint(fullFileName);
         String[] allLines = TextUtils.readReportFile(fullFileName + "_errorReport.txt");
         String lastLine = allLines[allLines.length - 1];
@@ -440,7 +395,7 @@ public class ConnectionWithRedmine {
         }
 
         this.updateIssue(task.getIssue());
-        return  lintResult;
+        return lintResult;
     }
 
     private String getStringWithErrorAmmountJava(String[] allLines) {
@@ -452,41 +407,6 @@ public class ConnectionWithRedmine {
             }
         }
         return String.format(checkStyle + " %d errors.", countErrors);
-    }
-
-    private boolean doPyLint(Issue issue, String fileToManage) {
-        return doPyLint(issue, fileToManage, 10.0);
-    }
-
-    //см новую реализацию с Configured task ниже
-    @Deprecated
-    private boolean doPyLint(Issue issue, String fileToManage, double rating) {
-        new MyPylint().startPylint(fileToManage);
-        String attachName = fileToManage + "_errorReport.txt";
-        String[] alllines = TextUtils.readReportFile(attachName);
-        String lastLineInReport = alllines[alllines.length - 1];
-        float studentPythonRating = 0;
-        try {
-            studentPythonRating = TextUtils.pythonRatingCheck(lastLineInReport);
-        } catch (Exception ex) {
-            studentPythonRating = -20f;
-        }
-        //Todo: Пересмотреть условия в IF
-        boolean successfullPyLint = false;
-
-        if (neededPythonRating > studentPythonRating) {
-            String studentsName = getStudentsName(issue.getId(), this.professorName);
-            System.out.println("(assigning back to Student) - " + studentsName + " " + lastLineInReport);
-            this.setIssueAssigneeNameForIssue(issue, studentsName);
-            lastLineInReport += "\n Some corrections are required! Keep trying!";
-            this.uploadAttachment(issue, attachName);
-        } else {
-            lastLineInReport += "\n " + generateSuccessMsg();
-            successfullPyLint = true;
-        }
-        issue.setNotes(lastLineInReport);
-        this.updateIssue(issue);
-        return successfullPyLint;
     }
 
     private boolean doPyLint(ConfiguredTask task, String fileToManage) {
@@ -632,8 +552,9 @@ public class ConnectionWithRedmine {
                 }
             }
         } catch (RedmineException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.error(ex.toString());
         }
+
         return retVal;
     }
 
@@ -661,7 +582,7 @@ public class ConnectionWithRedmine {
             File file = new File(path);
             attachmentManager.addAttachmentToIssue(issue.getId(), file, ContentType.TEXT_PLAIN.getMimeType());
         } catch (RedmineException | IOException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.info(ex.toString());
         }
     }
 
@@ -720,45 +641,25 @@ public class ConnectionWithRedmine {
         try {
             mgr.getIssueManager().update(issue);
         } catch (RedmineException ex) {
-            logger.log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void setVersionForCheck(String inputTargetVersion, Issue issue) {
-        Version version = issue.getTargetVersion();
-        Collection<Attachment> attach = issue.getAttachments();
-
-        if (inputTargetVersion.equals("All")) {
-            try {
-                this.checkAttachments(issue);
-            } catch (IOException ex) {
-                logger.log(Level.SEVERE, null, ex);
-            }
-        } else if (version == null) {
-            System.out.println("Issue without target version");
-        } else if (version.getName().equals(inputTargetVersion)) {
-            try {
-                this.checkAttachments(issue);
-            } catch (IOException ex) {
-                logger.log(Level.SEVERE, null, ex);
-            }
+            logger.info(ex.toString());
         }
     }
 
     public ArrayList<String> getProjectUsers() {
         MembershipManager membershipManager = mgr.getMembershipManager();
-
         List<Role> roles;
         List<Membership> memberships = new ArrayList<>();
         try {
             memberships = membershipManager.getMemberships(projectKey);
         } catch (RedmineException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.info(ex.toString());
         }
+
         ArrayList<String> retArray = new ArrayList<>();
         for (Membership m : memberships) {
             retArray.add(m.getUserName());
         }
+
         return retArray;
     }
 
@@ -767,7 +668,7 @@ public class ConnectionWithRedmine {
         try {
             issues = getOpenedIssues(iteration);
         } catch (RedmineException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.info(ex.toString());
         }
         ArrayList<String> retVal = new ArrayList<>();
         for (Issue issue : issues) {
@@ -784,7 +685,7 @@ public class ConnectionWithRedmine {
         try {
             currIssue = getIssueByID(issueId);
         } catch (RedmineException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.error(ex.toString());
         }
         Issue newIssue = new Issue();
         newIssue.setSubject(currIssue.getSubject());
@@ -798,7 +699,7 @@ public class ConnectionWithRedmine {
         try {
             mgr.getIssueManager().createIssue(newIssue);
         } catch (RedmineException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.info(ex.toString());
         }
     }
 
@@ -894,8 +795,22 @@ public class ConnectionWithRedmine {
         return success;
     }
 
-    public void downloadResults() {
-
+    private int doCppTaskCheck(CppTaskChecker checker, Issue issue) {
+        String result = "";
+        try {
+            result = checker.startCppCheck();
+        } catch (UnsupportedOperationException ex) {
+            return -1;
+        }
+        int success = 0;
+        String[] splittedResult = result.split("\n");
+        if (splittedResult[splittedResult.length - 1].toLowerCase().equals("passed")) {
+            issue.setNotes("All tests passed");
+            success = 1;
+        } else {
+            issue.setNotes("<pre>" + result + "</pre>");
+        }
+        return success;
     }
 
     public Issue getIssueWithJournals(Integer issueId) {
@@ -916,10 +831,5 @@ public class ConnectionWithRedmine {
         return lint;
     }
 
-    public void getIterations() {
-
-    }
-
-    private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());
-
+    private static PvkLogger logger = PvkLogger.getLogger(FXMLDocumentController.class.getSimpleName(), false);
 }

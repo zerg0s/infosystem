@@ -519,7 +519,6 @@ public class FXMLDocumentController implements Initializable {
                     connectionToRedmine.getLint(), pyRating, javaErrorLimit,
                     easyMode, (LintReportMode) lintErrorsNotificationsType.getValue());
             connectionToRedmine.checkIssueAttachments(confTask);
-            //connectionToRedmine.checkAttachments(issue, needForced);
 
             journals = journalReader.getJournals(issue.getId().toString());
             connectionToRedmine.setStudentName(getStudentName(journals, comboxUserName.getValue().toString()));
@@ -531,11 +530,11 @@ public class FXMLDocumentController implements Initializable {
     private void processIssue(ConfiguredTask task) {
         Issue issue = task.getIssue();
         if (!isIssueInDeadStatus(issue)) {
-            System.out.println(issue.toString());
+            logger.info(issue.toString());
             connectionToRedmine.setStudentName(task.getTaskCompleter());
             connectionToRedmine.checkIssueAttachments(task);
         } else if (needLog) {
-            System.out.println("Already Closed:" + issue.toString());
+            logger.info("Issue is already Closed:" + issue.toString());
         }
     }
 

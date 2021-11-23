@@ -40,6 +40,7 @@ public class TaskChecker {
     public String getNameForKnownTest(String subject) {
         return getTestName3(subject);
     }
+
     public String getNameForKnownTest() {
         return getTestName3(getSubject());
     }

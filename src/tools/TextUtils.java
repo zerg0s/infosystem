@@ -158,5 +158,9 @@ public class TextUtils {
         return (testStr == null) || testStr.trim().isEmpty() ;
     }
 
+    public static String getStringResult(int checkRes) {
+        return (checkRes > 0) ? "Passed" : "Failed";
+    }
+
     static Logger logger = Logger.getLogger(TextUtils.class.getSimpleName());
 }
