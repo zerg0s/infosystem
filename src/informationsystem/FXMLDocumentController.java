@@ -55,6 +55,7 @@ public class FXMLDocumentController implements Initializable {
     private final SettingsXmlReader settingsReader = new SettingsXmlReader(".\\ProjectKey.xml");
 
     private ArrayList<Project> projects = new ArrayList<>();
+    private LoggerWindowController loggerWindowController;
 
     @FXML
     private Button buttonDown;
@@ -224,29 +225,45 @@ public class FXMLDocumentController implements Initializable {
 
     private LoggerWindowController showLoggerStage(PvkLogger logger) {
         Parent root;
+        Stage stage;
+        Scene sceneForLogger = null;
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("loggerWindow/loggerWindow.fxml"));
-            root = loader.load();
-            LoggerWindowController loggerWindow = loader.getController();
-            loggerWindow.setLogger(logger);
-            Stage stage = new Stage();
-            stage.setTitle("Логгер ПВК");
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.NONE);
-            stage.setOnHidden(e -> {
-              loggerWindow.shutdown();
-            });
-            stage.show();
-            Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-            double x = bounds.getMinX();
-            double y = bounds.getMinY() + (bounds.getHeight() - stage.getHeight());
-            stage.setX(x);
-            stage.setY(y);
-            stage.show();
-            return loggerWindow;
+            if (loggerWindowController == null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("loggerWindow/loggerWindow.fxml"));
+                root = loader.load();
+                loggerWindowController = loader.getController();
+                loggerWindowController.setLogger(logger);
+                sceneForLogger = new Scene(root);
+            }
+
+            if (loggerWindowController.getStage() == null) {
+                stage = new Stage();
+                stage.setTitle("Логгер ПВК");
+                stage.setScene(sceneForLogger);
+                stage.initModality(Modality.NONE);
+                stage.setOnHidden(e -> {
+                    loggerWindowController.shutdown();
+                });
+                loggerWindowController.setStage(stage);
+            } else {
+                stage = loggerWindowController.getStage();
+            }
+
+            if (!stage.isShowing()) {
+                Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+                double x = bounds.getMinX();
+                double y = bounds.getMinY() + (bounds.getHeight() - stage.getHeight());
+                stage.setX(x);
+                stage.setY(y);
+                stage.show();
+            }
+
+            return loggerWindowController;
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
+
         return null;
     }
 
@@ -446,6 +463,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
+        LoggerWindowController loggerWindow = showLoggerStage(logger);
+        logger.setLoggerControllerWindow(loggerWindow);
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -835,6 +854,7 @@ public class FXMLDocumentController implements Initializable {
         }
 
         settingsReader.saveSettings(projectKeyXml, map);
+        loggerWindowController.getStage().hide();
     }
 
     private void putToSettings(Map<String, String> map, Object key, Object value) {
