@@ -1,8 +1,7 @@
-package informationsystem.TasksManager;
+package informationsystem.tasksManager;
 
 import com.taskadapter.redmineapi.bean.Issue;
 import informationsystem.xml.TasksXmlReader;
-import informationsystem.xml.XmlReader;
 
 import java.io.IOException;
 import java.nio.file.Files;

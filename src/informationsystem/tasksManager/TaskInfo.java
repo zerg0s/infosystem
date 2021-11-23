@@ -1,16 +1,12 @@
-package informationsystem.TasksManager;
+package informationsystem.tasksManager;
 
 import com.taskadapter.redmineapi.bean.Issue;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import tools.Translit;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 

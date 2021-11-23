@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 import data.ConfiguredTask;
 import data.LintReportMode;
 import informationsystem.*;
-import informationsystem.TasksManager.TaskInfo;
+import informationsystem.tasksManager.TaskInfo;
 import lintsForLangs.MyCheckStyle;
 import lintsForLangs.MyCppLint;
 import lintsForLangs.MyPylint;
@@ -336,7 +336,7 @@ public class ConnectionWithRedmine {
 
     private void processResult(ConfiguredTask task, Issue issue, int processResult) {
         if (processResult != -1) {
-            System.out.println(processResult + "(after tests - back to Student) - " + task.getTaskCompleter());
+            Logger.getAnonymousLogger().info(processResult + "(after tests - back to Student) - " + task.getTaskCompleter());
             this.setIssueAssigneeNameForIssue(issue, task.getTaskCompleter());
             if (processResult == 1 && this.returnBackIfAllOk) {
                 issue.setStatusId(5);
@@ -345,6 +345,7 @@ public class ConnectionWithRedmine {
                 issue.setStatusId(4);
             }
         }
+
         this.updateIssue(issue);
     }
 
@@ -411,6 +412,7 @@ public class ConnectionWithRedmine {
     }
 
     private boolean doJavaLint(ConfiguredTask task, String fullFileName) {
+        Boolean lintResult = false;
         new MyCheckStyle().startCheckStyle(fullFileName);
         String[] allLines = TextUtils.readReportFile(fullFileName + "_errorReport.txt");
         String lastLine = getStringWithErrorAmmountJava(allLines);
@@ -428,15 +430,17 @@ public class ConnectionWithRedmine {
                     }
                 }
                 task.getIssue().setNotes(notesForIssue + "\nSome corrections are required.");
-                //this.updateIssue(task.getIssue());
+                this.updateIssue(task.getIssue());
             }
 
-            return false;
+            lintResult = false;
         } else {
             task.getIssue().setNotes(generateSuccessMsg());
-            this.updateIssue(task.getIssue());
-            return true;
+            lintResult = true;
         }
+
+        this.updateIssue(task.getIssue());
+        return  lintResult;
     }
 
     private String getStringWithErrorAmmountJava(String[] allLines) {

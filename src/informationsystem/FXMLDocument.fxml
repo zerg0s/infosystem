@@ -25,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane fx:id="myTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="517.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="informationsystem.FXMLDocumentController">
+<TabPane fx:id="myTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="517.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="informationsystem.FXMLDocumentController">
     <tabs>
         <Tab text="Подключение">
             <content>
@@ -72,7 +72,7 @@
                      <GridPane.margin>
                         <Insets right="12.0" />
                      </GridPane.margin></ComboBox>
-                        <ComboBox fx:id="comboxVersion" prefWidth="214.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                        <ComboBox fx:id="comboxVersion" onAction="#setSelectedIteration" prefWidth="214.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets right="12.0" />
                      </GridPane.margin></ComboBox>
@@ -99,7 +99,7 @@
                         <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </VBox>
-                  <Text fx:id="versionName" strokeType="OUTSIDE" strokeWidth="0.0" text="\@PVK Robot UI ver 3.35" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
+                  <Text fx:id="versionName" strokeType="OUTSIDE" strokeWidth="0.0" text="\@PVK Robot UI ver 3.36" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
                         <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                      </GridPane.margin>

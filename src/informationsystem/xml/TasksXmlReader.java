@@ -1,7 +1,7 @@
 package informationsystem.xml;
 
-import informationsystem.TasksManager.TaskInfo;
-import informationsystem.TasksManager.TasksKeeper;
+import informationsystem.tasksManager.TaskInfo;
+import informationsystem.tasksManager.TasksKeeper;
 import org.w3c.dom.*;
 import tools.TextUtils;
 import tools.Translit;

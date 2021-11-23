@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package informationsystem.TasksManager;
+package informationsystem.tasksManager;
 
 import informationsystem.xml.TasksXmlReader;
 import informationsystem.xml.XmlReader;
@@ -13,7 +13,6 @@ import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.*;
-import java.util.logging.Logger;
 
 /**
  * @author user

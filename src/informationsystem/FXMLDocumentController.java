@@ -12,16 +12,15 @@ import com.taskadapter.redmineapi.bean.Journal;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import data.*;
-import informationsystem.TasksManager.FxmlTasksController;
-import informationsystem.TasksManager.TaskInfo;
-import informationsystem.TasksManager.TasksKeeper;
+import informationsystem.loggerWindow.LoggerWindowController;
+import informationsystem.tasksManager.FxmlTasksController;
+import informationsystem.tasksManager.TaskInfo;
+import informationsystem.tasksManager.TasksKeeper;
 import informationsystem.xml.SettingsXmlReader;
 import informationsystem.xml.TasksXmlReader;
 import javafx.application.Platform;
@@ -32,18 +31,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import redmineManagement.ConnectionWithRedmine;
 import redmineManagement.RedmineAlternativeReader;
 import tools.IssueCrawler;
-import tools.TextUtils;
+import tools.PvkLogger;
 
 /**
  * @author user
@@ -216,7 +217,37 @@ public class FXMLDocumentController implements Initializable {
 
         initializeSelectedProject();
         setSelectedLintMode();
+        LoggerWindowController loggerWindow = showLoggerStage(logger);
+        logger.setLoggerControllerWindow(loggerWindow);
         journalReader = new RedmineAlternativeReader(props.url, props.apiAccessKey, props.projectKey);
+    }
+
+    private LoggerWindowController showLoggerStage(PvkLogger logger) {
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("loggerWindow/loggerWindow.fxml"));
+            root = loader.load();
+            LoggerWindowController loggerWindow = loader.getController();
+            loggerWindow.setLogger(logger);
+            Stage stage = new Stage();
+            stage.setTitle("Логгер ПВК");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.NONE);
+            stage.setOnHidden(e -> {
+              loggerWindow.shutdown();
+            });
+            stage.show();
+            Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+            double x = bounds.getMinX();
+            double y = bounds.getMinY() + (bounds.getHeight() - stage.getHeight());
+            stage.setX(x);
+            stage.setY(y);
+            stage.show();
+            return loggerWindow;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void setSelectedLintMode() {
@@ -415,7 +446,17 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        logger.log(Level.INFO, "======Started========\n");
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runMainCheckAllTasks();
+            }
+        });
+        thread.start();
+    }
+
+    private void runMainCheckAllTasks() {
+        logger.info("======Started========\n");
         connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
 
         boolean easyMode = easyModechk.isSelected();
@@ -429,7 +470,7 @@ public class FXMLDocumentController implements Initializable {
             try {
                 issues = connectionToRedmine.getMyIssues(iterationName);
             } catch (RedmineException ex) {
-                logger.log(Level.SEVERE, null, ex);
+                logger.info(ex.toString());
             }
 
             for (Issue issue : issues) {
@@ -437,7 +478,7 @@ public class FXMLDocumentController implements Initializable {
             }
 
         }
-        logger.log(Level.INFO, "======Finished========\n");
+        logger.info("======Finished========\n");
     }
 
     private void processIssue(Issue issue, boolean easyMode) {
@@ -718,7 +759,7 @@ public class FXMLDocumentController implements Initializable {
             this.processConfiguredIssue(task);
 
         } catch (Exception ex) {
-            logger.log(Level.INFO, ex.toString());
+            logger.info(ex.toString());
         }
     }
 
@@ -728,7 +769,7 @@ public class FXMLDocumentController implements Initializable {
             if (taskInfo == null) {
                 return;
             }
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("TasksManager/TaskView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("tasksManager/TaskView.fxml"));
             root = loader.load();
             FxmlTasksController tasksController = loader.getController();
             tasksController.setTask(taskInfo);
@@ -956,5 +997,13 @@ public class FXMLDocumentController implements Initializable {
         keeper.addNewTests(crawler.getIssues());
     }
 
-    private static Logger logger = Logger.getLogger(FXMLDocumentController.class.getSimpleName());
+    @FXML
+    private void setSelectedIteration(ActionEvent e) {
+        if (!comboxVersion.getValue().toString().isEmpty()) {
+            String selected = (String) comboxVersion.getValue();
+            props.iterationName = selected;
+        }
+    }
+
+    private static PvkLogger logger = PvkLogger.getLogger(FXMLDocumentController.class.getSimpleName(), false);
 }

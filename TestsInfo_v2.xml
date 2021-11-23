@@ -496,6 +496,27 @@ YES]]></description>
 0
 ]]></description>
     </test>
+    <test id="258" subject="Почти отсортирован" testSetFolder="">
+      <description><![CDATA[
+Quote
+Description
+Определите, можно ли вычеркнуть из данного массива одно число так, чтобы оставшиеся числа оказались упорядоченными по возрастанию.
++Пример1:+
+Ввод:
+1 2 5 3 4
+Вывод:
+Yes
++Пример2:+
+Ввод:
+1 2 3 4
+Вывод:
+Yes (Вычеркиваем любой элемент и массив остается упорядоченным)
++Пример3:+
+Ввод:
+4 3 2 1
+Вывод:
+No]]></description>
+    </test>
   </homework>
   <homework id="38" name="Поиск и сортировка">
     <test id="39" subject="Последний максимум" testSetFolder="lastMaxValue">
@@ -1137,16 +1158,16 @@ co
     <test id="72" subject="Поиск повторов с заменой" testSetFolder="regFindReplaceRepeated">
       <description><![CDATA[С помощью регулярных выражений найдите в строке дважды подряд повторяющиеся слова.
 Удалите эти повторы, распечатайте строку без повторов.
-+Пример 1:+
+Пример:
 Ввод
 Send me a letter letter.
 Вывод
 Send me a letter.
-+Пример 2:+
 Ввод
 What a a nice girl girl.
 Вывод
-What a nice girl.]]></description>
+What a nice girl.
+]]></description>
     </test>
     <test id="73" subject="Поиск повторов" testSetFolder="regFindRepeated">
       <description><![CDATA[С помощью регулярных выражений найдите в строке дважды подряд повторяющиеся слова.
@@ -1389,6 +1410,18 @@ Fn=*number*
 0
 +Вывод+
 0
+]]></description>
+    </test>
+    <test id="259" subject="Вычисление производных" testSetFolder="countDeriviatives">
+      <description><![CDATA[Вам дана функция-многочлен в виде массива коэффициентов. Необходимо рассчитать ее производную порядка n. Коэффициенты многочлена вводится через пробел, затем идет единственное число – производную какого порядка необходимо рассчитать.
++Пример:+
+Ввод:
+1 3 -2 17
+1 
+Вывод:
+3 6 -2
+Т.е. вычисляем первую производную от функции: y(x) = x*x*x + 3*x*x – 2*x + 17, 
+она равна y’(x) = 3*x*x + 6*x - 2
 ]]></description>
     </test>
   </homework>
@@ -2135,21 +2168,6 @@ False
 Вывод:
 True
 ]]></description>
-    </test>
-    <test id="258" subject="123" testSetFolder="">
-      <description><![CDATA[123]]></description>
-    </test>
-    <test id="259" subject="111" testSetFolder="">
-      <description/>
-    </test>
-    <test id="260" subject="333" testSetFolder="">
-      <description/>
-    </test>
-    <test id="261" subject="444" testSetFolder="">
-      <description><![CDATA[555]]></description>
-    </test>
-    <test id="262" subject="" testSetFolder="">
-      <description/>
     </test>
   </homework>
   <homework name="Лабораторная работа 0">

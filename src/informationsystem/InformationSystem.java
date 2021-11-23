@@ -336,7 +336,6 @@ public class InformationSystem extends Application {
         System.setProperty("java.net.useSystemProxies", "true");
 
         if (args.length != 0) {
-
             RedmineConnectionProperties connectionOptions = new RedmineConnectionProperties();
             connectionOptions.projectKey = args[1];
             connectionOptions.url = args[0];
@@ -344,7 +343,6 @@ public class InformationSystem extends Application {
             connectionOptions.issueNumbers = args[3];
             IssuesChecker issues = new IssuesChecker(connectionOptions);
             issues.checkSingleIssue();
-
         } else {
             // открытие сцены
             launch(args);

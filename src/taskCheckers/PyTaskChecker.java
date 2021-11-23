@@ -32,6 +32,11 @@ public class PyTaskChecker extends TaskChecker {
         this(subject, "file.py", false);
     }
 
+    public static void main(String[] args) {
+        PyTaskChecker checker = new PyTaskChecker("Школы с наибольшим числом участников олимпиады", "pyLint/myFile.py", true);
+        checker.startPyCheck();
+    }
+
     public String startPyCheck() {
         return startPyCheck(this.getSubject(), this.getFileToManage(), this.isInEasyMode());
     }
