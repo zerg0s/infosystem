@@ -11,11 +11,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.function.Consumer;
 
-/**
- * Demonstrates the minimum needed to support custom objects (in this case, hyperlinks) alongside of text.
- *
- * Note: demo does not handle cases where the link changes its state when it has already been visited
- */
 public class HyperlinkDemo extends Application {
 
     public static void main(String[] args) {
