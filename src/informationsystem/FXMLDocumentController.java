@@ -519,7 +519,8 @@ public class FXMLDocumentController implements Initializable {
     private void processIssue(Issue issue, boolean needLog, boolean needForced, boolean easyMode) {
         ArrayList<String> journals;
         if (!issue.getStatusName().equals("Closed") && !issue.getStatusName().equals("Approved")) {
-            logger.info(issue.toString());
+            logger.logHtmlIssueLink(issue, props.url + "/issues/" + issue.getId());
+            logger.info(" - " + issue.toString());
             Double pyRating = 10.0;
             int javaErrorLimit = 5;
             if (comboBoxPythonRating.getValue() != null) {
@@ -542,7 +543,7 @@ public class FXMLDocumentController implements Initializable {
             journals = journalReader.getJournals(issue.getId().toString());
             connectionToRedmine.setStudentName(getStudentName(journals, comboxUserName.getValue().toString()));
         } else if (needLog) {
-            logger.info("Already Closed:" + issue.toString());
+            logger.info("Already Closed: " + issue.toString());
         }
     }
 
@@ -553,7 +554,7 @@ public class FXMLDocumentController implements Initializable {
             connectionToRedmine.setStudentName(task.getTaskCompleter());
             connectionToRedmine.checkIssueAttachments(task);
         } else if (needLog) {
-            logger.info("Issue is already Closed:" + issue.toString());
+            logger.info("Issue is already Closed: " + issue.toString());
         }
     }
 

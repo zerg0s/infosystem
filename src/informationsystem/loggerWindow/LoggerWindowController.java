@@ -29,8 +29,6 @@ import java.util.ResourceBundle;
 
 public class LoggerWindowController implements Initializable {
     @FXML
-    private TextArea txtBox;
-    @FXML
     private Button btnClose;
     @FXML
     private ScrollPane scrollPaneMain;
@@ -41,16 +39,19 @@ public class LoggerWindowController implements Initializable {
 
     @FXML
     public void appendLogs(String text) {
-        appendLogs(text, RichTextStyle.bold(false).updateTextColor(Color.BLACK));
-        appendHyperLink(text, "http://ya.ru");
+        appendLogsLn(text, RichTextStyle.bold(false).updateTextColor(Color.BLACK));
     }
 
     public void appendLogsError(String text) {
-        appendLogs(text, RichTextStyle.bold(false).updateTextColor(Color.RED));
+        appendLogsLn(text, RichTextStyle.bold(false).updateTextColor(Color.RED));
     }
 
     public void appendLogsBold(String text) {
         appendLogs(text, RichTextStyle.bold(true).updateTextColor(Color.BLACK));
+    }
+
+    public void appendLogsBoldLn(String text) {
+        appendLogsLn(text, RichTextStyle.bold(true).updateTextColor(Color.BLACK));
     }
 
     public void appendHyperLink(String text, String url) {
@@ -89,15 +90,16 @@ public class LoggerWindowController implements Initializable {
         this.stage = stage;
     }
 
-    private void appendLogs(String text, RichTextStyle style) {
-        String finalText = "\n" + text;
+    private void appendLogsLn(String text, RichTextStyle style) {
+        String finalText = text + "\n";
         Platform.runLater(() -> {
             area.append(Either.left(finalText), style);
         });
     }
-
-    private void appendHtmlLink() {
-
+    private void appendLogs(String text, RichTextStyle style) {
+        String finalText = text;
+        Platform.runLater(() -> {
+            area.append(Either.left(finalText), style);
+        });
     }
-
 }

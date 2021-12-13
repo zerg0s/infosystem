@@ -176,7 +176,9 @@ public class ConnectionWithRedmine {
         Optional<Attachment> nullableAttach = getLatestCheckableAttach(issueAttachments);
         Attachment attach = null;
         if (!nullableAttach.isPresent()) {
-            logger.info("Can't find suitable attaches for " + task);
+            logger.error("Can't find suitable attaches for ");
+            logger.logHtmlIssueLink(task.getIssue(), url + "/issues/" + task.getIssue().getId());
+            logger.info("");
             return;
         }
 
@@ -292,7 +294,8 @@ public class ConnectionWithRedmine {
     private void processResult(ConfiguredTask task, int processResult) {
         Issue issue = task.getIssue();
         if (processResult != -1) {
-            logger.info(TextUtils.getStringResult(processResult) + " (after tests - back to Student) - " + task.getTaskCompleter());
+            logger.warning(TextUtils.getStringResult(processResult));
+            logger.info(" (after tests - back to Student) - " + task.getTaskCompleter());
             this.setIssueAssigneeNameForIssue(issue, task.getTaskCompleter());
             if (processResult == 1 && this.returnBackIfAllOk) {
                 issue.setStatusId(STATUS_ID_CLOSED);
@@ -430,7 +433,7 @@ public class ConnectionWithRedmine {
             if (studentsName.isBlank()) {
                 studentsName = professorName;
             }
-
+            logger.warning("Failed on Lint. ");
             logger.info("(PyLint - assigning back to Student) - " + studentsName + " " + lastLineInReport);
             this.setIssueAssigneeNameForIssue(task.getIssue(), studentsName);
             lastLineInReport = TextUtils.generateErrorMsg(task, lastLineInReport);

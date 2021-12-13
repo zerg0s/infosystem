@@ -3,6 +3,7 @@ package tools;
 import data.ConfiguredTask;
 import data.LintReportMode;
 import org.apache.commons.codec.Charsets;
+import redmineManagement.ConnectionWithRedmine;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

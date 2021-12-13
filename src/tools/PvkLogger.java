@@ -1,5 +1,6 @@
 package tools;
 
+import com.taskadapter.redmineapi.bean.Issue;
 import informationsystem.loggerWindow.LoggerWindowController;
 
 import java.io.ByteArrayOutputStream;
@@ -57,7 +58,7 @@ public class PvkLogger {
     public void warning(String data) {
         logger.info(data);
         if (loggerWindow != null) {
-            loggerWindow.appendLogsError(data);
+            loggerWindow.appendLogsBold(data);
         }
         flushAll();
     }
@@ -70,7 +71,15 @@ public class PvkLogger {
         flushAll();
     }
 
+    public void logHtmlIssueLink(Issue issue, String url) {
+        logger.info(issue.toString());
+        if (loggerWindow != null) {
+            loggerWindow.appendHyperLink(issue.getId().toString(), url);
+        }
+    }
+
     private void flushAll() {
         streamHandler.flush();
     }
+
 }
