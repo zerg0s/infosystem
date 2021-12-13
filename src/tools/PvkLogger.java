@@ -48,23 +48,29 @@ public class PvkLogger {
 
     public void info(String data) {
         logger.info(data);
-        flushAll(data);
+        if (loggerWindow != null) {
+            loggerWindow.appendLogs(data);
+        }
+        flushAll();
     }
 
     public void warning(String data) {
         logger.info(data);
-        flushAll(data);
+        if (loggerWindow != null) {
+            loggerWindow.appendLogsError(data);
+        }
+        flushAll();
     }
 
     public void error(String data) {
         logger.severe(data);
-        flushAll(data);
+        if (loggerWindow != null) {
+            loggerWindow.appendLogsError(data);
+        }
+        flushAll();
     }
 
-    private void flushAll(String data) {
-        if (loggerWindow != null) {
-            loggerWindow.appendLogs(data);
-        }
+    private void flushAll() {
         streamHandler.flush();
     }
 }

@@ -879,7 +879,7 @@ public class FXMLDocumentController implements Initializable {
         if (!tasksTab.isSelected()) {
             return;
         }
-        logger.info("tasksTab is Selected. Starting.");
+        logger.info("TasksTab is Selected. Starting.");
         tasksKeeper = TasksKeeper.update(tasksReader);
         tasksKeeper.setXmlReader(tasksReader);
 
