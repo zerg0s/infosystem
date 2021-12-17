@@ -11,8 +11,6 @@ public class ConfiguredTask {
     private int maxJavaLintErrors;
     private boolean isInEasyMode;
 
-
-
     private LintReportMode lintReportMode;
 
     public ConfiguredTask(Issue issue,

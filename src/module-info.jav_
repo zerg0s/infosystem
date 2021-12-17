@@ -1,0 +1,18 @@
+module informationsystem {
+    requires javafx.graphics;
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires java.desktop;
+    requires org.fxmisc.richtext;
+    requires flowless;
+    requires reactfx;
+    requires redmine.java.api;
+    requires java.logging;
+    requires okhttp;
+    requires commons.codec;
+    requires httpcore;
+    requires json;
+
+    exports informationsystem;
+    exports informationsystem.loggerWindow.hyperlink;
+}

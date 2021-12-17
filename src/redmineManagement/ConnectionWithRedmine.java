@@ -197,9 +197,15 @@ public class ConnectionWithRedmine {
                 try {
                     wasCheckedEarlier = isAttachmentIdWasEarlierChecked(attach.getId());
                 } catch (IOException ex) {
-                    logger.warning(ex.toString());
+                    logger.error(ex.toString());
                 }
             }
+
+            if (!task.isNeededForceCheck() && wasCheckedEarlier == 1) {
+                logger.warning("Skipping the issue.");
+                logger.info(" This version was already checked.");
+            }
+
             //Проверяем файл аттача: 1)если не проверяли ранее 0) надо обязательно проверять
             if (task.isNeededForceCheck() || wasCheckedEarlier == 0) {
                 String fileToManage = myFilesDir + makeUsableFileName(
@@ -215,6 +221,7 @@ public class ConnectionWithRedmine {
                 if (attachFileName.endsWith(".py")) {
                     processPythonFile(task, issue, fileToManage);
                 }
+
                 if (attachFileName.endsWith(".zip") || attachFileName.endsWith(".java")) {
                     processJavaFile(task, issue, fileToManage);
                 }

@@ -11,6 +11,8 @@ import com.taskadapter.redmineapi.bean.Journal;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -475,7 +477,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void runMainCheckAllTasks() {
-        logger.info("======Started========\n");
+        logger.info(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)   + ": ======Started========\n");
         connectionToRedmine.setProfessorName(comboxUserName.getValue().toString());
 
         boolean easyMode = easyModechk.isSelected();
@@ -497,7 +499,7 @@ public class FXMLDocumentController implements Initializable {
             }
 
         }
-        logger.info("======Finished========\n");
+        logger.info(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "======Finished========\n");
     }
 
     private void processIssue(Issue issue, boolean easyMode) {

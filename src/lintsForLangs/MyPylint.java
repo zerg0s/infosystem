@@ -31,10 +31,10 @@ public class MyPylint {
                 if (line == null) {
                     break;
                 }
-                System.out.println(line);
+                Logger.getLogger(MyPylint.class.getName()).info(line);
             }
         } catch (IOException ex) {
-            Logger.getLogger(MyPylint.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MyPylint.class.getName()).info(ex.toString());
         }
     }
 }
