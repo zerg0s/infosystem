@@ -20,12 +20,9 @@ public class HyperlinkDemo extends Application {
     @Override
     public void start(Stage primaryStage) {
         Consumer<String> showLink = (string) -> {
-            try
-            {
+            try {
                 Desktop.getDesktop().browse(new URI(string));
-            }
-            catch (IOException | URISyntaxException e)
-            {
+            } catch (IOException | URISyntaxException e) {
                 throw new RuntimeException(e);
             }
         };
@@ -39,5 +36,9 @@ public class HyperlinkDemo extends Application {
         Scene scene = new Scene(vsPane, 500, 500);
         primaryStage.setScene(scene);
         primaryStage.show();
+        for (int i = 0; i < 1000; i++) {
+            area.appendText("AAAAAA\n");
+        }
+        area.scrollYBy(area.getTotalHeightEstimate());
     }
 }

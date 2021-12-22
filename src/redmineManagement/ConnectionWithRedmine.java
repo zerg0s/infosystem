@@ -574,7 +574,7 @@ public class ConnectionWithRedmine {
         try {
             allVersions = projectManager.getVersions(projectManager.getProjectByKey(projectKey).getId());
         } catch (RedmineException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         return allVersions.stream().map(v -> v.getName()).collect(Collectors.toList());
     }

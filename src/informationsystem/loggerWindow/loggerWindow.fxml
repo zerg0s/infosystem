@@ -6,7 +6,8 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="informationsystem.loggerWindow.LoggerWindowController">
+<?import javafx.scene.control.TextField?>
+<BorderPane fx:id="borderPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="informationsystem.loggerWindow.LoggerWindowController">
    <bottom>
       <Button id="btnHide" fx:id="btnClose" mnemonicParsing="false" onAction="#shutdown" text="Hide log window" BorderPane.alignment="CENTER_RIGHT">
          <BorderPane.margin>
@@ -15,9 +16,9 @@
       </Button>
    </bottom>
    <top>
-      <TextArea fx:id="txtBox" prefHeight="18.0" prefWidth="400.0" promptText="Logs are going to be here" wrapText="true" BorderPane.alignment="CENTER" />
+      <TextField fx:id="txtBox" prefHeight="18.0" prefWidth="400.0" promptText="Logs are going to be here" BorderPane.alignment="CENTER" />
    </top>
    <center>
-      <ScrollPane fx:id="scrollPaneMain" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" BorderPane.alignment="CENTER" />
+<!--      <ScrollPane fx:id="scrollPaneMain" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" BorderPane.alignment="CENTER" />-->
    </center>
 </BorderPane>

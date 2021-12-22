@@ -1,5 +1,6 @@
 package informationsystem.loggerWindow;
 
+import informationsystem.loggerWindow.hyperlink.HyperlinkDemo;
 import informationsystem.loggerWindow.hyperlink.RichTextStyle;
 import informationsystem.loggerWindow.hyperlink.TextHyperlinkArea;
 import javafx.application.Platform;
@@ -7,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.fxmisc.flowless.VirtualizedScrollPane;
@@ -20,11 +22,12 @@ public class LoggerWindowController implements Initializable {
     @FXML
     private Button btnClose;
     @FXML
-    private ScrollPane scrollPaneMain;
+    private BorderPane borderPaneMain;
 
     private PvkLogger logger;
     private Stage stage;
-    private TextHyperlinkArea area = new TextHyperlinkArea();
+    private TextHyperlinkArea area;
+    private VirtualizedScrollPane<TextHyperlinkArea> vsPane;
 
     @FXML
     public void appendLogs(String text) {
@@ -32,11 +35,11 @@ public class LoggerWindowController implements Initializable {
     }
 
     public void appendLogsError(String text) {
-        appendLogs(text, RichTextStyle.bold(false).updateTextColor(Color.RED));
+        appendLogString(text, RichTextStyle.bold(false).updateTextColor(Color.RED));
     }
 
     public void appendLogsBold(String text) {
-        appendLogs(text, RichTextStyle.bold(true).updateTextColor(Color.BLACK));
+        appendLogString(text, RichTextStyle.bold(true).updateTextColor(Color.BLACK));
     }
 
     public void appendLogsBoldLn(String text) {
@@ -64,11 +67,9 @@ public class LoggerWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        area.setWrapText(true);
-        scrollPaneMain.setFitToHeight(true);
-        scrollPaneMain.setFitToWidth(true);
-        VirtualizedScrollPane<TextHyperlinkArea> vsPane = new VirtualizedScrollPane<>(area);
-        scrollPaneMain.setContent(vsPane);
+        area =  new TextHyperlinkArea();
+        vsPane = new VirtualizedScrollPane<>(area, ScrollPane.ScrollBarPolicy.AS_NEEDED, ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        borderPaneMain.setCenter(vsPane);
     }
 
     public Stage getStage() {
@@ -80,15 +81,29 @@ public class LoggerWindowController implements Initializable {
     }
 
     private void appendLogsLn(String text, RichTextStyle style) {
-        String finalText = text + "\n";
-        Platform.runLater(() -> {
-            area.append(Either.left(finalText), style);
-        });
+        appendLogString(text, style);
+        appendText("\n");
     }
-    private void appendLogs(String text, RichTextStyle style) {
-        String finalText = text;
+
+    private void appendText(String text) {
         Platform.runLater(() -> {
-            area.append(Either.left(finalText), style);
+            area.appendText(text);
+        });
+        scrollToTheEnd();
+    }
+
+    private void appendLogString(String text, RichTextStyle style) {
+        Platform.runLater(() -> {
+            area.append(Either.left(text), style);
+        });
+        scrollToTheEnd();
+    }
+
+    private void scrollToTheEnd() {
+        Platform.runLater(() -> {
+            if (area.totalHeightEstimateProperty().getValue() != null) {
+                area.scrollYBy(area.totalHeightEstimateProperty().getValue());
+            }
         });
     }
 }
