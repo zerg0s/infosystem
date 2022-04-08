@@ -1,6 +1,7 @@
 # код проверяльщика задач, версия 2019.23
 
 import os
+import shlex
 import subprocess
 import sys
 from localization import Locale
@@ -88,9 +89,8 @@ maxExecutionTimeDelay = 2  # max timeout for a task
 
 
 if __name__ == "__main__":
-    fileToCheck = "Desks.class"
-    dirToCheck = "simpleTestOfWords"
-    # dirToCheck = "regFindReplaceRepeated"
+    fileToCheck = "Task943603.class"
+    dirToCheck = "dateTime_timeManagement"
     retArray = list()
 
     extraDataForEasyMode = ""
@@ -105,14 +105,17 @@ if __name__ == "__main__":
         dirWithTests = "..\\pylint\\tests\\" + dirToCheck + "\\"
     testConfiguration = readConfing(dirWithTests + "config.conf")
     # print(os.path.abspath(dirWithTests))
-
+    pyRunPath = os.getcwd().replace('/','\\')
+    
     # для всех файлов .t с входными данными
     testFiles = sorted(filter(lambda x: x.endswith(".t"), os.listdir(dirWithTests)), key=lambda x: int(x[4:-2]))
     for file in testFiles:
         if os.path.isfile(dirWithTests + file) and file.endswith(".t"):
             inputDataFile = testConfiguration.get("input", "input.txt")
             copy2(dirWithTests + file, inputDataFile)
-            proc = subprocess.Popen(["java", "-Dfile.encoding=utf-8", fileToCheck.replace(".class", "")],
+            cmd = f"java -classpath {pyRunPath}\\;{pyRunPath}\\gson.jar -Dfile.encoding=utf-8 {fileToCheck.replace('.class', '')}"
+            
+            proc = subprocess.Popen(cmd,
                                     stdout=open("output", "w+", encoding="utf-8"),
                                     stderr=subprocess.STDOUT,
                                     stdin=open(inputDataFile, encoding="utf-8"),

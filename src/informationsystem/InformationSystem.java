@@ -62,6 +62,7 @@ public class InformationSystem extends Application {
                     .getText().replaceAll("[^\\d.]", "");
             new Thread(() -> checkNewVersion(oldVersion)).start();
         } catch (IOException ex) {
+            ex.printStackTrace();
             Logger.getLogger(InformationSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
 

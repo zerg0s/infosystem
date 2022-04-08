@@ -33,7 +33,7 @@ public class JavaTaskChecker extends TaskChecker {
         return startJavaCheck(this.getSubject(), this.getFileToManage());
     }
 
-    public String startJavaCheck(String subject, String fileToManage) throws UnsupportedOperationException {
+    public String   startJavaCheck(String subject, String fileToManage) throws UnsupportedOperationException {
 
         StringBuilder sbResultOfTests = new StringBuilder();
         FileAndItsTest data = copyFileToTempFolder(fileToManage);
@@ -188,7 +188,7 @@ public class JavaTaskChecker extends TaskChecker {
         try {
             List<String> linesOfFile = Files.readAllLines(new File(fileName).toPath());
             for (String line : linesOfFile) {
-                if (!line.contains(" class ")) continue;
+                if (!line.contains("public class ")) continue;
                 String[] classHeader = line.split(" ");
                 return classHeader[classHeader.length - 2];
             }
